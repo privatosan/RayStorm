@@ -1,0 +1,378 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "3DS"=.\modules\3ds\3ds.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/3ds", EDDAAAAA
+    .\modules\3ds
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Build all"=".\Build all.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm", JTAAAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name 3DS
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ILBM
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Jpeg
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name lwob
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name raw
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rsi
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rsob
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name scenario
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TDDD
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TGA
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "CodeKey"=.\keyfile\codekey\CodeKey.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/keyfile/CodeKey", UFBAAAAA
+    .\keyfile\codekey
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Common"=.\Scenario\CommonScenario\Common.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/Scenario/CommonScenario", WOBAAAAA
+    .\scenario\commonscenario
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ILBM"=.\modules\ilbm\ilbm.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/ilbm", JDDAAAAA
+    .\modules\ilbm
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iffparse
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Jpeg"=.\modules\jpeg\jpeg.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/jpeg", NDDAAAAA
+    .\modules\jpeg
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Png"=.\modules\png\png.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/png", XFDAAAAA
+    .\modules\png
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TDDD"=.\modules\tddd\tddd.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/tddd", UHDAAAAA
+    .\modules\tddd
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iffparse
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "TGA"=.\modules\tga\tga.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/tga", YHDAAAAA
+    .\modules\tga
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "brush"=.\texture\bump\bump.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/texture/bump", ANDAAAAA
+    .\texture\bump
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iffparse"=.\CommonUtil\iffparse.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/CommonUtil", KTAAAAAA
+    .\commonutil
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "keyfile"=.\keyfile\keyfile\keyfile.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/keyfile/keyfile", EGBAAAAA
+    .\keyfile\keyfile
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "lwob"=.\modules\lwob\lwob.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/lwob", BIDAAAAA
+    .\modules\lwob
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iffparse
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "raw"=.\modules\raw\raw.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/raw", OHDAAAAA
+    .\modules\raw
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "rsi"=.\Rsi\rsi.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/Rsi", FUAAAAAA
+    .\rsi
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "rsob"=.\modules\rsob\rsob.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/modules/rsob", RHDAAAAA
+    .\modules\rsob
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iffparse
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "scenario"=.\Scenario\scenario.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/Scenario", OHAAAAAA
+    .\scenario
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Common
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name vecmath
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iffparse
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "vecmath"=.\vecmath\vecmath.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm/vecmath", ZKCAAAAA
+    .\vecmath
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+    begin source code control
+    "$/RayStorm", JTAAAAAA
+    .
+    end source code control
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

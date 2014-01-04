@@ -1,0 +1,5 @@
+LIBRARY ilbm
+EXPORTS 
+	picRead_=picRead
+	picWrite_=picWrite
+ 

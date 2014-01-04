@@ -1,0 +1,68 @@
+/***************
+ * MODUL:         error
+ * NAME:          error.h
+ * DESCRIPTION:   Defines for errormessages
+ * AUTHORS:       Andreas Heumann, Mike Hesser
+ * HISTORY:
+ *    DATE     NAME  COMMENT
+ *    17.06.96 ah    initial release
+ *    05.12.96 ah    added ERR_STATNAME
+ *    21.03.97 ah    added ERR_SORNUMBER, ERR_SORPOINT
+ *    25.06.97 ah    added ERR_WRONGPICHANDLER, ERR_WRONGOBJHANDLER
+ *    26.10.97 ah    added ERR_KEYFILE
+ ***************/
+
+#ifndef ERROR_H
+#define ERROR_H
+
+enum errnums
+{
+	ERR_NONE,
+	ERR_MEM,
+	ERR_DEMOLIMIT,
+	ERR_RESOLUTION,
+	ERR_TRIANGLE,
+	ERR_VIEW,
+	ERR_SCREENMEM,
+	ERR_BACKDROPSIZE,
+	ERR_OPENTEXTUREFILE,
+	ERR_OPENBRUSH,
+	ERR_INITTEXTURE,
+	ERR_OPENPIC,
+	ERR_READPIC,
+	ERR_OPENPICTYPEFILE,
+	ERR_READPICTYPEFILE,
+	ERR_UNKNOWNPIC,
+	ERR_PICHANDLER,
+	ERR_OPENOBJ,
+	ERR_READOBJ,
+	ERR_OPENOBJTYPEFILE,
+	ERR_READOBJTYPEFILE,
+	ERR_UNKNOWNOBJ,
+	ERR_OBJHANDLER,
+	ERR_ACTOR,
+	ERR_SURFACE,
+	ERR_OCTREEDEPTH,
+	ERR_ANTIALIAS,
+	ERR_TIME,
+	ERR_NOPIC,
+	ERR_DISTRIB,
+	ERR_WRONGERROR,
+	ERR_PARAM,
+	ERR_STATNAME,
+	ERR_SORNUMBER,
+	ERR_SORPOINT,
+	ERR_CSG,
+	ERR_NOTCSGABLE,
+	ERR_WRONGOBJHANDLER,
+	ERR_WRONGPICHANDLER,
+	ERR_KEYFILE,
+#ifdef __AMIGA__
+	ERR_NODATATYPESLIB,
+#endif // __AMIGA__
+	ERR_EXTERNAL         // this is _always_ the last line, insert new errors above
+};
+
+extern char *errors[];
+
+#endif /* ERROR_H */

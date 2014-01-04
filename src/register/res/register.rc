@@ -1,0 +1,122 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resrc1.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resrc1.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_REGISTER DIALOG FIXED IMPURE  116, 52, 163, 234
+STYLE DS_MODALFRAME | DS_CENTER | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "RayStorm registration form"
+FONT 8, "Helv"
+BEGIN
+    GROUPBOX        "Personal data",-1,5,7,153,123
+    RTEXT           "First name:",-1,9,23,38,8,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_FNAME,50,20,47,12,ES_AUTOHSCROLL
+    RTEXT           "Last name:",-1,8,39,39,10,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_LNAME,50,36,47,12,ES_AUTOHSCROLL
+    RTEXT           "Street:",-1,24,55,23,8,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_STREET,50,52,100,12,ES_AUTOHSCROLL
+    RTEXT           "ZIP, City:",-1,16,71,31,8,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_CITY,50,68,100,12,ES_AUTOHSCROLL
+    RTEXT           "Country:",-1,20,87,27,8,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_COUNTRY,50,84,47,12,ES_AUTOHSCROLL
+    RTEXT           "E-Mail:",-1,24,111,23,8,NOT WS_GROUP
+    EDITTEXT        ID_REGISTER_EMAILIT,50,109,100,12,ES_AUTOHSCROLL
+    GROUPBOX        "Currency",-1,5,132,46,41
+    CONTROL         "DM",ID_REGISTER_DM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,12,145,37,10
+    CONTROL         "US$",ID_REGISTER_US,"Button",BS_AUTORADIOBUTTON,12,158,
+                    35,10
+    GROUPBOX        "Transport",-1,58,132,46,41
+    CONTROL         "E-Mail",ID_REGISTER_EMAIL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,63,145,33,10
+    CONTROL         "Letter",ID_REGISTER_SMAIL,"Button",BS_AUTORADIOBUTTON,
+                    63,158,30,10
+    GROUPBOX        "Version",-1,111,132,47,41
+    CONTROL         "PC",ID_REGISTER_PC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,145,28,10
+    CONTROL         "Amiga",ID_REGISTER_AMIGA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,158,35,10
+    CTEXT           "I want to order the full version of RayStorm for an amount of",
+                    135,8,178,146,17,NOT WS_GROUP
+    LTEXT           "",ID_REGISTER_PRICE,65,198,35,9,NOT WS_GROUP
+    PUSHBUTTON      "&Cancel",IDCANCEL,124,212,33,14
+    PUSHBUTTON      "&Info",ID_REGISTER_INFO,6,212,33,14
+    PUSHBUTTON      "&Save",ID_REGISTER_SAVE,46,212,33,14
+    PUSHBUTTON      "&Print",ID_REGISTER_PRINT,84,212,33,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_REGISTER            ICON    DISCARDABLE     "register.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,5 @@
+LIBRARY tga
+EXPORTS 
+	picRead_=picRead
+	picWrite_=picWrite
+ 

@@ -1,0 +1,6 @@
+LIBRARY 3ds
+EXPORTS 
+	objRead_=objRead
+	objInit_=objInit
+	objCleanup_=objCleanup
+ 

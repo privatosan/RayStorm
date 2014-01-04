@@ -1,0 +1,903 @@
+# Microsoft Developer Studio Generated Dependency File, included by scenario.mak
+
+.\BrowserView.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\csg.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\MaterialView.h"\
+	
+
+.\CONTROLS\BseButt.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\COLDEF.H"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\BseButt.h"\
+	".\DIALOGS\OSelDlg.h"\
+	
+
+.\DIALOGS\CameraDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\csg.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\flares.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\globals.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\star.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\BseButt.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\ddxddv.h"\
+	".\DIALOGS\CameraDlg.h"\
+	".\DIALOGS\CSGDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\LightDlg.h"\
+	".\DIALOGS\MeshDlg.h"\
+	".\DIALOGS\OSelDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrimDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\TransDlg.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SplitEx.h"\
+	
+
+.\CamView.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\magic.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CameraDlg.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\GlobalDlg.h"\
+	".\DIALOGS\GridDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrefDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\SurfDlg.h"\
+	".\Document.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SCENARIO.H"\
+	".\SplitEx.h"\
+	
+
+.\DIALOGS\CMeshDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\CONTROLS\ColButt.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\CommonScenario\color.h"\
+	".\CONTROLS\ColButt.h"\
+	
+
+.\Coldef.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	".\COLDEF.H"\
+	
+
+.\DIALOGS\CSGDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\modules\picload.h"\
+	"..\Rsi\ACTOR.H"\
+	"..\Rsi\BRUSH.H"\
+	"..\Rsi\CAMERA.H"\
+	"..\Rsi\COLOR.H"\
+	"..\Rsi\CSG.H"\
+	"..\Rsi\dof.h"\
+	"..\Rsi\INTERSEC.H"\
+	"..\Rsi\OBJECT.H"\
+	"..\Rsi\OCTREE.H"\
+	"..\Rsi\SURFACE.H"\
+	"..\Rsi\VOXEL.H"\
+	"..\Rsi\WORLD.H"\
+	"..\vecmath\VECMATH.H"\
+	".\DIALOGS\CSGDlg.h"\
+	
+
+.\DIALOGS\CustTree.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\MaterialView.h"\
+	
+
+.\ddxddv.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\ddxddv.h"\
+	
+
+.\Document.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\box.h"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\globals.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\plane.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\project.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\sphere.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	".\SCENARIO.H"\
+	
+
+.\CONTROLS\FileButt.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\Fileutil.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\CommonScenario\utility.h"\
+	".\CONTROLS\FileButt.h"\
+	
+
+..\CommonUtil\Fileutil.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\Fileutil.h"\
+	"..\CommonUtil\typedefs.h"\
+	
+
+.\gfx.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\utility.h"\
+	
+
+.\DIALOGS\GlobalDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\globals.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\ddxddv.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\GlobalDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\DIALOGS\GridDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\GridDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\MaterialView.h"\
+	
+
+.\DIALOGS\LightDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\csg.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\flares.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\star.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\BseButt.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\ddxddv.h"\
+	".\DIALOGS\CameraDlg.h"\
+	".\DIALOGS\CSGDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\LightDlg.h"\
+	".\DIALOGS\MeshDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrimDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\TransDlg.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SplitEx.h"\
+	
+
+.\Mainfrm.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\Fileutil.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SCENARIO.H"\
+	".\SplitEx.h"\
+	
+
+.\MaterialView.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\texture\dialog.h"\
+	"..\texture\rtexture.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\Preview.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\sphere.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\texture.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\SurfDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\DIALOGS\MeshDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\csg.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\flares.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\star.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\BseButt.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CameraDlg.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CSGDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\LightDlg.h"\
+	".\DIALOGS\MeshDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrimDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\TransDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\DIALOGS\OSelDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\COLDEF.H"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\view.h"\
+	".\DIALOGS\OSelDlg.h"\
+	
+
+.\CONTROLS\PicCtl.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	".\CommonScenario\utility.h"\
+	".\CONTROLS\PicCtl.h"\
+	
+
+.\DIALOGS\PicDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\DIALOGS\PicDlg.h"\
+	
+
+.\DIALOGS\PrefDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrefDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\DIALOGS\PrimDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\COLDEF.H"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\view.h"\
+	".\DIALOGS\PrimDlg.h"\
+	
+
+.\DIALOGS\RendDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\globals.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\MaterialView.h"\
+	
+
+.\Scenario.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Document.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SCENARIO.H"\
+	".\SplitEx.h"\
+	
+
+.\RES\scenario.rc : \
+	".\RES\BITMAPS\AddNew.bmp"\
+	".\RES\BITMAPS\browse.bmp"\
+	".\RES\BITMAPS\BROWSER.BMP"\
+	".\RES\BITMAPS\Delete.bmp"\
+	".\RES\BITMAPS\file.bmp"\
+	".\RES\BITMAPS\folder.bmp"\
+	".\RES\BITMAPS\MoveDown.bmp"\
+	".\RES\BITMAPS\MoveUp.bmp"\
+	".\RES\BITMAPS\name.bmp"\
+	".\RES\BITMAPS\SCENARIO.ICO"\
+	".\RES\BITMAPS\toolbar.bmp"\
+	".\RES\BITMAPS\view.bmp"\
+	
+
+.\CONTROLS\SlideCtl.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\CONTROLS\SlideCtl.h"\
+	
+
+.\SplitEx.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\SplitEx.h"\
+	
+
+.\DIALOGS\SurfDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\texture\dialog.h"\
+	"..\texture\rtexture.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\brush.h"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\Preview.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\texture.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CMeshDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\OSelDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\SurfDlg.h"\
+	".\Document.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SplitEx.h"\
+	
+
+.\DIALOGS\TransDlg.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\csg.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\flares.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\mesh.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\star.h"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\BseButt.h"\
+	".\CONTROLS\ColButt.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\SlideCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\ddxddv.h"\
+	".\DIALOGS\CameraDlg.h"\
+	".\DIALOGS\CSGDlg.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\LightDlg.h"\
+	".\DIALOGS\MeshDlg.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\PrimDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\DIALOGS\TransDlg.h"\
+	".\MaterialView.h"\
+	
+
+.\utility.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	"..\Rsi\Rsi.h"\
+	"..\vecmath\VECMATH.H"\
+	".\BrowserView.h"\
+	".\CamView.h"\
+	".\COLDEF.H"\
+	".\CommonScenario\camera.h"\
+	".\CommonScenario\color.h"\
+	".\CommonScenario\Display.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\gfx.h"\
+	".\CommonScenario\iff_util.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\Light.h"\
+	".\CommonScenario\Mouse.h"\
+	".\CommonScenario\object.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\SCI.H"\
+	".\CommonScenario\surface.h"\
+	".\CommonScenario\undo.h"\
+	".\CommonScenario\utility.h"\
+	".\CommonScenario\view.h"\
+	".\CONTROLS\FileButt.h"\
+	".\CONTROLS\PicCtl.h"\
+	".\CONTROLS\ViewButt.h"\
+	".\DIALOGS\CustTree.h"\
+	".\DIALOGS\PicDlg.h"\
+	".\DIALOGS\RendDlg.h"\
+	".\Mainfrm.h"\
+	".\MaterialView.h"\
+	".\SplitEx.h"\
+	
+
+.\CONTROLS\ViewButt.cpp : \
+	"..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\CommonUtil\typedefs.h"\
+	".\CommonScenario\Fileutil.h"\
+	".\CommonScenario\Iffparse.h"\
+	".\CommonScenario\prefs.h"\
+	".\CommonScenario\utility.h"\
+	".\CONTROLS\ViewButt.h"\
+	

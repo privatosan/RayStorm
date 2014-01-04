@@ -1,0 +1,19 @@
+Bump Texture
+Type: Color.
+
+This texture applies a bump texture, This texture is scale-able in all 3 texture axes independently, and works by associating 4 colors with 4 blending values found in the Control tab.  The blending values are arranged between 0.0 and 1.0 and are associated so that the blend 1, blends the objects base color to the textures "color 1."  Blend 2 to Blend 3 associates from "color 1" to "color 2", and Blend 3 to Blend 4 blends from "color 2" to "color 3."
+
+REQUESTER TABS:
+
+Color:
+Color 1, Color 2, Color 3:  These are all the color setting RGB valued for the Agate Texture.  Remember, the
+first color is taken from the color on the object.  If any of these colors are set to a negative value, the color
+will be taken from the color already on the object
+
+Size:  These allow you to scale the overall size of the grain in this texture, or the grain can be
+lined up in a certain direction by scaling in only one direction.  For example, scaling only in Z will make the
+grain stretch in the Z direction.
+
+
+Controls:
+Blend 1,2,3,4:  These are the user controllable Blending.  Blending 1 to 2 adjusts the blending of the object color to 'Color 1'.  Blending 2 to 3 controls the blending from 'Color 1' to 'Color 2',and so on.

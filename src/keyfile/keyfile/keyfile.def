@@ -1,0 +1,6 @@
+LIBRARY keyfile
+EXPORTS 
+	keyWritePicture @ 1
+	keyGetInfo @ 2
+	keyDecodeKeyfile1 @ 3
+	keyDecodeKeyfile2 @ 4

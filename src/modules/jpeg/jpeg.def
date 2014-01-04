@@ -1,0 +1,5 @@
+LIBRARY jpeg
+EXPORTS 
+	picRead_=picRead
+	picWrite_=picWrite
+ 

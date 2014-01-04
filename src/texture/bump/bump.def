@@ -1,0 +1,6 @@
+; cppproj.def : Declares the module parameters for the DLL.
+
+LIBRARY      "CPPPROJ"
+DESCRIPTION  'CPPPROJ Windows Dynamic Link Library'
+
+EXPORTS

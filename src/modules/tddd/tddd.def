@@ -1,0 +1,6 @@
+LIBRARY tddd
+EXPORTS 
+	objRead_=objRead
+	objInit_=objInit
+	objCleanup_=objCleanup
+ 
