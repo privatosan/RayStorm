@@ -1,0 +1,140 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"ray:keyfile"
+"rsi:"
+"ray:module_src"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 1 0 0 0 0 0 1 0 3 1 0 0
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+0 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/raystorm.cpp"
+"SoftDisk:User/mcpp3/work/octree/raystorm.cpp"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"raystorm.o" "raystorm.debug"
+""
+"raystorm.o" "raystorm.debug"
+File
+1 "stub.c"
+"stub.c"
+Storm Shell Project (Dependencies)
+"stub.o" "stub.debug"
+""
+"stub.o" "stub.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/interface.h"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+10 "raystorm"
+"raystorm"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"raystorm.link"
+Section
+10 0 40
+File
+9 "raystorm_PPC.¶"
+"raystorm_PPC.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+File
+3 "csgstack.o"
+"csgstack.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "interface.o"
+"interface.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "itemlist.o"
+"itemlist.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "stub_ppc.o"
+"stub_ppc.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+3 0 -40
+File
+5 "ppcmem.lib"
+"ppcmem.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "stormMixedbin.lib"
+"stormMixedbin.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcamiga.lib"
+"ppcamiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

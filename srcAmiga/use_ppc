@@ -1,0 +1,10 @@
+copy rtxt:linear_new/stormppc/linear.rtx mod:textures/
+copy rtxt:checker_new/stormppc/checker.rtx mod:textures/
+copy rtxt:radial_new/stormppc/radial.rtx mod:textures/
+copy rtxt:marble_new/stormppc/marble.rtx mod:textures/
+copy rtxt:wood_new/stormppc/wood.rtx mod:textures/
+copy rtxt:bump_new/stormppc/bump.rtx mod:textures/
+copy rtxt:fire_new/stormppc/fire.rtx mod:textures/
+copy rtxt:stars_new/stormppc/stars.rtx mod:textures/
+copy rtxt:hurrican/stormppc/hurrican.rtx mod:textures/
+

@@ -1,0 +1,9 @@
+881/raystorm: 881/itemlist.o 881/raystorm.o
+	mcppc 881/itemlist.o 881/raystorm.o -o raystorm -l amiga
+
+881/itemlist.o: itemlist.cpp itemlist.h
+	mcppc -c itemlist.cpp
+
+881/raystorm.o: itemlist.h raystorm.cpp
+	mcppc -c raystorm.cpp
+

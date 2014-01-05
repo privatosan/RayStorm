@@ -1,0 +1,52 @@
+/***************
+ * NAME:          bump.ray
+ * DESCRIPTION:   Test of bump texture
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 100 100'
+'SETCAMERA <-5,10,-25> <0,0,0> <0,1,0> 20 20'
+'SETWORLD [0,0,0] [20,20,20]'
+'POINTLIGHT <-20,20,-40> SHADOW'
+
+'NEWSURFACE MAP'
+'DIFFUSE [200,100,20]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE bump.itx <0,0,0> <0,0,0> <.5,.5,.5> 1 1 1'
+
+'SPHERE MAP <0,0,0> 2'
+
+'NEWSURFACE MAP1'
+'DIFFUSE [20,100,200]'
+'SPECULAR [0,0,0]'
+'REFLECT [100,100,100]'
+'IMTEXTURE bump.itx <0,0,0> <0,0,0> <2,2,2> 1 1 1'
+
+'PLANE MAP1 <0,-2,0> <0,1,0>'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC bump.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

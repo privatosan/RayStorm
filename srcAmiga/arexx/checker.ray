@@ -1,0 +1,44 @@
+/***************
+ * NAME:        checker.ray
+ * DESCRIPTION: Checker texture test
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+'OBJECTPATH /objects'
+
+'SETSCREEN 160 128'
+'SETCAMERA <-5,10,10> <0,0,0> <0,1,0> 25 20'
+'SETWORLD [0,0,150]'
+'POINTLIGHT <-10,20,20>'
+
+'NEWSURFACE test'
+'SPECULAR [0,0,0]'
+'IMTEXTURE checker.itx <0,0,0> <0,0,0> <.5,.5,.5>'
+
+'LOADOBJ cube.iob <0,0,0> SURFACE=test'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC checker.iff'
+
+CLEANUP
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

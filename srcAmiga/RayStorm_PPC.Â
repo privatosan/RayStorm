@@ -1,0 +1,170 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 1 0 1 1 0 0
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 1 1
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+9 "rsi:stormppc/rsi.¶"
+"rsi:stormppc/rsi.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "mod:stormppc/scenario.¶"
+"mod:stormppc/scenario.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:3ds/stormppc/3ds.¶"
+"rmod:3ds/stormppc/3ds.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:ilbm/stormppc/ilbm.¶"
+"rmod:ilbm/stormppc/ilbm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:jpeg/stormppc/jpeg.¶"
+"rmod:jpeg/stormppc/jpeg.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:lwob/stormppc/lwob.¶"
+"rmod:lwob/stormppc/lwob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:nff/stormppc/nff.¶"
+"rmod:nff/stormppc/nff.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:PNG/stormppc/png.¶"
+"rmod:PNG/stormppc/png.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:raw/stormppc/raw.¶"
+"rmod:raw/stormppc/raw.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:rsob/stormppc/rsob.¶"
+"rmod:rsob/stormppc/rsob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tddd/stormppc/tddd.¶"
+"rmod:tddd/stormppc/tddd.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tga/stormppc/tga.¶"
+"rmod:tga/stormppc/tga.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:bump_new/stormppc/bump.¶"
+"rtxt:bump_new/stormppc/bump.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:checker_new/stormppc/checker.¶"
+"rtxt:checker_new/stormppc/checker.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:fire_new/stormppc/fire.¶"
+"rtxt:fire_new/stormppc/fire.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:hurrican/stormppc/hurrican.¶"
+"rtxt:hurrican/stormppc/hurrican.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:linear_new/stormppc/linear.¶"
+"rtxt:linear_new/stormppc/linear.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:marble_new/stormppc/marble.¶"
+"rtxt:marble_new/stormppc/marble.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:radial_new/stormppc/radial.¶"
+"rtxt:radial_new/stormppc/radial.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:stars_new/stormppc/stars.¶"
+"rtxt:stars_new/stormppc/stars.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rtxt:wood_new/stormppc/wood.¶"
+"rtxt:wood_new/stormppc/wood.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+Storm Shell Project (End)

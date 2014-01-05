@@ -1,0 +1,81 @@
+/***************
+ * NAME:        bounce.ray
+ * DESCRIPTION: Tutorial: bouncing ball
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+g = .2
+frames = 17
+
+'BRUSHPATH /brushes'
+'TEXTUREPATH /textures'
+'SETSCREEN 160 128'
+'SETCAMERA <0,10,40> <0,5,0> <0,1,0> 25 20'
+'SETWORLD [10,30,200] [10,10,10] RANDJIT'
+'POINTLIGHT <-5,10,50>'
+
+'NEWACTOR groundactor'
+'ALIGNMENT 0 ' frames+2 ' <0,0,360>'
+
+'NEWSURFACE groundtop'
+'DIFFUSE [255,255,255]'
+'SPECULAR [0,0,0]'
+'REFLECT [50,50,50]'
+'IMTEXTURE checker.itx <0,-1,0> <0,0,0> <10,10,10> ACTOR groundactor'
+
+'NEWSURFACE groundbottom'
+'DIFFUSE [255,0,0]'
+'SPECULAR [0,0,0]'
+'REFLECT [50,50,50]'
+'IMTEXTURE checker.itx <0,-1,0> <0,0,0> <1.5,1.5,1.5> ACTOR groundactor'
+
+'TRIANGLE groundtop <2,0,-2> <2,0,-2> <2,0,2> ACTOR groundactor'
+'TRIANGLE groundtop <2,0,-2> <-2,0,2> <2,0,2> ACTOR groundactor'
+'TRIANGLE groundbottom <2,-.01,-2> <2,-.01,-2> <2,-.01,2> ACTOR groundactor'
+'TRIANGLE groundbottom <2,-.01,-2> <-2,-.01,2> <2,-.01,2> ACTOR groundactor'
+
+speed = -g
+pos = 10
+'NEWACTOR ballactor <0,'pos',0>'
+do i=0 to frames
+  'POSITION ' i i+1 '<0,'pos',0>'
+  pos = pos+speed
+  if pos<=1 & speed<0 then
+	 speed = -speed
+  else
+	 speed = speed-g
+end
+'ALIGNMENT 0 ' frames+2 ' <0,360,0>'
+
+'NEWSURFACE ball'
+'BRUSH earth.png COLOR WRAPXY <0,10,0> <0,0,0> <.1,.1,.1> ACTOR ballactor'
+
+'SPHERE ball <0,10,0> 1 ACTOR ballactor'
+
+'ANTIALIAS 1'
+'DISTRIB 2'
+
+do i=0 to frames
+  'STARTRENDER QUICK FROM 'i' TO 'i+1
+  'SAVEPIC bounce' || RIGHT(i,4,0) || '.iff'
+end
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

@@ -1,0 +1,9 @@
+000/raystorm: 000/itemlist.o 000/raystorm.o
+	mcppc 000/itemlist.o 000/raystorm.o -o raystorm -l amiga
+
+000/itemlist.o: itemlist.cpp itemlist.h
+	mcppc -c itemlist.cpp
+
+000/raystorm.o: itemlist.h raystorm.cpp
+	mcppc -c raystorm.cpp
+

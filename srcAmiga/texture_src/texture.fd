@@ -1,0 +1,5 @@
+##base _TextureBase
+##bias 30
+##public
+texture_init()()
+##end

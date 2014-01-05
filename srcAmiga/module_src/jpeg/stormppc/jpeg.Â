@@ -1,0 +1,401 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rmod:"
+"rsi:"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+0 0 0 0 0 0 0 0 0 0 0 3 1 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.cpp"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.cpp"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+Storm Shell Project (Dependencies)
+"piclib.o" "piclib.debug"
+""
+"piclib.o" "piclib.debug"
+Section
+1 0 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+16 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.fd"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "jpegppc"
+"jpeg"
+"jpegppc"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"jpegppc.link"
+Section
+10 0 40
+File
+9 "jpeg_PPC.¶"
+"jpeg_PPC.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+File
+3 "jcapimin.o"
+"jcapimin.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcapistd.o"
+"jcapistd.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jccoefct.o"
+"jccoefct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jccolor.o"
+"jccolor.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcdctmgr.o"
+"jcdctmgr.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jchuff.o"
+"jchuff.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcinit.o"
+"jcinit.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcmainct.o"
+"jcmainct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcmarker.o"
+"jcmarker.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcmaster.o"
+"jcmaster.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcomapi.o"
+"jcomapi.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcparam.o"
+"jcparam.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcphuff.o"
+"jcphuff.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcprepct.o"
+"jcprepct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jcsample.o"
+"jcsample.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jctrans.o"
+"jctrans.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdapimin.o"
+"jdapimin.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdapistd.o"
+"jdapistd.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdatadst.o"
+"jdatadst.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdatasrc.o"
+"jdatasrc.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdcoefct.o"
+"jdcoefct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdcolor.o"
+"jdcolor.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jddctmgr.o"
+"jddctmgr.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdinput.o"
+"jdinput.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdmainct.o"
+"jdmainct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdmarker.o"
+"jdmarker.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdmaster.o"
+"jdmaster.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdmerge.o"
+"jdmerge.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdphuff.o"
+"jdphuff.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdpostct.o"
+"jdpostct.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdsample.o"
+"jdsample.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdtrans.o"
+"jdtrans.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jerror.o"
+"jerror.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jfdctflt.o"
+"jfdctflt.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jfdctfst.o"
+"jfdctfst.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jfdctint.o"
+"jfdctint.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jidctflt.o"
+"jidctflt.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jidctfst.o"
+"jidctfst.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jidctint.o"
+"jidctint.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jidctred.o"
+"jidctred.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jmemnobs.o"
+"jmemnobs.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jquant1.o"
+"jquant1.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jquant2.o"
+"jquant2.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jutils.o"
+"jutils.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jdhuff.o"
+"jdhuff.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jmemmgr.o"
+"jmemmgr.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "jpeg.o"
+"jpeg.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+3 0 -40
+File
+5 "stormMixedbin.lib"
+"stormMixedbin.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcamiga.lib"
+"ppcamiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

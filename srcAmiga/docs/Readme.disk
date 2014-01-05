@@ -1,0 +1,40 @@
+                                                         November 08th 1998
+
+                                Welcome to
+                              RayStorm v2.2
+
+                                   by
+                             Andreas Heumann
+                                  and
+                               Mike Hesser
+
+INTRODUCTION
+
+This is the new release of the RayStorm package. It includes a fast and
+easy to use modeler, a powerful scriptlanguage and a fast raytracing
+kernel.
+
+REQUIREMENTS
+
+(1) You will need at least Kickstart 2.0.
+
+(2) PPC-version: PowerPC processor with 68040 (with internal FPU)
+
+(3) 060-version: 68060 processor (with internal FPU)
+
+(4) 040-version: 68040 processor (with internal FPU)
+
+(5) 881-version: 68020 processor or better and a mathematical coprocessor)
+
+(6) 4MB RAM minimum
+
+(7) RayStorm was written using MUI. Therefore you need muimaster.library
+    V3.3 or better to run RayStorm.
+
+recommended: 68060, 32MB RAM, 1GB Harddisk, GFX-Board
+
+INSTALLATION
+
+To install RayStorm double click to the 'Install' icon on the disk to install
+the raystorm executeables, the documentation and the example files.
+

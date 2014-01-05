@@ -1,0 +1,185 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:keyfile"
+"rmod:"
+Includepath (End)
+0 "" 80
+1 "storm"
+C/C++ Preprozessor
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 2 0 0 0 0 0 0 0 2 1 0 0
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "csgstack.cpp"
+"csgstack.cpp"
+"csgstack.h"
+Storm Shell Project (Dependencies)
+"storm/csgstack.o" "storm/csgstack.debug"
+""
+"storm/csgstack.o" "storm/csgstack.debug"
+File
+1 "interface.cpp"
+"interface.cpp"
+"SoftDisk:User/mcpp3/work/octree/itemlist.h"
+"SoftDisk:User/mcpp3/work/octree/csgstack.h"
+"SoftDisk:User/mcpp3/work/octree/raystorm.h"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"storm/interface.o" "storm/interface.debug"
+""
+"storm/interface.o" "storm/interface.debug"
+File
+1 "itemlist.cpp"
+"itemlist.cpp"
+"itemlist.h"
+Storm Shell Project (Dependencies)
+"storm/itemlist.o" "storm/itemlist.debug"
+""
+"storm/itemlist.o" "storm/itemlist.debug"
+File
+1 "raystorm.cpp"
+"raystorm.cpp"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"storm/raystorm.o" "storm/raystorm.debug"
+""
+"storm/raystorm.o" "storm/raystorm.debug"
+Section
+1 1 100
+File
+2 "csgstack.h"
+"csgstack.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "itemlist.h"
+"itemlist.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rsi:rsi.h"
+"rsi:rsi.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "ray:keyfile/keyfile_lib.h"
+"ray:keyfile/keyfile_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "interface.h"
+"interface.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "raystorm.h"
+"raystorm.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+10 "raystorm"
+"raystorm"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"raystorm.link"
+Section
+10 0 40
+File
+14 "ray:docs/raystorm.guide"
+"ray:docs/raystorm.guide"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+14 0 20
+File
+6 "ray:docs/raystorm_todo.txt"
+"ray:docs/raystorm_todo.txt"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+6 0 10
+File
+9 "ray:storm020/raystorm.¶"
+"ray:storm020/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm881/raystorm.¶"
+"ray:storm881/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm040/raystorm.¶"
+"ray:storm040/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm060/raystorm.¶"
+"ray:storm060/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 0 -10
+File
+5 "storm020.lib"
+"storm020.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

@@ -1,0 +1,15 @@
+000/rsob: 000/rsob.o 000/vecmath.o 000/iff_util.o 000/list.o
+	mcppc 000/rsob.o 000/vecmath.o 000/iff_util.o 000/list.o -o 000/rsob -gs -l amiga
+
+000/rsob.o: rsob.cpp
+	mcppc -c rsob.cpp
+
+000/vecmath.o: mod:errors.h mod:list.h mod:typedefs.h mod:vecmath.cpp mod:vecmath.h
+	mcppc -c mod:vecmath.cpp
+
+000/iff_util.o: mod:iff_util.cpp mod:iff_util.h
+	mcppc -c mod:iff_util.cpp
+
+000/list.o: mod:list.cpp mod:list.h mod:typedefs.h
+	mcppc -c mod:list.cpp
+

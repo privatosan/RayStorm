@@ -1,0 +1,40 @@
+RayStorm V1.161
+ 
+RayStorm is a new octreebased raytracer. It has been written to be as fast 
+as possible. Thus we have implemented a octree algorithm, and optimized 
+all calculations as much as we could.
+
+Features
+
+- Up to 30% faster than Imagine (in trace mode).
+- ARexx-port. RayStorm can be used by all programs with ARexx-port.
+- Imagine compatible. RayStorm is designed to be almost compatible to
+  Imagine. It can load Imagine objects and use Imagine textures.
+- Octree algorithm used for rendering.
+- Color, reflectivity, filter, altitude and specular mapping.
+- Flat, cylinder and sphere mapping.
+- Soft brush mapping.
+- Mathematical textures: wood, marble, bumps, checker, linear, stars.
+- Tranparency and physically correct refractions.
+- 8 levels of antialiasing (adaptive supersampling).
+- Rendering box.
+- Three builtin object types: sphere, plane and triangle.
+- Three light types: ambient, point and spot.
+- Depth of field with adjustable focal distance and aperture.
+- Soft shadows.
+- Backdrop picture.
+- Global fog and foggy objects.
+- Material attributes for realictic objects: ambient color, diffuse color,
+  specular color, specular reflection exponent, diffuse transmission color,
+  specular transmission color, specular transmission exponent, specular
+  transmittance, transparent color, reflective color, index of refraction,
+  foglength.
+- Bright objects.
+- Motion blur for realistic animations.
+- Quick rendering.
+- Global reflection map.
+- Image formates: IFF-ILBM, PNG.
+- Object format: Imagine-TDDD, Autodesk 3DS
+- New image- and object-formats can be easily included because of the
+  modular concept.
+

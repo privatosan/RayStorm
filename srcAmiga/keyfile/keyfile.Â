@@ -1,0 +1,113 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:lib_vecmath"
+"rmod:"
+Includepath (End)
+0 "" 80
+0 "objects"
+C/C++ Preprozessor
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "keyfile.cpp"
+"keyfile.cpp"
+"keyfile.h"
+"rmod:pichand_lib.h"
+"codekey.h"
+Storm Shell Project (Dependencies)
+"keyfile.o" "keyfile.debug"
+""
+"keyfile.o" "keyfile.debug"
+Section
+1 1 100
+File
+2 "keyfile.h"
+"keyfile.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rmod:pichand_lib.h"
+"rmod:pichand_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "codekey.h"
+"codekey.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+16 "keyfile.fd"
+"keyfile.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "s:RayStorm.key"
+"arteffect:Plugins/Perspective.pss"
+"dh0:user/arteffect2/Plugins2/Perspective.pss"
+"dh0:user/arteffect2/Plugins2/Raytracer.pss"
+"RayStorm.key"
+"s:RayStorm.key"
+"rsi:RayStorm.key"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"s:RayStorm.key.link"
+Section
+10 0 40
+File
+5 "storm.lib"
+"storm.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

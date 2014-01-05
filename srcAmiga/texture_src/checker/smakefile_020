@@ -1,0 +1,8 @@
+all: 020/checker.itx
+
+020/checker.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h checker.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ code=far data=far nostackcheck nostartup cpu=68020 math=s checker.c objname 020/checker.o
+
+020/checker.itx: 020/checker.o
+        sc code=far data=far nostackcheck nostartup cpu=68020 math=s link 020/checker.o to 020/checker.itx
+

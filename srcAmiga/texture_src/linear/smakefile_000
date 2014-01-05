@@ -1,0 +1,5 @@
+all: 000/linear.itx
+
+000/linear.itx: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h linear.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ code=far data=far nostackcheck nostartup cpu=68000 math=s link to 000/linear.itx linear
+

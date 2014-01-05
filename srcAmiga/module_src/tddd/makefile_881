@@ -1,0 +1,9 @@
+881/tddd: 881/tddd.o 881/lowlevel.o
+	mcppc 881/tddd.o 881/lowlevel.o -o 881/tddd -l amiga
+
+881/tddd.o: tddd.cpp tddd.h
+	mcppc -c tddd.cpp
+
+881/lowlevel.o: rsi:lowlevel.asm
+	stormc:phxass/bin/phxass rsi:lowlevel.asm to 881/lowlevel.o
+

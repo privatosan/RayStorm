@@ -1,0 +1,81 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"mod:"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "__AMIGA__" ""
+1 "LOWLEVEL" ""
+1 "__MATRIX_STACK__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 1 0 0 0 1 1 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+1 1 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "ray:lib_vecmath/vecmath.cpp"
+"ray:lib_vecmath/vecmath.cpp"
+"ray:lib_vecmath/vecmath.h"
+Storm Shell Project (Dependencies)
+"vecmath.o" "vecmath.debug"
+""
+"vecmath.o" "vecmath.debug"
+Section
+1 0 100
+File
+2 "ray:lib_vecmath/vecmath.h"
+"ray:lib_vecmath/vecmath.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+12 "ray:lib_vecmath/asm_vecmath.asm"
+"ray:lib_vecmath/asm_vecmath.asm"
+Storm Shell Project (Dependencies)
+"asm_vecmath.o" ""
+""
+"asm_vecmath.o"
+Section
+12 0 90
+File
+18 "vecmath.lb"
+"SoftDisk:User/mcpp3/work/octree/lib_vecmath/storm881/asm_vecmath.o"
+"SoftDisk:User/mcpp3/work/octree/lib_vecmath/storm881/vecmath.o"
+Storm Shell Project (Dependencies)
+"ray:lib_vecmath/storm881/vecmath.lib" ""
+"StormC:rexx/librarian.srx"
+Section
+18 1 65
+Storm Shell Project (End)

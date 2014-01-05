@@ -1,0 +1,5703 @@
+@database "RayStorm Documentation"
+@author "Andreas Heumann"
+@(c) "Copyright by Andreas Heumann"
+@$VER: RayStorm Documentation 2.3 (09-May-99)
+@index INDEXNODE
+
+@node Main " RayStorm Documentation "
+                                                                  May 9th 1999
+
+                          R a y S t o r m   @{"v2.3" link History}
+
+                     by Andreas Heumann and Mike Hesser
+
+ @{b}1. Introduction@{ub}
+   @{" Introduction         " link Introduction}     What is RayStorm?
+   @{" Requirements         " link Requirements}     What do I need to run it?
+   @{" Features             " link Features}     What can Scenario do?
+   @{" Limitations          " link Limitations}     What limitations has the demo version?
+
+ @{b}2. Installation@{ub}
+   @{" Installation         " link Installation}     How can I install it?
+
+ @{b}3. General information@{ub}
+   @{" Raytracing           " link RayGeneral}     What is raytracing?
+   @{" Octree               " link Octree}     What is an octree?
+   @{" Antialiasing         " link Antialiasing}     What is antialiasing?
+   @{" Depth of field       " link DOF}     What is Depth of Field?
+   @{" Soft shadows         " link SoftShadows}     What are soft shadows?
+   @{" Shadow map           " link InfoShadowMap}     What is a shadow map?
+   @{" Motion Blur          " link Motion_Blur}     What is Motion Blur?
+   @{" Surfaces             " link Surface}     What meaning have the surface parameters?
+   @{" CSG                  " link InfoCSG}     What is CSG?
+   @{" Hyper textures       " link InfoHyperTexture}     What are hyper textures?
+   @{" Surface of revolution" link InfoSOR}     What is a surface of revolution?
+   @{" Directory Structure  " link Structure}     Some words to directory and project structures.
+   @{" Virtual Memory       " link VirtualMemory}     How do I use virutal memory?
+   @{" Internals            " link Internals}     Some internal details.
+   @{" Tips & Tricks        " link TipsTricks}     Useful tips,tricks and hints (FAQ)
+   @{" Textures             " link Textures}     How do I use textures?
+   @{" RAW object format    " link RAW_Format}     Description of RAW object files.
+
+ @{b}3. Scenario Usage@{ub}
+   @{" Usage                " link Scenario_Usage}     How do I use Scenario?
+   @{" Browser              " link Scenario_Browser}     How do I use the object browser?
+   @{" Material manager     " link Scenario_Material}     How do I use the material manager?
+   @{" Menus                " link Menus}     Description of the menus.
+   @{" Buttons              " link Buttons}     Description of the buttons.
+   @{" Object Menus         " link Object_Menus}     Description of object orientated menus.
+   @{" Keyboard Control     " link Keyboard_Control}     How do I use Scenario with the keyboard?
+   @{" ARexx interface      " link Scenario_ARexx}     Which ARexx commands does it have?
+   @{" Plugins              " link Scenario_Plugins}     How do I use the plugins?
+
+ @{b}4. Script Usage@{ub}
+   @{" ARexx interface      " link ARexx}     Which ARexx commands does it have?
+   @{" Examples             " link Examples}     How do I use the examples?
+   @{" Tutorials            " link Tutorials}     Some tutorials
+
+ @{b}5. Registration@{ub}
+   @{" Register             " link Register}     Please register to support the shareware concept.
+
+ @{b}6. Misc@{ub}
+   @{" Known Bugs           " link Bugs}     Bugs
+   @{" Credits              " link Credits}     Thanks go to...
+   @{" Authors              " link Author}     Who wrote it?
+   @{" Literature           " link Literature}     Which books do we use?
+   @{" PC-Version           " link PC-version}     Where can I get the PC-version?
+   @{" Homepage             " link Homepage}     Where to find us on the World Wide Web.
+   @{" History              " link History}     What happened in the past?
+   @{" Future               " link Future}     What is planned for the future?
+
+ @{b}7. Legal Stuff@{ub}
+   @{" Legal Stuff          " link Copyright}     Legal stuff
+
+@endnode
+
+@node Introduction " Introduction "
+@{b}INTRODUCTION@{ub}
+
+This document describes the raytracing package RayStorm. The package consists
+of two parts:
+- The scene modeler @{b}Scenario@{ub} which is the graphical user interface
+  (GUI) of the RayStorm package.
+- The script interface @{b}RayStorm Script@{ub}, a program wich allowes one
+  to use the raytracer through a script language.
+- The heart of RayStorm: @{b}RayStorm Raytracer@{ub}, wich generates the
+  picture from a scene description (this part is not visible to the user
+  but nevertheless it's the main part).
+
+Here are some additional informations to the parts:
+
+  @{"RayStorm Scenario" link Intro_Scenario}
+  @{"RayStorm Script" link Intro_Script}
+  @{"RayStorm Raytracer" link Intro_Raytracer}
+@endnode
+
+@node Intro_Scenario " Introduction to Scenario "
+@{b}INTRODUCTION TO SCENARIO@{ub}
+
+As we developed Scenario we tried to make the user interface to use as
+easy as possible to enable even absolute beginners to work with it. Therefore
+almost all actions can be performed with the mouse. For advanced users we
+implemented keyboard shortcuts for almost all functions.
+
+Scenario can load a project at startup. For this start it with the name of a
+directory as argument or from Workbench by selecting the project drawer and
+double clicking the Scenario icon.
+
+A detailed introduction can be found @{"here" link Scenario_Usage}.
+@endnode
+
+@node Intro_Script " Introduction to RayStorm Script "
+@{b}INTRODUCTION TO RAYSTORM SCRIPT@{ub}
+
+The script language that contains the description of the scene is easy to
+learn and offers some powerful capabilities. In addition, the script language
+has a full support for key frame animation.
+
+A RayStorm script file (.ray files) is basically divided into the following
+sections:
+- Various settings of the camera, the world and the lights,
+- Definitions of the different textured surfaces,
+- Different actors that set the Motion Blur and animation parameters,
+- Objects that are associated with surfaces and actors
+- Settings for the final rendered graphic.
+
+For a more detailed description click @{"here" link ARexx}.
+@endnode
+
+@node Intro_Raytracer " Introduction to RayStorm Raytracer "
+@{b}INTRODUCTION TO RAYSTORM RAYTRACER@{ub}
+
+The raytracer itself is a part to RayStorm which is not directly visible.
+All features of the raytracer are packed into a shared library. Both Scenario
+and RayStorm Script use this library to render their scenes.
+
+The raytracer is based on a fast octree algorithm. It has some powerfull
+features such as @{"Motion Blur" link Motion_Blur}, @{"Soft Shadows" link SoftShadows} and
+@{"Depth of Field" link DOF}.
+@endnode
+
+@node RayGeneral " General "
+@{b}GENERAL@{ub}
+
+Raytracing makes it possible to generate fotorealistic pictures of objects.
+
+A raytracer casts a ray form the position of the viewer through a scene
+and calculates possible intersections with the objects in that scene. If an
+intersection is found, the raytracer decides which color the object
+at this position has. If the object is reflective or transparent, the
+raytracer casts new rays from this positon and tests the intersections
+again and so on.
+
+To make the surfaces of the objects more realistic, textures which
+simulate marble, wood other surfaces can be used.
+@endnode
+
+@node Octree " Octree "
+@{b}OCTREE@{ub}
+Simple raytracers determine the intersections with objects by testing all
+objects. This can lead to long rendering times if there are a lot of
+objects in the scene.
+
+One solution of this problem is the Octree algorithm.
+This algorithm divides the scene into eight child-cells recursively until
+there is less than oe object in the cell or the maximum depth of the tree is reached.
+
+Division of space with the octree algorithm:
+             _
+             /| z
+            /
+     /-------/-------/|
+ ^ y/       /       / |
+ | / left  / right / b|
+ |/       /       / |a|
+ |-------/-------| f|c|
+ |               | r|k|
+ |      up       | o| /
+ |---------------| n|/
+ |               | t|
+ |     down      | /  x
+ |---------------|/-->
+@endnode
+
+@node Antialiasing " Antialiasing "
+@{b}ANTIALIASING@{ub}
+
+RayStorm uses a algorithm called 'Adaptive Supersampling' to do antialiasing.
+For each pixel with a high contrast against its four neighbours, the algorithm
+casts new rays which are close to the ray used for the pixel itself. The new
+color of the pixel is calculated with the supersampled pixels and the gaussian
+filter.
+
+Supersampling is also used to do @{"depth of field" link DOF} and @{"soft shadows" link SoftShadows}. So if
+you want to use this features you have to set a antialiasing value greater
+than one. (-> @{"ANTIALIAS" link ANTIALIAS})
+
+Example:
+Settings: squareroot of number of samples per pixel: 3
+
+|--------|--------|--------|
+| super- | super- | super- |
+| sampled| sampled| sampled|
+|        |        |        |
+|--------|--------|--------|
+| super- |        | super- |
+| sampled| pixel  | sampled|
+|        |        |        |
+|--------|--------|--------|
+| super- | super- | super- |
+| sampled| sampled| sampled|
+|        |        |        |
+|--------|--------|--------|
+
+|- Gaussian filter width  -|
+
+The rendering time increases dramatically if you use antialiasing. The
+values below depend on the contrast of the picture.
+
+Samplesetting     rendering time
+                  average case     worst case
+1                 x1                x1
+2                 x2                x4
+3                 x4                x8
+4                 x8               x16
+...               ...              ...
+
+Setting higher than 3 are not leading to significant better results.
+@endnode
+
+@node DOF " Depth of field "
+@{b}DEPTH OF FIELD@{ub}
+
+Objects in computer graphics are normally rendered in an image plane
+using a pinhole camera model. That is to say, no matter how far or how
+near the objects are from the camera, they are always in sharp focus.
+Depth of field means that only objects at a certain distance from the
+camera lens are in sharp focus. Further and nearer objects produce a
+blurred image on the film plane.
+
+[From 'Advanced Animation and Rendering Techniques']
+
+To use depth of field you have to set @{"ANTIALIAS" link ANTIALIAS} to a value bigger
+than one.
+
+@{"Example for DOF" link "pics/dof.iff/main" 0}
+@endnode
+
+@node SoftShadows " Soft shadows "
+@{b}SOFT SHADOWS@{ub}
+
+Real Light sources never have a zero size, therefore the shadows behind
+objects are never hard edged, they are soft. RayStorm generates this
+shadows by jittering the position of the light source. To use soft shadows
+you must set @{"DISTRIB" link DISTRIB} to a value bigger than one.
+@endnode
+
+@node InfoShadowMap " Shadow map "
+@{b}SHADOW MAP@{ub}
+A shadow map is a depth map with the light source in the center. If a ray
+hits an object the distance between this hit point is calculated and compared
+with the depth found in the shadow map. If distance from the hitpoint is
+less than the value in the depth map, the object is in shadow.
+
+The problem with this concept is that transparent objects cast dark shadows.
+For example a green glas sphere which is illumated with a lightsource without
+shadow map will cast a green shadow, with shadowmap the shadow will be black.
+
+Because of limitiations of the memory all depth values in all possible
+directions can't be stored. Therefore the strength of the shadow is interpolated,
+and the shadow is not sharp like the normal calculated shadow.
+
+The shadowmap is calculated in spherical coordinates, this means for a size
+of the shadowmap of 128 RayStorm calculates 128x64=8192 samples. For each sample
+on float value (4 bytes) is stored. This means that a shadow map with size 128
+needs 128x64x4=32768 bytes of memory. Note that @{b}every@{ub} light source
+with shadow map enabled needs its own shadowmap.
+@endnode
+
+@node Motion_Blur " Motion Blur "
+@{b}MOTION BLUR@{ub}
+
+Motion blur is temporal anti-aliasing. In animated sequences, the normal
+rendering process functions like a camera that possesses an infinitely
+short exposure time and this eliminates the blurring of the image due
+to relative motion between an object and the film plane. When a series of
+images, generated without motion blur, is displayed as an animated
+sequence, the illusion of smooth motion is diminished by strobing effects.
+As human beings we expect to see loss of detail in moving images.
+
+Motion blur is accounted for in distributed ray tracing by extending the
+distributed sampling and jittering into the time domain and computing a
+solution that extracts information from the scen over the duration of the
+shutter exposure time. Objects are moved as required in the time period
+and visibility consequently changes over this time intervall. This method
+ensures that highlights and shadows are blurred or not, depending on the
+nature of the motion.
+
+[From '@{"Advanced Animation and Rendering Techniques" link Literature}']
+@endnode
+
+@node Surface " Surfaces "
+@{b}SURFACES@{ub}
+
+Ambient (set with AMBIENT)
+
+This determines the color of the object in sections which are in shadow.
+
+Diffuse reflection (set with DIFFUSE)
+
+The diffuse reflection falls off as the cosine of the angle between
+the normal and the ray to the light. Diffuse reflection determines the
+main color of the object (color in Imagine).
+
+Specularly reflected highlights (set with SPECULAR)
+
+Specularly reflected highlights fall off as the cosine of the angle
+between the reflected ray and the ray to the light source (specular in
+Imagine)
+
+Specular reflection exponent (set with REFEXP)
+
+Determines the size of the specularly reflected highlights, the higher
+the smaller the highlight (hardness in Imagine)
+
+Diffuse transmission (set with DIFFTRANS)
+
+Same as diffuse reflection, but only used if the lightsource is on
+opposite side of surface. Only applied if tranlucency is not 0.
+
+Specular transmission (set with SPECTRANS)
+
+Same as specular reflection, but only used if the lightsource is on
+opposite side of surface. Only applied if tranlucency is not 0.
+
+Specular transmission exponent (set with TRANSEXP)
+
+Same as specular reflection exponent, but only used if the lightsource
+is on opposite side of surface.
+
+Specular transmittance (set with TRANSLUC)
+
+Specular transmittance.
+
+Transparency (set with TRANSPAR)
+
+Transparent color (filter in Imagine).
+
+Reflectivity (set with REFLECT)
+
+Reflective color (reflect in Imagine).
+
+Fog length (set with FOGLEN) (fog in Imagine).
+
+Index of refraction (set with REFRINDEX)
+
+Determines how the ray through transparent objects is refracted, the higher
+the more (index of refraction in Imagine).
+Is calculated with the formula
+
+            lightspeed in vacuum
+   index = ----------------------
+            lightspeed in object    .
+@endnode
+
+@node InfoCSG " CSG "
+@{b}CSG@{ub}
+
+The idea of Constructive Solid Geometry (CSG) is to combine to or more
+primitives with logical operations to produes a new shape. The operations
+needed for CSG are union, intersection, and difference.
+
+With the intersection operator you can combine two objects, and the new shape
+consists of all points which are inside the first @{b}and@{ub} the second
+object. Points inside one of the objects, but not the other are not part of the
+shape.
+
+If you combine two objects with the union operator, the new shape consists
+of all points which are inside either the first or the second object, or
+inside both objects.
+
+With the difference operator you can cut out a piece of an object with another
+object. The first object is the object that is being 'cut' by the second
+object.
+@endnode
+
+@node InfoHyperTexture " Hyper texture "
+@{b}HYPER TEXTURES@{ub}
+Many objects, such as fur or woven materials, have a complex definition which
+is at best awkward, and at worst impossible, to discribe by a surface model.
+For other objects, such as eroded materials or fluids, a highly complex
+boundary is actually an arifact of a process hat is often more readily
+describet volumetrically. Still other objects, such as flame, clouds, or smoke,
+don't actually hav a well defined boundary surface at all.
+
+Hyper textures consist of a base-shape which have a hard region where they are
+completely solid, and a soft region where they are indeterminate. Whenever we
+are in the soft region, we can apply a toolkit of shaping functions, allowing
+the flexibility to create and manipulate volumetric form.
+[From: '@{"Hypertexture" link Literature}']
+@endnode
+
+@node InfoSOR " Surface of revolution"
+@{b}SURFACE OF REVOLUTION@{ub}
+
+For surfaces of revolution (SOR) objects a curve is rotated around a axis. This
+curve describes the dependence of the radius from the position of the axis. The
+curve is described by two-dimensional vectors consisting of the radius and the
+corresponding height. These points are smoothly connected and rotated about the
+y-axis. The first and the last points are only used to determine the slopes of
+the function at the start and end point. To any given point on the rotation axis
+belongs at most one function value. You can't rotate closed curves.
+
+SOR is based on the work of Peter Bruger and Duncan Gillies in their book
+@{"Interactive Computer Graphics" link Literature}. If you want to know more about the mathematical
+background you can find it there.
+@endnode
+
+@node Structure " Directory and Project Structure "
+@{b}DIRECTORY AND PROJECT STRUCTURE@{ub}
+
+scenario             the root directory of scenario
+|-brushes            the brush directory (you can create subdirectories here)
+| |- brush 1
+| |- brush 2
+| |- ...
+| |- brush n
+|-objects            the objects directory (you can create subdirectories here)
+| |- object 1
+| |- object 1
+| |- ...
+| |- object n
+|-textures           the textures directory (you can create subdirectories here)
+| |- texture 1
+| |- texture 2
+| |- ...
+| |- texture n
+|-projects           the projects directory (Scenario creates for every project a subdirectory)
+  |-project 1        the first project
+  | |- project.scn   the file where the scene is stored (should have the ending '.scn')
+  | |-brushes        the directory for brushes which are local to this project
+  | | |- ...
+  | |-objects        the directory for objects which are local to this object
+  | | |- ...
+  | |- pic.0001      the rendered pictures
+  | |- pic.0002
+  | |- ...
+  | |- pic.n
+  |- project 2       another project
+  |- ...
+  |- project n
+
+The default project directory can be set with the @{"preferences" link Menu_Settings_Prefs}.
+@endnode
+
+@node VirtualMemory " Virtual Memory "
+@{b}VIRTUAL MEMORY@{ub}
+
+RayStorm has been succesfully tested with VMM 3.1 from Martin Apel. If you
+want use RayStorm with virtual memory notice follwing hints:
+
+- set Minimum VM allocation to 100 bytes if you define large scenes with
+  many objects, because RayStorm only allocates small pieces of memory for
+  single objects (less then 200 bytes). If you're loading external objects
+  RayStorm allocates big blocks of memory so you don't have to set Minimum
+  VM allocation to 100.
+- use a partition or a pseudo-partition for VMM, this is faster
+@endnode
+
+@node Internals " Internals "
+@{b}INTERNALS@{ub}
+
+The development of RayStorm has started in march 1995.
+
+@{b}Compiler@{ub}
+
+- Amiga
+  Originally, RayStorm has been developed on Amiga using Maxon C++ 3.0
+  Developer. The final Amiga version was compiled with StormC 3.0.
+- PC
+  The PC version was compiled with WATCOM C++ 10.5 and Visual C 4.2.
+
+@{b}Memory requirements of the raytracer@{ub}
+
+Triangle:      154 Bytes + 36 Bytes if Phong shaded
+Sphere:         82 Bytes
+Plane:          78 Bytes
+Box:           122 Bytes
+Cylinder:      174 Bytes
+Cone:          174 Bytes
+SOR:           206 Bytes + 28 Bytes per point
+Surface:       122 Bytes
+Screenbuffer:    4 Bytes per pixel
+
+Memory requirements of the octree depends on the scene.
+
+@{b}Source Code@{ub}
+
+About 90.000 lines of C++-Code in more than 300 modules (about
+2.1 MByte of source).
+@endnode
+
+@node RAW_Format " RAW object format "
+@{b}RAW OBJECT FORMAT@{ub}
+
+RAW files are simple ASCII based descriptions of triangle objects. The file
+consits of object sections which start with a name. This name is followed
+by several triangle definitions. A RAW file consists of unlimited object
+sections. Below is an example of a simple RAW file which describes two objects.
+
+Plane
+-1 -1 0  1 -1 0  1 1 0
+-1 -1 0  -1 1 0  1 1 0
+House
+-3 -1 0  -2 -1 0  -2 1 0
+-3 -1 0  -3 1 0  -2 1 0
+-3 1 0  -2.5 2 0  -2 1 0
+@endnode
+
+@node Requirements " Requirements "
+@{b}REQUIREMENTS@{ub}
+
+(1) You will need at least Kickstart 2.0.
+
+(2) PPC-version: PowerPC processor with 68040
+
+(3) 060-version: 68060 processor (with internal FPU)
+
+(4) 040-version: 68040 processor (with internal FPU)
+
+(5) 881-version: 68020 processor or better and a mathematical coprocessor)
+
+(6) 4MB RAM minimum
+
+(7) RayStorm was written using MUI. Therefore you need muimaster.library
+    V3.3 or better to run RayStorm.
+
+recommended: 68060, 32MB RAM, 1GB Harddisk, GFX-Board
+
+The faster the better :-).
+
+Tested with:
+A1200 68030/50, 6MB, 200MB HD
+A2000 68040/30, 24MB, 250+250MB HD, Merlin Gfx-board
+A2000 68030/14, 68882/20, 4MB, 720+52MB HD
+A4000 68060/50, PPC 604e, 76MB, 4.3GB HD, Cybervision 64 Gfx-board
+@endnode
+
+@node Features " Features "
+@{b}FEATURES@{ub}
+
+@{b}Scenario@{ub}
+
+- Create spheres, planes, boxes, cylinders, cones, lightsources, cameras and
+  CSG objects
+- Create mesh objects: cubes, spheres, planes, tubes and cones
+- Create and maintain CSG structures
+- Each object can track each other
+- Unlimited amount of cameras to view scene from different positions
+- Define surfaces for all objects, including brushes and textures
+- Load external objects (RayStorm object files, Imagine TDDD files,
+  Ligtwave LWOB files, AutoDesk 3DS files and RAW files)
+- Save and load scenes
+- Save and load objects
+- Group and ungroup objects
+- Preview of surfaces in material requester
+- Render scenes with RayStorm Raytracer
+- Preview of renderd scenes
+- Quadview
+- Multilevel undo (only memory limited) and redo
+- Status bar
+- Object browser with drag & drop
+- Material manager with fast preview
+- OpenGL support
+- CyberGFX support
+- ARexx port
+
+@{b}RayStorm Script@{ub}
+
+- ARexx port with 47 commands.
+
+@{b}RayStorm Raytracer@{ub}
+
+- Octree algorithm used for rendering.
+- Motion blur for realistic simulations of moving objects.
+- Color, reflectivity, filter, altitude and specular mapping.
+- Flat, cylinder and sphere mapping.
+- Soft brush mapping.
+- Mathematical textures: wood, marble, bumps, checker, linear, radial, stars
+  and fire.
+- Hyper textures: explode.
+- Tranparency and physically correct refractions.
+- 8 levels of antialiasing (adaptive supersampling).
+- Rendering box.
+- Seven builtin object types: sphere, plane, box, cylinder, cone, surface of
+  revolution and triangle.
+- CSG (Constructive Solid Geometry) with the operators: union, intersection,
+  difference and invert.
+- Three light types: ambient, point and spot.
+- Depth of field with adjustable focal distance and aperture.
+- Soft shadows.
+- Backdrop picture.
+- Global fog and foggy objects.
+- Material attributes for realistic objects: ambient color, diffuse color,
+  specular color, specular reflection exponent, diffuse transmission color,
+  specular transmission color, specular transmission exponent, specular
+  transmittance, transparent color, reflective color, index of refraction,
+  foglength.
+- Bright objects.
+- Quick rendering.
+- Global reflection map.
+- Image formates: IFF-ILBM, PNG, TGA, JPEG and Datatypes.
+- Object formates: RayStorm object file, Imagine TDDD, Lightwave LWOB,
+  AutoDesk 3DS, NFF and RAW
+- New image- and object-formats can be easily included because of the
+  modular concept.
+- Shadowcache for faster shadow calculation.
+- Shadowmap with definable size for each lightsource for smooth and fast
+  shadows.
+- Definable limited amount of objects for avoiding the creation of octree.
+@endnode
+
+@node Limitations " Limitations "
+@{b}LIMITATIONS@{ub}
+
+This demo version can't save pictures. The registered version does not have
+any limitations.
+Click @{"here" link Register} for information on how to register RayStorm.
+@endnode
+
+@node Installation " Installation "
+@{b}INSTALLATION@{ub}
+
+There is a installation script included in the archive which uses the
+Commodore Installer. Run it to install RayStorm Scenario.
+@endnode
+
+@node Scenario_Usage " Scenario Usage "
+@{b}USAGE@{ub}
+
+After you have started Scenario you see the worksheet.
+
+At the top of the sheet are the buttons to manage projects, to control the
+mesh editing modes, the view mode, the display mode, the edit mode, enable
+the selection box and to control the currently active directions.
+
+Below this button bar is the work area. It is devided in three sections: the
+draw area, the browser section and the material manager. At startup you can
+see a grid and the camera in the middle of the draw area (note: there must
+always remain at least one camera in the scene). In the @{"browser section" link Scenario_Browser} you
+can see all objects of the scene, in a new scene there is only the camera.
+The objects can be sorted by drag and drop. The @{"material manager" link Scenario_Material} helps you
+to handle the different material in the scene. In a new scene there is no
+material defined.
+
+At the bottom of the window is a status bar which displays the name of the
+selected object (if more than one object is selected, the name of the first
+object is displayed), the name of the active camera and the current cursor
+coordinates if the coordinate display is enabled (see @{"Show Coordinates" link Menu_View_ShowCoordinates}).
+
+All objects, cameras and light sources have an axis to handle it. The axis
+consist of a rectangular area - the hot spot or handle - and three lines
+which show the orientation of the axis. The axis can be selected by clicking
+with the left mouse button at the handle. If it is selected the color of
+the axis and the object changes.
+
+Clicking with the left mouse button invokes the modify mode. According to the
+slected mode (move, rotate or scale) the world or the selected object(s) can
+be modified.
+
+Clicking with the right mouse button open object specific menus (see
+@{"Object Menus" link Object_Menus}).
+
+Scenario also has a ARexx port, for a more detailed description click @{"here" link Scenario_ARexx}.
+@endnode
+
+@node Scenario_Browser " Browser "
+@{b}OBJECT BROWSER@{ub}
+
+The object browser helps you to manage the objects in your scene. With
+it you can select objects, change the hierarchy of a scene and you have
+access to the object menus. One browser line is divided in four parts:
+- the tree handles
+- a little image which indicates the type of the object (@{"here" link "pics/browser_all.iff/main" 0} are all
+  images)
+- the object name
+- a thumbnail image which shows the material, which is assigned to the
+  object
+@{"Here" link "pics/browser.iff/main" 0} you can see a example for the contents of the object browser.
+
+The hierachiy of the objects can be changed by drag and drop. For this
+click with the left mouse buton on an object, and hold the mouse button
+down. Now the browser entry is attached to the pointer and you can move
+the object. If you move the pointer over another entry in the browser one
+or more dotted lines indicates where the dragged object is dropped. A
+line above the browser entry indicates that the dragged object is inserted
+above the browser entry. Two lines, one above and one below indicates that
+the dragged object is inserted as a child of the browser entry. A line
+below the browser entry indicates that the object is inserted below the
+browser entry.
+@endnode
+
+@node Scenario_Material " Material manager "
+@{b}Material Manager@{ub}
+
+The material manager helps you to manage the materials of the scene. Although
+the material manager is empty in new scene, one material is already defined.
+This material is assigned to all new created objects and can not be changed.
+
+A new material is created by pressing the right mouse button in the material
+manager area, and selecting 'New' from the menu, or by selecting 'New' from
+the 'Material' menu. This menu contains the following points:
+- New:                   creates a new material.
+- Load new...:           opens a file requester to select a material file,
+                         creates a new material and loads the material data
+                         and assigns it to the new created material.
+- Remove unused:         removes all materials which are not assigned to an
+                         object.
+- Remove identical:      removes all materials which are double. This is
+                         useful if you have loaded external objects with
+                         many identical materials.
+
+If you press the right mouse button over a material item another menu opens:
+- New: creates a new material
+- Load...:               loads the material data from a material file to the
+                         current material.
+- Save...:               saves the material data to a material file.
+- Delete:                deletes the material.
+- Properties...:         opens the material requester for this material.
+- Assign to selected...: assigns the material to the currently selected
+                         objects.
+
+To assign a material to an object press the left mouse button over a material,
+hold it down, drag it to an object in the object browser and release the button.
+
+If you double click a material the material settings requester is opened.
+
+You can change the name of the material by editing the name string on the
+buttom of the material item.
+@endnode
+
+@node Menus " Menus "
+@{b}MENUS@{ub}
+
+  Project
+   @{" New               " link Menu_Project_New}
+   @{" Open...           " link Menu_Project_Open}
+   @{" Save              " link Menu_Project_Save}
+   @{" Save As...        " link Menu_Project_SaveAs}
+   @{" Render settings..." link Menu_Project_RenderSettings}
+   @{" Set Render Window " link Menu_Project_SetRenderWindow}
+   @{" Render            " link Menu_Project_Render}
+   @{" Recent file       " link Menu_Project_RecentFile}
+   @{" About...          " link Menu_Project_About}
+   @{" Quit              " link Menu_Project_Quit}
+
+  Edit
+   @{" Undo              " link Menu_Edit_Undo}
+   @{" Redo              " link Menu_Edit_Redo}
+   @{" Cut               " link Menu_Edit_Cut}
+   @{" Copy              " link Menu_Edit_Copy}
+   @{" Paste             " link Menu_Edit_Paste}
+   @{" Delete            " link Menu_Edit_Delete}
+   @{" Select all        " link Menu_Edit_SelAll}
+   @{" Deselect all      " link Menu_Edit_DeselAll}
+   @{" Select next       " link Menu_Edit_SelNext}
+   @{" Select previous   " link Menu_Edit_SelPrev}
+   @{" Mode              " link Menu_Edit_Mode}
+   @{" Active            " link Menu_Edit_Active}
+
+  View
+   @{" Redraw            " link Menu_View_Redraw}
+   @{" Focus             " link Menu_View_Focus}
+   @{" Zoom in           " link Menu_View_Zoomin}
+   @{" Zoom out          " link Menu_View_Zoomout}
+   @{" Zoom fit          " link Menu_View_Zoomfit}
+   @{" View              " link Menu_View_View}
+   @{" Camera to viewer  " link Menu_View_Camera2Viewer}
+   @{" Grid              " link Menu_View_Grid}
+   @{" Snap to Grid      " link Menu_View_SnapToGrid}
+   @{" Gridsize...       " link Menu_View_Gridsize}
+   @{" Show              " link Menu_View_Show}
+   @{" Global settings..." link Menu_View_Global}
+   @{" Browser           " link Menu_View_Browser}
+   @{" Material manager  " link Menu_View_Material}
+
+  Object
+   @{" Attributes...     " link Menu_Object_Attributes}
+   @{" Settings...       " link Menu_Object_Settings}
+   @{" Group             " link Menu_Object_Group}
+   @{" UnGroup           " link Menu_Object_UnGroup}
+   @{" Load...           " link Menu_Object_Load}
+   @{" Save...           " link Menu_Object_Save}
+   @{" Primitives        " link Menu_Object_Primitives}
+   @{" Lights            " link Menu_Object_Lights}
+   @{" Meshes            " link Menu_Object_Meshes}
+   @{" Active Camera...  " link Menu_Object_Activecamera}
+
+  Material
+   @{" New               " link Menu_Material_New}
+   @{" Load new...       " link Menu_Material_LoadNew}
+   @{" Remove unused     " link Menu_Material_RemoveUnused}
+   @{" Remove identical  " link Menu_Material_RemoveIdentical}
+
+  Settings
+   @{" Prefs...          " link Menu_Settings_Prefs}
+   @{" MUI...            " link Menu_Settings_MUI}
+   @{" Load              " link Menu_Settings_Load}
+   @{" Save              " link Menu_Settings_Save}
+@endnode
+
+@node Menu_Project_New " New Project Menu "
+@{b}NEW PROJECT@{ub}
+
+Deletes all objects and materials. Resets the scene and creates the default
+camera.
+@endnode
+
+@node Menu_Project_Open " Open Project Menu "
+@{b}OPEN PROJECT@{ub}
+
+Loads a new scene.
+@endnode
+
+@node Menu_Project_Save " Save Project Menu "
+@{b}SAVE PROJECT@{ub}
+
+Saves the current scene.
+@endnode
+
+@node Menu_Project_SaveAs " Save Project As Menu "
+@{b}SAVE PROJECT AS@{ub}
+
+Saves the current scene with the specified name.
+@endnode
+
+@node Menu_Project_RenderSettings " Render Settings Project Menu "
+@{b}RENDER SETTINGS@{ub}
+
+Opens the render settings requester. The requester is divides in three pages.
+On the @{"first page" link "pics/render1.iff/main" 0} you can select predefined render resolutions with a listview
+or enter the values to numeric fields. The values range from 0 to 65535.
+The resolution presets can be defined in a file named 'prefs/res.dat'. This file
+is a text file which can be edited with a text editor. The format of this file is:
+@{b}<name>,<resolution in x direction>,<resolution in y direction>@{ub}.
+A example for the contents of this file is:
+@{i}PAL 160x128,160,128
+NTSC 160x120,160,120@{ui}
+On this page you also can also enable the rendering field. RayStorm renders
+only inside this field. The field is shown in the perspective window if camera
+view is switched on.
+On the @{"second page" link "pics/render2.iff/main" 0} are settings which affect the rendering process. The 'Quick'
+flag selects the quick rendering mode. In this mode RayStorm don't calculates
+shadows, transparency or reflections.
+The 'Octree depth' slider sets the maximum depth of the octree which RayStorm
+uses. For almost all scenes a vlaue of three is the best, but in complex scenes
+it may be better to use higher values. The higher this value is the longer
+takes the initialazion phase and the more memory is needed.
+The 'Min. Objects' slider sets the amount of objects upto which no octree is
+generated. If ther is a small amount of objects in the scene it's sometimes
+better not to build the octree due to the overhead of the intersection test.
+This value depends on your scene, for about 3 to 5 objects it's better not
+to use the octree. But if you want to render scenes with motion blur it's
+better to set this value to zero because this is faster.
+Ont the @{"third page" link "pics/render3.iff/main" 0} are output related gadgets.
+The 'Filename' string gadget sets the filename of the generated picture and the
+cycle gadget sets the fileformat. You can show the rendered picture with the
+view button (the camera left to the filename).
+The 'Show' flag enables the direct showing of the picture while the
+render process is running (needs KS 3.0 or better).
+The 'Ok' button closes the requester and stores the current settings, whereas
+the 'Cancel' button don't change the settings.
+@endnode
+
+@node Menu_Project_SetRenderWindow " Set Render Window Project Menu "
+@{b}SET RENDER WINDOW@{ub}
+
+You can set a window in which RayStorm will render the scene. This window is
+shown in the perspective view if camera view is switched on. The render
+window can be set with the mouse. If you select this menu item it gets
+checked. After this you can set the render window by pressing and holding
+the left mouse button while you set the render window. After releasing the
+mouse button the new render window is set and the enabled.
+You can enable and disable the render window in the
+@{"Render Settings requester" link Menu_Project_RenderSettings}.
+@endnode
+
+@node Menu_Project_Render " Render Project Menu "
+@{b}RENDER PROJECT@{ub}
+
+Renders the current scene. The @{"render window" link "pics/render.iff/main" 0} link is opened.
+At the begining only the @{i}Cancel@{ui} button is enabled. With this button
+you can break the rendering process. The currently renderd part of the
+picture is saved and all memory is freed.
+After RayStorm finished rendering the @{i}Ok@{ui} and @{i}Show@{ui} button
+is enabled. The @{Ok} button closes the render window. The @{i}Show@{ui}
+button calls the view program which you set in the @{"settings requester" link Menu_Settings_Prefs}.
+@endnode
+
+@node Menu_Project_RecentFile " Recent File "
+@{b}RECENT FILE@{ub}
+
+Here you can select the four recently loaded projects.
+@endnode
+
+@node Menu_Project_About " About Menu "
+@{b}About@{ub}
+
+Shows the about requester with the version number and the current Arexx port
+name.
+@endnode
+
+@node Menu_Project_Quit " Quit Menu "
+@{b}QUIT@{ub}
+
+Quits Scenario.
+@endnode
+
+@node Menu_Edit_Undo " Edit Undo Menu "
+@{b}UNDO@{ub}
+
+Undos the last operation. Follwoing actions can be undone:
+- transformation (position, alignment, size)
+- delete
+- cut
+- create
+- load object
+@endnode
+
+@node Menu_Edit_Redo " Edit Redo Menu "
+@{b}REDO@{ub}
+
+Redos the last undone operation.
+@endnode
+
+@node Menu_Edit_Cut " Edit Cut Menu "
+@{b}CUT@{ub}
+
+Moves the currently selected objects to the paste buffer.
+@endnode
+
+@node Menu_Edit_Copy " Edit Copy Menu "
+@{b}COPY@{ub}
+
+Copys the currently selected objects to the paste buffer.
+@endnode
+
+@node Menu_Edit_Paste " Edit Paste Menu "
+@{b}PASTE@{ub}
+
+Copys the currently selected objects from the paste buffer to the scene.
+@endnode
+
+@node Menu_Edit_Delete " Edit Delete Menu "
+@{b}DELETE@{ub}
+
+Deletes the currently selected objects. The active camera can't be deleted.
+@endnode
+
+@node Menu_Edit_SelAll " Edit Select All Menu "
+@{b}SELECT ALL@{ub}
+
+Selects all objects.
+@endnode
+
+@node Menu_Edit_DeselAll " Edit Deselect All Menu "
+@{b}DESELECT ALL@{ub}
+
+Deselects all objects.
+@endnode
+
+@node Menu_Edit_SelNext " Edit Select Next Menu "
+@{b}SELECT NEXT@{ub}
+
+Selects the next object.
+@endnode
+
+@node Menu_Edit_SelPrev " Edit Select Previous Menu "
+@{b}SELECT PREVIOUS@{ub}
+
+Selects the previous object.
+@endnode
+
+@node Menu_Edit_Mode " Edit Mode Menu "
+@{b}MODE@{ub}
+
+Sets the edit mode:
+Move object
+Rotate object
+Scale object
+
+Move world
+Rotate world
+Zoom world
+@endnode
+
+@node Menu_Edit_Active " Edit Active Menu "
+@{b}ACTIVE@{ub}
+
+Sets the active directions:
+X, Y, Z.
+@endnode
+
+@node Menu_View_Redraw " View Redraw Menu "
+@{b}REDRAW@{ub}
+
+Redraws the work area.
+@endnode
+
+@node Menu_View_Focus " View Focus Menu "
+@{b}FOCUS@{ub}
+
+Sets the zoom factor so that all selected objects are visible.
+@endnode
+
+@node Menu_View_Zoomin " View Zoom in Menu "
+@{b}ZOOM IN@{ub}
+
+Zooms out by factor two.
+@endnode
+
+@node Menu_View_Zoomout " View Zoom out Menu "
+@{b}ZOOM OUT@{ub}
+
+Zooms in by factor two.
+@endnode
+
+@node Menu_View_Zoomfit " View Zoom fit Menu "
+@{b}ZOOM FIT@{ub}
+
+Sets the zoom factor so that the whole scene is visible.
+@endnode
+
+@node Menu_View_View " View View Menu "
+@{b}VIEW@{ub}
+
+Sets the view mode:
+Front, Right, Top, Perspective, Four, Camera.
+@endnode
+
+@node Menu_View_Camera2Viewer " Camera to viewer "
+@{b}CAMERA TO VIEWER@{ub}
+
+Moves the camera to the the position of the virtual camera, roatates the
+camera and sets the opening angles (horizontal and vertial field of view).
+@endnode
+
+@node Menu_View_Grid " View Grid Menu "
+@{b}GRID@{ub}
+
+Switches grid on/off.
+@endnode
+
+@node Menu_View_SnapToGrid " View Snap to Grid Menu "
+@{b}SNAP TO GRID@{ub}
+
+Switches grid snapping on/off.
+@endnode
+
+@node Menu_View_Gridsize " View Gridsize Menu "
+@{b}GRID SIZE@{ub}
+
+Sets grid size.
+@endnode
+
+@node Menu_View_Show " View Show Menu "
+@{b}SHOW@{ub}
+   @{" Coordinates      " link Menu_View_ShowCoordinates}
+   @{" Names            " link Menu_View_ShowNames}
+   @{" All objects      " link Menu_View_ShowAll}
+   @{" Cameras          " link Menu_View_ShowCameras}
+   @{" Brushes          " link Menu_View_ShowBrushes}
+   @{" Textures         " link Menu_View_ShowTextures}
+   @{" Lights           " link Menu_View_ShowLights}
+   @{" Meshes           " link Menu_View_ShowMeshes}
+   @{" Spheres          " link Menu_View_ShowSpheres}
+   @{" Boxes            " link Menu_View_ShowBoxes}
+   @{" Cylinders        " link Menu_View_ShowCylinders}
+   @{" Cones            " link Menu_View_ShowCones}
+   @{" SOR              " link Menu_View_ShowSOR}
+   @{" Planes           " link Menu_View_ShowPlanes}
+   @{" CSG              " link Menu_View_ShowCSG}
+@endnode
+
+@node Menu_View_ShowCoordinates " View Show Coordinates Menu "
+@{b}SHOW COORDINATES@{ub}
+
+Switches coordinate display on/off.
+@endnode
+
+@node Menu_View_ShowNames " View Show Names Menu "
+@{b}SHOW NAMES@{ub}
+
+Sets the show names mode on/off.
+@endnode
+
+@node Menu_View_ShowAll " View Show All Objects Menu "
+@{b}SHOW ALL OBJECTS@{ub}
+
+Enables the displaying of all types of objects.
+@endnode
+
+@node Menu_View_ShowCameras " View Show Cameras Menu "
+@{b}SHOW CAMERAS@{ub}
+
+If this item is selected then the cameras are shown.
+@endnode
+
+@node Menu_View_ShowBrushes " View Show Brushes Menu "
+@{b}SHOW BRUSHES@{ub}
+
+If this item is selected then the brushes are shown.
+@endnode
+
+@node Menu_View_ShowTextures " View Show Textures Menu "
+@{b}SHOW TEXTURES@{ub}
+
+If this item is selected then the textures are shown.
+@endnode
+
+@node Menu_View_ShowLights " View Show Lights Menu "
+@{b}SHOW LIGHTS@{ub}
+
+If this item is selected then the lights are shown.
+@endnode
+
+@node Menu_View_ShowMeshes " View Show Meshes Menu "
+@{b}SHOW MESHES@{ub}
+
+If this item is selected then the meshes are shown.
+@endnode
+
+@node Menu_View_ShowSpheres " View Show Spheres Menu "
+@{b}SHOW SPHERES@{ub}
+
+If this item is selected then the spheres are shown.
+@endnode
+
+@node Menu_View_ShowBoxes " View Show Boxes Menu "
+@{b}SHOW BOXES@{ub}
+
+If this item is selected then the boxes are shown.
+@endnode
+
+@node Menu_View_ShowCylinders " View Show Cylinders Menu "
+@{b}SHOW CYLINDERS@{ub}
+
+If this item is selected then the cylinders are shown.
+@endnode
+
+@node Menu_View_ShowCones " View Show Cones Menu "
+@{b}SHOW CONES@{ub}
+
+If this item is selected then the cones are shown.
+@endnode
+
+@node Menu_View_ShowSOR " View Show SOR Menu "
+@{b}SHOW SOR@{ub}
+
+If this item is selected then the SOR's are shown.
+@endnode
+
+@node Menu_View_ShowPlanes " View Show Planes Menu "
+@{b}SHOW PLANES@{ub}
+
+If this item is selected then the planes are shown.
+@endnode
+
+@node Menu_View_ShowCSG " View Show CSG Menu "
+@{b}SHOW CSG@{ub}
+
+If this item is selected then the CSG's are shown.
+@endnode
+
+@node Menu_View_Global " View Global Menu "
+@{b}Global@{ub}
+
+Opens the global settings requester. Here you can change the global scene
+settings. The requester is divided in two pages.
+
+On the @{"first page" link "pics/setglobal1.iff/main" 0} you can set enviroment values.
+The 'Background' colorfield sets the color of the background of the rendered
+picture.
+The 'Ambient' colorfield sets color of the ambient light which is the base
+brightness of all objects. In other words: surfaces which are not illuminated
+by a light source get the ambient color.
+With the 'Backdrop' string gadget you can enter a picture which will replace
+the background.
+The 'Reflectionmap' string gadget sets the name of a picture which will be
+reflected by objects instead of the background. The reflectionmap is even
+applied in quick mode.
+The global fog parameters are controlled with the gadgets of the next group.
+'Length' sets the thickness of the fog. The 'Color' colorfield determines the
+color of the fog. 'Height' sets the height at which the fog ends. Global fog
+always starts at negative infinity in y direction and and at the specified y
+position.
+
+The @{"next page" link "pics/setglobal2.iff/main" 0} of gadgets sets the @{"antialiasing" link Antialiasing} parameters. The
+antialiasing value ranges from 2x2 (low antialiasing) to 8x8 (very high
+antialiasing). This slider sets the amount of rays per pixel. 2x2 means that
+there are 4 rays casted per pixel. Filter width sets the maximum distance from
+the main ray to the additional generated rays in pixels. The 'Contrast'
+colorfield sets the minimum contrast. If the contrast of the main pixel against
+its four neighbours is higher than this color, RayStorm performs antialiasing
+at this pixel. For more information about antialiasing click @{"here" link Antialiasing}.
+The last group controls soft shadows. The 'Softshadow' cyle gadget sets the level
+of oversampling (additional casted rays) for soft shadows. Soft shadows are caused
+from light sources with a size bigger than 0. For more information about soft
+shadows click @{"here" link Softshadows}. The 'Random jitter' flag switches between normal
+and random sampling. With random sampling the sampling position is calculated
+randomly.
+@endnode
+
+@node Menu_View_Browser " View Browser Menu "
+@{b}BROWSER@{ub}
+
+Switches the object browser on/off.
+@endnode
+
+@node Menu_View_Material " View Material manager Menu "
+@{b}MATERIAL MANAGER@{ub}
+
+Switches the material manager on/off.
+@endnode
+
+@node Menu_Object_Attributes " Object Attributes Menu "
+@{b}ATTRIBUTES@{ub}
+
+Opens the attribute requester for the currently selected object, if no object
+is selected no requester is opened.
+Here you can set the parameters which determine the apperance of the surface.
+The requester is divided into three groups:
+- @{"Surface" link "pics/attr.iff/main" 0}
+  At this page you can set the base apperance of the surface.
+  - Diffuse
+    The diffuse reflection falls off as the cosine of the angle between
+    the normal and the ray to the light. Diffuse reflection determines
+    the main color of the object.
+  - Ambient
+    This determines the color of the object in sections which are in
+    shadow.
+  - Specular
+    Specularly reflected highlights fall off as the cosine of the angle
+    between the reflected ray and the ray to the light source.
+  - Diffuse Transmission
+    Same as diffuse reflection, but only used if the lightsource is on
+    opposite side of surface. Only applied if tranlucency is not 0.
+  - Transparence
+    Transparent color.
+  - Specular Transmission
+    Same as specular reflection, but only used if the lightsource is on
+    opposite side of surface. Only applied if tranlucency is not 0.
+  - Reflectivity
+    Reflective color.
+  - Translucency
+    Specular transmittance.
+  - Reflection exponent
+    Determines the size of the specularly reflected highlights, the higher
+    the smaller the highlight.
+  - Index of refraction
+    Determines how the ray through transparent objects is refracted, the
+    higher the more.
+  - Transmission exponent
+    Same as specular reflection exponent, but only used if the lightsource
+    is on opposite side of surface.
+  - Fog length
+  - Bright
+    The brightness of the surface is everywhere the same. Light sources don't
+    affect the surface, no shadows are visible on the surface, but the object
+    casts shadows.
+- @{"Brush" link "pics/attr1.iff/main" 0}
+  Brushes are pictures which are projected to the surface. They can replace
+  different surface parameters as color, transparency, reflectivity and
+  specularity. Additional with altitude mapping brushes can change the normals
+  of the surface to simulate bumps or other structures which go 'in' or come
+  'out' of the surface.
+  There are three wrap methods available:
+  - flat (Flat)
+    The brush is projected to X-Y plane.
+  - cylindrical around x- or y-axis (WrapX and WrapY)
+    The brush is wrapped around the x or y-axis, like on a cylinder. The left
+    edge of the brush begins at the posititve x-axis and wraps the brush around
+    the cylinder from 'west' to 'east'.
+  - spherical (WrapXY)
+    Wrapping both: around x- and y-axis. It is assumed, that the object is a
+    sphere. The y-axis is the north/south pole of the spherical mapping. The
+    left edge of the brush begins at the positive x-axis and wraps the brush
+    around the sphere from 'west' to 'east'. The brush covers the sphere
+    exactly once.
+  Additional brushes can be repeated and mirrored (only for flat or cylindrical
+  mapping). If 'Soft' is selected, the color between two points of the brush is
+  softly interpolated.
+  RayStorm has integrated loader modules for IFF-ILBM, Targa, JPEG and PNG pictures.
+  Also Datatypes (including the new 24 bit versions) are supported, so you can
+  load nearly each picture format.
+  The position, alignment and size of the brush can be set if you enable the
+  @{"show brushes" link Menu_View_ShowBrushes} menu item.
+- @{"Texture" link "pics/attr2.iff/main" 0}
+  Textures are mathematical generated patterns. Textures can change color,
+  reflectivity, transparency and normals of a surface. Textures are controlled
+  with a set of 16 parameters.
+  The position, alignment and size of the texture can be set if you enable the
+  @{"show textures" link Menu_View_ShowTextures} menu item.
+
+@{b}Preview@{ub}
+  Renders a preview of the surface on a sphere (only for KS 3.0 and better).
+  The light source is always placed right top before the sphere.
+  All surface attributes can be viewed here except brushes and fog.
+  If reflectivity is set the RayStorm logo is reflected on the surface.
+@{b}Save@{ub}
+  Saves the surface data.
+@{b}Load@{ub}
+  Loads surface data.
+@endnode
+
+@node Menu_Object_Settings " Object Settings Menu "
+@{b}Settings@{ub}
+
+Opens the @{"settings requester" link "pics/translate.iff/main" 0} for the currently selected object.
+On the first page you can set the name, track, invert CSG flag, position, alignment
+and size of an object.
+With @{i}Track@{ui} you can set the name of an object the object will track to.
+This means that the object will always point with it's z direction to the axis
+of the track object.
+If the object can be used for CSG then you can invert it with the invert CSG
+flag.
+
+With the second page you can change object settings. The contents of
+this page depends on the object type.
+  @{"Camera           " link Camera_Settings}
+  @{"Cone             " link Cone_Settings}
+  @{"CSG              " link CSG_Settings}
+  @{"Cylinder         " link Cylinder_Settings}
+  @{"Directional light" link PointDirectionalLight_Settings}
+  @{"Mesh             " link Mesh_Settings}
+  @{"Point light      " link PointDirectionalLight_Settings}
+  @{"SOR              " link SOR_Settings}
+  @{"Spot light       " link SpotLight_Settings}
+@endnode
+
+@node Camera_Settings " Camera Settings "
+@{b}CAMERA SETTINGS@{ub}
+
+With the @{"camera settings requester" link "pics/setcamera.iff/main" 0} you can set various paramaters, which
+influence the camera.
+
+@{i}Focal distance@{ui} and @{i}Aperture@{ui} set the parameters for
+@{"Depth of Field" link DOF}. If you select @{i}Focus Track@{ui} and the camera tracks
+to an object the focal distance of the camera is automatically set to the
+distance between camera and track. @{i}Fast DOF@{ui} enables a faster version
+of the algorithm which can't handle transparent and reflective objects in the
+right way.
+
+With the values of @{i}Horizontal@{ui} and @{i}Vertical@{ui} field of view you
+can set the opening angle of the camera lens. If you activate the button
+@{i}Take VFOV from resolution@{ui} Scenario calculates the vertical field of
+view (VFOV) from the resolution and the horizontal field of view (HFOV). An
+Example will demonstrate this. You selected a HFOV of 30 degree and a
+resolution of 800x600 pixels. This means that the VFOV is
+  600 / 800 * 30 = 22.5 degree.
+@endnode
+
+@node Cone_Settings " Cone Settings "
+@{b}CONE SETTINGS@{ub}
+
+The @{"cone settings" link "pics/setcone.iff/main" 0} requester has a checkmark item with which
+you can remove the bottom cap. Note that a cone without caps should not be
+used with @{"CSG" link InfoCSG}.
+@endnode
+
+@node CSG_Settings " CSG Settings "
+@{b}CSG SETTINGS@{ub}
+
+The @{"CSG settings" link "pics/setcsg.iff/main" 0} requester has a cycle gadget to select
+the CSG operation. See @{"here" link InfoCSG} for more about CSG.
+@endnode
+
+@node Cylinder_Settings " Cylinder Settings "
+@{b}CYLINDER SETTINGS@{ub}
+
+The @{"cylinder settings" link "pics/setcylinder.iff/main" 0} requester has two checkmark items with which
+you can remove the top and bottom caps. Note that a cylinder without caps should
+not be used with @{"CSG" link InfoCSG}.
+@endnode
+
+@node Mesh_Settings " Mesh Settings "
+@{b}MESH SETTINGS@{ub}
+
+The mesh settings requester is different for external and normal object.
+
+For normal objects the requester looks like @{"this" link "pics/setmesh.iff/main" 0}.
+
+If @{i}No phong shading@{ui} is activated the mesh object is rendered
+without soft interpolation of the surface brightness. The object looks
+like made of single facetts.
+
+For external objects the requester looks like @{"this" link "pics/setmesh1.iff/main" 0}.
+
+@{i}Object filename@{ui} sets the the name of the external object which is
+attached with the mesh object.
+
+If @{i}Apply surface to childs@{ui} is activated the surface of the mesh
+object is applied to the surface of the attached external object.
+@endnode
+
+@node PointDirectionalLight_Settings " Point and Directional Light Settings "
+@{b}POINT AND DIRECTIONAL LIGHT SETTINGS@{ub}
+
+With the @{"light settings requester" link "pics/setlight1_1.iff/main" 0} you can set various paramaters which
+influence the light.
+
+@{i}Color@{ui} sets the color of the light source.
+
+@{i}Falloff@{ui} is the distance where the intensity of the light source is
+zero. A value of zero disables it.
+
+If @{i}Falloff from track distance@{ui} is set, Scenario sets the falloff
+distance to the distance to the track. This option is only selectable if the
+light source is tracking to another object.
+
+@{i}Cast shadows@{ui} enables the light source to cast shadows.
+
+@{i}Lens flares@{ui} enables the @{"lens flare settings" link Light_LensFlares}.
+
+@{i}Visible light@{ui} enables the @{"visible light settings" link Light_VisibleLight}.
+
+In the @{i}Shadowmap@{ui} section you can set values concerning the shadowmap of
+this light source. For more information to shadow maps click @{"here" link InfoShadowMap}.
+@endnode
+
+@node SOR_Settings " SOR Settings "
+@{b}SOR SETTINGS@{ub}
+
+The @{"SOR settings" link "pics/setsor.iff/main" 0} requester has two checkmark items with which
+you can remove the top and bottom caps. Note that a sor without caps should
+not be used with @{"CSG" link InfoCSG}.
+With the cycle gadget you can select the algorithm which is used for rendering
+the SOR. If the object don't looks like it should after you rendered it, select
+the slow and accurate algorithm, else use the fast algorithm.
+@endnode
+
+@node SpotLight_Settings " Spot Light Settings "
+@{b}SPOT LIGHT SETTINGS@{ub}
+
+With the @{"light settings requester" link "pics/setlight1_2.iff/main" 0} you can set various paramaters which
+influence the light.
+
+@{i}Color@{ui} sets the color of the light source.
+
+@{i}Falloff@{ui} is the distance where the intensity of the light source is
+zero. A value of zero disables it.
+
+If @{i}Falloff from track distance@{ui} is set, Scenario sets the falloff
+distance to the distance to the track. This option is only selectable if the
+light source is tracking to another object.
+
+@{i}Opening angle@{ui} sets the opening angle of a spotlightsource in degree.
+
+@{i}Soft Spot %@{ui} is a value that determines how big the area is where the
+light intensity of the spot light gradually gets lower. A value of 100 % means
+that the whole area which is lit by the spot light receives the full light
+intensity. 50 % means for example that there is full intensity from the center
+of the spot to 50 % of the opening angle and then the intensity gets lower and
+lower until an intensity of zero at the opening angle.
+
+@{i}Cast shadows@{ui} enables the light source to cast shadows.
+
+@{i}Lens flares@{ui} enables the @{"lens flare settings" link Light_LensFlares}.
+
+@{i}Visible light@{ui} enables the @{"visible light settings" link Light_VisibleLight}.
+
+In the @{i}Shadowmap@{ui} section you can set values concerning the shadowmap of
+this light source. For more information to shadow maps click @{"here" link InfoShadowMap}.
+@endnode
+
+@node Light_LensFlares " Lens Flares "
+@{b}LENS FLARES@{ub}
+
+With the @{"lens flare settings" link "pics/setlight2.iff/main" 0} you can create and change lens flares.
+
+Lens flares only appear when the light source is visible. They appear on an
+axis which runs from the center of the light source through the center of the
+screen. The position of the flare is relative to the light source it belongs
+to. If the position value is zero, the flare appears at the position of the
+light source. Higher values of position move it towards the center of the
+screen.
+Here are some example values and their meaning:
+
+   0 : flare has the same position as the light source
+ 100 : flare is in the middle of the screen
+ 200 : flare is on opposite side of the light source
+
+You can also set position to negative values, so the flare will appear behind
+the light source.
+
+The radius of the flare is relative to the horizontal render resolution.
+For example: A flare with radius of 20 % renderd with a resolution of 320x200
+will have a radius of 0.2*320 = 64 pixels.
+
+@{b}Type@{ub} is global to all flares and can be one of the following
+identifiers:
+
+Disc
+  A flare which looks like a disc
+Polygon n
+  A flare which looks like a polygon. n is the number of edges.
+
+@{b}Tilt@{ub} is also global to all flares and sets the angle the flares
+are rotated.
+
+@{b}Function@{ub} can be one of the following:
+
+Plain
+  the color of the flare is uniform
+Ring
+  intensity drops exponential from the border to the center
+Radial
+  varies the color of the flare radial around the flare center
+Exponent 1
+  intensity drops exponential from the border to the center
+Exponent 2
+  intensity drops exponential from the border to the center
+
+The flares can either be selected by their number with the slider at top
+of the requester, or in the display area of the requester by clicking with
+the mouse on it.
+@endnode
+
+@node Light_VisibleLight " Visible Light "
+@{b}VISIBLE LIGHT@{ub}
+
+With the @{"visible light settings" link "pics/setlight3.iff/main" 0} you can change the appearance of the
+light source.
+
+In reality, a light source looks like a star with several spikes getting out
+of the center of the light source. Usually there's a halo around it too.
+
+The radius (length of the longest spike) of the star is relative to the
+horizontal render resolution (see @{"Lens Flares" link Light_LensFlares}).
+
+The radius of the halo is relative to the radius of the star itself. A value
+of 100 % means, that the halo has the same radius as the star.
+The radius of the inner halo is relative to the radius of the outer halo. A
+value of 100 % means, that the inner halo has the same radius as the outer
+halo.
+Ring color sets the color of the halo.
+
+The range value determines the difference between the longest and the shortes
+spike of the star. A value of 0 % means that all spikes have the same length,
+whereas 100 % means that the shortest spike has zero length.
+
+The tilt angle rotates the star spikes.
+
+The higher the noise value the more noisier the spikes are.
+
+Intensity sets the brightness of the spikes
+
+Color sets the color of the spikes.
+
+@{b}How are the spikes computed ?@{ub}
+The four spikes in the main directions (0, 90, 180, 270 degrees) always have
+maximum length. Spikes between them (45, 135, ... degrees for example) are
+shorter and again spikes between them are shorter and so on.
+
+If you enable random, the length of the spikes is randomly changed.
+@endnode
+
+@node Menu_Object_Group " Object Group Menu "
+@{b}GROUP@{ub}
+
+Groups the selected objects.
+@endnode
+
+@node Menu_Object_UnGroup " Object UnGroup Menu "
+@{b}UNGROUP@{ub}
+
+Ungroups the selected objects.
+@endnode
+
+@node Menu_Object_Load " Object Load Menu "
+@{b}LOAD@{ub}
+
+Loads an external object. Currently RayStorm, Imagine, Lightwave, Autodesk
+3D-Studio, NFF and RAW objects are supported. Scenario generates an axis and adds
+the object as childs of it.
+
+
+@{b}Imagine TDDD-file@{ub}
+Supported:
+   surfaces
+   brushes and textures
+   triangles (with correct handling of sharp edges)
+   perfect spheres
+   planes
+@{b}Ligtwave LWOB-file@{ub}
+Supported:
+   surfaces
+   triangles
+   quads
+Not supported:
+   textures
+   brushes
+   sub surfaces of polygons
+@{b}Autodesk 3D-Studio 3DS-file@{ub}
+Supported:
+   surfaces
+   triangles (with correct handling of sharp edges)
+
+After loading the name of the object file can be changed with the @{"mesh settings" link Mesh_Settings}
+requester.
+@endnode
+
+@node Menu_Object_Save " Object Save Menu "
+@{b}SAVE@{ub}
+
+Saves an object and it's childs in RayStorm object file format. You can only
+save objects from the root level of the object tree. This means you cannot
+save child objects. You also cannot save external objects.
+@endnode
+
+@node Menu_Object_Primitives " Object Primitives Menu "
+@{b}PRIMITIVES@{ub}
+
+   @{" Sphere     " link Menu_Object_Sphere}
+   @{" Box        " link Menu_Object_Box}
+   @{" Cylinder   " link Menu_Object_Cylinder}
+   @{" Cone       " link Menu_Object_Cone}
+   @{" SOR        " link Menu_Object_SOR}
+   @{" Plane      " link Menu_Object_Plane}
+   @{" Camera     " link Menu_Object_Camera}
+   @{" CSG        " link Menu_Object_CSG}
+@endnode
+
+@node Menu_Object_Sphere " Object Sphere Menu "
+@{b}SPHERE@{ub}
+
+Creates a new sphere at position <0,0,0> with radius 1.
+@endnode
+
+@node Menu_Object_Box " Object Box Menu "
+@{b}BOX@{ub}
+
+Creates a new box at position <0,0,0> with the left, bottom, front edge
+at <-1,-1,-1> and the right, top, back edge at <1,1,1>.
+@endnode
+
+@node Menu_Object_Cone " Object Cone Menu "
+@{b}CONE@{ub}
+
+Creates a new cone at position <0,0,0> with the rotation axis pointing
+in y direction. The height is 1 and both x and z radius are also 1.
+@endnode
+
+@node Menu_Object_SOR " Object SOR Menu "
+@{b}SOR@{ub}
+
+Creates a new @{"SOR" link InfoSOR} (surface of revolution) at position <0,0,0> with
+the rotation axis pointing in y direction. The height is 1 and both x
+and z radius are also 1.
+The created SOR has four control points.
+@endnode
+
+@node Menu_Object_Cylinder " Object Cylinder Menu "
+@{b}CYLINDER@{ub}
+
+Creates a new cylinder at position <0,0,0> with the rotation axis pointing
+in y direction. The height is 1 and both x and z radius are also 1.
+@endnode
+
+@node Menu_Object_Plane " Object Plane Menu "
+@{b}PLANE@{ub}
+
+Creates a new plane at position <0,0,0> with the normal pointing in positive
+y direction.
+@endnode
+
+@node Menu_Object_Camera " Object Camera  Menu "
+@{b}CAMREA@{ub}
+
+Creates a new pinhole camera at position <0,0,0> with a horizontal and
+vertical field of view of 25 degree witch is pointing in positive z
+direction.
+@endnode
+
+@node Menu_Object_Camera " Object Camera  CSG "
+@{b}CSG@{ub}
+
+Creates a new CSG object at position <0,0,0>.
+@endnode
+
+@node Menu_Object_Lights " Object Lights Menu "
+@{b}LIGHTS@{ub}
+
+   @{" Directional light" link Menu_Object_Lights_Directionallight}
+   @{" Point light      " link Menu_Object_Lights_Pointlight}
+   @{" Spot light       " link Menu_Object_Lights_Spotlight}
+@endnode
+
+@node Menu_Object_Lights_Pointlight " Object Lights Point Light Menu "
+@{b}POINT LIGHT@{ub}
+
+Creates a new point light source at position <0,0,0>.
+@endnode
+
+@node Menu_Object_Lights_Spotlight " Object Lights Spot Light Menu "
+@{b}SPOT LIGHT@{ub}
+
+Creates a new spot light source at position <0,0,0> with a opening angle of
+45 degree pointing in negative y direction.
+@endnode
+
+@node Menu_Object_Lights_Directionallight " Object Lights Directional Light Menu "
+@{b}DIRECTIONAL LIGHT@{ub}
+
+Creates a new directional light source at position <0,0,0>.
+@endnode
+
+
+@node Menu_Object_Meshes " Object Meshes Menu "
+@{b}MESHES@{ub}
+
+   @{" Axis             " link Menu_Object_Mesh_Axis}
+   @{" Sphere           " link Menu_Object_Mesh_Sphere}
+   @{" Box              " link Menu_Object_Mesh_Box}
+   @{" Cylinder         " link Menu_Object_Mesh_Cylinder}
+   @{" Cone             " link Menu_Object_Mesh_Cone}
+   @{" Plane            " link Menu_Object_Mesh_Plane}
+   @{" Torus            " link Menu_Object_Mesh_Torus}
+@endnode
+
+@node Menu_Object_Mesh_Axis " Object Mesh Axis Menu "
+@{b}AXIS@{ub}
+
+Creates a new axis at position <0,0,0> with size <1,1,1>. An axis can be used
+to track a camera or a spot lightsource on it.
+@endnode
+
+@node Menu_Object_Mesh_Box " Object Mesh Box Menu "
+@{b}Box@{ub}
+
+Creates a box at position <0,0,0>. You can set the size of the box with a
+requester.
+@endnode
+
+@node Menu_Object_Mesh_Sphere " Object Mesh Sphere Menu "
+@{b}SPHERE@{ub}
+
+Creates a spere at position <0,0,0>. You can set the size, the divisions and
+the slices with a requester.
+@endnode
+
+@node Menu_Object_Mesh_Plane " Object Mesh Plane Menu "
+@{b}Plane@{ub}
+
+Creates a plane at position <0,0,0> with normal pointing in positive y-
+direction. You can set the divisions with a requester.
+@endnode
+
+@node Menu_Object_Mesh_Cylinder " Object Mesh Cylinder Menu "
+@{b}TUBE@{ub}
+
+Creates a cylinder at position <0,0,0>. You can set the size, the height, the
+divisions, the slices and if it's a closed cylinder with a requester.
+@endnode
+
+@node Menu_Object_Mesh_Cone " Object Mesh Cone Menu "
+@{b}CONE@{ub}
+
+Creates a cone at position <0,0,0>. You can set the size, height, divisions,
+slices, and if the cone is closen with a requester.
+@endnode
+
+@node Menu_Object_Mesh_Torus " Object Mesh Torus Menu "
+@{b}TORUS@{ub}
+
+Creates a torus at position <0,0,0>. You can set the inner and outer size, the
+division and slices with a requester.
+@endnode
+
+@node Menu_Object_Activecamera " Object Active Camera Menu "
+@{b}ACTIVE CAMERA@{ub}
+
+You can select the active camera.
+@endnode
+
+@node Menu_Material_New " Material New "
+@{b}NEW@{ub}
+
+Creates a new material.
+@endnode
+
+@node Menu_Material_LoadNew " Material Load New "
+@{b}LOAD NEW@{ub}
+
+Opens a file requester and let you select a material file. A new material
+is created an the material file data is assigned to it.
+@endnode
+
+@node Menu_Material_RemoveUnused " Material Remove Unused "
+@{b}REMOVE UNUSED@{ub}
+
+Remove all material items which are not assigned to a object.
+@endnode
+
+@node Menu_Material_RemoveIdentical " Material Remove Identical "
+@{b}REMOVE IDENTICAL@{ub}
+
+Remove all materials which have are identical. Only one of this identical
+materials is left.
+@endnode
+
+@node Menu_Settings_Prefs " Settings Prefs Menu "
+@{b}PREFS@{ub}
+
+Opens the preferences requester.
+
+The @{"'Paths'-page" link "pics/prefs1.iff/main" 0} let you set various paths.
+
+@{b}Viewer@{ub}
+   Sets the path and name of the viewer. This viewer is used to display the
+   images generated by RayStorm. The filename of the image is appended to the
+   end of the string. You have specify the whole path, for example not
+   'multiview' but 'sys:utilities/multiview'.
+@{b}Project path@{ub}
+   Sets the default path for projects
+@{b}Object path@{ub}
+   Sets the default path for objects.
+@{b}Texture path@{ub}
+   Sets the default path for textures.
+@{b}Brush path@{ub}
+   Sets the default path for brushes.
+
+The @{"'Flags'-page" link "pics/prefs2.iff/main" 0} let you set various flags.
+
+@{b}Always show coordinates@{ub}
+   The 3d coordinates of the mouse pointer are displayed for front, right and
+   top. If a object is transformed, the relative coordinates, rotation angles
+   or scale fctors are displayed
+@{b}External toolbar images@{ub}
+   If this flag is set, Scenario loads it's images from image files in the
+   'buttons'-drawer, else the buildin images are used. The images are loaded
+   with datatypes. The size of the images is determined by the size of the
+   first button (new.iff).
+   Kick 2.x users will always get the buildin images. You have to restart
+   Scenario when you change this option.
+
+On the @{"'Misc'-page" link "pics/prefs3.iff/main" 0} you can set the undo memory size:
+
+@{b}Undo memory kB@{ub}
+   Sets the maximum amount of memory used for undo informations. Old undo
+   operations are deleted if the memory limit is reached.
+@{b}JPEG quality@{ub}
+   Sets the picture quality of the jpeg saver.
+@{b}Render task priority@{ub}
+   This sets the priority of the background task which is used for rendering.
+   The default value is -1.
+@{b}Render task stack@{ub}
+   Sets the stack of the render task. The default value of 32kB should be
+   enough even for complex scenes. If you have scenes with many reflective
+   or transparent objects, you can increase this value.
+
+On the @{"'Color'-page" link "pics/prefs4.iff/main" 0} you can set the colors.
+
+@{b}Axis@{ub}
+   The color of the object axis.
+@{b}Background@{ub}
+   The background color.
+@{b}Brush@{ub}
+   The color of the brushes.
+@{b}Camera@{ub}
+   The color of the camera.
+@{b}Grid@{ub}
+   The grid color.
+@{b}Hotspot@{ub}
+   The color of the click point of the object axis.
+@{b}Unselected object@{ub}
+   The color of unselected objects.
+@{b}Selected object@{ub}
+   The color of selected objects.
+@{b}Selection box@{ub}
+   The color of the box which marks a selected object.
+@{b}Text@{ub}
+   The color of text.
+@{b}Texture@{ub}
+   The color of the textures.
+@{b}Light@{ub}
+   The color of the light sources.
+@endnode
+
+@node Menu_Settings_MUI " Settings MUI Menu "
+@{b}MUI@{ub}
+
+Opens the MUI preferences.
+@endnode
+
+@node Menu_Settings_Load " Settings Load Menu "
+@{b}LOAD@{ub}
+
+Loads the preferences from a file called 'scenario.prefs'.
+@endnode
+
+@node Menu_Settings_Save " Settings Save Menu "
+@{b}SAVE@{ub}
+
+Saves the preferences to a file called 'scenario.prefs'. Scenario also saves the sizes
+and positions of the file requesters it uses. If you want to have the file requesters
+with the size and position you want, then open them, size and place them and
+close them with @{b}Ok@{ub} (NOTE: if you leave them with @{b}Cancel@{ub} the
+size and position is not saved). Then select @{b}Save@{ub} form the @{b}Prefs@{ub}
+menu. The next time you start Scenario the sizes and positions are the same.
+The weight of the object browser and the material manager are also saved in this
+preferences file.
+@endnode
+
+@node Buttons " Buttons "
+@{b}BUTTONS@{ub}
+
+The first three buttons handle the project management (new, load
+and save project.
+
+The next six buttons are for editing and modifying mesh objects.
+
+The next six buttons are for selecting the view (front, right, top,
+perspective, quad and camera view).
+
+The following three buttons select the display type. (bounding box,
+wireframe and solid display (OpenGL)).
+
+The next button determines if an selected object is moved, rotated and scaled
+in the world or the local object coordinate system.
+
+After this are six buttons to select the edit mode (move, rotate, scale object
+and move, rotate, scale world).
+
+The next three buttons enable the X, Y and Z-axis.
+@endnode
+
+@node Object_Menus " Object Menus "
+@{b}OBJECT MENUS@{ub}
+
+Sceneario supports object oriented menus. These menus are shown when you click
+the right mouse button inside the work area and hold it. Scenario then pops
+up a menu. The contents of this menu depends on the object which is found at
+this position.
+
+@{b}World menu@{ub}
+
+The world menu is shown if you click on a place where no object is placed.
+The menu contents follwing points:
+
+Move:       switch to move world
+Rotate:     switch to rotate (the virtual camera is rotated around the view
+            point (only perspective mode))
+Zoom:       zoom in or out
+Settings:   opens the general settings requester
+
+@{b}Object menu@{ub}
+
+The object menu pops up if you click on the handle of the object.
+The menu contents follwing points:
+
+Move:       switch to mode move object
+Rotate:     switch to rotate object (the object is rotated around it's local
+            axis)
+Scale:      switch to scale object
+Settings:   opens the @{"settings" link Menu_Object_Settings} requester
+Attributes: opens the surface @{"attributes" link Menu_Object_Attributes}
+            requester
+
+@{b}Camera menu@{ub}
+
+The camera menu pops up if you click on the handle of a camera
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the @{"camera settings" link Camera_Settings} requester
+Active:     sets this camera as the active camera (the scene is viewed with
+            this camera)
+
+@{b}Light menu@{ub}
+
+Opens the light popup menu.
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the @{"directional light source settings" link PointDirectionalLight_Settings},
+            @{"point light source settings" link PointDirectionalLight_Settings} or @{"spot light source settings" link SpotLight_Settings}
+            requester
+@{b}Mesh menu@{ub}
+
+Opens the mesh popup menu.
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the @{"Mesh settings" link Mesh_Settings} requester
+Attributes: see object menu
+To scene:   convert external to scene objects
+@endnode
+
+@node Keyboard_Control " Keyboard Control "
+@{b}KEYBOARD CONTROL@{ub}
+
+ESC          break redraw
+cursor keys  Function depends on the curren edit mode (move, rotate, scale of
+             world or object).
+DEL          delete selected objects
+'+'          zooms in
+'-'          zooms out
+'m'          switches to move object action
+'r'          switches to rotate object action
+'s'          switches to scale object action
+'M'          switches to move world action
+'R'          switches to rotate world action
+'S'          switches to scale world action
+'t'          opens settings requester
+'a'          opens attributes requester
+'1'          switches to front view
+'2'          switches to right view
+'3'          switches to top view
+'4'          switches to perspective view
+'5'          switches to quad view
+'6'          switches to camera view
+'b'          toggles box selection mode
+'x'          enable x axis
+'y'          enable y axis
+'z'          enable z axis
+'X'          enable x axis and disabled all other
+'Y'          enable y axis and disabled all other
+'Z'          enable z axis and disabled all other
+
+'F1'         render settings
+
+'R-Amiga' - '.'   Center view
+@endnode
+
+@node Scenario_ARexx " Scenario ARexx Interface "
+@{b}SCENARIO AREXX INTERFACE@{ub}
+
+   @{"Introduction" link Scenario_ARexx_Intro}
+   @{"Address     " link Scenario_ARexx_Address}
+   @{"Parameters  " link ARexx_Params}
+   @{"Commands    " link Scenario_ARexx_Commands}
+   @{"Errors      " link Scenario_ARexx_Errors}
+   @{"Examples    " link Scenario_ARexx_Examples}
+@endnode
+
+@node Scenario_ARexx_Intro " Scenario ARexx Introduction "
+@{b}SCNEARIO AREXX INTRODUCTION@{ub}
+
+Starting with version 2.1 Scenario now has a ARexx port. Through this port
+mostly all Scenario commands can be reached. One can create, select, deselct,
+move, rotate and scale objects.
+
+It's the same if you write the the commands in upper case or lower case.
+But it's important to enclose all commans in quotes because ARexx tries
+to interpret the line before it sends it to the potz. It may happen that the
+line is changed and RayStorm don't do what you expect.
+@endnode
+
+@node Scenario_ARexx_Address " Scenario ARexx Address "
+@{b}SCENARIO AREXX ADDRESS@{ub}
+
+The ARexx address of Scenario is 'SCENARIO.n' where n is the number of the
+copy of Scenario if it is started more than once. The address is also given
+in the about box.
+@endnode
+
+@node Scenario_ARexx_Commands " Scenario ARexx Commands "
+@{b}SCENARIO AREXX COMMANDS@{ub}
+
+@{b}Alphabetically sorted@{ub}
+
+@{b}-A-@{ub}
+  @{" ADDMATERIAL    " link ADDMATERIAL}
+  @{" AASSIGNMATERIAL" link ASSIGNMATERIAL}
+  @{" AASSIGNMATERIALTOSELECTED" link ASSIGNMATERIALTOSELECTED}
+@{b}-C-@{ub}
+  @{" CAMERA2VIEWER  " link CAMERA2VIEWER}
+  @{" COPY           " link COPY}
+  @{" CREATEOBJECT   " link CREATEOBJECT}
+  @{" CUT            " link CUT}
+@{b}-D-@{ub}
+  @{" DELETE         " link DELETE}
+  @{" DELETEMATERIAL " link DELETEMATERIAL}
+  @{" DISPLAY        " link DISPLAY_scenario}
+@{b}-G-@{ub}
+  @{" GETOBJECTALIGN " link GETOBJECTALIGN}
+  @{" GETOBJECTPOS   " link GETOBJECTPOS}
+  @{" GETOBJECTSIZE  " link GETOBJECTSIZE}
+  @{" GETSLEOBJNAME  " link GETSELOBJNAME}
+  @{" GROUP          " link GROUP}
+@{b}-L-@{ub}
+  @{" LOADMATERIAL   " link LOADMATERIAL}
+  @{" LOADOBJECT     " link LOADOBJECT}
+@{b}-N-@{ub}
+  @{" NEW            " link NEW}
+@{b}-O-@{ub}
+  @{" OPEN           " link OPEN}
+@{b}-P-@{ub}
+  @{" PASTE          " link PASTE}
+@{b}-R-@{ub}
+  @{" REDO           " link REDO}
+  @{" REDRAW         " link REDRAW}
+  @{" RENDER         " link RENDER}
+@{b}-S-@{ub}
+  @{" SAVE           " link SAVE}
+  @{" SAVEMATERIAL   " link SAVEMATERIAL}
+  @{" SAVEOBJECT     " link SAVEOBJECT}
+  @{" SELECT         " link SELECT}
+  @{" SELECTBYNAME   " link SELECTBYNAME}
+  @{" SETOBJECTALIGN " link SETOBJECTALIGN}
+  @{" SETOBJECTPOS   " link SETOBJECTPOS}
+  @{" SETOBJECTSIZE  " link SETOBJECTSIZE}
+  @{" SHOW           " link SHOW}
+@{b}-U-@{ub}
+  @{" UNDO           " link UNDO}
+  @{" UNGROUP        " link UNGROUP}
+@{b}-V-@{ub}
+  @{" VIEW           " link VIEW}
+@{b}-Z-@{ub}
+  @{" ZOOM           " link ZOOM}
+@endnode
+
+@node ADDMATERIAL
+@{b}ADDMATERIAL@{ub}
+
+@{b}Template:@{ub}
+ MATERIAL/A
+@{b}Arguments:@{ub}
+ STRING
+   name of new material
+@{b}Description:@{ub}
+ see @{"here" link Menu_Material_New}
+@endnode
+
+@node ASSIGNMATERIAL
+@{b}ASSIGNMATERIAL@{ub}
+
+@{b}Template:@{ub}
+ MATERIAL/A,OBJECT/A
+@{b}Arguments:@{ub}
+ STRING
+   name of material
+ STRING
+   name of object
+@{b}Description:@{ub}
+ assigns a material to an object
+@endnode
+
+@node ASSIGNMATERIALTOSELECTED
+@{b}ASSIGNMATERIALTOSELECTED@{ub}
+
+@{b}Template:@{ub}
+ MATERIAL/A
+@{b}Arguments:@{ub}
+ STRING
+   name of material
+@{b}Description:@{ub}
+ assigns material to all selected objects
+@endnode
+
+@node CAMERA2VIEWER
+@{b}CAMERA2VIEWER@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_View_Camera2Viewer}
+@endnode
+
+@node COPY
+@{b}COPY@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Copy}
+@endnode
+
+@node CREATEOBJECT
+@{b}@{ub}
+
+@{b}Template:@{ub}
+ WHICH/A
+@{b}Arguments:@{ub}
+ STRING [AXIS,BOX,CAMERA,CONE,CSG,CYLINDER,DIRECTIONALLIGHT,SOR,PLANE,POINTLIGHT,SPHERE,SPOTLIGHT]
+   Object type
+@{b}Description:@{ub}
+ see @{"here" link Menu_Object_Primitives}
+@endnode
+
+@node CUT
+@{b}CUT@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Cut}
+@endnode
+
+@node DELETE
+@{b}DELETE@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Delete}
+@endnode
+
+@node DELETEMATERIAL
+@{b}DELETEMATERIAL@{ub}
+
+@{b}Template:@{ub}
+ MATERIAL/A
+@{b}Arguments:@{ub}
+ STRING
+   name of material to delete
+@{b}Description:@{ub}
+ deletes a material
+@endnode
+
+@node DISPLAY_scenario
+@{b}DISPLAY@{ub}
+
+@{b}Template:@{ub}
+ MODE/A
+@{b}Arguments:@{ub}
+ STRING [BBOX,WIRE,SOLID]
+   display mode
+@{b}Description:@{ub}
+ Sets the current display mode.
+@endnode
+
+@node GETOBJECTALIGN
+@{b}GETOBJECTALIGN@{ub}
+
+@{b}Template:@{ub}
+ NAME/A
+@{b}Arguments:@{ub}
+ STRING
+   Name of object
+@{b}Description:@{ub}
+ Returns the alignment of an object in degree. It returns a string of the format
+ "<alignx,aligny,alignz>".
+@endnode
+
+@node GETOBJECTPOS
+@{b}GETOBJECTPOS@{ub}
+
+@{b}Template:@{ub}
+ NAME/A
+@{b}Arguments:@{ub}
+ STRING
+   Name of object
+@{b}Description:@{ub}
+ Returns the position of an object. It returns a string of the format
+ "<positionx,positiony,positionz>".
+@endnode
+
+@node GETOBJECTSIZE
+@{b}GETOBJECTSIZE@{ub}
+
+@{b}Template:@{ub}
+ NAME/A
+@{b}Arguments:@{ub}
+ STRING
+   Name of object
+@{b}Description:@{ub}
+ Returns the size of an object. It returns a string of the format
+ "<sizex,sizey,sizez>".
+@endnode
+
+@node GETSELOBJNAME
+@{b}GETSELOBJNAME@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ Returns the name of the selected object. If more than one object is selected, the
+ name of the first selected object is returned.
+@endnode
+
+@node GROUP
+@{b}GROUP@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Object_Group}
+@endnode
+
+@node LOADMATERIAL
+@{b}LOADMATERIAL@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   name of material
+ STRING
+   file name
+@{b}Description:@{ub}
+ creates a new material an loads the material data from a file
+@endnode
+
+@node LOADOBJECT
+@{b}LOADOBJECT@{ub}
+
+@{b}Template:@{ub}
+ FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   filename
+@{b}Description:@{ub}
+ see @{"here" link Menu_Object_Load}
+@endnode
+
+@node NEW
+@{b}NEW@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_File_New}
+@endnode
+
+@node OPEN
+@{b}OPEN@{ub}
+
+@{b}Template:@{ub}
+ FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   file name
+@{b}Description:@{ub}
+ see @{"here" link Menu_File_Open}
+@endnode
+
+@node PASTE
+@{b}PASTE@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Paste}
+@endnode
+
+@node REDO
+@{b}REDO@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Redo}
+@endnode
+
+@node REDRAW
+@{b}REDRAW@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_View_Redraw}
+@endnode
+
+@node RENDER
+@{b}@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ renders the current scene
+@endnode
+
+@node SAVE
+@{b}SAVE@{ub}
+
+@{b}Template:@{ub}
+ FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   file name
+@{b}Description:@{ub}
+ see @{"here" link Menu_File_Save}
+@endnode
+
+@node SAVEMATERIAL
+@{b}SAVEMATERIAL@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   name of material
+ STRING
+   file name
+@{b}Description:@{ub}
+ saves the material data to a file
+@endnode
+
+@node SAVEOBJECT
+@{b}SAVEOBJECT@{ub}
+
+@{b}Template:@{ub}
+ FILE/A
+@{b}Arguments:@{ub}
+ STRING
+   filename
+@{b}Description:@{ub}
+ see @{"here" link Menu_Object_Save}
+@endnode
+
+@node SELECT
+@{b}SELECT@{ub}
+
+@{b}Template:@{ub}
+ WHAT/A
+@{b}Arguments:@{ub}
+ STRING [ALL,NONE,NEXT,PREV]
+   Specifies what to select
+@{b}Description:@{ub}
+ ALL: see @{"here" link Menu_Edit_SelAll}.
+ NONE: see @{"here" link Menu_Edit_DeSelAll}.
+ NEXT: see @{"here" link Menu_Edit_SelNext}.
+ PREV: see @{"here" link Menu_Edit_SelPrev}.
+@endnode
+
+@node SELECTBYNAME
+@{b}SELECTBYNAME@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,MULTI/S
+@{b}Arguments:@{ub}
+ STRING
+   Specifies the name of the object to select
+ BOOL
+   If specified, multi select is enablde
+@{b}Description:@{ub}
+ Selects an object by it's name.
+@endnode
+
+@node SETOBJECTPOS
+@{b}SETOBJECTPOS@{ub}
+
+@{b}Template:@{ub}
+ POS/A
+@{b}Arguments:@{ub}
+ VECTOR
+   New position.
+@{b}Description:@{ub}
+ Sets the position of the selected object(s).
+@endnode
+
+@node SETOBJECTALIGN
+@{b}SETOBJECTPOS@{ub}
+
+@{b}Template:@{ub}
+ ALIGN/A
+@{b}Arguments:@{ub}
+ VECTOR
+   New alignment (in degree).
+@{b}Description:@{ub}
+ Sets the alignment of the selected object(s).
+@endnode
+
+@node SETOBJECTSIZE
+@{b}SETOBJECTSIZE@{ub}
+
+@{b}Template:@{ub}
+ SIZE/A
+@{b}Arguments:@{ub}
+ VECTOR
+   New size.
+@{b}Description:@{ub}
+ Sets the size of the selected object(s).
+@endnode
+
+@node SHOW
+@{b}SHOW@{ub}
+
+@{b}Template:@{ub}
+ WHAT/A
+@{b}Arguments:@{ub}
+ STRING [NAMES,ALL,CAMERAS,BRUSHES,TEXTURES,LIGHTS,MESHES,SPHERES,BOXES,CYLINDERS,CONES,SORS,PLANES,CSGS]
+   specifies what to show/hide
+@{b}Description:@{ub}
+ Toggles the show flag of the specified object type.
+@endnode
+
+@node UNDO
+@{b}UNDO@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Edit_Undo}
+@endnode
+
+@node UNGROUP
+@{b}UNGROUP@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ see @{"here" link Menu_Object_UnGroup}
+@endnode
+
+@node VIEW
+@{b}VIEW@{ub}
+
+@{b}Template:@{ub}
+ MODE/A
+@{b}Arguments:@{ub}
+ STRING [CAMERA,FRONT,RIGHT,TOP,PERSPECTIVE,QUAD]
+   view mode (QUAD toggles)
+@{b}Description:@{ub}
+ sets the current view mode
+@endnode
+
+@node ZOOM
+@{b}SELECT@{ub}
+
+@{b}Template:@{ub}
+ CMD/A
+@{b}Arguments:@{ub}
+ STRING [FIT,FOCUS,IN,OUT]
+   Specifies the zoom sub command.
+@{b}Description:@{ub}
+ FIT: see @{"here" link Menu_View_ZoomFit}.
+ FOCUS: see @{"here" link Menu_View_Focus}.
+ IN: see @{"here" link Menu_View_ZoomIn}.
+ OUT: see @{"here" link Menu_View_ZoomOut}.
+@endnode
+
+@node Scenario_ARexx_Errors " Scenario ARexx errors "
+@{b}SCENARIO AREXX ERRORS@{ub}
+
+These values are returned when something went wrong.
+
+@{b}Application errors@{ub}
+
+  1   Failed
+      Genaral error if command failed.
+  2   Invalid argument
+      You specified an invalid argument.
+  3   Invalid vector
+      You specified an invalid vector.
+@endnode
+
+@node Scenario_ARexx_Examples " Scenario ARexx examples "
+@{b}SCENARIO AREXX EXAMPLES@{ub}
+
+There are two example files in the directiory 'arexx' which show the usage
+of the Scenario ARexx interface.
+
+@{b}fractal.scn@{ub}
+This script generates a fractal object made of spheres. You can change
+maxiterations to alter the iteration depth.
+
+@{b}getname.scn@{ub}
+Selects the camera and prints the name, position, alignment and size.
+@endnode
+
+@node Scenario_Plugins " Scenario Plugins "
+@{b}SCENARIO PLUGINS@{ub}
+
+   @{"Terrain" link Scenario_Plugins_Terrain}
+@endnode
+
+@node Scenario_Plugins_Terrain " Scenario Terrain Plugin "
+@{b}TERRAIN PLUGIN@{ub}
+
+The Terrain plugin generates a fractal landscape.
+
+@{b}Width@{ub} Sets the horizontal subdivisions.
+@{b}Height@{ub} Sets the vertical subdivisions.
+@{b}Steepness@{ub} Determines how steep the the generated landscape is. High
+   values give a very steep terrain and low values result in gentle hills.
+@{b}Waterlevel@{ub} Sets the water level of the landscape. Low levels give a
+   very little water, high values give a landscape with much water and some
+   islands.
+@{b}Random seed@{ub} Sets the starting seed value for the random generator.
+   Each different value leads to a different landscape.
+@endnode
+
+@node TipsTricks " Tips & Tricks "
+@{b}TIPS & TRICKS@{ub}
+
+@{b}General@{ub}
+- RayStorm renders faster if you don't use planes, because intersections
+  with planes cannot be calculated with the octree (helpfull in scenes with
+  motion blur or soft shadows).
+
+@{b}Scenario@{ub}
+
+- @{b}The 020-Version of Scenario crashes!@{ub}
+  In Kickstart V40.x, there is a bug in mathieeesingbas.library - it uses FPU
+  code on non-FPU machines for division/multiplication. This bug can be easily
+  fixed with a patch from Aminet: @{i]util/boot/PatchMathSB10.lha@{ui}
+- @{b}I have problems with the screen refresh, the scene is only refreshed
+  behind the requester!@{ub}
+  Open the @{"MUI-settings" link Menu_Settings_MUI} requester and select from the window
+  part for "Refresh" the "Smart"-mode.
+- @{b}How can I change the texture and brush names without removing and adding
+  them again?@{ub}
+  Select @{"View->Show->Show Textures" link Menu_View_ShowTextures} or @{"View->Show->Show Brushes" link Menu_View_ShowBrushes}
+  and select the texture or brush. Now open the @{"settings-requester" link Menu_Object_Settings} and change
+  the name of the brush or texture.
+- @{b}How can I change the name of an RSOB/TDDD/LWOB/3DS/RAW-object without deleting
+  and reloding it?@{ub}
+  Select @{"Settings" link Menu_Object_Settings} from the object menu of the parent axis. Here you
+  can change the name of the object.
+- @{b}How can I load my old Imagine attribute files to use it for RayStorm
+  objects?@{ub}
+  Load the attributes file with @{"load object" link Menu_Object_Load}. You will get an axis
+  named 'Mesh' with another axis attached to it. The surface of this axis is set
+  to the attributes of the file. Click with the right mouse button to the parent
+  axis and select @{"To scene" link Object_Menus}. The parent axis is no deleted
+  and can now open the attributes requester for the child axis. Select save from
+  the @{"attributes requester" link Menu_Object_Attributes} and save the surface as a RayStorm material file.
+- @{b}If I apply a checker texture to a plane looks noisy!@{ub}
+  If the texture is exactly on the plane, the color of the texture jumps
+  between black and white because of rounding errors. Try to move the texture
+  axis a little (e.g. 0.02) away from the plane.
+- @{b}How can I switch on shadows?@{ub}
+  You must turn off Quick Rendering in Render settings. In addition to that turn
+  on cast shadows in the light settings.
+- @{b}Depth of Field doesn't seem to work. I changed the aperture and the focal distance,
+  but nothing happens.@{ub}
+  You must increase the antialiasing value >1.
+
+@{b}RayStorm Script@{ub}
+- The commands '@{"TEXTUREPATH" link TEXTUREPATH}', '@{"OBJECTPATH" link OBJECTPATH}' and '@{"BRUSHPATH" link BRUSHPATH}' are relative
+  to the directory RayStorm is started from.
+- If RayStorm crashes with scenes with reflections and transparence, try
+  to start RayStorm with a larger stack (e.g. 8192 bytes or more).
+@endnode
+
+@node ARexx " ARexx Interface "
+@{b}AREXX INTERFACE@{ub}
+
+   @{"Introduction" link ARexx_Intro}
+   @{"Address     " link ARexx_Address}
+   @{"Parameters  " link ARexx_Params}
+   @{"Commands    " link ARexx_Commands}
+   @{"Errors      " link Errors}
+@endnode
+
+@node ARexx_Intro " ARexx Introduction "
+@{b}AREXX INTRODUCTION@{ub}
+
+RayStorm is completly controled through it's ARexx interface. We recommend
+that you have a look at the @{"tuturials" link Tutorials} and the @{"example" link Examples}
+script files in the 'ARexx' directory.
+These examples cover most of the features of RayStorm. Further we encourage you
+to create your own files and make them available for the public. You can send
+them to us and we might add them as an example files in the next version of
+RayStorm or we include them to our @{"Homepage" link Homepage}.
+In one of the next versions of RayStorm we'll create a more powerful
+language, which has a similar syntax as C++.
+
+It's the same if you write the the commands in upper case or lower case.
+But it's important to enclose all commans in quotes because ARexx tries
+to interpret the line before it sends it to the potz. It may happen that the
+line is changed and RayStorm don't do what you expect.
+
+A typical structure of a scene file is:
+
+/* title, comments, ... */
+
+/* setting resolution, world, camera, lightsources */
+'SETSCREEN 160 128'
+'SETWORLD [0,0,0] [40,40,40]'
+'SETCAMERA <0,0,80> <0,0,0> <0,1,0> 25 20'
+'POINTLIGHT <10,-10,100> [255,255,255] SHADOW'
+
+/* define surfaces and actors */
+'NEWSURFACE TEST1'
+'AMBIENT [255,0,0]'
+'DIFFUSE [255,0,0]'
+'SPECULAR [255,255,255]'
+
+'NEWSURFACE TEST2'
+'AMBIENT [0,0,255]'
+
+/* creating objects */
+'SPHERE TEST1 <0,0,0> 10'
+'SPHERE TEST2 <0,0,0> 10'
+
+/* finally start to render the scene */
+'STARTRENDER'
+
+/* save the image */
+'SAVEPIC "test.iff"'
+
+'CLEANUP'
+@endnode
+
+@node ARexx_Address " ARexx Address "
+@{b}AREXX ADDRESS@{ub}
+
+The ARexx address of RayStorm Script is 'RAYSTORM.n', where n is the number of
+the started copy of RayStorm Script.
+@endnode
+
+@node ARexx_Params " ARexx Parameters "
+@{b}AREXX PARAMETERS@{ub}
+
+The parameters of a command can be FLOATs, INTEGERs, VECTORs, COLORs,
+STRINGs, and IDENTIFIERs.
+
+FLOAT     An FLOAT is a floating point number with single precision
+
+NUMBER    A NUMBER is a simple integer number
+
+VECTOR    A VECTOR is embedded in '<' '>' and consists of three FLOATs
+
+COLOR     A COLOR is embedded in '[' ']' and consists of three INTEGERs
+          which range normally from 0 to 255, but you can also set negative
+          values or values above of 255.
+
+STRING    A STRING consists of characters
+
+KEYWORD   An KEYWORD is a switch and consists of uppercase characters
+
+@{b}PARAMETER CONVENTIONS@{ub}
+  /S - Switch.
+  /N - Number.
+  /A - Required.
+
+  All other numeric parameters are floating point numbers.
+@endnode
+
+@node ARexx_Commands " ARexx Commands "
+@{b}AREXX COMMANDS@{ub}
+
+   @{" General         " link General}
+   @{" Objects         " link Objects}
+   @{" Attributes      " link Attributes}
+   @{" Animation       " link Animation}
+
+@{b}Alphabetically sorted@{ub}
+
+@{b}-A-@{ub}
+  @{"ALIGNMENT       " link ALIGNMENT}
+  @{"AMBIENT         " link AMBIENT}
+  @{"ANTIALIAS       " link ANTIALIAS}
+@{b}-B-@{ub}
+  @{"BOX             " link BOX}
+  @{"BRUSH           " link BRUSH}
+  @{"BRUSHPATH       " link BRUSHPATH}
+@{b}-C-@{ub}
+  @{"CLEANUP         " link CLEANUP}
+  @{"CSG             " link CSG}
+  @{"CYLINDER        " link CYLINDER}
+@{b}-D-@{ub}
+  @{"DIFFTRANS       " link DIFFTRANS}
+  @{"DIFFUSE         " link DIFFUSE}
+  @{"DIRECTIONALLIGHT" link DIRECTIONALLIGHT}
+  @{"DISPLAY         " link DISPLAY_script}
+  @{"DISTRIB         " link DISTRIB}
+@{b}-F-@{ub}
+  @{"FLARE           " link FLARE}
+  @{"FOGLEN          " link FOGLEN}
+@{b}-G-@{ub}
+  @{"GETERRORSTR     " link GETERRORSTR}
+@{b}-H-@{ub}
+  @{"HYPERTEXTURE    " link HYPERTEXTURE}
+@{b}-I-@{ub}
+  @{"IMTEXTURE       " link IMTEXTURE}
+@{b}-L-@{ub}
+  @{"LOADOBJ         " link LOADOBJ}
+@{b}-N-@{ub}
+  @{"NEWSURFACE      " link NEWSURFACE}
+@{b}-O-@{ub}
+  @{"OBJECTPATH      " link OBJECTPATH}
+@{b}-P-@{ub}
+  @{"PLANE           " link PLANE}
+  @{"POINTLIGHT      " link POINTLIGHT}
+  @{"POSITION        " link POSITION}
+@{b}-Q-@{ub}
+  @{"QUIT            " link QUIT}
+@{b}-R-@{ub}
+  @{"REFEXP          " link REFEXP}
+  @{"REFLECT         " link REFLECT}
+  @{"REFRINDEX       " link REFRINDEX}
+@{b}-S-@{ub}
+  @{"SAVEPIC         " link SAVEPIC}
+  @{"SETCAMERA       " link SETCAMERA}
+  @{"SETSCREEN       " link SETSCREEN}
+  @{"SETWORLD        " link SETWORLD}
+  @{"SIZE            " link SIZE}
+  @{"SOR             " link SOR}
+  @{"SPECTRANS       " link SPECTRANS}
+  @{"SPECULAR        " link SPECULAR}
+  @{"SPHERE          " link SPHERE}
+  @{"SPOTLIGHT       " link SPOTLIGHT}
+  @{"STAR            " link STAR}
+  @{"STARTRENDER     " link STARTRENDER}
+@{b}-T-@{ub}
+  @{"TEXTUREPATH     " link TEXTUREPATH}
+  @{"TRANSEXP        " link TRANSEXP}
+  @{"TRANSLUC        " link TRANSLUC}
+  @{"TRANSPAR        " link TRANSPAR}
+  @{"TRIANGLE        " link TRIANGLE}
+@{b}-W-@{ub}
+  @{"WINTOFRONT      " link WINTOFRONT}
+@endnode
+
+@node General " General ARexx-commands "
+@{b}GENERAL AREXX-COMMANDS@{ub}
+
+@{"ANTIALIAS       " link ANTIALIAS}  sets antialiasing parameters
+@{"BRUSHPATH       " link BRUSHPATH}  sets brush path
+@{"CLEANUP         " link CLEANUP}  cleanups scene
+@{"DIRECTIONALLIGHT" link DIRECTIONALLIGHT}  creates directional light source
+@{"DISPLAY         " link DISPLAY_script}  displays scene
+@{"DISTRIB         " link DISTRIB}  sets parameters for distributive sampling
+@{"FLARE           " link FLARE}  add a flare to a light source
+@{"GETERRORSTR     " link GETERRORSTR}  gets a error string for a given number
+@{"OBJECTPATH      " link OBJECTPATH}  sets object path
+@{"POINTLIGHT      " link POINTLIGHT}  creates point light source
+@{"QUIT            " link QUIT}  quits RayStorm
+@{"SAVEPIC         " link SAVEPIC}  saves rendered picture
+@{"SETCAMERA       " link SETCAMERA}  sets camera parameters
+@{"SETSCREEN       " link SETSCREEN}  sets screen parameters
+@{"SETWORLD        " link SETWORLD}  sets world parameters
+@{"SPOTLIGHT       " link SPOTLIGHT}  creates spot light source
+@{"STAR            " link STAR}  add a light star to a light source
+@{"STARTRENDER     " link STARTRENDER}  starts rendering
+@{"TEXTUREPATH     " link TEXTUREPATH}  sets texture path
+@{"WINTOFRONT      " link WINTOFRONT}  brings window to front
+@endnode
+
+@node ANTIALIAS
+@{b}ANTIALIAS@{ub}
+
+@{b}Template:@{ub}
+ SAMPLES/N/A,WIDTH,CONTRIB
+@{b}Arguments:@{ub}
+ NUMBER SAMPLES
+   Squareroot of number of samples per pixel (max. 8) (default: 1).
+ FLOAT WIDTH
+   Width of gaussian filter. The range is infinite but values between 1 and
+   3 are recommended (default: 1.3).
+ COLOR CONTRIB
+   Max. allowed contrast (default: [51,38,76]).
+@{b}Description:@{ub}
+ Sets antialiasing parameters (see @{"Antialiasing" link Antialiasing})
+@endnode
+
+@node BRUSHPATH
+@{b}BRUSHPATH@{ub}
+
+@{b}Template:@{ub}
+ PATH/A
+@{b}Arguments:@{ub}
+ STRING PATH
+   pathname (no default).
+@{b}Description:@{ub}
+ Defines the path where to search brushes. More than one path may be included
+ as long as they are separated by semi-colons.
+@{b}Example:@{ub}
+ BRUSHPATH 'path1;path2'
+@endnode
+
+@node CLEANUP
+@{b}CLEANUP@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ Deletes all defined objects, lightsources, surfaces and actors
+@endnode
+
+@node DIRECTIONALLIGHT
+@{b}DIRECTIONALLIGHT@{ub}
+
+@{b}Template:@{ub}
+ POS/A,DIR,COLOR,SIZE,SHADOW/S,ACTOR,FALLOFF,NOSTAR/S,NOFLARES/S,SHADOWMAP/S,
+ SHADOWMAPSIZE/N
+@{b}Arguments:@{ub}
+ VECTOR POS
+   Position of the directional light (default: <0,0,0,>)
+ VECTOR DIR
+   Direction the light is shining to (default: <0,0,1,>)
+ COLOR COLOR
+   Color of the light (default: [255,255,255]). Note: this color also can be
+   greater than 255 or negative.
+ VECTOR SIZE
+   Size of light source (used for @{"soft shadows" link SoftShadows}) (default 0)
+ KEYWORD SHADOW
+   Lightsource casts shadows (default: OFF).
+ STRING ACTOR
+   Name of actor (no default value).
+ FLOAT FALLOFF
+   Distance where the brightness of the light is zero. A value of 0 switches
+   this option off (default: 0).
+ KEYWORD NOSTAR
+   Disable light star (default: OFF).
+ KEYWORD NOFLARES
+   Disable lens flares (default: OFF).
+ KEYWORD SHADOWMAP
+   Enables the shadowmap (default: OFF).
+ NUMBER SHADOWMAPSIZE
+   Defines the size of the shadowmap (default: 128).
+@{b}Description:@{ub}
+ Creates a directional lightsource. The lightsource casts shadows, if the keyword
+ SHADOW is given. A @{"shadowmap" link InfoShadowMap} will be generated if both the SHADOW and
+ SHADOWMAP keywords are given.
+@endnode
+
+@node DISPLAY_script
+@{b}DISPLAY@{ub}
+
+@{b}!!! CAUTION !!!
+THIS COMMAND ISN'T RELEASED IN THIS VERSION YET
+!!! CAUTION !!!@{ub}
+
+@{b}Template:@{ub}
+ FLOYD/S
+@{b}Arguments:@{ub}
+ KEYWORD FLOYD/S
+   Dither with Floyd-Steinberg algorithm (default: OFF).
+@{b}Description:@{ub}
+ Displays rendered pic on screen.
+@endnode
+
+@node DISTRIB
+@{b}DISTRIB@{ub}
+
+@{b}Template:@{ub}
+ SAMPLES/N,SOFTSHADOW/N
+@{b}Arguments:@{ub}
+ NUMBER SAMPLES/N
+   Squareroot of number of samples per pixel for motionblur (default 1).
+ NUMBER SOFTSHADOW/N
+   Squareroot of number of samples per pixel for softshadows (default 1).
+@{b}Description:@{ub}
+ Sets number of samples per pixel for distributive sampling (used for
+ @{"motion blur" link Motion_Blur} and @{"soft shadows" link SoftShadows})
+@endnode
+
+@node GETERRORSTR
+@{b}GETERRORSTR@{ub}
+
+@{b}Template:@{ub}
+ ERRNUM/N/A
+@{b}Arguments:@{ub}
+ NUMBER ERRNUM
+   Error number (no default).
+@{b}Description:@{ub}
+ Returns the error string for the given error number
+@endnode
+
+@node OBJECTPATH
+@{b}OBJECTPATH@{ub}
+
+@{b}Template:@{ub}
+ PATH/A
+@{b}Arguments:@{ub}
+ PATH
+   Pathname (no default).
+@{b}Description:@{ub}
+ Defines the path where to search objects. More than one path may be included
+ as long as they are separated by semi-colons.
+@{b}Example:@{ub}
+ OBJECTPATH 'path1;path2'
+@endnode
+
+@node POINTLIGHT
+@{b}POINTLIGHT@{ub}
+
+@{b}Template:@{ub}
+ POS/A,COLOR,SIZE,SHADOW/S,ACTOR,FALLOFF,NOSTAR/S,NOFLARES/S,SHADOWMAP/S,
+ SHADOWMAPSIZE/N
+@{b}Arguments:@{ub}
+ VECTOR POS
+   Position of the pointlight (default: <0,0,0,>)
+ COLOR COLOR
+   Color of the light (default: [255,255,255]). Note: this color also can be
+   greater than 255 or negative.
+ VECTOR SIZE
+   Size of light source (used for @{"soft shadows" link SoftShadows}) (default 0)
+ KEYWORD SHADOW
+   Lightsource casts shadows (default: OFF).
+ STRING ACTOR
+   Name of actor (no default value).
+ FLOAT FALLOFF
+   Distance where the brightness of the light is zero. A value of 0 switches
+   this option off (default: 0).
+ KEYWORD NOSTAR
+   Disable light star (default: OFF).
+ KEYWORD NOFLARES
+   Disable lens flares (default: OFF).
+ KEYWORD SHADOWMAP
+   Enables the shadowmap (default: OFF).
+ NUMBER SHADOWMAPSIZE
+   Defines the size of the shadowmap (default: 128).
+@{b}Description:@{ub}
+ Creates a point lightsource. The lightsource casts shadows, if the keyword
+ SHADOW is given. A @{"shadowmap" link InfoShadowMap} will be generated if both the SHADOW and
+ SHADOWMAP keywords are given.
+@endnode
+
+@node QUIT
+@{b}QUIT@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ Quits Raystrom Script.
+@endnode
+
+@node SAVEPIC
+@{b}SAVEPIC@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,FORMAT
+@{b}Arguments:@{ub}
+ STRING NAME
+   The name of the picture to save (no default).
+ STRING FORMAT
+   Image format: TGA, PNG, ILBM, JPEG (default: ILBM).
+@{b}Description:@{ub}
+ Saves the rendered picture as a 24-Bit IFF-ILBM-file, 24 Bit TGA file, 24 bit
+ JPEG file or 24 Bit PNG file. If an error occures the command returns an error
+ string.
+@{b}Example:@{ub}
+ SAVEPIC 'path/name with extension'
+@endnode
+
+@node SETCAMERA
+@{b}SETCAMERA@{ub}
+
+@{b}Template:@{ub}
+ POS/A,VIEWPOINT,VIEWUP,FOVX,FOVY,FOCALDIST,APERTURE,POSACTOR,VIEWACTOR
+@{b}Arguments:@{ub}
+ VECTOR POS
+   Position of the camera (default: <0,0,-10>).
+ VECTOR VIEWPOINT
+   Position to which the camera points to (default: <0,0,0>).
+ VECTOR VIEWUP
+   View up vector (default: <0,1,0>).
+ FLOAT FOVX, FOVY
+   Field of view (in degree) (20 degree creates a camera like the default
+   camera of Imagine) (default: 45, 45)
+ FLOAT FOCALDIST
+   Distance from eye to focal plane (default: 1).
+ FLOAT APERTURE
+   Aperture width (0 = pinhole) (-> @{"depth of field" link DOF}) (default: 0).
+ STRING POSACTOR
+   Name of position actor (no default).
+ STRING VIEWACTOR
+   Name of look_at_actor (no default).
+@{b}Description:@{ub}
+ Sets the parameters of the camera
+@endnode
+
+@node SETSCREEN
+@{b}SETSCREEN@{ub}
+
+@{b}Template:@{ub}
+ RESX/N/A,RESY/N/A,COLORS/N
+@{b}Arguments:@{ub}
+ NUMBER RESX, RESY
+   Resolution of the picture (default: 128, 128).
+ NUMBER COLORS
+   Number of colors (not yet implemented)
+@{b}Description:@{ub}
+ Sets the resolution of the rendered picture. Note that in the demo-version
+ the resolution is limited to 160x128 pixels!
+@endnode
+
+@node SETWORLD
+@{b}SETWORLD@{ub}
+
+@{b}Template:@{ub}
+ BACK/A,AMBIENT,RANDJIT/S,BACKDROP,FOGLEN,FOGHEIGHT,FOGCOLOR,REFLMAP
+@{b}Arguments:@{ub}
+ COLOR BACK
+   Color of background (default: [0,0,0]). Note: this color also can be
+   greater than 255 or negative.
+ COLOR AMBIENT
+   Ambient color (default: [0,0,0]). Note: this color also can be greater than
+   255 or negative.
+ KEYWORD RANDJIT
+   Use random jitter for @{"depth of field" link DOF} and @{"soft shadows" link SoftShadows} (default: OFF).
+ STRING BACKDROP
+   Name of the backdrop picture (no default).
+ FLOAT FOGLEN
+   Global fog length (default: 32).
+ FLOAT FOGHEIGHT
+   Highest fog y-level (default: 0).
+ COLOR FOGCOLOR
+   Color of fog (default: [255,255,255]). Note: this color also can be greater
+   than 255 or negative.
+ STRING REFLMAP
+   Name of the reflection map (no default).
+@{b}Description:@{ub}
+ Sets world parameters. The backdrop picture is automatically scaled to
+ the screen resolution.
+@endnode
+
+@node SPOTLIGHT
+@{b}SPOTLIGHT@{ub}
+
+@{b}Template:@{ub}
+ POS/A,COLOR,LOOKPOINT,ANGLE,SIZE,SHADOW/S,ACTOR,LOOKP_ACTOR,FALLOFF,NOSTAR/S,
+ NOFLARES/S,SHADOWMAP/S,SHADOWMAPSIZE/N
+@{b}Arguments:@{ub}
+ VECTOR POS
+   Position of the spotlight (default: <0,0,0,>)
+ COLOR COLOR
+   Color of light (default: [255,255,255]). Note: this color also can be
+   greater than 255 or negative.
+ VECTOR LOOKPOINT
+   Point at which the spotlight shines (default: <0,0,1>).
+ FLOAT ANGLE
+   Opening angel in degree (max. 180) (default: 45).
+ VECTOR SIZE
+   Size of light source (used for @{"soft shadows" link SoftShadows}) (default 0)
+ KEYWORD SHADOW
+   Lightsource casts shadows (default: OFF).
+ STRING ACTOR
+   Name of position actor (no default value).
+ STRING LOOKP_ACTOR
+   Name of look-point actor (no default value).
+ FLOAT FALLOFF
+   Distance where the brightness of the light is zero. A value of 0 switches
+   this option off (default: 0).
+ KEYWORD NOSTAR
+   Disable light star (default: OFF).
+ KEYWORD NOFLARES
+   Disable lens flares (default: OFF).
+ KEYWORD SHADOWMAP
+   Enables the shadowmap (default: OFF).
+ NUMBER SHADOWMAPSIZE
+   Defines the size of the shadowmap (default: 128).
+@{b}Description:@{ub}
+ Creates a spotlight. The rays emitted from a spotlight are constrained
+ by a cone. The LOOKPOINT vector gives the center of the illuminated area.
+ The lightsource casts shadows, if the keyword SHADOW is given. A @{"shadowmap" link InfoShadowMap}
+ will be generated if both the SHADOW and SHADOWMAP keywords are given.
+@endnode
+
+@node FLARE
+@{b}FLARE@{ub}
+
+@{b}Template:@{ub}
+ POS/A,RADIUS/A,COLOR,TYPE,FUNCTION,EDGES/N,TILT
+@{b}Arguments:@{ub}
+ FLOAT POS
+   Position of the flare on light axis (in percent) (default: 50).
+ FLOAT RADIUS
+   Radius of the flare (in percent) (default: 10).
+ COLOR COLOR
+   Color of the flare (default: [50,50,50]). Note: this color also can be
+   greater than 255 or negative.
+ KEYWORD TYPE [DISC|POLYGON]
+   Type of the flare (default: DISC).
+ KEYWORD FUNCTION [PLAIN|RING|RADIAL|EXP1|EXP2]
+   Look of the flare (default: PLAIN).
+ NUMBER EDGES
+   Number of edges of polygonal flare (3 - 8 edges possible) (default: 5).
+ FLOAT TILT
+   Tilt angle of flare (only useful for polygonal flares) (default: 0).
+@{b}Description:@{ub}
+ A new lens flare is added to the last defined light source. Lens flares only
+ appear when the light source is visible. They appear on an axis which runs
+ from the center of the light source through the center of the screen. The
+ position of the flare is relative to the light source it belongs to. If the
+ position value is zero, the flare appears at the position of the light source.
+ Greater values of pos move it towards the center of the screen. Here a some
+ example values and their meaning:
+
+   0 : flare has the same position as the light source
+ 100 : flare is in the middle of the screen
+ 200 : flare is on opposite side of the light source
+
+ You can also set pos to negative values, so the flare will appear behind the
+ light source.
+
+ The radius of the flare is relative to the horizontal render resolution.
+ For example: A flare with radius of 20 % renderd with a resolution of 320x200
+ will have a radius of 0.2*320 = 64 pixels.
+
+ @{b}type@{ub} can be one of the following identifiers:
+
+ DISC
+   A flare which looks like a disc
+ POLYGON
+   A flare which looks like a polygon. The number of edges can be set with
+   edges.
+
+ @{b}function@{ub} can be one of the following identifiers:
+
+ PLAIN
+   the color of the flare is uniform
+ RING
+   the flare looks like a ring
+ RADIAL
+   varies the color of the flare radial around the flare center
+@endnode
+
+@node STAR
+@{b}STAR@{ub}
+
+@{b}Template:@{ub}
+ SPIKES,RADIUS,HALORADIUS,INNERHALORADIUS,RANGE,RANDOM_SEED/N,TILT,NOISE,
+ BRIGHTNESS,COLOR,RINGCOLOR
+@{b}Arguments:@{ub}
+ NUMBER SPIKES
+   Number of spikes (4 - 256) (default: 4).
+ FLOAT RADIUS
+   Radius of star (in percent) (default: 30).
+ FLOAT HALORADIUS
+   Radius of star halo (in percent relative to star radius) (default: 20).
+ FLOAT INNERHALORADIUS
+   Radius of inner star halo (in percent relative to halo radius) (default: 40).
+ FLOAT RANGE
+   Range between shortest and longest spike (in percent) (default: 0).
+ NUMBER RANDOM_SEED
+   Random seed value (0-32767) (default: 0).
+ FLOAT TILT
+   Tilt angle of spikes (in degree) (default: 0).
+ FLOAT NOISE
+   The higher this value the noisier the spikes (default: 5.0).
+ FLOAT BRIGHTNESS
+   Brightness of the spikes (default: 40.0).
+ COLOR COLOR
+   Color of the spikes (default: <1.0, 0.6, 0.6>).
+ COLOR RINGCOLOR
+   Color of the ring (defualt: <0.156, 0.0392, 0.0196>).
+
+@{b}Description:@{ub}
+ This command makes a light source visible. In reality, a light source looks
+ like a star with several spikes getting out of the center of the light source.
+ Usually there's a halo around it too.
+
+ The radius (length of the longest spike) of the star is relative to the
+ horizontal render resolution (see @{"FLARE" link FLARE}).
+
+ The radius of the halo is relative to the radius of the star itself. A value
+ of 100 % means, that the halo has the same radius as the star.
+ The radius of the inner halo is relative to the radius of the outer halo. A
+ value of 100 % means, that the inner halo has the same radius as the outer
+ halo.
+
+ The range value determines the difference between the longest and the shortes
+ spike of the star. A value of 0 % means that all spikes have the same length,
+ whereas 100 % means that the shortest spike has zero length.
+
+ The spike width value is a factor for the width of the spikes. Higher values
+ generate wider spikes.
+
+ @{b}How are the spikes computed ?@{ub}
+ The four spikes in the main directions (0, 90, 180, 270 degrees) always have
+ maximum length. Spikes between them (45, 135, ... degrees for example) are
+ shorter and again spikes between them are shorter and so on.
+
+ If you specify a value for random_seed, the length of the spikes is randomly
+ changed.
+@endnode
+
+@node STARTRENDER
+@{b}STARTRENDER@{ub}
+
+@{b}Template:@{ub}
+ QUICK/S,DEPTH/N,FROM,TO,LEFT/N,TOP/N,RIGHT/N,BOTTOM/N,MINOBJECTS/N,HYPERSTEP
+@{b}Arguments:@{ub}
+ KEYWORD QUICK
+   Render quick (no shadows, reflections and transparency) (default: ON).
+ NUMBER DEPTH
+   Depth of generated @{"octree" link Octree} (default: 3).
+ FLOAT FROM,TO
+   Time code (default 0,0). If you want @{"motion blur" link Motion_Blur} you have to
+   set FROM and TO to different values, else only set FROM (default: 0, 0).
+ NUMBER LEFT,TOP,RIGHT,BOTTOM
+   Coordinates for rendering box. Picture is renderd only inside of
+   rectangle (default: whole picture).
+ NUMBER MINOBJECTS
+   Minimum amount of objects for which no octree is generated (default: 3).
+ FLOAT HYPERSTEP
+   Step size for hyper textures (default: 0.1).
+@{b}Description:@{ub}
+ Starts rendering process. If you set QUICK shadows, reflections and
+ transparency are not calculated. In very complex scenes it is useful to
+ increase the octree depth in order to reach a better performance during
+ the rendering process. But this can only be done with enough memory!
+ Here are values for the file "chess.ray" renderd with a resolution of
+ 160x128 on a A4000 with 25Mhz 68030 and 57MHz 68882:
+
+ depth  memory [MByte]  init [mm:ss]  cleanup [mm:ss]  render [mm:ss]  total [mm:ss]
+   2          1.38         00:12           00:02           09:24          09:38
+   3          1.13         00:14           00:04           03:58          04:16
+   4          1.55         00:22           00:08           01:50          02:20
+   5          2.35         00:41           00:26           01:15          02:22
+   6          5.70         01:35           02:38           01:06          05:19
+@endnode
+
+@node TEXTUREPATH
+@{b}TEXTUREPATH@{ub}
+
+@{b}Template:@{ub}
+ PATH/A
+@{b}Arguments:@{ub}
+ PATH
+   Pathname (format: 'path1;path2;...;pathn') (no default).
+@{b}Description:@{ub}
+ Defines the path where to search textures. More than one path may be included
+ as long as they are separated by semi-colons.
+@{b}Example:@{ub}
+ TEXTUREPATH 'path1;path2'
+@endnode
+
+@node WINTOFRONT
+@{b}WINTOFRONT@{ub}
+
+@{b}Template:@{ub}
+ none
+@{b}Arguments:@{ub}
+ none
+@{b}Description:@{ub}
+ Brings RayStorm window in front.
+@endnode
+
+@node Objects " ARexx-commands for creating objects "
+@{b}AREXX-COMMANDS FOR CREATING OBJECTS@{ub}
+
+@{"BOX     " link BOX}  creates a box
+@{"CONE    " link CONE}  creates a cone object
+@{"CSG     " link CSG}  creates a CSG object
+@{"CYLINDER" link CYLINDER}  creates a cylinder
+@{"LOADOBJ " link LOADOBJ}  loads an object file
+@{"PLANE   " link PLANE}  creates a plane (ground in Imagine)
+@{"SOR     " link SOR}  creates a surface of revolution
+@{"SPHERE  " link SPHERE}  creates a sphere
+@{"TRIANGLE" link TRIANGLE}  creates a triangle
+@endnode
+
+@node BOX
+@{b}BOX@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POS/A,LOWBOUNDS,HIGHBOUNDS,ALIGN,ACTOR,INVERTED/S
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Center of box (default: <0,0,0>).
+ VECTOR LOWBOUNDS
+   Left, front, bottom edge relative to position (default: <-1,-1,-1>).
+ VECTOR HIGHBOUNDS
+   Right, back, top edge relative to position (default: <1,1,1>).
+ VECTOR ALIGN
+   Alignment of box in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Box is inverted (inside out). Only useful for @{"CSG" link InfoCSG}. (default: FALSE).
+@{b}Description:@{ub}
+ Creates a box
+@endnode
+
+@node CONE
+@{b}CONE@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POS/A,SIZE,ALIGN,ACTOR,INVERTED/S,OPENBOTTOM/S
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Base position of cone (default: <0,0,0>).
+ VECTOR SIZE
+   Size of cone (default: <1.,1.,1.>).
+ VECTOR ALIGN
+   Alignment of cone in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Cone is inverted (inside out). Only useful for @{"CSG" link InfoCSG}. (default: FALSE).
+ KEYWORD OPENBOTTOM
+   Cone has no bottom cap. Note that this can cause problems with @{"CSG" link InfoCSG}.
+   (default: FALSE).
+@{b}Description:@{ub}
+ Creates a cone. The rotation axis of the cone points to y-direction.
+@endnode
+
+@node CSG
+@{b}CSG@{ub}
+
+@{b}Template:@{ub}
+ OPERATION,INVERTED/S
+@{b}Arguments:@{ub}
+ KEYWORD OPERATION [UNION|INTERSECTION|DIFFERENCE]
+   The operation for this CSG object (default: UNION).
+ KEYWORD INVERTED
+   CSG-object is inverted (inside out) (default: FALSE).
+@{b}Description:@{ub}
+ Creates a new CSG object. The next two objects which are define after this
+ command are take for the CSG object. Valid objects are @{"SPHERE" link SPHERE}, @{"BOX" link BOX},
+ @{"CYLINDER" link CYLINDER} and a CSG object again.
+ For more information see @{"this" link InfoCSG} chapter.
+@{b}Example:@{ub}
+ CSG DIFFERENCE
+  CSG INTERSECTION
+   SPHERE surf1 <-.5,0,0> 1
+   SPHERE surf2 <-.5,0,0> 1
+  BOX surf3 <0,0,0> <-2,-.5,-.5> <2,.5,.5>
+@endnode
+
+@node CYLINDER
+@{b}CYLINDER@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POS/A,SIZE,ALIGN,ACTOR,INVERTED/S,OPENTOP/S,OPENBOTTOM/S
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Base position of cylinder (default: <0,0,0>).
+ VECTOR SIZE
+   Size of cylinder (default: <1.,1.,1.>).
+ VECTOR ALIGN
+   Alignment of cylinder in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Cylinder is inverted (inside out). Only useful for @{"CSG" link InfoCSG}. (default: FALSE).
+ KEYWORD OPENTOP
+   Clyinder has no top cap. Note that this can cause problems with @{"CSG" link InfoCSG}.
+   (default: FALSE).
+ KEYWORD OPENBOTTOM
+   Clyinder has no bottom cap. Note that this can cause problems with @{"CSG" link InfoCSG}.
+   (default: FALSE).
+@{b}Description:@{ub}
+ Creates a cylinder. The rotation axis of the cylinder points to y-direction.
+@endnode
+
+@node LOADOBJ
+@{b}LOADOBJ@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,POS,ALIGN,SCALE,ACTOR,SURFACE
+@{b}Arguments:@{ub}
+ STRING NAME
+   Filename (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Slignment (in degrees) (default: <0,0,0>).
+ VECTOR SCALE
+   Scale factor (default: <1,1,1>).
+ STRING ACTOR
+   Name of actor (no default).
+ STRING SURFACE
+   Name of surface to replace object surface with (no default).
+@{b}Description:@{ub}
+ Loads an
+  - Imagine TDDD-file
+     loads attributes, triangles (with correct handling of sharp edges),
+     perfect spheres, planes, brushes and textures
+  - Ligtwave LWOB-file
+     loads attributes, triangles and quads. Don't loads textures and don't
+     assigns sub surfaces to polygons.
+  - Autodesk 3D-Studio file
+     loads attributes, triangles and generates sharp edges
+ If you specify a surface, all surfaces of the object will have that surface
+ (overriding any surfaces defined in the object file).
+
+ @{b}Where to get Imagine object files?@{ub}
+ Look on FTP-servers which support AMINET. For example try out
+  ftp.uni-paderborn.de
+  Path: ftp/aminet/pub/gfx/3dobj/
+ @{b}Where to get 3D-Studio object files?@{ub}
+ Try out these WWW-Pages:
+ For Star wars fans: http://www.loop.com/~hhc/
+ Mesh Mart: http://cedar.cic.net/~rtilmann/mm/index.htm
+ Objects Archive: http://sunserver1.rz.uni-duesseldorf.de/~pannozzo/3ds.html
+@endnode
+
+@node PLANE
+@{b}PLANE@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POS,NORM,ACTOR
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR NORM
+   Normal of the plane (default: <0,1,0>).
+ STRING ACTOR
+   Name of actor (no default).
+@{b}Description:@{ub}
+ Creates an infinite plane.
+@endnode
+
+@node SOR
+@{b}SOR@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POINTS/M/A,POS,SIZE,ALIGN,ACTOR,ACCURATE/S,INVERTED/S,OPENTOP/S,OPENBOTTOM/S
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR2D POINTS
+   The points which describe the curve which is rotated (at least 4) (no default).
+ VECTOR SIZE
+   Size of SOR (default: <1,1,1>).
+ VECTOR ALIGN
+   Alignment of SOR in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD ACCURATE
+   Use a more accurate but slower algorithm for calculting the SOR. If the SOR isn't
+   renderd properly specify this keyword (default: FALSE).
+ KEYWORD INVERTED
+   SOR is inverted (inside out). Only useful for @{"CSG" link InfoCSG}. (default: FALSE).
+ KEYWORD OPENTOP
+   SOR has no top cap. Note that this can cause problems with @{"CSG" link InfoCSG}.
+   (default: FALSE).
+ KEYWORD OPENBOTTOM
+   SOR has no bottom cap. Note that this can cause problems with @{"CSG" link InfoCSG}.
+   (default: FALSE).
+@{b}Description:@{ub}
+ Creates a @{"surface of revolution" link InfoSOR} (SOR).
+@endnode
+
+@node SPHERE
+@{b}SPHERE@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,POS/A,RADIUS/A,ACTOR,FUZZY,INVERTED/S
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Center of sphere (default: <0,0,0>).
+ FLOAT RADIUS
+   Radius of sphere (default: 1).
+ STRING ACTOR
+   Name of actor (no default).
+ FLOAT FUZZY
+   Size of the fuzzy region for @{"hyper texture" link InfoHyperTexture} (default: 0).
+ KEYWORD INVERTED
+   Sphere is inverted (inside out). Only useful for @{"CSG" link InfoCSG}. (default: FALSE).
+@{b}Description:@{ub}
+ Creates a sphere.
+@endnode
+
+@node TRIANGLE
+@{b}TRIANGLE@{ub}
+
+@{b}Template:@{ub}
+ SURF/A,P1/A,P2/A,P3/A,N1,N2,N3,ACTOR
+@{b}Arguments:@{ub}
+ STRING SURF
+   Name of surface (no default).
+ VECTOR P1
+   First corner (no default).
+ VECTOR P2
+   Second corner (no default).
+ VECTOR P3
+   Third corner (no default).
+ VECTOR N1
+   Normal at first corner (no default).
+ VECTOR N2
+   Normal at second corner (no default).
+ VECTOR N3
+   Normal at third corner (no default).
+ STRING ACTOR
+   Name of actor (no default).
+@{b}Description:@{ub}
+ Creates a triangle with corners at position P1, P2 and P3. If you specify
+ the normals, a phong shaded triangle otherwise a flat triangle is created.
+ Computing the normals by hand is a difficult task, and should be done by
+ utility programs.
+@endnode
+
+@node Attributes " ARexx-commands for setting attributes "
+@{b}AREXX-COMMANDS FOR SETTING ATTRIBUTES@{ub}
+
+Every object must have a surface definition. With the following commands
+you can set the attributes of a surface. First you have to define the
+current surface with 'NEWSURFACE <name>'. Raystorm will set the attributes
+of the new surface to default values. Every following command such as
+AMBIENT or DIFFTRANS refers to the current surface and will override
+the corresponding default values.
+
+The following examples define two surfaces:
+
+NEWSURFACE RED
+AMBIENT [255,0,0]
+DIFFUSE [255,0,0]
+
+NEWSURFACE WATER
+DIFFUSE [0,0,255]
+REFRINDEX 1.333
+
+List of surface commands:
+@{"NEWSURFACE   " link NEWSURFACE}  creates a new surface
+@{"AMBIENT      " link AMBIENT}  sets ambient color
+@{"BRUSH        " link BRUSH}  adds a brush
+@{"DIFFTRANS    " link DIFFTRANS}  sets diffuse transmission color
+@{"DIFFUSE      " link DIFFUSE}  sets diffuse color
+@{"FOGLEN       " link FOGLEN}  sets the foglength
+@{"HYPERTEXTURE " link HYPERTEXTURE}  adds a hyper texture
+@{"IMTEXTURE    " link IMTEXTURE}  adds a Imagine texture
+@{"REFEXP       " link REFEXP}  sets the specular reflection exponent
+@{"REFLECT      " link REFLECT}  sets the specular reflectivity
+@{"REFRINDEX    " link REFRINDEX}  sets the index of refraction
+@{"SPECTRANS    " link SPECTRANS}  sets the specular transmission
+@{"SPECULAR     " link SPECULAR}  sets the specular color
+@{"TRANSEXP     " link TRANSEXP}  sets the specular transmission exponent
+@{"TRANSLUC     " link TRANSLUC}  sets the specular transmittance
+@{"TRANSPAR     " link TRANSPAR}  sets the diffuce transmittance
+@endnode
+
+@node AMBIENT
+@{b}AMBIENT@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ STRING COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+@{b}Description:@{ub}
+ Sets the ambient color of surface. Determines the color of the object in
+ sections, which are in shadow.
+@endnode
+
+@node BRUSH
+@{b}BRUSH@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,TYPE/A,WRAP/A,POS/A,ALIGN/A,SIZE/A,REPEAT/S,MIRROR/S,SOFT/S,ACTOR
+@{b}Arguments:@{ub}
+ STRING NAME
+   Filename of brush (no default).
+ KEYWORD TYPE [COLOR|REFLECT|FILTER|ALTITUDE|SPECULAR]
+   Type of brush (default: COLOR).
+ KEYWORD WRAP [FLAT|WRAPX|WRAPY|WRAPXY]
+   Brush wrapping method (default: FLAT).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of brush (default: <1,1,1>).
+ KEYWORD REPEAT
+   If set, brush is repeated like a tile (default: OFF).
+ KEYWORD MIRROR
+   If set, brush is mirrord (when REPEAT is specified) (default: OFF).
+ KEYWORD SOFT
+   If set, brush color is interpolated softly (default: OFF).
+ STRING ACTOR
+   Name of actor (no default).
+@{b}Description:@{ub}
+ Adds a brush to surface definition. A brush is a bitmap which is wrapped
+ around an  object. The specified file will be searched for in the current
+ directory. If it wasn't found there and a @{"BRUSHPATH" link BRUSPATH} is given, the file will
+ be searched there.
+ If an error occures the command returns an error string. Supported formats
+ are: IFF-ILBM, PNG, TGA, JPEG and Datatypes.
+
+ Constants for type:
+ COLOR
+  Replaces the surface color of the object with the image (sets @{"DIFFUSE" link DIFFUSE} and
+  @{"AMBIENT" link AMBIENT} color).
+ REFLECT
+  Map covers the surface and reflects environment (see @{"REFLECT" link REFLECT})).
+ FILTER
+  Uses the white color to pass colors and the black area to hold back color
+  with a variance between two colors (like with @{"TRANSPAR" link TRANSPAR}).
+ ALTITUDE
+  The red values of the brush are used to give the surface an appearence of
+  bumpiness.
+ SPECULAR
+  The rgb values set the specular color of the surface (see @{"SPECULAR" link SPECULAR}).
+
+ Constants for wrap :
+ FLAT
+  The brush is projected to X-Y plane, the axis is in the middle of the
+  brush area, length is the distance from the middle to the border.
+ WRAPX
+  The brush is wrapped around the x-axis, like on a cylinder. The left edge
+  of the brush begins at the posititve X axis and wraps the brush around
+  the cylinder from 'west' to 'east'.
+ WRAPY
+  Same as WRAPX, but wrapping is around the y-axis.
+ WRAPXY
+  Wrapping both: around X and Y axis. It is assumed, that the object is a
+  sphere. The Y axis is the north/south pole of the spherical mapping. The
+  left edge of the brush begins at the positive X axis and wraps the brush
+  around the sphere from 'west' to 'east'. The brush covers the sphere
+  exactly once.
+@{b}Example:@{ub}
+ BRUSH "earth.iff" COLOR, WRAPXY <0,0,0> <0,0,0> <0.1,0.1,0.1>
+@endnode
+
+@node DIFFTRANS
+@{b}DIFFTRANS@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+@{b}Description:@{ub}
+ Sets the diffuse transmission color of surface. Same as diffuse reflection,
+ but only used if the lightsource is on opposite side of surface. Only
+ applied if tranlucency is not set to zero.
+@endnode
+
+@node DIFFUSE
+@{b}DIFFUSE@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+@{b}Description:@{ub}
+ Sets the diffuse color of surface. The diffuse reflection falls off as
+ the cosine of the angle between the normal and the ray to the light.
+ Diffuse reflection determines the main color of the object (color in
+ Imagine).
+@endnode
+
+@node FOGLEN
+@{b}FOGLEN@{ub}
+
+@{b}Template:@{ub}
+ VALUE/A
+@{b}Arguments:@{ub}
+ FLOAT VALUE/A
+   Foglength (default: 0).
+@{b}Description:@{ub}
+ Sets the foglength of the surface. The fog color is set with @{"TRANSPAR" link TRANSPAR}.
+@endnode
+
+@node HYPERTEXTURE
+@{b}HYPERTEXTURE@{ub}
+
+@{b}Template:@{ub}
+ TYPE/A,POS,ALIGN,SIZE,P1,P2,P3,ACTOR
+@{b}Arguments:@{ub}
+ KEYWORD TYPE (EXPLOSION)
+   Type of the hyper texture (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of texture axis (default: <1,1,1>).
+ FLOAT P1,P2,P3
+   Texture parameters (default values depend on type of texture).
+ STRING ACTOR
+   Name of actor (no default).
+@{b}Description:@{ub}
+ Adds a hyper texture to the surface. For more information about hyper textures
+ click @{"here" link InfoHyperTexture}.
+@endnode
+
+@node IMTEXTURE
+@{b}IMTEXTURE@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,POS,ALIGN,SIZE,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,ACTOR
+@{b}Arguments:@{ub}
+ STRING NAME
+   Name of Imagine texture file (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of texture axis (default: <1,1,1>).
+ FLOAT P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16
+   Texture parameters (default values depend on type of texture).
+ STRING ACTOR
+   Name of actor (no default).
+@{b}Description:@{ub}
+ Adds an Imagine texture to the surface.
+@{b}Example:@{ub}
+ IMTEXTURE "checker.itx" <0.1,0.1,0.1> <0,0,0> <2,2,2>
+@endnode
+
+@node NEWSURFACE
+@{b}NEWSURFACE@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,BRIGHT/S
+@{b}Arguments:@{ub}
+ STRING NAME
+   Name (no default).
+ KEYWORD BRIGHT
+   If set, the brightness of the surface is everywhere the same (default: OFF).
+@{b}Description:@{ub}
+ Defines a new surface.
+@endnode
+
+@node REFEXP
+@{b}REFEXP@{ub}
+
+@{b}Template:@{ub}
+ VALUE/A
+@{b}Arguments:@{ub}
+ FLOAT VALUE
+   Specular reflection exponent (default: 12).
+@{b}Description:@{ub}
+ Sets the specular reflection exponent of surface. Determines the size of
+ the specularly reflected highlights, the higher the smaller the highlight
+ (hardness in Imagine).
+@endnode
+
+@node REFLECT
+@{b}REFLECT@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+@{b}Description:@{ub}
+ Sets the specular reflectivity of surface
+@endnode
+
+@node REFRINDEX
+@{b}REFRINDEX@{ub}
+
+@{b}Template:@{ub}
+ VALUE/A
+@{b}Arguments:@{ub}
+ FLOAT VALUE
+   Index of refraction (default: 1).
+@{b}Description:@{ub}
+ Sets the index of refraction of surface. Determines how the ray is refracted
+ through transparent objects, the higher the more (index of refraction in
+ Imagine).
+@{b}Examples:@{ub}
+ MATERIAL                      Index
+ -------------------------------------
+ Vacuum ...................... 1.00000 (exactly)
+
+ Air (STP).................... 1.00029
+ Acetone ..................... 1.36
+ Alcohol ..................... 1.329
+ Amorphous Selenium .......... 2.92
+ Calspar1 .................... 1.66
+ Calspar2 .................... 1.486
+ Carbon Disulfide ............ 1.63
+ Chromium Oxide .............. 2.705
+ Copper Oxide ................ 2.705
+ Crown Glass ................. 1.52
+ Crystal ..................... 2.00
+ Diamond ..................... 2.417
+ Emerald ..................... 1.57
+ Ethyl Alcohol ............... 1.36
+ Flourite .................... 1.434
+ Fused Quartz ................ 1.46
+ Heaviest Flint Glass ........ 1.89
+ Heavy Flint Glass ........... 1.65
+ Glass ....................... 1.5
+ Ice ......................... 1.309
+ Iodine Crystal .............. 3.34
+ Lapis Lazuli ................ 1.61
+ Light Flint Glass ........... 1.575
+ Liquid Carbon Dioxide ....... 1.20
+ Polystyrene ................. 1.55
+ Quartz 1 .................... 1.644
+ Quartz 2 .................... 1.553
+ Ruby ........................ 1.77
+ Sapphire .................... 1.77
+ Sodium Chloride (Salt) 1 .... 1.544
+ Sodium Chloride (Salt) 2 .... 1.644
+ Sugar Solution (30%) ........ 1.38
+ Sugar Solution (80%) ........ 1.49
+ Topaz ....................... 1.61
+ Water (20 C) ................ 1.333
+ Zinc Crown Glass ............ 1.517
+@endnode
+
+@node SPECTRANS
+@{b}SPECTRANS@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+@{b}Description:@{ub}
+ Sets the specular transmission color of surface. Same as specular
+ reflection, but only used if the lightsource is on opposite side of
+ surface. Only applied if tranlucency is not 0.
+@endnode
+
+@node SPECULAR
+@{b}SPECULAR@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+@{b}Description:@{ub}
+ Sets the specular color of surface. Specularly reflected highlights fall
+ off as the cosine of the angle between the reflected ray and the ray to the
+ light source (specular in Imagine).
+@endnode
+
+@node TRANSEXP
+@{b}TRANSEXP@{ub}
+
+@{b}Template:@{ub}
+ VALUE/A
+@{b}Arguments:@{ub}
+ FLOAT VALUE
+   Specular transmission exponent (default: 12).
+@{b}Description:@{ub}
+ Sets the specular transmission exponent of surface. Same as specular
+ reflection exponent, but only used if the lightsource is on opposite
+ side of surface.
+@endnode
+
+@node TRANSLUC
+@{b}TRANSLUC@{ub}
+
+@{b}Template:@{ub}
+ VALUE/A
+@{b}Arguments:@{ub}
+ FLOAT VALUE
+   Specular transmittance (default: 0).
+@{b}Description:@{ub}
+ Sets the specular transmittance of surface
+@endnode
+
+@node TRANSPAR
+@{b}TRANSPAR@{ub}
+
+@{b}Template:@{ub}
+ COLOR/A
+@{b}Arguments:@{ub}
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+@{b}Description:@{ub}
+ Sets the diffuse transmittance of surface
+@endnode
+
+@node Animation " ARexx-commands for animation control "
+   @{b}AREXX-COMMANDS FOR ANIMATION CONTROL@{ub}
+
+@{"ALIGNMENT" link ALIGNMENT}  sets alignment
+@{"NEWACTOR " link NEWACTOR}  creates a new actor
+@{"POSITION " link POSITION}  sets position
+@{"SIZE     " link SIZE}  sets size
+@endnode
+
+@node ALIGNMENT
+@{b}ALIGNMENT@{ub}
+
+@{b}Template:@{ub}
+ FROM/A,TO/A,ALIGN/A,TYPE
+@{b}Arguments:@{ub}
+ FLOAT FROM,TO
+   Time interval (no default).
+ VECTOR ALIGN
+   Alignment at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+@{b}Description:@{ub}
+ Sets the alignment of the object. At time to, the actor will have this
+ alignment.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+@endnode
+
+@node NEWACTOR
+@{b}NEWACTOR@{ub}
+
+@{b}Template:@{ub}
+ NAME/A,POS,ALIGN,SIZE
+@{b}Arguments:@{ub}
+ STRING NAME
+   Name of actor (no default).
+ VECTOR POS
+   Initial position of actor (default: <0,0,0>).
+ VECTOR ALIGN
+   Initial alignment (in degrees) (default: <0,0,0>).
+ VECTOR SIZE
+   Initial size (default: <1,1,1>).
+@{b}Description:@{ub}
+ Creates a new actor. Usually a NEWACTOR definition is followed by one or more
+ POSITION, ALIGNMENT, SIZE commands which define the properties of the actor
+ at a certain time.
+ For more information on NEWACTOR, please click @{"here" link ActorInfo}.
+@endnode
+
+@node POSITION
+@{b}POSITION@{ub}
+
+@{b}Template:@{ub}
+ FROM/A,TO/A,POS/A,TYPE
+@{b}Arguments:@{ub}
+ FLOAT FROM,TO
+   Time interval (no default).
+ VECTOR POS
+   Position at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+@{b}Description:@{ub}
+ Sets the position of the object. At time to, the actor will be at this
+ position.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+@endnode
+
+@node SIZE
+   @{b}SIZE@{ub}
+
+@{b}Template:@{ub}
+ FROM/A,TO/A,SIZE/A,TYPE
+@{b}Arguments:@{ub}
+ FLOAT FROM,TO
+   Time interval (no default).
+ SIZE
+   Size at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+@{b}Description:@{ub}
+ Sets the size of the object. At time to, the actor will have this size.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+@endnode
+
+@node ActorInfo " What is an Actor? "
+@{b}WHAT IS AN ACTOR?@{ub}
+
+The statement:
+
+NEWACTOR name, position, alignment, size
+
+defines a "virtual object" that can be associated with "real" objects,
+including the Camera and  the Lights objects.  Position, alignment, and
+size values are the initial values of an actor.
+
+The object that is associated with a named actor behaves exactly like the
+actor. When the actor is sized, rotated, or moved; the associted object is
+sized, rotated, or moved accordingly.  It is as though the actor and the
+object that is associated with it are connected by a rod.
+
+While the coordinates of the object that is associated with an actor are
+always defined in an absolute way in reference to the set world; its
+movements - when associated with an actor - takes place with respect to
+the coordinates of the actor.  The coordinates of the actor are defined in
+the NEWACTOR statment and can have default values.
+
+The position, alignment, and size values that follow the NEWACTOR statement
+are the final values of an actor.  By defining time from and to values, a time
+increment is defined by which the actor is resized, rotated, or moved from
+the initial values to the final values.  By associating objects to an actor,
+and rendering a picture at a particular time, or through a period of time,
+animation and/or motion blur effects are achieved.
+@endnode
+
+@node Errors " ARexx-errors "
+@{b}AREXX-ERRORS@{ub}
+
+These values are returned when something went wrong, you can get the
+error string with the command @{"GETERRORSTR" link GETERRORSTR}.
+
+@{b}Application and parser errors@{ub}
+
+Here are the errors returned from the command parser and the application
+itself.
+
+100   Wrong screen resolution
+      Both components of the screen resolution have to be higher than one.
+101   Not enough memory
+      Allocation of memory failed.
+102   Limitations of demo version reached
+      The demo version is limited to a resolution of 160x128.
+103   Unknown brush mapping type
+      You specified an unknown mapping method for the @{"BRUSH" link BRUSH} command.
+104   Unknown brush wrapping method
+      You specified an unknown wrapping method for the @{"BRUSH" link BRUSH} command.
+105   Invalid time intervall
+      One component of a time intervall was negative or the beginning time
+      was later than the end.
+106   Unknown interpolation method
+      You specified an unknown interpolation method for the @{"POSITION" link POSITION},
+      @{"ALIGNMENT" link ALIGNMENT} or @{"SIZE" link SIZE} command.
+107   No picture renderd
+      There is no picture for @{"SAVEPIC" link SAVEPIC} to save because you renderd none
+      or called @{"CLEANUP" link CLEANUP} before.
+108   Can't open screen
+      The @{"DISPLAY" link DISPLAY_script} command was unable to open the screen
+      (!!! THIS COMMAND ISN'T RELEASED IN THIS VERSION YET !!!).
+109   Can't open raystorm.library (Only one copy of RayStorm can run at a time)
+      RayStorm failed to open raystorm.library
+110   Can't open intuition.library
+      RayStorm failed to open intuition.library (at least version 37 is
+      needed)
+111   Can't open window
+      RayStorm failed to open the window.
+112   Can't open muimaster.library
+      RayStorm failed to open muimaster.library (at least version 8 is
+      needed)
+113   Invalid vector definition
+      The specified vector has the wrong format (must be '<x,y,z>').
+114   Invalid color definition
+      The specified color has the wrong format (must be '[r,g,b]').
+115   Invalid region definition
+      The specified region is out of range.
+116   No light defined
+      You tried to add lens flares or a light star and there is no previously
+      defined light source.
+117   Unknown flare type
+      You specified an unknown type for the @{"FLARE" link FLARE} command.
+118   Unknown flare function
+      You specified an unknown function for the @{"FLARE" link FLARE} command.
+119   Only one object for a CSG object has been defined
+      CSG objects always need two objects to operate on. For further informaions see
+      @{"CGS" link CSG}.
+120   Unknonw CSG operator
+      You specified an unknown operator for the @{"CSG" link CSG} command.
+121   Unknown hyper texture type
+      You specified an unkonwn type for the @{"HYPERTEXTURE" link HYPERTEXTURE} command.
+122   Invalid 2d-vector definition
+      The specified 2d-vector has the wrong format (must be '<x,y>').
+
+@{b}Internal errors@{ub}
+
+This are errors of the renderer.
+
+  1   Not enough memory
+      Allocation of memory failed.
+  2   Limitations of demo version reached
+      The demo version is limited to a resolution of 160x128.
+  3   Wrong screen resolution
+      Both components of the screen resolution have to be higher than one.
+  4   Error in triangle definition
+      It's impossible to generate a triangle with the specified coordinates
+      (see @{"TRIANGLE" link TRIANGLE}).
+  5   The view and up directions are identical?
+      You specified a view-up-vector for the @{"SETCAMERA" link SETCAMERA} command which is identical
+      to the view direction.
+  6   Not enough memory for screen buffer
+      The allocation of the screen buffer failed.
+  7   -- Removed error message. Should never occur --
+  8   Can't open Imagine texture file
+      RayStorm failed to open the specified Imagine texture file, check
+      filename and path.
+  9   Can't open brush file
+      RayStorm failed to open the specified brush file, check
+      filename and path.
+ 10   Error initializing Imagine texture
+      An error occured as RayStorm tried to initialize a Imagine texture.
+ 11   Can't open picture
+      RayStorm failed to open the specified picture file, check filename
+      and path.
+ 12   Error reading picture
+      An error occured while RayStorm read a picture file.
+ 13   Can't open picture type file ('modules/picture/types')
+      RayStorm failed to open the typefile. The typefile is needed to
+      identify the filetypes of the pictures. RayStorm was unable to open
+      the file 'modules/picture/types'.
+ 14   Error reading picture type file
+      An error occured while RayStorm read the picture type file, maybe the
+      file is damaged.
+ 14   Unknown picture format
+      RayStorm was unable to recognize the format of the picture file.
+ 16   An error occcured while invoking picture handler
+      The used picture handler returned a error.
+ 17   Can't open object
+      RayStorm failed to open the specified object file, check filename
+      and path.
+ 18   Error reading object
+      An error occured while RayStorm read a object file.
+ 19   Can't open object type file ('modules/object/types')
+      RayStorm failed to open the typefile. The typefile is needed to
+      identify the filetypes of the objects. RayStorm was unable to open
+      the file 'modules/object/types'.
+ 20   Error reading object type file
+      An error occured while RayStorm read the object type file, maybe the
+      file is damaged.
+ 21   Unknown object format
+      RayStorm was unable to recognize the format of the object file.
+ 22   An error occcured while invoking object handler
+      The used object handler returned a error.
+ 23   Actor not defined
+      The specified actor name does not exist.
+ 24   Surface not defined
+      The specified surface name does not exist.
+ 25   Depth of octree too big (max. 6)
+      The octree depth is limited to a depth of 6.
+ 26   Antialiasing value too big (max. 8)
+      The value of the @{"ANTIALIAS" link ANTIALIAS} command is limited to 8.
+ 27   Invalid time intervall
+      One component of a time intervall was negative or the beginning time
+      was later than the end.
+ 28   No picture renderd
+      There is no picture for @{"SAVEPIC" link SAVEPIC} to save because you renderd none
+      or called @{"CLEANUP" link CLEANUP} before.
+ 29   Distribution value too big (max. 8)
+      The value of the @{"DISTRIB" link DISTRIB} command is limited to 8.
+ 30   Wrong error number
+      The error number for @{"GETERRORSTR" link GETERRORSTR} is out of range.
+ 31   Unknown Parameter
+      A RSI-function was called with an unknown parameter (should nerver occur).
+ 32   -- Development error message. Should never occur. --
+ 33   Need at least 4 points for surface of revolution
+      You have to specify at least 4 points for a @{"SOR" link SOR}.
+ 34   Incorrect point in surface of revolution
+      The distance in y-direction of following points is 0.
+ 35   A CSG object needs at least 2 objects to operate with
+      You defined a CSG object with only on object to operate on (see also @{"CSG" link CSG}).
+ 36   Invalid object type for CSG
+      Not all objects can be used with CSG (see also @{"CSG" link CSG}).
+ 37   Need at last a V2 object handler to load file
+      You have an old object handler. Please update to a newer one.
+ 38   Need at last a V2 picture handler to load file
+      You have an old picture handler. Please update to a newer one.
+ 39   Invalid keyfile
+      You don't have a valid keyfile
+@endnode
+
+@node Examples " Examples "
+@{b}EXAMPLES@{ub}
+
+We have included several demos in the directories 'arexx' and 'examples'
+to show how to use RayStorm.
+
+In the 'arexx' directory are examples scripts which show the usage of
+RayStorm with ARexx. Start them simply by typing 'rx ???.ray' in a shell
+(???.ray is the name of the script).
+
+In the 'examples' directory are C-programs which show the usage of
+RayStorm directly with a program. They can only be run from a shell.
+These programs are producing a couple of pictures no animation, which must
+be glued together with a utility like MainActor.
+@endnode
+
+@node Tutorials " Tutorials "
+@{b}TUTORIALS@{ub}
+
+If you use RayStorm for the first time, then it would be a good idea to do
+the following tutorials:
+
+@{"Simple scene " link tut_simple}
+@{"Bouncing ball" link tut_bounce}
+@{"Motion blur  " link tut_mblur}
+@endnode
+
+@node tut_simple " Simple scene "
+@{b}Tutorial: Simple scene@{ub}
+
+Now we will create a very famous scene. A sphere over a checkerboard! Ok, it
+may be boring, but it's good for the absolute beginner to get an
+impression of building a scene.
+
+Here we go:
+
+1. In the  drawer 'ARexx' of the RayStorm directory there is a file named
+   'default.ray'. This is a default form for RayStorm ARexx scripts. You can
+   use this form to write your own scripts.
+   We'll use this file as a default for our animation script. Copy this file
+   to the file 'simple.ray'. After this load the file 'simple.ray' to your
+   favorite text editor (e.g GoldEd or CygnusEd).
+
+2. To view the scene, we need a camera. Insert after the line 'address
+   RAYSTORM' the line:
+
+@{i}   '@{"SETCAMERA" link SETCAMERA} <6,1.5,-1.5> <0,0,0> <0,1,0>'@{ui}
+
+   This sets the camera to position <6,1.5,-1.5>. The camera points to
+   <0,0,0> and the view-up vector is <0,1,0>. Note that you don't have to
+   specify every single parameter. Every command has default values. Refer
+   to the description of a command to find out the default values.
+
+3. Nothing can be seen without a lightsource.
+   Go to the next line and type:
+
+@{i}   '@{"POINTLIGHT" link POINTLIGHT} <0,50,0> [255,255,255] SHADOW'@{ui}
+
+   The sphere is illuminated from above with white light.
+
+4. Before placing the objects in the scene, you have to define their
+   surfaces.
+   Insert this line:
+
+@{i}   '@{"NEWSURFACE" link NEWSURFACE} planesurf'@{ui}
+
+   This creates a surface with name planesurf. The plane has a checkered
+   surface, so insert:
+
+@{i}   '@{"IMTEXTURE" link IMTEXTURE} /textures/checker.itx <0.1,0.1,0.1> <0,0,0> <2,2,2>'@{ui}
+
+5. That was the plane texture. Let 's go over to sphere texture.
+   Add:
+
+@{i}   '@{"NEWSURFACE" link NEWSURFACE} spheresurf'@{ui}
+
+   The sphere has a mirrored surface. To simulate a perfect mirror, type
+
+@{i}   '@{"REFLECT" link REFLECT} [255,255,255]'@{ui}
+
+6. Now we can add the objects to the scene:
+
+@{i}   '@{"SPHERE" link SPHERE} spheresurf <0,0.5,0> 1'@{ui}
+
+   This creates a sphere on position <0,0.5,0> and radius 1.
+   Add the plane:
+
+@{i}   '@{"PLANE" link PLANE} planesurf'@{ui}
+
+   The default values for the position and the normal vector fit to our
+   scene, so we can take them over.
+
+7. Let's make an end to the definitions and render the scene!
+   Type:
+
+@{i}   '@{"STARTRENDER" link STARTRENDER}'@{ui}
+
+8. Finally we may not forget to save the picture, so add:
+
+@{i}   '@{"SAVEPIC" link SAVEPIC} simple.iff'@{ui}
+
+   which will save the renderd picture in the current directory as a
+   IFF-ILBM file.
+   The last step is to free all the memory with the command 'CLEANUP'. Add:
+
+@{i}   @{"CLEANUP" link CLEANUP}'@{ui}
+
+9. Start the script from a shell-window with the sequence 'rx simple.ray'.
+   RayStorm will now generate your picture. When RayStorm finished the work
+   start your favourite viewer-program, load the file and have a look at
+   it.
+   Looks very monochrome!!
+   To make the world colorful, we make a red checker and set the sky to
+   blue. A blue sky can be done by setting the world's background color.
+10. Before 'SETCAMERA' insert:
+
+@{i}   '@{"SETWORLD" link SETWORLD} [30,30,255]'@{ui}
+
+   Add
+
+@{i}   '@{"DIFFUSE" link DIFFUSE} [155,0,0]'@{ui}
+
+   to the surface planesurf (this defines one checker color), the other one
+   must be set in the 'IMTEXTURE' command, so change it to
+
+@{i}   '@{"IMTEXTURE" IMTEXTURE} /textures/checker.itx <0.1,0.1,0.1> <0,0,0> <2,2,2> 255 0 0'@{ui}
+
+   (Note that '255 0 0' describes a color, but is not embedded in < >,
+   because the checker color belongs to the texture parameters which are
+   all floats.)
+
+11. Render the scene once again, and view it.
+
+That's the end of the tutorial! Make some changes to the scene file and
+play around with the parameters to see their effects.
+@endnode
+
+@node tut_bounce " Bouncing ball "
+@{b}Tutorial: Bouncing ball@{ub}
+
+The goal of this tutorial is to show you how to generate little animations.
+At the end of this tutorial you'll have a animation where the earth rotates
+and bounces on a rotating plane with a white checker texture on the top and
+a red checker on the bottom. If you have a fast computer you can also
+generate the animation with motion blur.
+
+O.k. here we go:
+
+1. In the  drawer 'ARexx' of the RayStorm directory there is a file named
+   'default.ray'. This is a default form for RayStorm ARexx scripts. You can
+   use this form to write your own scripts.
+   We will use this file as a default for our animation script. Copy this file
+   to the file 'bounce.ray'. After this load the file 'bounce.ray' to your
+   favorite text editor (e.g GoldEd or CygnusEd).
+
+2. First we define some values: the acceleration of the ball and the amount
+   of frames to generate.
+   RayStorm has three commands to set the paths where it searchs the files
+   it needs. We use a brush for the surface of the ball and a texture for
+   the surface of the ground.
+   To do this we have to insert after the command 'ADDRESS RAYSTORM' the
+   lines:
+
+@{i}   g = .2
+   frames = 17
+
+   '@{"BRUSHPATH" link BRUSHPATH} /brushes'
+   '@{"TEXTUREPATH" link TEXTUREPATH} /textures'@{ui}
+
+   It's the same if you write the commands in upper case or lower case.
+   But it's important to enclose all commans in quotes because ARexx tries
+   to interpret the line before it sends it. It may happen that the line is
+   changed and RayStorm don't do the things you want.
+
+3. Next we set the screen resolution. For the first experiments we choose
+   a low resolution of 160x128 pixels. Insert the line:
+
+@{i}   '@{"SETSCREEN" link SETSCREEN} 160 128'@{ui}
+
+4. Now we set the camera parameters. The first three values determine the
+   position of the camera. We want to place it so that we can see the ball
+   all over the time. The next values set the viewpoint of the camera, this
+   is the point the camera aims to. The next values determine the view up
+   vector. And the last two values determine the field of view. To get a
+   pixel aspect of 1:1 we have to set them to 25 and 20 degree.
+
+@{i}   '@{"SETCAMERA" link SETCAMERA} <0,10,40> <0,5,0> <0,1,0> 25 20'@{ui}
+
+5. We want to have a bright blue background for our animation. The
+   background and the global ambient color is set with the 'SETWORLD'
+   command. We want to set the ambient color to a dark gray, if this color
+   is to bright the scene will look washed out and the objects appear flat.
+   Insert the line:
+
+@{ui}   '@{"SETWORLD" link SETWORLD} [10,30,200] [10,10,10]'@{ui}
+
+6. The illumination is an important part of a scene. We want to place a
+   pointlight near the camera. Add the line:
+
+@{ui}   '@{"POINTLIGHT" link POINTLIGHT} <5,10,50>'@{i}
+
+7. Now we define the actor for the plane. We want to rotate it around the
+   Z-axis. Insert the lines:
+
+@{i}   '@{"NEWACTOR" link NEWACTOR} groundactor'
+   '@{"ALIGNMENT" link ALIGNMENT} 0 ' frames+2 ' <0,0,360>'@{ui}
+
+7. Now we define the surface for the plane and the plane itself. We make it
+   a little reflective and apply a checker texture. The surface 'groundtop'
+   is for the top of the plane and the surface 'groundbottom' is for the
+   bottom of the surface. The plane itself consits of four triangles. Two
+   fo the top and two for the bottom. Insert the lines:
+
+@{i}   '@{"NEWSURFACE" link NEWSURFACE} groundtop'
+   '@{"DIFFUSE" link DIFFUSE} [255,255,255]'
+   '@{"SPECULAR" link SPECULAR} [0,0,0]'
+   '@{"REFLECT" link REFLECT} [50,50,50]'
+   '@{"IMTEXTURE" link IMTEXTURE} checker.itx <0,-1,0> <0,0,0> <10,10,10> ACTOR groundactor'
+
+   '@{"NEWSURFACE" link NEWSURFACE} groundbottom'
+   '@{"DIFFUSE" link DIFFUSE} [255,0,0]'
+   '@{"SPECULAR" link SPECULAR} [0,0,0]'
+   '@{"REFLECT" link REFLECT} [50,50,50]'
+   '@{"IMTEXTURE" link IMTEXTURE} checker.itx <0,-1,0> <0,0,0> <1.5,1.5,1.5> ACTOR groundactor'
+
+   '@{"TRIANGLE" link TRIANGLE} groundtop <-2,0,-2> <2,0,-2> <2,0,2> ACTOR groundactor'
+   '@{"TRIANGLE" link TRIANGLE} groundtop <-2,0,-2> <-2,0,2> <2,0,2> ACTOR groundactor'
+   '@{"TRIANGLE" link TRIANGLE} groundbottom <-2,-.01,-2> <2,-.01,-2> <2,-.01,2> ACTOR groundactor'
+   '@{"TRIANGLE" link TRIANGLE} groundbottom <-2,-.01,-2> <-2,-.01,2> <2,-.01,2> ACTOR groundactor'@{ui}
+
+8. Next we define the motion of the ball. It starts at a height of 10 and
+   accelerates until it bounces on the plane, changes it's direction and
+   the motions ends as the ball is back at he start point. Additional the
+   ball rotates around the Y-axis. Add the following sequence to your script:
+
+@{i}   speed = -g
+   pos = 10
+   '@{"NEWACTOR" link NEWACTOR} ballactor <0,'pos',0>'
+   do i=0 to frames
+     '@{"POSITION" link POSITION} ' i i+1 '<0,'pos',0>'
+     pos = pos+speed
+     if pos<=1 & speed<0 then
+       speed = -speed
+     else
+       speed = speed-g
+   end
+   '@{"ALIGNMENT" link ALIGNMENT} 0 ' frames+2 ' <0,360,0>'@{ui}
+
+9. Now we define the surface for the ball and the ball itself. The only thing
+   we must do is to map a earth styled brush map to a sphere. To reach this
+   goal the position of the brush must be set to the middle of the sphere
+   and the size must be small enough to be completely inside the sphere.
+   This are the lines to define the ball:
+
+@{i}   '@{"NEWSURFACE" link NEWSURFACE} ball'
+   '@{"BRUSH" link BRUSH} earth.iff COLOR WRAPXY <0,10,0> <0,0,0> <.1,.1,.1> ACTOR ballactor'
+
+   '@{"SPHERE" link SPHERE} ball <0,10,0> 1 ACTOR ballactor'@{ui}
+
+10. If your computer is fast enough you can insert the follwing lines:
+
+@{i}   '@{"ANTIALIAS" link ANTIALIAS} 2'
+   '@{"DISTRIB" link DISTRIB} 2'@{ui}
+
+   'ANTIALIAS' improves the quality of the picture; 2 or 3 are normal values,
+   higher values don't improve the quality significant.
+   A value higher than one for 'DISTRIB' switches {"motion blur" link Motion_Blur} on.
+
+11. At this the we have finished the definitions and now can render the single
+   frames. If youn want the reflections of the ball on the plane you have
+   to delete the keyword 'QUICK', because RayStorm renders no reflections in
+   quick mode. The frame time is set with 'FROM' and 'TO'. We save the frames
+   as IFF-ILBM pictures with the names 'bounce0001.iff' ... 'bounceXXXX.iff'.
+   The last step is to free all the memory with the command 'CLEANUP'. Add
+   these lines:
+
+@{i}   do i=0 to frames
+      '@{"STARTRENDER" link STARTRENDER} QUICK FROM 'i' TO 'i+1
+      '@{"SAVEPIC" link SAVEPIC} bounce' || RIGHT(i,4,0) || '.iff'
+   end
+
+   '@{"CLEANUP" link CLEANUP}'@{ui}
+
+12. Start the script from a shell-window with the sequence 'rx bounce.ray'.
+   RayStorm will now generate your frames. When RayStorm finished the work
+   you must glue the pictures together to get the animation.
+
+That's all. Have fun!
+@endnode
+
+@node tut_mblur " Motion blur "
+@{b}Tutorial: Motion blur@{ub}
+
+In this tutorial we show you how to make animations and how to use motion
+blur.
+To animate objects we need ACTORs. An ACTOR can be seen as a virtual object
+which can have a certain position/alignment/size at a certain time. ACTORs can
+be used for keyframe animation by giving control points which RayStorm can
+interpolate (only linear for now.  Spline interpolations will be implemented
+later).
+You can assign an ACTOR to one or more real objects. An object with an actor
+assigned to it will follow all actions the actor does. Let's take the sphere
+from the second tutorial and move it to direction of the camera.
+Type following:
+
+@{i}'@{"SETCAMERA" link SETCAMERA} <6,1.5,-1.5> <0,0,0><0,1,0>'
+'@{"POINTLIGHT" link POINTLIGHT} <30,50,30> [255,255,255] SHADOW'@{ui}
+
+you can add POSITION, ALIGNMENT and SIZE commands after NEWACTOR
+(similar to the surface commands after NEWSURFACE)
+
+@{i}'@{"NEWACTOR" link NEWACTOR} actor'
+'@{"POSITION" link POSITION} 0 5 <3,0,0.4>'
+
+'@{"NEWSURFACE" link NEWSURFACE} planesurf'
+'@{"DIFFUSE" link DIFFUSE} [255,30,30]'
+'@{"IMTEXTURE" link IMTEXTURE} "checker.itx" <0.1,0.1,0.1> <0,0,0> <2,2,2> 155 25 0'
+
+'@{"NEWSURFACE" link NEWSURFACE} spheresurf'
+'@{"REFLECT" link REFLECT} [255,255,255]'
+
+'@{"SPHERE" link SPHERE} spheresurf <0,1,0> 0.7 actor'
+'@{"PLANE" link PLANE} planesurf'@{ui}
+
+You can make an animation by a series of STARTRENDER/SAVEPIC combinations. Our
+little movie shall consist of 6 frames, so we will subdivide our time intervall
+(1 unit) and make a photo every 0.2 time units. The STARTRENDER command has the
+option to render a picture within a certain time intervall. That can be
+compared with the shutter time of a real camera. The camera of RayStorm records
+all movements of the objects in the scene within that time intervall which
+results in a blurred scene. At the beginning we do no motion blur, so we set
+the start and the end time to the same value. (Which means no shutter time).
+
+Add this code and execute it:
+
+@{i}do i=0 to 5
+ '@{"STARTRENDER" link STARTRENDER} QUICK FROM 'i' TO 'i
+ '@{"SAVEPIC" link SAVEPIC} sphere' || RIGHT(i,4,0) || '.iff'
+end
+
+'@{"CLEANUP" link CLEANUP}'@{ui}
+
+You can make a movie out of it using an animator program such as MainActor.
+Now we introduce one of the advanced features of RayStorm: Motion Blur
+Replace the commands above by the following lines:
+
+@{i}/* when doing motion blur you *MUST* add the distrib command +/
+
+'@{"DISTRIB" link DISTRIB} 3'
+
+/* shutter time is 1 */
+
+do i=0 to 5
+ '@{"STARTRENDER" link STARTRENDER} QUICK FROM 'i' TO 'i+1
+ '@{"SAVEPIC" link SAVEPIC} sphere' || RIGHT(i,4,0) || '.iff'
+end
+
+'@{"CLEANUP" link CLEANUP}'@{ui}
+
+For each frame, the camera opens the shutter 0.2 time units long and records
+what's happening. As you can see, an animation with motion blur gives a better
+visual effect.
+Again feel free to change the parameters.
+@endnode
+
+@node Textures " Textures "
+@{b}TEXTURES@{ub}
+
+Textures are mathematically generated patterns which can be applied to the
+surface of an object.
+There are several textures in the directory 'textures'.
+
+   @{" Bump    " link Bump}
+   @{" Checker " link Checker}
+   @{" Fire    " link Fire}
+   @{" Linear  " link Linear}
+   @{" Marble  " link Marble}
+   @{" Radial  " link Radial}
+   @{" Stars   " link Stars}
+   @{" Wood    " link Wood}
+@endnode
+
+@node Bump " Bump "
+@{b}BUMP@{ub}
+
+This texture applies bumps to the surface.
+Size of texture determines size of the bumps.
+
+@{b}Parameters:@{ub}
+
+1: X bump size
+2: Y bump size
+3: Z bump size
+set the 'depth' of the bumps.
+
+Example:
+sphere with radius 1
+ @{i}IMTEXTURE bump.itx <0,0,0> <0,0,0> <.3,.3,.3> 1 1 1@{ui}
+@{"Picture" link "pics/bump.iff/main" 0}
+@endnode
+
+@node Checker " Checker "
+@{b}CHECKER@{ub}
+
+This texture applies thw ell known checker pattern to the surface.
+@{b}Attention!
+If you apply a checker texture to a plane, the plane may not be at the same
+position on which the checker changes its color. Otherwise you get a noisy
+texture due to rounding errors.@{ub}
+
+@{b}Parameters:@{ub}
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color of the checkers, other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflect color of the checkers.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color of the checkers.
+
+@{b}Example:@{ub}
+ @{i}IMTEXTURE "checker.itx" <0,0.1,0> <0,0,0> <2,2,2> 255 0 0@{ui}
+@{"Picture" link "pics/checker.iff/main" 0}
+@endnode
+
+@node Fire " Fire "
+@{b}FIRE@{ub}
+
+This texture generates a pattern which look like fire. It's based on the book
+@{"Texturing and Modeling" link Literature}.
+
+@{b}Parameters:@{ub}
+
+ 1: Chaos Scale       higher values make sharper flames
+ 2: Chaos Offset      higher values make more flames with bottom color (white)
+                      lower values more top colored flames (red)
+ 3: Octaves           determines the frequency of the flames
+ 4: Flameheight
+ 5: Flameamplitude
+ 6: Bottom Red
+ 7: Bottom Green
+ 8: Bottom Blue       is the bottom fire color (white)
+ 9: Middle Red
+10: Middle Green
+11: Middle Blue       is the middle color (yellow)
+12: Top Red
+13: Top Green
+14: Top Blue          is the top color (red)
+15: Transparent Top   if not 0 the texture gets more transparent from bottom
+                      to top
+Example:
+plane with
+ @{i}IMTEXTURE fire.itx <0,0,0> <0,0,0> <1,1,1>@{ui}
+@{"Picture" link "pics/fire.iff/main" 0}
+@{"High Chaos Scale" link "pics/fire1.iff/main" 0}
+@endnode
+
+@node Linear " Linear "
+@{b}LINEAR@{ub}
+
+This texture varies the color of the object in the y-direction of the
+texture.
+
+@{b}Parameters:@{ub}
+
+1: Color Red
+2: Color Green
+3: Color Blue
+color to interpolate to.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+reflection to interpolate to.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+filter to interpolate to.
+
+@{b}Example:@{ub}
+ @{i}IMTEXTURE "linear.itx" <0,0.1,0> <0,0,0> <2,2,2> 0 0 255@{ui}
+@{"Picture" link "pics/linear.iff/main" 0}
+@endnode
+
+@node Wood " Wood "
+@{b}WOOD@{ub}
+
+This texture applies a wood like texture to the surface.
+Size of texture determines size of wood.
+
+@{b}Parameters:@{ub}
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color. Other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflection color.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color.
+
+10: Octave
+The higher the octave the noisier are the wood rings.
+
+11: Frequency
+The higher the frequency the smaller the wood rings.
+
+@{b}Example:@{ub}
+cube with size 2
+ @{i}IMTEXTURE wood.itx <0,0,0> <0,0,0> <1,1,1> 255 255 50 0 0 0 0 0 0 2 4@{ui}
+@{"Picture" link "pics/wood.iff/main" 0}
+@endnode
+
+@node Marble " Marble "
+@{b}MARBLE@{ub}
+
+This texture applies a marble like texture to the surface.
+Size of texture determines size of bumps.
+
+@{b}Parameters:@{ub}
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color. Other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflection color.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color.
+
+10: Octave
+The higher the octave the noisier is the texture.
+
+@{b}Example:@{ub}
+cube with size 2
+ @{i}IMTEXTURE marble.itx <0,0,0> <0,0,0> <.5,.5,.5> 150 50 50 0 0 0 0 0 0 7@{ui}
+@{"Picture" link "pics/marble.iff/main" 0}
+@endnode
+
+@node Radial " Radial "
+@{b}RADIAL@{ub}
+
+This texture varies the color of the object radial around the texture axis.
+
+@{b}Parameters:@{ub}
+
+1: Start radius
+Interploation start radius.
+
+2: End radius
+Interploation end radius.
+
+3: Color Red
+4: Color Green
+5: Color Blue
+Color to interpolate to.
+
+6: Reflect Red
+7: Reflect Green
+8: Reflect Blue
+Reflection to interpolate to.
+
+9: Filter Red
+10: Filter Green
+11: Filter Blue
+Filter to interpolate to.
+
+@{b}Example:@{ub}
+ @{i}IMTEXTURE "radial.itx" <0,0,0> <0,0,0> <1,1,1> 1 2 255 0 0@{ui}
+@{"Picture" link "pics/radial.iff/main" 0}
+@endnode
+
+@node Stars " Stars "
+@{b}STARS@{ub}
+
+This texture applies randomly stars to the surface. Cannot be used in
+animations!
+
+@{b}Parameters:@{ub}
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color of the stars.
+
+4: Density
+Star density. The higher the more stars (0. - 1.).
+
+@{b}Example:@{ub}
+ @{i}IMTEXTURE "stars.itx" <0,0,0> <0,0,0> <1,1,1> 255 255 255 0.1@{ui}
+@{"Picture" link "pics/stars.iff/main" 0}
+@endnode
+
+@node Bugs " Known Bugs "
+@{b}KNOWN BUGS@{ub}
+
+- Directly after starting Scenario the object menus don't pop up when
+  pressing the right mouse button in the work area. This seems to be
+  a problem of MUI. Click with the left mouse button somewhere outside
+  the work area and the menues work like they should do.
+@endnode
+
+@node Copyright " Legal Stuff "
+@{b}DISCLAIMER@{ub}
+
+THERE IS NO WARRANTY FOR THIS PROGRAM TO THE EXTENT PERMITTED BY APPLICABLE
+LAW.  EXCEPT WHERE OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDER AND/OR
+OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.
+SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY
+SERVICING, REPAIR OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL
+ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY REDISTRIBUTE THE PROGRAM
+AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL,
+SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR
+INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR
+DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES
+OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGES.
+
+@{b}COPYRIGHT@{ub}
+
+The RayStorm package is Copyright 1995-97 by Andreas Heumann and Mike Hesser.
+All Rights Reserved. It is released under the concept of `Shareware'.
+
+The archive of RayStorm may only be distributed in unmodified form.  No files
+may be added, changed or removed. You may not charge for this archive, other
+than the cost of the media and duplication fees. Distribution is allowed in
+all forms, such as BB systems, floppy or compact disks, and ftp sites.
+@endnode
+
+@node Credits " Credits "
+@{b}CREDITS@{ub}
+
+We want to thank the following persons:
+
+- Joerg Dietrich, Stephan Dorenkamp, Richard Körber, Francesco Leonardi
+  and Gabriele Venturi for beta testing.
+
+- Jan Hlavaty for hours of work he had done, and many useful tips to make
+  RayStorm better and more bugfree (Jan: I _HATE_ bugs. Splat 'em!!! :-) )
+
+- Bernhard Moench - chairman of Plasma Pictures (a great Amiga club)
+
+  Address:
+
+  Plasma Pictures
+  Reality and Imagination!
+
+  Bernhard Moench
+  Regensburger Strasse 28c
+
+  10777 Berlin
+  GERMANY
+
+- Maan Hamze - for testing, hundrets of suggestions and bugreports...
+  ... and many many E-Mails
+
+- Klaus Melchior for his listtree class
+
+- Stefan Stunz for MUI
+
+- Thanks to all registrated users for the support of the shareware concept.
+@endnode
+
+@node Register " Register "
+@{b}REGISTER@{ub}
+
+If you like RayStorm use the registration programm to register.
+Fill out the registration form and press the 'Print' button.
+If the printer is installed correctly, the registration is printed out.
+You can get information about the current agreements by pressing the 'Info'
+button.
+
+Note: please send us no postal money orders or cheques or something like that.
+We have to pay very high fees (about 15$) here in germany to exchange them
+to cash. To send cash is the easiest way for us.
+@endnode
+
+@node Author " Author "
+@{b}AUTHORS@{ub}
+
+For bug reports, comments, suggestions ... you can contact us at the
+following addresses (E-mail prefered).
+
+   Amiga-version:
+
+   Andreas Heumann
+
+   E-mail:  andreash@diamondmm.com
+   S-mail:  Wittelsbacherstr. 5
+            82319 Starnberg
+            Germany
+
+   PC-version:
+
+   Mike Hesser
+
+   E-mail:  calvin@sol.wohnheim.uni-ulm.de
+   S-mail:  Schlehenbühl 13
+            89075 Ulm
+            Germany
+@endnode
+
+@node PC-version " PC-version "
+@{b}PC-VERSION@{ub}
+
+The PC version is available on the Internet from our @{"homepage" link Homepage}.
+@endnode
+
+@node History " History of changes "
+@{b}HISTORY@{ub}
+
+@{"RayStorm Scenario " link History_Scenario 9999}
+@{"RayStorm Script   " link History_Script 9999}
+@{"RayStorm Raytracer" link History_Raytracer 9999}
+@endnode
+
+@node History_Scenario " History of Scenario "
+@{b}HISTORY@{ub}
+
+version 1.0b (27-August-96)
+- initial release.
+
+version 1.1 (04-October-96)
+- save and load materials in attribute requester
+- create cube, sphere, plane, tube, cone and torus mesh objects
+- fixed bug with color requesters (colors changed every call)
+- string gadgets now advance to next/prev gadget when return is pressed
+- improved zooming with the mouse
+- added enable button for render area
+- fixed problems with KS-versions less than 3.0 (<39)
+- key 't' opens settings requester
+- added new preview resolutions (NTSC 80x50,PAL 80x64,VGA 80x60)
+- if more than one object is selected the object for attributes can be
+  selected by the browser
+- implemented two browser modes
+- added center view with 'R-Amiga - .'
+- joined settings and transform requester
+- several bugfixes
+- improved object scaling with mouse
+- can now scale external objects
+
+version 1.2 (29-November-96)
+- forgot to scale child objects of external objects
+- added ok button to render requester
+- added @{"camera to viewer" link Menu_View_Camera2Viewer}
+- added hierarchical object browser
+- ask for rendering of scenes with no light sources
+- bugfix: it was impossible to track and to set the opening angle of a
+  spotlight
+- convert external to scene objects
+- added RayStorm object file format (RSOB)
+- fixed problem with vertical stripes with 020-version
+- fixed problem with screen update
+- coordinate display even if no object is translated
+- focal distance of camera can automatically be set to camera-track distance
+- added preview to attributes requester
+- improved color selection for rendering preview window
+- added show and save button to registration program
+- added some materials
+- added lens effects (flares, light star)
+
+version 1.8 (16-February-97)
+- minimum amount of objects for octree is now setable in the @{"Render Settings" link Menu_Project_RenderSettings}
+  requester
+- added spikewidth to visible light star
+- added new/load/save buttons
+- all objects can track each other
+- added undo and redo
+- added box object
+- added status bar
+- added tilt angle to light star
+- the render window can now be set with the mouse
+- objects can now be selected with a selection box
+- raw object loader works now correctly
+- lens flares in the requester are now selectable with the mouse
+
+version 2.0 (18-November-97)
+- added 'Time estimated' to render status window
+- @{"recent files" link Menu_Project_RecentFile} in project menu
+- Scenario is now asking for a new filename when it wants to load or render
+  a project and can't find an object, brush or texture
+- improved redraw speed
+- toolbar images can now also be external images (see @{"here" link Menu_Settings_Prefs} for details)
+- added cylinder, @{"CSG" link InfoCSG}, @{"SOR" link InfoSOR} and cone object
+- Scenario can now be called with a name of a project as argument, which then is
+  loaded.
+- added object browser with drag and drop capabilities to the side of the draw
+  area
+- added enable button for backdrop and reflection map
+- added material manager to the bottom of the draw area
+- material previews are calculated independently in threads
+- resolution predefinitions can now be set in the ASCII-file 'prefs/res.dat'
+- it's now possible to edit and change meshes
+- more than one transformation or material requesters can now remain
+  open
+
+version 2.1 (18-May-98)
+- now supports high and true color cybergfx screens
+- new lensflare types (exponent 1, exponent 2)
+- new and improved light star
+- added Lightwave object loader
+- PPC version
+- names of brushes and textures can be changed in material requester
+- brushes with cylindrical and spherical mapping are now drawn as cylinders and spheres
+- Size of external toolbar images is now set to size of first button (new.iff)
+- more colors (colors can be set in preferneces)
+- load and save in light settings requester
+- rendering in the background
+- OpenGL support (StormMesa, not for 881 version)
+- ARexx port
+- Object now can be moved, rotated and scaled in world and local coordinate systems
+
+version 2.2 (08-September-98)
+- RayStorm textures
+- NFF object loader
+- directional light
+- soft spot light
+
+version 2.3 (10-May-99)
+- added StormMesa 3.0 support
+- Hurricane texture
+- added plugin interface
+- added terrain plugin
+- fixed problem with Blizzard PPC boards (crash when doing material preview)
+- the 881 version of Scenario now also supports StormMesa
+
+version 2.? (??-??-??)
+- the 'solid' button is now disabled if StormMesa is not available
+- point lights now have the correct bounding box after created
+@endnode
+
+@node History_Script " History of RayStorm Script "
+@{b}HISTORY@{ub}
+
+version 1.02 (16-August-95)
+- added BRIGHT-flags for surface
+- deleted TRANSATTU
+
+version 1.081 (08-October-95)
+- added listview for history
+
+version 1.13 (01-November-95)
+- now more than one path with PATH-commands possible
+
+version 1.16 (09-January-96)
+- added 'SOFTSHADOW' to '@{"DISTRIB" link DISTRIB}'
+- added 'FALLOFF' for '@{"POINTLIGHT" link POINTLIGHT}' and '@{"SPOTLIGHT" link SPOTLIGHT}'
+
+version 1.2 (29-February-96)
+- bugfix '@{"ANTIALIAS" link ANTIALIAS}' command: parameter CONTRIB produced error 30
+
+version 1.22 (25-April-96)
+- added '@{"SURFACE" link SURFACE}' to '@{"LOADOBJ" link LOADOBJ}' to replace objects surface with own surface
+
+version 1.26 (04-October-96)
+- fixed a bug which caused the program to crash on exit
+
+version 1.3 (29-November-96)
+- added '@{"FLARE" link FLARE}' and '@{"STAR" link STAR}'
+
+version 1.8 (16-February-97)
+- added 'MINOBJECTS' to '@{"STARTRENDER" link STARTRENDER}'
+- added 'SPIKEWIDTH' to '"{"STAR" link STAR}'
+- added 'NOSTAR' and 'NOFLARES' to '@{"POINTLIGHT" link POINTLIGHT}' and '@{"SPOTLIGHT" link SPOTLIGHT}'.
+- added '@{"BOX" link BOX}' command
+- added '@{"CSG" link CSG}' command
+- bugfix: 'RANDJIT'-flag of '@{"SETWORLD" link SETWORLD}' has been ignored.
+- added 'TILT' to '@{"STAR" link STAR}'
+
+version 2.0 (18-November-97)
+- added 'SHADOWMAP' and 'SHADOWMAPSIZE' to '@{"POINTLIGHT" link POINTLIGHT}' and '@{"SPOTLIGHT" link SPOTLIGHT}'
+- added 'FUZZY' to '@{"SPHERE" link SPHERE}'
+- added '@{"HYPERTEXTURE" link HYPERTEXTURE}'
+- added 'INVERTED' to '@{"BOX" link BOX}', '@{"CSG" link CSG}' and '@{"SPHERE" link SPHERE}'
+- added '@{"CYLINDER" link CYLINDER}', '@{"SOR" link SOR}' and '@{"CONE" link CONE}' command
+- problems with example files which needed bigger stacks. Now RayStorm is
+  started from the ARexx scripts with a shell script.
+
+version 2.1 (18-May-98)
+- added 'COLOR', 'RINGCOLOR', 'NOISE' and 'BRIGHTNESS' to '{"STAR" link STAR}'.
+- added new keywords 'EXP1' and 'EXP2' to '@{"FLARES" link FLARES}'.
+- PPC version
+
+version 2.2 (08-September-98)
+- added '@{"DIRECTIONALLIGHT" link DIRECTIONALLIGHT}'
+- added 'FALLOFFRADIUS' to '@{"SPOTLIGHT" link SPOTLIGHT}'
+
+version 2.3 (10-May-99)
+@endnode
+
+@node History_Raytracer " History of RayStorm Raytracer "
+@{b}HISTORY@{ub}
+
+version 1.0 (09-July-95)
+- initial release.
+
+version 1.01 (15-August-95)
+- added soft shadows
+- added random jitter
+- added brush repeat and mirror
+
+version 1.02 (16-August-95)
+- bugfix: altitude mapping -> black object: fixed
+- bugfix: loading of TDDD-objects with brushes crashed: fixed
+- added backdrop picture
+- added BRIGHT-flags for surface
+- added fog
+
+version 1.03 (17-August-95)
+- bugfix: sphere intersection test: fixed
+
+version 1.04 (21-August-95)
+- added global fog
+
+version 1.05 (28-August-95)
+- added animation commands
+
+version 1.06 (01-September-95)
+- added motion blur
+
+version 1.07 (10-September-95)
+- added specular brush mapping
+
+version 1.08 (11-September-95)
+- added rendering box
+
+version 1.081 (08-October-95)
+- added global reflection map
+- changed error messages
+
+version 1.082 (11-October-95)
+- improved memory management for Imagine objects
+
+version 1.083 (12-October-95)
+- changed spotlight direction to lookpoint and added actor for lookpoint
+- new form for vectors '<x,y,z>'
+- new form for colors '[r,g,b]'
+
+version 1.1 (18-October-95)
+- next offical release
+
+version 1.11 (19-October-95)
+- bugfix: Imagine fog objects are now loaded properly
+- added parameter check for field rendering
+
+version 1.12 (21-October-95)
+- speedup of motion blur
+
+version 1.13 (01-November-95)
+- bugfix: spotlight look point changed camera view point
+- added soft interpolation of colors for brushmapping
+- bugfix: objects behind light sources casted shadows
+
+version 1.14 (03-November-95)
+- changed default gaussian filter width from 1.8 to 1.3
+- bugfix: problem with global fog
+- plane can now be animated
+- changed axis position in flat brush mapping
+- added 'Time spend' and 'Time left'
+
+version 1.15 (28-November-95)
+- added PNG- and ILBM-modules
+- added radial texture
+
+version 1.16 (09-January-96)
+- bugfix in PNG-module: had problems with palette pictures
+- bugfix motion blur: had a problem with voxel calculations
+- bugfix motion blur: had no motion blur in scenes with planes
+- added TGA-module
+- added 'SOFTSHADOW' to 'DISTRIB'
+- optimized octree (up to 10% faster)
+- added 'FALLOFF' for 'POINTLIGHT' and 'SPOTLIGHT'
+- bugfix can now load plane
+- bugfix can now load multiple planes or perfect spheres
+
+version 1.17 (18-February-96)
+- object loading is now done in modules
+- added 3DS module
+- bugfix in TDDD-module: hardness is now used to set REFEXP
+- brushes and textures are no applied to surfaces which lie
+  between the light source and the illuminated surface
+- bugfix antialiasing: there where some bright pixel trash in the picture
+  if antialiasing with fog was used
+- rewrote bump, wood and marble textures
+- global reflections map is now applied in 'QUICK' mode too
+
+version 1.2 (29-February-96)
+- bugfix: last line of picture has been always black
+- bugfix: had problems with Imagine 4.0 TDDD objects
+
+version 1.21 (25-March-96)
+- TDDD objects are now rotated and scaled relative to axis of first object
+- bugfix: since 1.2 shadows in motion blur scenes were calculated false
+- bugfix: in some cases there were vertical and horizontal stripes in
+  rendered pictures
+- bugfix: triangles which were exactly in one plane (XY,XZ,YZ) disapeared
+
+version 1.22 (25-April-96)
+- bugfix: had problems with sharp edges of TDDD objects
+- bugfix: altitude brush mapping produced ugly results
+- bugfix: fixed some motion blur bugs
+- added 'SURFACE' to 'LOADOBJ' to replace objects surface with own surface
+- added datatype support for all commands which load brushes
+
+version 1.25 (08-September-96)
+- the RayStorm kernel is now a shared library
+- added support of new TDDD TXT4 chunk for textures from Imagine 4.0
+- changed the world axis orientation (x left, y up, z in)
+
+version 1.26 (04-October-96)
+- fixed error in marble texture
+- bugfix: had problems with sharp edges of TDDD objects (once again)
+
+version 1.3 (29-November-96)
+- recompiled raystorm.library with StormC -> upto 30% faster (68030/881)
+- backdrop pictures are now automatically scaled
+- added lens effects (flare, light star)
+
+version 1.8 (16-February-97)
+- added shadow cache (improves rendering speed for scenes with many shadows)
+- fire texture
+- minimum amount of objects for octree
+- added spikewidth to visible light star
+- added box object
+- added CSG
+- added tilt angle to light star
+- brushes support now 24 bit datatypes too
+- lens flares are now softly interpolated to the border of the flare
+
+version 2.0 (18-November-97)
+- RSOB-loader failed to load mesh objects without triangles
+- added 'Time estimated' to render status window
+- position actor didn't work since 1.8
+- under some circumstances the light star and the lens flares were not on the
+  right place
+- added shadowmap to the lights
+- added @{"hyper textures" link InfoHyperTexture}
+- added cylinder and cone object
+- added @{"surface of revolution" link InfoSOR}
+- added JPEG-modules
+
+version 2.1 (18-May-98)
+- improved lens flares and light star
+- added Lightwave object loader
+- PPC version
+- improved overall rendering speed (30%)
+- improved motionblur rendering speed
+
+version 2.2 (08-September-98)
+- RayStorm textures
+- directional light
+- soft spot lights
+- improved speed (about 10-15%)
+
+version 2.3 (10-May-99)
+- updated png loader to libpng version 1.0.3
+- updated jpeg loader to version 6b
+- fixed a bug concerning specular calculation
+@endnode
+
+@node Homepage " Homepage "
+@{b}HOMEPAGE@{ub}
+
+Come and visit our RayStorm-Homepage! There you can always get the latest
+version of RayStorm and can see some example pictures.
+
+The address:
+http://www.uni-ulm.de/~s_mhesse/raystorm.html
+@endnode
+
+@node Future " Future "
+@{b}FUTURE ADDITIONS@{ub}
+
+@{b}RayStorm Scenario@{ub}
+
+- animation control
+- text object generator
+
+@{b}RayStorm Raytracer@{ub}
+
+- animation language (ALAN)
+- more textures
+- don't allocate whole picture buffer at once
+- diffuse reflectivity
+- diffuse transparency
+- log file
+- apply post-2D-FX
+- spline interpolation for actors
+- metaballs
+- some extra programs (e.g. plant generation)
+@endnode
+
+@node Literature " Literature "
+@{b}Computer Graphics@{ub}
+
+J.D. Foley, A. van Dam
+Addison-Wesley Publishing Company
+
+@{b}Advanced Animation and Rendering Techniques
+Theory and Practice@{ub}
+
+Alan Watt, Mark Watt
+Addison-Wesley Publishing Company
+
+@{b}Texturing and Modeling
+A Procedural Approach@{ub}
+
+Ebert, Musgrave, Peachy, Perlin, Worley
+1994 Academic Press
+ISBN 0-12-228760-6
+
+@{b}Hypertexture@{ub}
+
+Ken Perlin, Courant Institute of the Mathematical Science, New York University
+Eric M. Hoffert, AT&T Pixel Machines
+SIGGRAPH '89, page 253-262
+
+@{b}Interactive Computer Graphics
+Functional, Procedural and Device-Level Methods@{ub}
+
+Peter Burger, Duncan Gillies
+Addison-Wesley Publishing Company
+ISBN 0-201-17439-1
+
+@{b}Fast Algorithms for 3D-Graphics@{ub}
+
+Georg Glaeser
+Springer-Verlag
+ISBN 0-387-94288-2
+@endnode
+
+@node INDEXNODE
+@{b}-A-@{ub}
+  @{"About                " link Menu_Project_About}
+  @{"Active               " link Menu_Edit_Active}
+  @{"Addresses            " link Author}
+  @{"ADDMATERIAL          " link ADDMATERIAL}
+  @{"ALIGNMENT            " link ALIGNMENT}
+  @{"Altitude brush       " link BRUSH}
+  @{"AMBIENT              " link AMBIENT}
+  @{"ANTIALIAS            " link ANTIALIAS}
+  @{"Antialiasing         " link Antialiasing}
+  @{"ARexx                " link ARexx}
+  @{"ASSIGNMATERIAL       " link ASSIGNMATERIAL}
+  @{"ASSIGNMATERIALTOSELECTED" link ASSIGNMATERIALTOSELECTED}
+  @{"Attributes           " link Menu_Object_Attributes}
+  @{"Author               " link Author}
+@{b}-B-@{ub}
+  @{"Backdrop             " link SETWORLD}
+  @{"Box                  " link Menu_Object_Box}
+  @{"BOX                  " link BOX}
+  @{"Browser              " link Scenario_Browser}
+  @{"Brushes              " link Menu_Object_Attributes}
+  @{" - show              " link Menu_View_ShowBrushes}
+  @{"BRUSH                " link BRUSH}
+  @{"BRUSHPATH            " link BRUSHPATH}
+  @{"Bugs                 " link Bugs}
+  @{"Bump                 " link Bump}
+  @{"Buttons              " link Buttons}
+@{b}-C-@{ub}
+  @{"Camera               " link Menu_Object_Camera}
+  @{" - Active            " link Menu_Object_Activecamera}
+  @{" - Settings          " link Camera_Settings}
+  @{" - to viewer         " link Menu_View_Camera2Viewer}
+  @{"CAMERA2VIEWER        " link CAMERA2VIEWER}
+  @{"Checker              " link Checker}
+  @{"CLEANUP              " link CLEANUP}
+  @{"Color brush          " link BRUSH}
+  @{"Commands             " link ARexx_Commands}
+  @{"Cone                 " link Menu_Object_Cone}
+  @{" - settings          " link Cone_Settings}
+  @{"CONE                 " link CONE}
+  @{"Coordinates          " link Menu_View_ShowCoordinates}
+  @{"Copy                 " link Menu_Edit_Copy}
+  @{"COPY                 " link COPY}
+  @{"Copyright            " link Copyright}
+  @{"CREATEOBJECT         " link CREATEOBJECT}
+  @{"Credits              " link Credits}
+  @{"CSG                  " link Menu_Object_CSG}
+  @{" - difference        " link InfoCSG}
+  @{" - intersection      " link InfoCSG}
+  @{" - introduction      " link InfoCSG}
+  @{" - union             " link InfoCSG}
+  @{"CSG                  " link CSG}
+  @{"Cut                  " link Menu_Edit_Cut}
+  @{"CUT                  " link CUR}
+  @{"Cylinder             " link Menu_Object_Cylinder}
+  @{" - mapping           " link BRUSH}
+  @{" - settings          " link Cylinder_Settings}
+  @{"CYLINDER             " link CYLINDER}
+@{b}-D-@{ub}
+  @{"Delete               " link Menu_Edit_Delete}
+  @{"DELETE               " link DELETE}
+  @{"DELETEMATERIAL       " link DELETEMATERIAL}
+  @{"Depth of field       " link DOF}
+  @{"Deselect All         " link Menu_Edit_DeselAll}
+  @{"DIFFTRANS            " link DIFFTRANS}
+  @{"DIFFUSE              " link DIFFUSE}
+  @{"Directional light    " link Menu_Object_Lights_Directionallight}
+  @{" - Settings          " link PointDirectionalLight_Settings}
+  @{"DIRECTIONALLIGHT     " link DIRECTIONALLIGHT}
+  @{"DISPLAY (Script)     " link DISPLAY_script}
+  @{"DISPLAY (Scenario)   " link DISPLAY_scenario}
+  @{"DISTRIB              " link DISTRIB}
+@{b}-E-@{ub}
+  @{"E-Mail               " link Author}
+  @{"Errors               " link Errors}
+  @{"Examples             " link Examples}
+@{b}-F-@{ub}
+  @{"FAQ                  " link TipsTricks}
+  @{"Features             " link Features}
+  @{"Filter brush         " link BRUSH}
+  @{"Fire                 " link Fire}
+  @{"FLARE                " link FLARE}
+  @{"Flat mapping         " link BRUSH}
+  @{"Focus                " link Menu_View_Focus}
+  @{"FOGLEN               " link FOGLEN}
+  @{"Future               " link Future}
+@{b}-G-@{ub}
+  @{"General              " link RayGeneral}
+  @{"GETERRORSTR          " link GETERRORSTR}
+  @{"GETOBJECTALIGN       " link GETOBJECTALIGN}
+  @{"GETOBJECTPOS         " link GETOBJECTPOS}
+  @{"GETOBJECTSIZE        " link GETOBJECTSIZE}
+  @{"GETSLEOBJNAME        " link GETSELOBJNAME}
+  @{"Global               " link Menu_View_Global}
+  @{"Grid                 " link Menu_View_Grid}
+  @{" - Size              " link Menu_View_Gridsize}
+  @{" - Snap to           " link Menu_View_SnapToGrid}
+  @{"GROUP                " link GROUP}
+@{b}-H-@{ub}
+  @{"History              " link History}
+  @{"Homepage             " link Homepage}
+  @{"HYPERTEXTURE         " link HYPERTEXTURE}
+  @{" - introduction      " link InfoHyperTexture}
+@{b}-I-@{ub}
+  @{"IMTEXTURE            " link IMTEXTURE}
+  @{"Index of refraction  " link REFRINDEX}
+  @{"Installation         " link Installation}
+  @{"Internals            " link Internals}
+  @{"Introduction         " link Introduction}
+  @{" - Raytracer         " link Intro_Raytracer}
+  @{" - Scenario          " link Intro_Scenario}
+  @{" - Script            " link Intro_Script}
+@{b}-L-@{ub}
+  @{"Legal Stuff          " link Copyright}
+  @{"Lens flares          " link Light_LensFlares}
+  @{"Limitations          " link Limitations}
+  @{"Literature           " link Literature}
+  @{"Linear               " link Linear}
+  @{"Load                 " link Menu_Object_Load}
+  @{"LOADMATERIAL         " link LOADMATERIAL}
+  @{"LOADOBJ              " link LOADOBJ}
+  @{"LOADOBJECT           " link LOADOBJECT}
+@{b}-M-@{ub}
+  @{"Marble               " link Marble}
+  Material
+  @{" - load new          " link Menu_Material_LoadNew}
+  @{" - manager           " link Scenario_Material}
+  @{" - new               " link Menu_Material_New}
+  @{" - remove identical  " link Menu_Material_RemoveIdentical}
+  @{" - remove unused     " link Menu_Material_RemoveUnused}
+  @{"Menus                " link Menus}
+  @{"Mesh                 " link Menu_Object_Mesh}
+  @{" - Axis              " link Menu_Object_Mesh_Axis}
+  @{" - Box               " link Menu_Object_Mesh_Box}
+  @{" - Cone              " link Menu_Object_Mesh_Cone}
+  @{" - Cylinder          " link Menu_Object_Mesh_Cylinder}
+  @{" - Plane             " link Menu_Object_Mesh_Plane}
+  @{" - Sphere            " link Menu_Object_Mesh_Sphere}
+  @{" - Torus             " link Menu_Object_Mesh_Torus}
+  @{"Mesh settings        " link Mesh_Settings}
+  @{"Min. Objects         " link Menu_Project_RenderSettings}
+  @{"Mode                 " link Menu_Edit_Mode}
+  @{"Motion Blur          " link Motion_Blur}
+  @{"MUI Prefs            " link Menu_Settings_MUI}
+@{b}-N-@{ub}
+  @{"New                  " link Menu_Project_New}
+  @{"NEW                  " link NEW}
+  @{"NEWACTOR             " link NEWACTOR}
+  @{"NEWSURFACE           " link NEWSURFACE}
+@{b}-O-@{ub}
+  @{"OBJECTPATH           " link OBJECTPATH}
+  @{"Object browser       " link Scenario_Browser}
+  @{"Open                 " link Menu_Project_Open}
+  @{"OPEN                 " link OPEN}
+@{b}-P-@{ub}
+  @{"Parameters           " link ARexx_Params}
+  @{"Paste                " link Menu_Edit_Paste}
+  @{"PASTE                " link PASTE}
+  @{"PC-Version           " link PC-Version}
+  @{"Plane                " link Menu_Object_Plane}
+  @{"PLANE                " link PLANE}
+  @{"Plugins              " link Scenario_Plugins}
+  @{"Point light          " link Menu_Object_Light_Pointlight}
+  @{" - Settings          " link PointDirectionalLight_Settings}
+  @{"POINTLIGHT           " link POINTLIGHT}
+  @{"POSITION             " link POSITION}
+  @{"Prefs                " link Menu_Settings_Prefs}
+  @{"Prefs Load           " link Menu_Settings_Load}
+  @{"Prefs Save           " link Menu_Settings_Save}
+@{b}-Q-@{ub}
+  @{"Quit                 " link Menu_Project_Quit}
+  @{"QUIT                 " link QUIT}
+@{b}-R-@{ub}
+  @{"Radial               " link Radial}
+  @{"RAW                  " link RAW_Format}
+  @{"Recent File          " link Menu_Project_RecentFile}
+  @{"Redo                 " link Menu_Edit_Redo}
+  @{"REDO                 " link REDO}
+  @{"Redraw               " link Menu_View_Redraw}
+  @{"REDRAW               " link REDRAW}
+  @{"REFEXP               " link REFEXP}
+  @{"REFLECT              " link REFLECT}
+  @{"Reflect brush        " link BRUSH}
+  @{"Reflection map       " link SETWORLD}
+  @{"REFRINDEX            " link REFRINDEX}
+  @{"Register             " link Register}
+  @{"Render               " link Menu_Project_Render}
+  @{" - settings          " link Menu_Project_RenderSettings}
+  @{" - window, set       " link Menu_Project_SetRenderWindow}
+  @{" - window, enable    " link Menu_Project_RenderSettings}
+  @{"RENDER               " link RENDER}
+  @{"Requirements         " link Requirements}
+@{b}-S-@{ub}
+  @{"Save                 " link Menu_Project_Save}
+  @{"SAVE                 " link SAVE}
+  @{"Save As              " link Menu_Project_SaveAs}
+  @{"SAVEMATERIAL         " link SAVEMATERIAL}
+  @{"SAVEOBJECT           " link SAVEOBJECT}
+  @{"SAVEPIC              " link SAVEPIC}
+  @{"SELECT               " link SELECT}
+  @{"SELECTBYNAME         " link SELECTBYNAME}
+  @{"Select All           " link Menu_Edit_SelAll}
+  @{"Select Next          " link Menu_Edit_SelNext}
+  @{"Select Previous      " link Menu_Edit_SelPrev}
+  @{"Settings             " link Menu_Object_Settings}
+  @{"SETCAMERA            " link SETCAMERA}
+  @{"SETOBJECTALIGN       " link SETOBJECTALIGN}
+  @{"SETOBJECTPOS         " link SETOBJECTPOS}
+  @{"SETOBJECTSIZE        " link SETOBJECTSIZE}
+  @{"SETSCREEN            " link SETSCREEN}
+  @{"SETWORLD             " link SETWORLD}
+  @{"SIZE                 " link SIZE}
+  @{"Shadow map           " link InfoShadowMap}
+  @{"Show                 " link Menu_View_Show}
+  @{" - Coordinates       " link Menu_View_ShowCoordinates}
+  @{" - Names             " link Menu_View_ShowNames}
+  @{" - Brushes           " link Menu_View_ShowBrushes}
+  @{" - Textures          " link Menu_View_ShowTextures}
+  @{"SHOW                 " link SHOW}
+  @{"Soft shadows         " link SoftShadows}
+  @{"SOR                  " link Menu_Object_SOR}
+  @{" - introduction      " link InfoSOR}
+  @{"SOR                  " link SOR}
+  @{"SPECTRANS            " link SPECTRANS}
+  @{"SPECULAR             " link SPECULAR}
+  @{"Specular brush       " link BRUSH}
+  @{"Sphere               " link Menu_Object_Sphere}
+  @{"SPHERE               " link SPHERE}
+  @{"Sphere mapping       " link BRUSH}
+  @{"Spikewidth           " link Light_VisibleLight}
+  @{"Spot light           " link Menu_Object_Lights_Spotlight}
+  @{" - Settings          " link SpotLight_Settings}
+  @{"SPOTLIGHT            " link SPOTLIGHT}
+  @{"STAR                 " link STAR}
+  @{"Stars                " link Stars}
+  @{"STARTRENDER          " link STARTRENDER}
+  @{"Surface              " link Surface}
+  @{"Surface of revolution" link InfoSOR}
+@{b}-T-@{ub}
+  @{"Terrain              " link Scenario_Plugins_Terrain}
+  @{"TEXTUREPATH          " link TEXTUREPATH}
+  @{"Textures             " link Menu_Object_Attributes}
+  @{" - description       " link Textures}
+  @{" - show              " link Menu_View_ShowTextures}
+  @{"Tips & Tricks        " link TipsTricks}
+  @{"TRANSEXP             " link TRANSEXP}
+  @{"Transform            " link Menu_Object_Settings}
+  @{"TRANSLUC             " link TRANSLUC}
+  @{"TRANSPAR             " link TRANSPAR}
+  @{"TRIANGLE             " link TRIANGLE}
+  @{"Tutorials            " link Tutorials}
+@{b}-U-@{ub}
+  @{"Undo                 " link Menu_Edit_Undo}
+  @{"UNDO                 " link UNDO}
+  @{"UNGROUP              " link UNGROUP}
+  @{"Usage                " link Scenario_Usage}
+@{b}-V-@{ub}
+  @{"View                 " link Menu_View_View}
+  @{"VIEW                 " link VIEW}
+  @{"Virtual Memory       " link VirtualMemory}
+  @{"Visible Light        " link Light_VisibleLight}
+@{b}-W-@{ub}
+  @{"WINTOFRONT           " link WINTOFRONT}
+  @{"Wood                 " link Wood}
+  @{"WWW                  " link Homepage}
+@{b}-Z-@{ub}
+  @{"ZOOM                 " link ZOOM}
+  @{"Zoom fit             " link Menu_View_Zoomfit}
+  @{"Zoom in              " link Menu_View_Zoomin}
+  @{"Zoom out             " link Menu_View_Zoomout}
+@endnode
+

@@ -1,0 +1,6 @@
+##base _PicHandBase
+##bias 30
+##public
+picRead()()
+picWrite()()
+##end

@@ -1,0 +1,799 @@
+@database "RayStorm File Formats"
+@author "Andreas Heumann"
+@(c) "Copyright by Andreas Heumann"
+@$VER: RayStorm File Formats 1.02 (19-August-98)
+
+@node Main " RayStorm File Formats "
+																			  August 19th 1998
+
+								RayStorm Scene File Format
+											 and
+								RayStorm Object File Format
+
+										Version 1.0
+
+RayStorm and all associated products are copyright 1995-98 by Andreas Heumann
+and Mike Hesser.
+All information contained herein is subject to change without notice.
+Knowledge is dangerous - use at your own risk.  No warranties are made or
+implied, and no liability or responsibility is assumed.
+
+@{b}General@{ub}
+	@{" Data Format     " link General_DataFormat}
+
+@{b}RayStorm Scene File Format@{ub}
+	@{" Introduction    " link Scene_Introduction}
+	@{" Chunks          " link Scene_Chunks}
+
+@{b}RayStorm Object File Format@{ub}
+	@{" Introduction    " link Object_Introduction}
+	@{" Chunks          " link Object_Chunks}
+@endnode
+
+@node General_DataFormat " Data format "
+@{b}Data format@{ub}
+
+Data is stored in the same format as Motorla 680x0 processors do, most
+significant byte first.
+
+FLOAT
+  standart IEEE single precision float numbers (size is 4 byte)
+STRING
+  no length restrictions, terminated with 0 character (like C strings)
+VECTOR
+  three FLOAT's (x,y,z)
+VECTOR2D
+  two FLOAT's (x,y)
+COLOR
+  three FLOAT's (r,g,b)
+BYTE
+  8 bits (UBYTE for unsigned)
+WORD
+  16 bits (UWORD for unsigned)
+LONG
+  32 bits (ULONG for unsigned)
+@endnode
+
+@node Scene_Introduction " RSCN Introduction "
+@{b}Introduction@{ub}
+
+RayStorm scene files are stored in IFF format. They contain
+
+- general data
+  paths (objects,textures,brushes)
+  resolution of final picture
+  surface definition
+- frame data
+  time slice
+  ambient light
+  antialiasing parameters
+  background color
+  background picture name
+  global reflection map name
+  active camera
+  soft shadow parameters
+  motion blur parameters
+  flags (quick mode)
+- descriptions of cameras (there can be several cameras in one scene)
+  position, alignment, size
+  name
+  horizontal and vertical field of view
+  focal distance
+  aperture
+  track
+- chunk point light sources
+  position, alignment, size
+  name
+  color
+  flags (cast shadows, spot, point)
+  track
+  shadowmapsize
+- chunk spot light sources
+  position, alignment, size
+  name
+  color
+  flags (cast shadows, spot, point)
+  opening angle
+  track
+  shadowmapsize
+- chunk directional light sources
+  position, alignment, size
+  name
+  color
+  flags (cast shadows, spot, point)
+  track
+  shadowmapsize
+- chunk external object
+  position, alignment, size
+  name
+  file name of external objects
+  surface name
+- chunk sphere
+  position, alignment, size
+  name
+  radius
+  track
+  surface name
+- chunk plane
+  position, alignment, size
+  name
+  normal
+  track
+  surface name
+- chunk mesh
+  position, alignment, size
+  name
+  points, edges with flags, faces
+  track
+  surface name
+- chunk box
+  position, alignment, size
+  name
+  low and high boundaries
+  track
+  surface name
+- chunk cylinder
+  position, alignment, size
+  name
+  low and high boundaries
+  track
+  surface name
+- chunk cone
+  position, alignment, size
+  name
+  low and high boundaries
+  track
+  surface name
+- chunk sor
+  position, alignment, size
+  name
+  low and high boundaries
+  track
+  surface name
+@endnode
+
+@node Scene_Chunks " RSCN_Chunks "
+@{b}Description of chunks@{ub}
+
+RSCN
+  format identifier (RayStorm scene)
+
+@{b}Subchunks@{ub}
+  @{" VERS " link Scene_VERS} Version
+  @{" GNRL " link Scene_GNRL} General
+  @{" SRFS " link Scene_SRFS} Surfaces
+  @{" FRAM " link Scene_FRAM} Frame
+  @{" CAMR " link CAMR} Camera
+  @{" PLGT " link PLGT} Point light
+  @{" SLGT " link SLGT} Spot light
+  @{" DLGT " link DLGT} Directional light
+  @{" SPHR " link SPHR} Sphere
+  @{" PLAN " link PLAN} Plane
+  @{" MESH " link MESH} Mesh
+  @{" BOX  " link BOX } Box
+  @{" CYLR " link CYLR } Cylinder
+  @{" EXTN " link EXTN} External
+@endnode
+
+@node Scene_VERS " VERS "
+VERS
+  ULONG version
+	 current version of file
+@endnode
+
+@node Scene_GNRL " GNRL "
+GNRL
+  general data
+
+  Subchunks:
+	 OPTH
+		STRING path
+		  Object path. This is where RayStorm searches for object files.
+	 TPTH
+		STRING path
+		  Texture path. Here is searched for the texture file.
+	 BPTH
+		STRING path
+		  Brush path. This is the brush search path.
+	 PPTH
+		STRING path
+		  Picture path. Rendered pictures are saved here.
+	 PICT
+		STRING name
+		  Pictrue name.
+	 RESO
+		ULONG x,y
+		  Picture resolution (from 1x1 upto 65535x65535).
+	 DISP
+		UBYTE disp
+		  display mode (0 = BBOX, 1 = WIRE, 2 = SOLID)
+	 VIEW
+		UBYTE view
+		  view mode (0 = FRONT, 1 = RIGHT, 2 = TOP, 3 = PERSP)
+	 OBSV
+		// perspective view
+		VECTOR vpos;      // virtual camera look position
+		VECTOR valign;    // virtual camera alignment to x-axis
+		float dist;       // virtual camera distance
+		// orthogonal view
+		VECTOR viewpoint; // viewpoint
+		float zoom;       // zoomfactor
+		  observer position    GRID
+		FLOAT gridsize
+		  grid size
+	 FLGS
+		ULONG flags
+		  general flags (grid on/off, grid snap on/off, cameraview on/off, quad view on/off)
+	 FLEN
+		FLOAT flen
+		  fog length
+	 FHGT
+		FLOAT fheight
+		  fog height
+	 FCOL
+		COLOR fog
+		  fog color
+	 FILD
+		FLOAT xmin,ymin,xmax,ymax
+		  rendering field
+	 MOBJ
+		ULONG minobjects
+		  minimum objects for octree
+@endnode
+
+@node Scene_SRFS " SRFS "
+SRFS
+  surfaces
+
+  Subchunks:
+	 SURF
+		-> @{"see there" link Surface}
+@endnode
+
+@node Scene_FRAM " FRAM "
+FRAM
+  Frame data. There is one chunk of this type for every frame in a scene.
+
+  Subchunks:
+	 TIME
+		FLOAT from,to
+		  Frame starts at 'from' and ends at 'to'.
+	 FLGS
+		ULONG flags
+		  Flags for this frame (quick mode, random jitter).
+	 CAMR
+		STRING camera
+		  Active camera. It's possible to define several different cameras in
+		  on scene (although only one camera is active in a frame).
+	 AMBT
+		COLOR color
+		  Ambient light color.
+	 ANTC
+		COLOR treshhold
+		  Treshold is the contrast color from wich on RayStorm performs antialiasing.
+	 ANTS
+		UBYTE sample
+		  Antialiasing samples. Sample is the squareroot of extra
+		  samples done for a antialiased pixel (1 means no antialiasing, 2 means
+		  4-times oversampling, 3 means 9-times oversampling and so on).
+	 BCKC
+		COLOR color
+		  Background color.
+	 BCKP
+		STRING name
+		  Background picture name. This picture is visible in the background of
+		  a scene (currently this picture MUST have the same size as the rendered
+		  scene.
+	 RFLM
+		STRING name
+		  Global reflection map name. THis picture is reflected on objects
+		  whenever a reflected ray hits the background.
+	 SOFT
+		UBYTE sample
+		  Soft shadow oversamling value. If a light source casts shadows and has
+		  a size greater than zero, RayStorm casts multiple rays to calculate
+		  soft shadows. This value is the squareroot of soft shadow samples to
+		  generate (a value of one means no soft shadows).
+	 MBLR
+		UBYTE sample
+		  Motion blur oversampling value. If this frame has a length ('from' is
+		  differnet from 'to') RayStorm is able to apply motion blur. For this
+		  RayStorms casts several rays at different time for one pixel and
+		  averages the result. The squareroot of the amount of rays casted is
+		  set with this chunk (a values of one means no motion blur).
+@endnode
+
+@node CAMR " CAMR "
+CAMR
+  camera description
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+		z direction = view direction
+		y direction = view up vector
+	 NAME
+		STRING name
+			name
+	 FLGS
+		ULONG flags
+			camera flags
+	 FDST
+		FLOAT dist
+		  Focal distance. This is the distance where the scene is sharp rendered.
+		  The objects appear blurry if the ar nearer or farer away.
+	 APER
+		FLOAT aperture
+		  Aperture. Sets the aperture of the camera, the higher the value is the
+		  more blurry are the objects which are out of focus.
+	 FDOV
+		FLOAT hfov
+		FLOAT vfov
+		  horizontal and vertical field of view.
+	 TRCK
+		char name
+		  Name of object the camera tracks to.
+@endnode
+
+@node PLGT " PLGT "
+PLGT
+  Point light description. A point light illuminates the scene in all
+  directions.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 COLR
+		COLOR color
+		  Color of the light (may be great than 1,1,1 or negative)
+	 FLGS
+		ULONG flags
+		  Flags (cast shadows/has flares/has star/has shadowmap).
+	 DIST
+		FLOAT dist
+		  Distance for controlled fall off. At this distance the brightness of
+		  the light is zero, it increases linear up to distance zero.
+	 FLAR
+		-> @{"see there" link FLAR}
+	 STAR
+		-> @{"see there" link STAR}
+	 TRCK
+		char name
+		  Name of object the point light tracks to.
+	 SMSZ
+		int shadowmapsize
+		  Size of shadowmap
+@endnode
+
+@node SLGT " SLGT "
+SLGT
+  Spot light description. A spot is a light source with a define light cone
+  (like the lights in TV)
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 COLR
+		COLOR color
+		  Color of the light (may be great than 1,1,1 or negative)
+	 FLGS
+		ULONG flags
+		  Flags (cast shadows/has flares/has star/has shadowmap).
+	 DIST
+		FLOAT dist
+		  Distance for controlled fall off. At this distance the brightness of
+		  the light is zero, it increases linear up to distance zero.
+	 ANGL
+		FLOAT angle
+		  Opening angle. Opening angle of the light cone in degree.
+	 TRCK
+		char name
+		  Name of object the spot light tracks to.
+	 SMSZ
+		int shadowmapsize
+		  Size of shadowmap
+@endnode
+
+@node DLGT " DLGT "
+DLGT
+  Directional light description. A directional light illuminates the from a plane
+  in one direction.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 COLR
+		COLOR color
+		  Color of the light (may be great than 1,1,1 or negative)
+	 FLGS
+		ULONG flags
+		  Flags (cast shadows/has flares/has star/has shadowmap).
+	 DIST
+		FLOAT dist
+		  Distance for controlled fall off. At this distance the brightness of
+		  the light is zero, it increases linear up to distance zero.
+	 FLAR
+		-> @{"see there" link FLAR}
+	 STAR
+		-> @{"see there" link STAR}
+	 TRCK
+		char name
+		  Name of object the point light tracks to.
+	 SMSZ
+		int shadowmapsize
+		  Size of shadowmap
+@endnode
+
+@node SPHR " SPHR "
+SPHR
+  Sphere decription. Raystorm uses mathematical generated spheres.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 RADI
+		FLOAT radius
+			 radius
+	 TRCK
+		char name
+		  Name of object the sphere tracks to.
+@endnode
+
+@node PLAN " PLAN "
+PLAN
+  Unlimited plane decription.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 TRCK
+		char name
+		  Name of object the plane tracks to.
+@endnode
+
+@node MESH " MESH "
+MESH
+  Mesh description. Currently only used for tracking.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 FLGS
+		ULONG flags
+		  Flags (no phong shading)
+	 SURF
+		STRING name
+		  name of surface
+	 PNTS
+		VECTOR points
+		  array of points for this mesh
+	 EDGE
+		UWORD edges[3]
+		  array of point numbers; third word are edge flags
+	 FACE
+		UWORD faces[3]
+		  array of edge numbers
+	 TRCK
+		char name
+		  Name of object the mesh tracks to.
+@endnode
+
+@node BOX  " BOX  "
+BOX
+  Box decription. Raystorm uses mathematical generated boxes.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 LBND
+		VECTOR lowbounds
+		  low boundaries (left, front, bottom edge)
+	 HBND
+		VECTOR highbounds
+		  high boundaries (right, back, top edge)
+	 TRCK
+		char name
+		  Name of object the sphere tracks to.
+@endnode
+
+@node CYLR " CYLR "
+CYLR
+  Cylinder decription. Raystorm uses mathematical generated cylinders.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 FLGS
+		ULONG flags
+		  flags (open top, open bottom)
+	 TRCK
+		char name
+		  Name of object the sphere tracks to.
+@endnode
+
+@node CONE " CONE "
+CYLR
+  Cone decription. Raystorm uses mathematical generated cones.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 FLGS
+		ULONG flags
+		  flags (open top, open bottom)
+	 TRCK
+		char name
+		  Name of object the sphere tracks to.
+@endnode
+
+@node SOR  " SOR  "
+CYLR
+  Cylinder decription. Raystorm uses mathematical generated cylinders.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 SURF
+		STRING name
+		  name of surface
+	 FLGS
+		ULONG flags
+		  flags (open top, open bottom)
+	 PNTS
+		VECTOR2D points
+		  outline points
+	 TRCK
+		char name
+		  Name of object the sphere tracks to.
+@endnode
+
+@node EXTN " EXTN "
+EXTN
+  External object on disk. Currently all triangle objects are external objects.
+
+  Subchunks:
+	 axis definition -> @{"see there" link Axis}
+	 NAME
+		STRING name
+		  name
+	 FILE
+		STRING name
+		  File name of external object. RayStorm automatically invokes the
+		  needed object handler to read this object.
+	 FLGS
+		ULONG flags
+		  Flags (apply surface).
+	 SURF
+		-> @{"see there" link Surface}
+	 TRCK
+		char name
+		  Name of object the object tracks to.
+@endnode
+
+@node FLAR " FLAR "
+FLAR
+  Flare description. Each light can have an unlimited amount of lens flares.
+
+  Subchunks:
+	 COLR
+		COLOR color
+		  color of the lens flare
+	 POSI
+		FLOAT position
+		  flare position in percent
+	 RADI
+		FLOAT radius
+		  radius in percent of screen width
+	 TYPE
+		LONG type
+		  type of flare (disc=0, poly=1)
+	 FUNC
+		LONG function
+		  function of flare (plane, ring, ...)
+	 EDGE
+		LONG edges
+		  edges of flare if type is poly
+	 TILT
+		FLOAT tilt
+		  tilt angle of flare if type is poly
+@endnode
+
+@node STAR " STAR "
+STAR
+  Light star description. Each light can have only ONE star.
+
+  Subchunks:
+	 FLGS
+		LONG flags
+		  flags
+	 SRAD
+		FLOAT starradius
+		  star radius in percent of screen width
+	 TILT
+		FLOAT tilt
+		  tilt angle of star spikes
+	 SPIK
+		ULONG spikes
+		  amount of spikes
+	 HRAD
+		FLOAT haloradius
+		  halo radius in percent of star radius
+	 IHRD
+		FLOAT innerhaloradius
+		  inner halo radius in percent of halo radius
+	 RANG
+		FLOAT rnge
+		  star range in percent of screen width
+	 INTE
+		FLOAT intensities[]
+		  spike intensities
+@endnode
+
+@node Axis " Axis "
+Axis definition: (each object has a local axis)
+
+  POSI
+	 FLOAT from,to
+		time slice for this position
+	 VECTOR posi
+		end frame position
+  ALGN
+	 FLOAT from,to
+		time slice for this alignement
+	 VECTOR orient_x,orient_y,orient_z
+		end frame alignment
+  SIZE
+	 FLOAT from,to
+		time slice for this position
+	 VECTOR size
+		end frame size
+@endnode
+
+@node Surface " Surface "
+SURF
+  Surface definition.
+
+  NAME
+	 STRING name
+		name of surface
+  FLGS
+	 ULONG flags
+		surface flags (BRIGHT)
+  AMBT
+	 COLOR ambient
+		Ambient color.
+  DIFU
+	 COLOR diffuse
+		Diffuse color.
+  SPEC
+	 COLOR specular
+		Specular color.
+  REFL
+	 COLOR reflect
+		Reflective color.
+  TRNS
+	 COLOR transparent
+		Transparent color.
+  DIFT
+	 COLOR difftrans
+		Diffuse transmission color.
+  SPCT
+	 COLOR spectrans
+		Specular transmission color.
+  RPHG
+	 FLOAT refphong
+		Reflected phong coef.
+  TPHG
+	 FLOAT transphong
+		Transmitted phong coef.
+  FLEN
+	 FLOAT foglen
+		Fog length.
+  IXOR
+	 FLOAT ior
+		Index of refraction.
+  TNSL
+	 FLOAT transluc
+		Translucency.
+  BRSH
+	 -> @{"see there" link Brush}
+  ITXT
+	 -> @{"see there" link Texture}
+@endnode
+
+@node Brush " Brush "
+BRSH
+  Brush definition. A brush is a image which will be used to change some
+  surface attributes.
+
+  Axis definition -> @{"see there" link Axis}.
+
+  NAME
+	 STRING name
+		name of image file
+  TYPE
+	 ULONG type
+		Brush type (color, reflect, transpar, specular, bump).
+  WRAP
+	 ULONG wrap
+		Wrap method (flat,wrapx,wrapy,wrapxy).
+  FLGS
+	 ULONG flags
+		Flags (smooth).
+  TRCK
+	 char name
+		Name of object the brush tracks to.
+@endnode
+
+@node Imagine_Texture " Imagine Texture "
+ITXT
+  Imagine texture definition. RayStorm is able to load the mathematical
+  textures of Imagine.
+
+  Axis definition -> @{"see there" link Axis}.
+
+  NAME
+	 STRING name
+		Name of texture file.
+  PARM
+	 FLOAT params[16]
+		Parameters (16 float numbers).
+  TRCK
+	 char name
+		Name of object the texture tracks to.
+@endnode
+
+@node Object_Introduction " RSOB Introduction "
+This is the description for the RayStorm objects.
+@endnode
+
+@node Object_Chunks " RSOB_Chunks "
+@{b}Description of chunks@{ub}
+
+RSOB
+  format identifier (RayStorm object)
+
+  @{" CAMR " link CAMR} Camera
+  @{" PLGT " link PLGT} Point light
+  @{" SLGT " link SLGT} Spot light
+  @{" DLGT " link DLGT} Directional light
+  @{" SPHR " link SPHR} Sphere
+  @{" PLAN " link PLAN} Plane
+  @{" MESH " link MESH} Mesh
+  @{" BOX  " link BOX } Box
+  @{" CYLR " link CYLR} Cylinder
+@endnode

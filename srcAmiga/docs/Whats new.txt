@@ -1,0 +1,264 @@
+What's new for version 2.2?
+- Hurricane texture
+Scenario
+- added StormMesa 3.0 support
+- added plugin interface
+- added terrain plugin
+- fixed problem with Blizzard PPC boards (crash when doing material preview)
+- the 881 version of Scenario now also supports StormMesa
+Renderer
+- updated png loader to libpng version 1.0.3
+- updated jpeg loader to version 6b
+- fixed a bug concerning specular calculation
+
+What's new for version 2.2?
+- RayStorm image viewer
+- RayStorm textures
+- NFF object loader
+- directional light
+- soft spot light
+Scenario
+Renderer
+- improved speed (about 10-15%)
+RayStorm Script
+- added 'DIRECTIONALLIGHT'
+- added 'FALLOFFRADIUS' to 'SPOTLIGHT'
+
+What's new for version 2.1?
+- removed 020 version
+- added PowerPC version
+Scenario
+- now supports high and true color cybergfx screens
+- OpenGL support (StormMesa, not for 881 version)
+- loading and saving of light definitions
+- lightwave loader
+- Rendering in the background
+- new lensflare types (exponent 1, exponent 2)
+- new and improved light star
+- shadow maps
+- names of brushes and textures can be changed in material requester
+- brushes with cylindrical and spherical mapping are now drawn as cylinders and spheres
+- Size of external toolbar images is now set to size of first button (new.iff)
+- more colors (colors can be set in preferneces)
+Renderer
+- PowerPC version
+- handoptimized assembler functions (up to 30% faster)
+- improved lens flares
+RayStorm Script
+- added 'COLOR', 'RINGCOLOR', 'NOISE' and 'BRIGHTNESS' to 'STAR'.
+- added new keywords 'EXP1' and 'EXP2' to 'FLARES'.
+- PowerPC version
+
+What's new for version 2.0?
+Scenario
+- added 'Time estimated' to render status window
+- recent files in project menu
+- Scenario is now asking for a new filename when it wants to load or render
+  a project and can't find an object, brush or texture
+- improved redraw speed
+- toolbar images can now also be external images
+- added cylinder, CSG, SOR and cone object
+- Scenario can now be called with a name of a project as argument, which then is
+  loaded.
+- added object browser with drag and drop capabilities to the side of the draw
+  area
+- added enable button for backdrop and reflection map
+- added material manager to the bottom of the draw area
+- material previews are calculated independently in threads
+- resolution predefinitions can now be set in the ASCII-file 'prefs/res.dat'
+- it's now possible to edit and change meshes
+- more than one transformation or material requesters can now remain
+  open
+Renderer
+- RSOB-loader failed to load mesh objects without triangles
+- added 'Time estimated' to render status window
+- position actor didn't work since 1.8
+- under some circumstances the light star and the lens flares were not on the
+  right place
+- added shadowmap to the lights
+- added hyper textures
+- added cylinder and cone object
+- added surface of revolution
+- added JPEG-modules
+RayStorm Script
+- added 'SHADOWMAP' and 'SHADOWMAPSIZE' to 'POINTLIGHT' and 'SPOTLIGHT'
+- added 'FUZZY' to 'SPHERE'
+- added 'HYPERTEXTURE'
+- added 'INVERTED' to 'BOX', 'CSG' and 'SPHERE'
+- added 'CYLINDER', 'SOR' and 'CONE' command
+- problems with example files which needed bigger stacks. Now RayStorm is
+  started from the ARexx scripts with a shell script.
+
+What's new for version 1.8?
+Scenario
+- minimum amount of objects for octree is now setable in the Render Settings
+  requester
+- added spikewidth to visible light star
+- added new/load/save buttons
+- all objects can track each other
+- added undo and redo
+- added box object
+- added status bar
+- added tilt angle to light star
+- the render window can now be set with the mouse
+- objects can now be selected with a selection box
+- raw object loader works now correctly
+- lens flares in the requester are now selectable with the mouse
+Renderer
+- added shadow cache (improves rendering speed for scenes with many shadows)
+- fire texture
+- minimum amount of objects for octree
+- added spikewidth to visible light star
+- added box object
+- added CSG
+- added tilt angle to light star
+- brushes support now 24 bit datatypes too
+- lens flares are now softly interpolated to the border of the flare
+RayStorm Script
+- added 'MINOBJECTS' to 'STARTRENDER'
+- added 'SPIKEWIDTH' to 'STAR'
+- added 'NOSTAR' and 'NOFLARES' to 'POINTLIGHT' and 'SPOTLIGHT'.
+- added 'BOX' command
+- added 'CSG' command
+- bugfix: 'RANDJIT'-flag of 'SETWORLD' has been ignored.
+- added 'TILT' to 'STAR'
+
+What's new for version 1.7?
+Scenario (1.2)
+- forgot to scale child objects of external objects
+- added ok and view button to render requester
+- added camera to viewer
+- added hierarchical object browser
+- ask for rendering of scenes with no light sources
+- bugfix: it was impossible to track and to set the opening angle of a spotlight
+- convert external to scene objects
+- added RayStorm object file format (RSOB)
+- fixed problem with vertical stripes with 020-version
+- fixed problem with screen update
+- coordinate display even if no object is translated
+- focal distance of camera can automatically be set to camera-track distance
+- added preview to attributes requester
+- improved color selection for rendering preview window
+- added show and save button to registration program
+- added some materials
+- added lens effects (flares, light star)
+Renderer (1.3)
+- recompiled raystorm.library with StormC -> upto 30% faster (68030/881)
+- backdrop pictures are now automatically scaled
+- added lens effects (flare, light star)
+RayStorm Script (1.3)
+- added 'FLARE' and 'STAR'
+
+What's new for version 1.6?
+Scenario (1.1)
+- save and load materials in attribute requester
+- create cube, sphere, plane, tube, cone and torus mesh objects
+- fixed bug with color requesters (colors changed every call)
+- string gadgets now advance to next/prev gadget when return is pressed
+- improved zooming with the mouse
+- added enable button for render area
+- fixed problems with KS-versions less than 3.0 (<39)
+- key 't' opens settings requester
+- added new preview resolutions (NTSC 80x50,PAL 80x64,VGA 80x60)
+- if more than one object is selected the object for attributes can be
+  selected by the browser
+- implemented two browser modes
+- added center view with 'R-Amiga - .'
+- joined settings and transform requester
+- improved object scaling
+- can now scale external objects
+Renderer (1.26)
+- fixed error in marble texture
+- bugfix: had problems with sharp edges of TDDD objects (once again)
+RayStorm Script (1.26)
+- fixed a bug which caused the program to crash on exit
+
+What's new for version 1.5?
+- the RayStorm kernel is now a shared library
+- added support of new TDDD TXT4 chunk for textures from Imagine 4.0
+- changed the world axis orientation (x left, y up, z in)
+- Scenario
+
+What's new for version 1.22?
+- bugfix: had problems with sharp edges of TDDD objects
+- bugfix: altitude brush mapping produced ugly results
+- bugfix: fixed some motion blur bugs
+- added 'SURFACE' to 'LOADOBJ' to replace objects surface with own surface
+- added Datatype support for all commands which load brushes
+
+What's new for version 1.21?
+- TDDD objects are now rotated and scaled relative to axis of first object
+- bugfix: since 1.2 shadows in motion blur scenes were calculated wrong
+- bugfix: in some cases there were vertical and horizontal stripes in
+  rendered pictures
+- bugfix: triangles which were exactly in one plane (XY,XZ,YZ) disapeared
+
+What's new for version 1.2?
+- bugfix 'ANTIALIAS' command: parameter CONTRIB produced error 30
+- bugfix: last line of picture has been always black
+- speed up of complex scenes
+- bugfix: had problems with Imagine 4.0 TDDD objects
+
+What's new for version 1.17?
+- object loading is now done in modules
+- added 3DS module
+- bugfix in TDDD-module: hardness is now used to set REFEXP
+- brushes and textures are no applied to surfaces which lie
+  between the light source and the illuminated surface
+- bugfix antialiasing: there where some bright pixel trash in the picture
+  if antialiasing with fog was used
+- rewrote bump, wood and marble textures
+- global reflections map is now applied in 'QUICK' mode too
+
+What's new for version 1.16?
+
+- bugfix in PNG-module: had problems with palette pictures
+- bugfix motion blur: had a problem with voxel calculations
+- bugfix motion blur: had no motion blur in scenes with planes
+- added TGA-module
+- added 'SOFTSHADOW' to 'DISTRIB'
+- optimized octree (up to 10% faster)
+- added 'FALLOFF' for 'POINTLIGHT' and 'SPOTLIGHT'
+- bugfix: motion blur of brushes
+- TEXTUREPATH is now also used for textures of Imagine objects
+- bugfix can now load plane
+- bugfix can now load multiple planes or perfect spheres
+
+What's new for version 1.15?
+
+- added PNG- and ILBM-modules
+- added radial texture
+- added 'Time spend' and 'Time left'
+
+What's new for version 1.14?
+
+- plane can now be animated
+- changed default gaussian filter with from 1.8 to 1.3
+- changed axis position in flat brush mapping (see RayStorm.guide 'BRUSH'
+  for details)
+
+What's new for version 1.13?
+
+- new path format
+- soft interploation of brush colors
+
+What's new for version 1.12?
+
+- up to two times faster motion blur
+
+What's new for version 1.11?
+
+- Registration programm
+- bugfix: Imagine fog objects can be load
+
+What's new for version 1.1?
+
+- Depth of field
+- Soft shadows
+- Backdrop picture
+- Fog
+- Motion blur (Great!)
+- Specular brush mapping
+- Field rendering
+- New format for vectors and colors
+- 68000 version

@@ -1,0 +1,68 @@
+/***************
+ * NAME:        attrtest.ray
+ * DESCRIPTION: This ARexx-programm demonstrates different attributes
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start 32768'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,80> <0,0,0> <0,1,0> 56.25 45'
+'SETWORLD [0,0,0] [40,40,40]'
+'POINTLIGHT <-10,-10,100> SHADOW'
+
+'NEWSURFACE TEST'
+'AMBIENT [255,0,0]'
+'DIFFUSE [255,0,0]'
+'SPECULAR [255,255,255]'
+'REFEXP 5'
+
+'NEWSURFACE TEST1'
+'AMBIENT [0,255,0]'
+'DIFFUSE [0,100,0]'
+'TRANSPAR [0,155,0]'
+'REFRINDEX 1.33'
+
+'NEWSURFACE TEST2'
+'AMBIENT [0,0,255]'
+'DIFFUSE [0,0,255]'
+'REFLECT [100,100,100]'
+
+'NEWSURFACE TEST3'
+'AMBIENT [255,255,0]'
+'DIFFUSE [255,255,0]'
+'IMTEXTURE checker.itx <0.1,0.1,0.1> <0,0,0> <2,2,2>'
+
+'NEWSURFACE PLANE'
+'SPECULAR [0,0,0]'
+'IMTEXTURE checker.itx <0.1,0.1,0.1> <0,0,0> <5,5,5>'
+
+'SPHERE TEST <-15,15,0>  10'
+'SPHERE TEST1 <-15,-15,0>  10'
+'SPHERE TEST2 <15,-15,0>  10'
+'SPHERE TEST3 <15,15,0>  10'
+
+'PLANE PLANE <0,0,-50> <0,0,1>'
+
+'STARTRENDER MINOBJECTS=4'
+'SAVEPIC attrtest.iff'
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

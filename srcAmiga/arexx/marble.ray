@@ -1,0 +1,50 @@
+/***************
+ * NAME:          marble.ray
+ * DESCRIPTION:   Test of marble texture
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,-25> <0,0,0> <0,1,0> 25 20'
+'SETWORLD [255,0,255] [20,20,20]'
+'POINTLIGHT <-20,20,-40>'
+
+'NEWSURFACE MAP'
+'DIFFUSE [255,255,255]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE marble.itx <0,0,0> <0,0,0> <1,1,1> 150 50 50 0 0 0 0 0 0 7'
+
+'NEWSURFACE MAP1'
+'DIFFUSE [255,255,255]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE marble.itx <0,0,0> <0,0,0> <1,1,1> 0 0 0 0 0 0 255 255 255 7'
+
+'SPHERE MAP <2.5,0,0> 2'
+'SPHERE MAP1 <-2.5,0,0> 2'
+
+'STARTRENDER'
+
+'SAVEPIC marble.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

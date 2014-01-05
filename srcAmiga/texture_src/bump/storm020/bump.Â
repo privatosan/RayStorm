@@ -1,0 +1,77 @@
+Storm Shell Project (0010)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:lib_vecmath"
+"rtxt:"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 1 0 0 0
+C/C++ Optimizer
+4
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 0
+Linker
+0 1 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/texture_src/bump/bump.c"
+"SoftDisk:User/mcpp3/work/octree/texture_src/bump/bump.c"
+Storm Shell Project (Dependencies)
+"bump.o" "bump.debug"
+""
+"bump.o" "bump.debug"
+Section
+1 0 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/texture_src/imtextur.h"
+"SoftDisk:User/mcpp3/work/octree/texture_src/imtextur.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+10 "bump.itx"
+"bump.itx"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"bump.itx.link"
+Section
+10 0 40
+File
+5 "ray:lib_noise/020/noise.lib"
+"ray:lib_noise/020/noise.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "storm020.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

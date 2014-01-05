@@ -1,0 +1,42 @@
+/***************
+ * NAME:          brush.ray
+ * DESCRIPTION:   This ARexx-programm demonstrates brushmapping
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'BRUSHPATH /brushes'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,-5> <0,0,0> <0,1,0> 56.25 45'
+'SETWORLD [0,0,0] [20,20,20]'
+'POINTLIGHT <-5,5,-10>'
+
+'NEWSURFACE MAP'
+'BRUSH earth.png COLOR WRAPXY <0,0,0> <0,0,0> <.1,.1,.1>'
+
+'SPHERE MAP <0,0,0> 1'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC brush.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

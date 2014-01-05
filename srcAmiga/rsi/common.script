@@ -1,0 +1,8 @@
+lha a ram:rsi.lha actor.cpp box.cpp brush.cpp camera.cpp common.cpp cone.cpp csg.cpp cylinder.cpp FLARES.CPP global.cpp htexture.cpp
+lha a ram:rsi.lha lib.cpp light.cpp list.cpp object.cpp objhand.cpp octree.cpp param.cpp plane.cpp polysolv.cpp rsi.cpp
+lha a ram:rsi.lha sor.cpp sphere.cpp star.cpp surface.cpp texture.cpp triangle.cpp voxel.cpp world.cpp actor.h box.h
+lha a ram:rsi.lha brush.h camera.h color.h common.h cone.h csg.h cylinder.h error.h fileutil.h FLARES.H global.h htexture.h
+lha a ram:rsi.lha intersec.h lib.h light.h list.h logo.h object.h objhand.h objlink.h octree.h param.h plane.h polysolv.h
+lha a ram:rsi.lha rsi.h sor.h sphere.h star.h stats.h surface.h texture.h triangle.h typedefs.h voxel.h world.h fileutil.c context.cpp
+lha a ram:rsi.lha context.h
+

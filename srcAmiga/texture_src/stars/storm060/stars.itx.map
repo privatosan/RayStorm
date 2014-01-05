@@ -1,0 +1,27 @@
+No Global M68K Construktors
+No Global M68K Destruktors
+No Global PPC Construktors
+No Global PPC Destruktors
+				M68K Code
+
+
+			Hunk #0 ( Far Public ) 132 Bytes (0x84)
+                         texture_init__j = 0 (0x0) File SoftDisk:User/mcpp3/work/octree/texture_src/stars/storm060/stars.o
+           fwork__PfP06_patchP06VECTORPf = 74 (0x4A) File SoftDisk:User/mcpp3/work/octree/texture_src/stars/storm060/stars.o
+
+				PowerPC Code
+
+
+			Hunk #0 ( Far Public ) 132 Bytes (0x84)
+
+				Data
+
+
+			Hunk #1 ( Far Public ) 240 Bytes (0xF0)
+                               _infotext = 0 (0x0) File SoftDisk:User/mcpp3/work/octree/texture_src/stars/storm060/stars.o
+                              _infoflags = 68 (0x44) File SoftDisk:User/mcpp3/work/octree/texture_src/stars/storm060/stars.o
+                                 _ttable = 208 (0xD0) File SoftDisk:User/mcpp3/work/octree/texture_src/stars/storm060/stars.o
+
+				BSS
+
+				END

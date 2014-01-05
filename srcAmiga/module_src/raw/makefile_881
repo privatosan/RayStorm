@@ -1,0 +1,15 @@
+881/raw: 881/raw.o 881/lowlevel.o 881/mathdefs.o 881/vecmath.o
+	mcppc 881/raw.o 881/lowlevel.o 881/mathdefs.o 881/vecmath.o -o 881/raw -l amiga
+
+881/raw.o: raw.cpp raw.h
+	mcppc -c raw.cpp
+
+881/lowlevel.o:
+	acom:oma rsi:lowlevel.asm -m -o 881/lowlevel.o
+
+881/mathdefs.o: rsi:mathdefs.cpp rsi:mathdefs.h rsi:typedefs.h
+	mcppc -c rsi:mathdefs.cpp
+
+881/vecmath.o: rsi:mathdefs.h rsi:typedefs.h rsi:vecmath.cpp rsi:vecmath.h
+	mcppc -c rsi:vecmath.cpp
+

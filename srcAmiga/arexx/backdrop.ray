@@ -1,0 +1,44 @@
+/***************
+ * NAME:          backdrop.ray
+ * DESCRIPTION:   Test of backdroppicture
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'BRUSHPATH /brushes'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,-5> <0,0,0> <0,1,0> 45 36'
+'SETWORLD [0,0,0] [20,20,20] BACKDROP=earth.png'
+'POINTLIGHT <-5,5,-10> [255,255,255]'
+
+'NEWSURFACE MAP'
+'BRUSH eight_brush.png COLOR FLAT <0,0,0> <0,0,0> <1,1,1>'
+
+'SPHERE MAP <0,0,0> 1'
+
+'ANTIALIAS 2'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC backdrop.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

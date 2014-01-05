@@ -1,0 +1,6 @@
+lha a ram:script.lha interface.cpp interface.h csgstack.cpp csgstack.h itemlist.cpp itemlist.h
+
+lha a ram:plugins.lha -r plugins/#?.cpp plugins/#?.c plugins/#?.h
+
+lha a ram:textures.lha -r texture_src/#?.cpp texture_src/#?.c texture_src/#?.h
+

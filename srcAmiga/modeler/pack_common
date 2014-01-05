@@ -1,0 +1,8 @@
+lha a ram:scenario.lha box.cpp brush.cpp camera.cpp cone.cpp csg.cpp cylinder.cpp display.cpp errors.cpp flares.cpp
+lha a ram:scenario.lha globals.cpp iff_util.cpp light.cpp list.cpp mesh.cpp mouse.cpp object.cpp objhand.cpp plane.cpp
+lha a ram:scenario.lha prefs.cpp preview.cpp project.cpp sci.cpp sor.cpp sphere.cpp star.cpp surface.cpp texture.cpp
+lha a ram:scenario.lha undo.cpp view.cpp
+lha a ram:scenario.lha box.h brush.h camera.h color.h cone.h csg.h cylinder.h display.h errors.h flares.h gfx2d.h
+lha a ram:scenario.lha globals.h iff_util.h light.h list.h magic.h mesh.h mouse.h object.h objhand.h plane.h
+lha a ram:scenario.lha prefs.h preview.h project.h rscn.h sci.h sor.h sphere.h star.h surface.h texture.h typedefs.h
+lha a ram:scenario.lha undo.h utility.h view.h

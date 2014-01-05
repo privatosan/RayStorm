@@ -1,0 +1,59 @@
+/***************
+ * NAME:        logo.ray
+ * DESCRIPTION: Renders the RayStorm logo
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start 10000'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+'OBJECTPATH /objects'
+'BRUSHPATH /brushes'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,70,1000> <-0.1,70.1,-100> <0,1,0> 26.7 20'
+'SETWORLD [0,0,0] [40,40,40] RANDJIT'
+'POINTLIGHT <-100,100,500> [200,200,200] 30 SHADOW'
+'POINTLIGHT <-200,200,200> [100,100,100]'
+'POINTLIGHT <50,50,150> [100,100,150] FALLOFF=200'
+'POINTLIGHT <-50,-50,150> [240,50,0] FALLOFF=200'
+
+'NEWSURFACE earth'
+'DIFFUSE [240,200,50]'
+'SPECULAR [255,210,60]'
+'REFEXP 30'
+'BRUSH earth_bump.png FILTER WRAPXY <0,95,0> <0,60,0> <1,1,1> SOFT'
+'BRUSH earth_refl.png REFLECT WRAPXY <0,95,0> <0,60,0> <1,1,1> SOFT'
+
+'SPHERE earth <0,95,0> 50'
+
+'NEWSURFACE back'
+'DIFFUSE [200,200,200]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE marble.itx <0,0,-50> <0,0,0> <50,50,50> 190 180 175 0 0 0 0 0 0 6'
+'BRUSH logo.png ALTITUDE FLAT <-50,0,-50> <0,0,0> <100,100,100> REPEAT SOFT'
+
+'PLANE back <0,0,-50> <0,0,1>'
+
+'LOADOBJ logo.iob'
+
+'STARTRENDER'
+'SAVEPIC logo.iff'
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

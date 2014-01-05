@@ -1,0 +1,162 @@
+;**************************************************************************
+; Install_RayStorm - RayStorm installation script for Installer
+;
+; Copyright © 1995-97 Andreas Heumann
+;
+; $Id: Install_RayStorm,v 2.3 05/09/1999
+;
+;     Installer and Installer project icon
+;     (c) Copyright 1991-93 Commodore-Amiga, Inc.  All Rights Reserved.
+;     Reproduced and distributed under license from Commodore.
+;
+;     INSTALLER SOFTWARE IS PROVIDED "AS-IS" AND SUBJECT TO CHANGE;
+;     NO WARRANTIES ARE MADE.  ALL USE IS AT YOUR OWN RISK.  NO LIABILITY
+;     OR RESPONSIBILITY IS ASSUMED.
+;
+;**************************************************************************
+(welcome "Welcome to the " @app-name " installation.\n")
+
+; "Needs"
+(set need-version 37)  ; version of operating system need by RayStorm
+
+; The source directory name
+(set #source-dir
+ (if (= 1 (exists @icon))
+  (pathonly (expandpath @icon))
+  (expandpath @icon)
+ )
+)
+
+(set #pref-file "prefs/scenario.prf")
+
+;**************************************************************************
+; Select destination directory for the installation. We suggest the user
+; to install to the place from where the installer was started. This is
+; since normally this software will be unarchived to its proper location
+; and the files don't have to be copied any more.
+;**************************************************************************
+(procedure P_select-destination-directory
+ (transcript "Selecting destination directory for the installation.")
+ (while
+  (
+   (set @default-dest
+    (askdir
+     (prompt "Select directory where to install " @app-name ".\n"
+             "You have to create a directory for " @app-name " yourself."
+     )
+     (help "Here you can specify location where to install " @app-name ".\n"
+     )
+     (newpath)
+     (default #source-dir)
+    )
+   )
+   (if (= 2 (exists @default-dest))
+    0
+    (makedir @default-dest
+     (infos)
+    )
+   )
+  )
+ )
+)
+
+;**************************************************************************
+; ask if scenario.prf should be copied
+;**************************************************************************
+(procedure P_copy-prefs
+ (if (= 1 (exists (tackon @default-dest "prefs/scenario.prf")))
+   (if(askbool
+         (prompt "You already have a preferences file ('prefs/scenario.prf').\n"
+                 "Should I overwrite it?\n")
+         (help "The file 'prefs/scenario.prf' contains the preferences of Scenario.")
+         (default 0)
+      )
+      (copyfiles
+         (source #pref-file)
+         (dest (tackon @default-dest "prefs"))
+         (newname "scenario.prf")
+      )
+   )
+   (copyfiles
+      (source #pref-file)
+      (dest (tackon @default-dest "prefs"))
+      (newname "scenario.prf")
+   )
+ )
+)
+
+;**************************************************************************
+; Installatation sequence
+;**************************************************************************
+(message "This installation script will overwrite an older installed version "
+   "of " @app-name ". Please make a backup of any files you have changed.\n\n"
+   "Please remember during this installation:\n"
+   "Read the instructions provided behind the \"Help\" "
+   "buttons, if you are not absolutely sure what you are doing.\n"
+)
+
+(complete 00)
+(transcript "On making " @app-name " 2.3.")
+(P_select-destination-directory)
+
+(complete 10)
+(working "Uncompressing common files")
+(run (cat "lha x common.lha \"" @default-dest "/\" #?"))
+
+(complete 50)
+(working "Uncompressing executable files")
+(run (cat "lha x exe.lha \"" @default-dest "/\" #?"))
+
+(complete 80)
+(if (= 1 (exists (tackon @default-dest "prefs/res.dat")))
+   (if(askbool
+         (prompt "You already have a file with predefined resolutions ('prefs/res.dat').\n"
+                 "Should I overwrite it?\n")
+         (help "The file 'prefs/res.dat' is an ASCII-file with predefined resolutions.")
+         (default 0)
+      )
+      (copyfiles
+         (source "prefs/res.dat")
+         (dest (tackon @default-dest "prefs"))
+      )
+   )
+   (copyfiles
+      (source "prefs/res.dat")
+      (dest (tackon @default-dest "prefs"))
+   )
+)
+
+(complete 85)
+(select
+   (askchoice
+      (prompt "Which settings will you use?\n")
+      (help "The preferneces file 'prefs/scenario.prf' is copied.\n"
+         "You can change the settings in Scenario whenever you want.")
+      (default 1)
+      (choices "16 colors" "256+ color" "don't copy")
+   )
+   (
+      (set #pref-file "prefs/scenario_16.prf")
+      (P_copy-prefs)
+   )
+   (
+      (set #pref-file "prefs/scenario_256.prf")
+      (P_copy-prefs)
+   )
+)
+
+(complete 90)
+(startup @app-name
+   (prompt "An assign need to be added to the \"S:user-startup\" so that " @app-name " will find it's libraries.\n"
+           "Should I add this assign for you?")
+   (help "If you skip this you have to copy \"" (tackon @default-dest "libs/raystorm.library")
+      "\" to \"libs:\" or execute this command: \"assign libs: " (tackon @default-dest "libs") " add\".")
+   (command "assign libs: " (tackon @default-dest "libs ") " add\n")
+)
+(message "Installation of " @app-name " done.\n")
+
+(complete 100)
+
+;;; All done!
+
+; EOF

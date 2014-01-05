@@ -1,0 +1,38 @@
+/***************
+ * NAME:          randomsph.ray
+ * DESCRIPTION:   This ARexx-programm demonstrates random colors of faces
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'OBJECTPATH /objects'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,300> <0,0,0> <0,1,0> 25 20'
+'POINTLIGHT <-10,-10,100>'
+
+'LOADOBJ randomsphere.iob'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC randomsph.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

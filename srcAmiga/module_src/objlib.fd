@@ -1,0 +1,7 @@
+##base _ObjHandBase
+##bias 30
+##public
+objInit()()
+objRead()()
+objCleanup()()
+##end

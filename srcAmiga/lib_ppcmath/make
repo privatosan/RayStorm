@@ -1,0 +1,5 @@
+stormc:stormsys/pasm sqrt_asm.pasm -O 2 -o sqrt_asm.o
+stormc:stormsys/pasm pow_asm.pasm -O 2 -o pow_asm.o
+stormc:stormsys/pasm exp_asm.pasm -O 2 -o exp_asm.o
+stormc:stormsys/pasm trig_asm.pasm -O 2 -o trig_asm.o
+stormc:stormsys/pasm atan_asm.pasm -O 2 -o atan_asm.o

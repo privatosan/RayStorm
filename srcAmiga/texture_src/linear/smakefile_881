@@ -1,0 +1,8 @@
+all: 881/linear.itx
+
+881/linear.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h linear.c
+	sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ data=far code=far cpu=68020 math=68881 nostartup nostackcheck linear.c objname 881/linear.o
+
+881/linear.itx: 881/linear.o
+	sc data=far code=far cpu=68020 math=68881 nostartup nostackcheck link 881/linear.o to 881/linear.itx
+

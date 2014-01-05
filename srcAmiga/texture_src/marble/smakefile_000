@@ -1,0 +1,11 @@
+all: 000/marble.itx
+
+000/marble.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h marble.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ data=far code=far cpu=68000 math=s nostartup nostackcheck marble.c objname 000/marble.o
+
+000/noise.o: rtxt:noise.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __NOISE__ define __AMIGA__ data=far code=far cpu=68000 math=s nostartup nostackcheck rtxt:noise.c objname 000/noise.o
+
+000/marble.itx: 000/marble.o 000/noise.o
+        sc data=far code=far cpu=68000 math=s nostartup nostackcheck link 000/marble.o 000/noise.o to 000/marble.itx
+

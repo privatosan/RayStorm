@@ -1,0 +1,46 @@
+/***************
+ * NAME:        supersample.ray
+ * DESCRIPTION: Adaptive supersampling
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 128 128'
+'SETCAMERA <0,0,-300> <0,0,0> <0,1,0> 45 45'
+'SETWORLD [0,0,0] [100,100,100]'
+'POINTLIGHT <0,0,-200>'
+
+'NEWSURFACE MAP1'
+'IMTEXTURE checker.itx <0,1,0> <0,0,1> <32,32,32> 255 255 255'
+'SPECULAR [255,255,255]'
+'DIFFUSE [255,0,0]'
+
+'SPHERE MAP1 <0,0,0> 50'
+
+'ANTIALIAS 2'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC supersample.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

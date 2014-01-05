@@ -1,0 +1,13 @@
+; This script is used to start RayStorm Script
+; with a defineable stack size, because it's impossible
+; to set the stack and start it from a ARexx script.
+; So call this script if you want to start RayStorm
+; Script with an other stack size than the default one
+; from the shell.
+; 05.04.1997 Andreas Heumann
+
+.KEY STACKSIZE
+.DEF STACKSIZE 4096
+stack <STACKSIZE>
+run /RayStorm
+stack 4096

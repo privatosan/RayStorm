@@ -1,0 +1,373 @@
+No Global M68K Construktors
+Global M68K Destruktors
+	_EXIT_4_free
+No Global PPC Construktors
+No Global PPC Destruktors
+
+M68K Code
+
+
+  Hunk #0 ( Far Public ) 35852 Bytes (0x8c0c)
+  texture_init(long) = 0 (0x0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+    IMPORTS
+      _InitNoise type M68k Code
+        at @+96 Width 32 Bits
+      _InitModules type M68k Code
+        at @+18 Width 32 Bits
+  Cleanup() = 120 (0x78) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+    IMPORTS
+      _CleanupNoise type M68k Code
+        at @+2 Width 32 Bits
+      _CleanupModules type M68k Code
+        at @+8 Width 32 Bits
+  _exit = 134 (0x86) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+  fwork(float *,_patch *,VECTOR *,float *) = 136 (0x88) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+    IMPORTS
+      _fBm__r type M68k Code
+        at @+130 Width 32 Bits
+      _exp__r type M68k Code
+        at @+88 Width 32 Bits
+      _fabs__r type M68k Code
+        at @+162 Width 32 Bits
+  _InitNoise = 1516 (0x5ec) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/060/noise.lib
+    IMPORTS
+      _srand type M68k Code
+        at @+1612 Width 32 Bits
+      _rand type M68k Code
+        at @+1628 Width 32 Bits
+      _malloc type M68k Code
+        at @+1534 Width 32 Bits
+        at @+1564 Width 32 Bits
+  _CleanupNoise = 1756 (0x6dc) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/060/noise.lib
+    IMPORTS
+      _free type M68k Code
+        at @+1776 Width 32 Bits
+        at @+1792 Width 32 Bits
+  _Noise__r = 1804 (0x70c) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/060/noise.lib
+    IMPORTS
+      _floor__r type M68k Code
+        at @+1876 Width 32 Bits
+        at @+1896 Width 32 Bits
+        at @+1916 Width 32 Bits
+  _fBm__r = 3440 (0xd70) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/060/noise.lib
+    IMPORTS
+      _pow__r type M68k Code
+        at @+3552 Width 32 Bits
+      _Noise__r type M68k Code
+        at @+3518 Width 32 Bits
+  _malloc = 3688 (0xe68) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+    IMPORTS
+      _SysBase type BSS
+        at @+3724 Width 32 Bits
+        at @+3828 Width 32 Bits
+        at @+3890 Width 32 Bits
+        at @+3932 Width 32 Bits
+        at @+3954 Width 32 Bits
+        at @+4018 Width 32 Bits
+        at @+4030 Width 32 Bits
+  _free = 4108 (0x100c) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+    IMPORTS
+      _SysBase type BSS
+        at @+4154 Width 32 Bits
+        at @+4190 Width 32 Bits
+        at @+4204 Width 32 Bits
+        at @+4220 Width 32 Bits
+        at @+4258 Width 32 Bits
+  _EXIT_4_free = 4304 (0x10d0) unused, maybe local
+    File SoftDisk:User/StormC/Lib/storm020.lib
+    IMPORTS
+      _SysBase type BSS
+        at @+4346 Width 32 Bits
+        at @+4360 Width 32 Bits
+        at @+4380 Width 32 Bits
+        at @+4406 Width 32 Bits
+  _rand = 4426 (0x114a) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _srand = 4472 (0x1178) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _floor__r = 4484 (0x1184) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _pow__r = 4508 (0x119c) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  facoss::_060LSP() = 4548 (0x11c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _acos__r = 4556 (0x11cc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  facosx::_060LSP() = 4564 (0x11d4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fasins::_060LSP() = 4572 (0x11dc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fasind::_060LSP() = 4580 (0x11e4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _asin__r = 4580 (0x11e4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fasinx::_060LSP() = 4588 (0x11ec) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatans::_060LSP() = 4596 (0x11f4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatand::_060LSP() = 4604 (0x11fc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _atan__r = 4604 (0x11fc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatanx::_060LSP() = 4612 (0x1204) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatanhs::_060LSP() = 4620 (0x120c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatanhd::_060LSP() = 4628 (0x1214) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fatanhx::_060LSP() = 4636 (0x121c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcoss::_060LSP() = 4644 (0x1224) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcosd::_060LSP() = 4652 (0x122c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _cos__r = 4652 (0x122c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcosx::_060LSP() = 4660 (0x1234) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcoshs::_060LSP() = 4668 (0x123c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcoshd::_060LSP() = 4676 (0x1244) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _cosh__r = 4676 (0x1244) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fcoshx::_060LSP() = 4684 (0x124c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxs::_060LSP() = 4692 (0x1254) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxd::_060LSP() = 4700 (0x125c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _exp__r = 4700 (0x125c) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxx::_060LSP() = 4708 (0x1264) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxm1s::_060LSP() = 4716 (0x126c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxm1d::_060LSP() = 4724 (0x1274) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fetoxm1x::_060LSP() = 4732 (0x127c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetexps::_060LSP() = 4740 (0x1284) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetexpd::_060LSP() = 4748 (0x128c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetexpx::_060LSP() = 4756 (0x1294) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetmans::_060LSP() = 4764 (0x129c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetmand::_060LSP() = 4772 (0x12a4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fgetmanx::_060LSP() = 4780 (0x12ac) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog10s::_060LSP() = 4788 (0x12b4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog10d::_060LSP() = 4796 (0x12bc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _log10__r = 4796 (0x12bc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog10x::_060LSP() = 4804 (0x12c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog2s::_060LSP() = 4812 (0x12cc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog2d::_060LSP() = 4820 (0x12d4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flog2x::_060LSP() = 4828 (0x12dc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flogns::_060LSP() = 4836 (0x12e4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flognd::_060LSP() = 4844 (0x12ec) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _log__r = 4844 (0x12ec) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flognx::_060LSP() = 4852 (0x12f4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flognp1s::_060LSP() = 4860 (0x12fc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flognp1d::_060LSP() = 4868 (0x1304) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  flognp1x::_060LSP() = 4876 (0x130c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmods::_060LSP() = 4884 (0x1314) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmodd::_060LSP() = 4892 (0x131c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _fmod__r = 4892 (0x131c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmodx::_060LSP() = 4900 (0x1324) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  frems::_060LSP() = 4908 (0x132c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fremd::_060LSP() = 4916 (0x1334) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fremx::_060LSP() = 4924 (0x133c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fscales::_060LSP() = 4932 (0x1344) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fscaled::_060LSP() = 4940 (0x134c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fscalex::_060LSP() = 4948 (0x1354) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsins::_060LSP() = 4956 (0x135c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsind::_060LSP() = 4964 (0x1364) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _sin__r = 4964 (0x1364) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsinx::_060LSP() = 4972 (0x136c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsincoss::_060LSP() = 4980 (0x1374) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsincosd::_060LSP() = 4988 (0x137c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsincosx::_060LSP() = 4996 (0x1384) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsinhs::_060LSP() = 5004 (0x138c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsinhd::_060LSP() = 5012 (0x1394) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _sinh__r = 5012 (0x1394) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsinhx::_060LSP() = 5020 (0x139c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftans::_060LSP() = 5028 (0x13a4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftand::_060LSP() = 5036 (0x13ac) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _tan__r = 5036 (0x13ac) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftanx::_060LSP() = 5044 (0x13b4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftanhs::_060LSP() = 5052 (0x13bc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftanhd::_060LSP() = 5060 (0x13c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _tanh__r = 5060 (0x13c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftanhx::_060LSP() = 5068 (0x13cc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftentoxs::_060LSP() = 5076 (0x13d4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftentoxd::_060LSP() = 5084 (0x13dc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftentoxx::_060LSP() = 5092 (0x13e4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftwotoxs::_060LSP() = 5100 (0x13ec) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftwotoxd::_060LSP() = 5108 (0x13f4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  ftwotoxx::_060LSP() = 5116 (0x13fc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fabss::_060LSP() = 5124 (0x1404) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fabsd::_060LSP() = 5132 (0x140c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _fabs__r = 5132 (0x140c) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fabsx::_060LSP() = 5140 (0x1414) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fadds::_060LSP() = 5148 (0x141c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  faddd::_060LSP() = 5156 (0x1424) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  faddx::_060LSP() = 5164 (0x142c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fdivs::_060LSP() = 5172 (0x1434) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fdivd::_060LSP() = 5180 (0x143c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fdivx::_060LSP() = 5188 (0x1444) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fints::_060LSP() = 5196 (0x144c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fintd::_060LSP() = 5204 (0x1454) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fintx::_060LSP() = 5212 (0x145c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fintrzs::_060LSP() = 5220 (0x1464) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fintrzd::_060LSP() = 5228 (0x146c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fintrzx::_060LSP() = 5236 (0x1474) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmuls::_060LSP() = 5244 (0x147c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmuld::_060LSP() = 5252 (0x1484) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fmulx::_060LSP() = 5260 (0x148c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fnegs::_060LSP() = 5268 (0x1494) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fnegd::_060LSP() = 5276 (0x149c) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fnegx::_060LSP() = 5284 (0x14a4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsqrts::_060LSP() = 5292 (0x14ac) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsqrtd::_060LSP() = 5300 (0x14b4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _sqrt__r = 5300 (0x14b4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsqrtx::_060LSP() = 5308 (0x14bc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsubs::_060LSP() = 5316 (0x14c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsubd::_060LSP() = 5324 (0x14cc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  fsubx::_060LSP() = 5332 (0x14d4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  facosd::_060LSP() = 4556 (0x11cc) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _060FPLSP_TOP = 4548 (0x11c4) unused, maybe local
+    File SoftDisk:User/StormC/StormSYS/lib/math060.lib
+  _InitModules = 35728 (0x8b90) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/stormcstartup020.lib
+    IMPORTS
+      ___init_table68k type Data
+        at @+35756 Width 32 Bits
+        at @+35768 Width 32 Bits
+  _CleanupModules = 35796 (0x8bd4) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/stormcstartup020.lib
+    IMPORTS
+      ___exit_table68k type Data
+        at @+35814 Width 32 Bits
+        at @+35826 Width 32 Bits
+
+PowerPC Code
+
+
+Data
+
+
+  Hunk #1 ( Far Public ) 776 Bytes (0x308)
+  _infotext = 0 (0x0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+  _infoflags = 68 (0x44) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+  _ttable = 208 (0xd0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+  ___init_table68k = 760 (0x2f8) referenced 2 times
+    File <Internal Assembled>
+  ___exit_table68k = 768 (0x300) referenced 1 times
+    File <Internal Assembled>
+    IMPORTS
+      _EXIT_4_free type M68k Code
+        at @+768 Width 32 Bits
+
+BSS
+
+
+  Hunk #2 ( Far Public ) 16 Bytes (0x10)
+  _SysBase = 0 (0x0) referenced 3 times
+    File SoftDisk:User/mcpp3/work/octree/texture_src/fire/storm060/fire.o
+
+END

@@ -1,0 +1,369 @@
+
+Animation Language Specification
+first release: v0.1 14.08.1995
+written by Mike Hesser
+---------------------------------------------------------------------------------------------
+
+ not clear:  - interaction between processes
+	     - object hierarchie
+	     - definition of world object unnecessary?
+	     - synchronizing, time control
+	     - name of the language
+	     - global structure of a program ( main() like in C...)
+	     - animation control
+	     - subroutines
+	     - different length of vectors allowed ?
+	     - preprocessor directives like #include ?		
+
+
+******************************* Chapter I - Introduction and Examples ****************************
+
+Introduction
+
+This description is about the animation language AL. The goal of AL was to have a powerful tool
+for creating complex animations with a high flexibility. The control commands and parts
+of the syntax are similar to the C++ language. Note that this language is an interpreter,
+so syntax errors can be found on runtime!
+To give you a quick overview of the language and its possibilities we start with an example
+program. Basic knowledge of the C++ language is assumed.
+
+/* Example program. Comments are identical to the C++ convention
+*/
+
+WORLD world;		       // creating an object is like in C
+SCREEN screen;
+
+screen.Resolution(1024,768);  // sets output pictures to a resolution of 1024x768	
+screen.Depth(24);	      // True color output	
+screen.Output("c:\animation\anim");  // specify output file
+
+world.Ambient(<0.5,0.2,0.2>); // you can also use integer numbers from 0 to 255 for the r,g,b values
+world.TimeDelta(1/25);	      // time step in seconds	
+
+CAMERA cam1, 
+       cam2(<10,10,10>,<0,1,0>);  // new objects are initialized with default parameters, 
+				  //  but you can give the constructor some initial parameter
+
+POINTLIGHT plight;
+
+world.Add(cam2);
+world.Add(plight);		  // Otherwise you wouldn't see anything!
+screen.Camera(cam2);
+
+// Expressions in "<>" like <1,2,3> are VECTORS. Color values or coordinates are also vectors
+
+// let's create a sphere bouncing on a plane (checker of course, what else?)
+// this is one of three versions, let's begin with the complex way
+
+SPHERE sphere;
+PLANE plane(<0,0,0>,<0,1,0>);  // plane with position <0,0,0> and normal <0,1,0>
+
+world.Add(sphere);	       // let sphere and plane appear in the world (add automaticly enables the objects)	
+world.Add(plane);	       // "Add"	adds the object to the object list in the world
+
+plane.Texture(CHECKER);	       // Constants like CHECKER are standard and don't have to be included	
+sphere.Ambient(RED);	       // RED stands for a vector	
+
+// the definitions above apply for all examples
+
+// first try
+NUMBER y = 100, g = 9.81, dt = 0.1, v = 0;   	
+	
+while (TRUE)			// repeat infinite times
+{
+	y = y - v*dt;	 	
+	v = v + g*dt;
+	sphere.Translation = <0,y,0>;
+	if (y <= 0.5)
+	v = -v;			
+	world.Update;		// the update command is necessary to render the picture
+}
+
+
+// the first try was a bit hard to program. Now let's take our look to a more comfortable
+// way to solve the 'bouncing ball' problem
+
+// second try
+
+sphere.Translation(<0,100,0>)		// move sphere to initial position				 
+sphere.Acceleration(<0,-9.81,0>);	// the interpreter cares about the acceleration
+
+while (TRUE)
+{
+	if (sphere.Translation.y <= 0.5)
+		sphere.Velocity = <@,-@,@>; // * takes over the old value
+
+	// or sphere.Velocity.y = -sphere.Velocity.y	
+
+	// note that every command is a function
+	// The expression "sphere.Translation(<1,2,3>)" returns the vector <1,2,3> !
+	world.Update;
+}
+
+// This was an improvement, but it is still unflexible. You have to think about the
+// height at which the ball should bounce back, and what is the reaction of the ball
+// when the plane's normal is not <0,1,0>?
+// The third example will show you a way to manage that all
+
+sphere.Mass(1);			// give sphere a mass, note that the mass can be negative
+ 			        // note that objects must have mass because otherwise 
+				   force fields have no effect
+
+FFHOMOGENE forcefield(<0,-9.81,0>);	// create a force field object (type homogene)
+world.Add(forcefield);			// and apply it to the world
+sphere.Translation(<0,100,0>)		// move sphere to initial position
+
+sphere.OnCollision (plane)		// the OnCollision command invokes the standard procedure, when detecting
+	standard;			// a collission between the objects "sphere" and "plane" (for further information
+					// refer to Chapter II - Commands
+
+while (TRUE)
+	world.Update;			// that's all
+
+// with every time step, the language updates all objects in the scene
+
+
+
+					Chapter II - Commands
+
+This is a list of all commands of AL
+
+ for(<initialization>; <test expression>; <update expression>)
+	<body>
+ The for command is the same as in C
+
+
+ if (test expression)
+	<body>
+
+ or
+
+ if (test expression)
+	<body>
+ else
+	<body>
+ 
+ while (test expression)
+	<body>
+
+ An animation can be very complex. Many things can move around independent 
+ from another and everything at the same time. The <process> command allows
+ you to define a subroutine which is executed parallel to other processes.
+ Every process describes an animation, and every process has an Update command,
+ which is necessary to let AL give the control to other processes.
+ If a process has calculated the new positions of its objects it must invoke
+ the Update command, so another process has the chance to make its update.
+
+ A process can be started, paused or stopped.
+
+ process
+   <body>
+
+ A body can either consist of only one command with a semicolon at the end
+ or of several commands enclosed in { } (not followed by a semicolon)
+
+ AL is an object oriented language. Like in C++ you can define a new class or 
+ you can inherit a given class to define a new one.
+
+ class BALL::PHYSIC
+ {
+	Bounce();
+ }
+
+
+******************************************* Chapter III - operators ***********************************************
+
+ AL knows most of the operators defined in C
+
+ All mathematical operators such as +,-,*,/,sin,cos,pow,... plus operators to handle with
+ vectors.
+ Things like this are allowed: 4.2*<sin(a),0,<1,2,3>*<3,2,1>>
+
+ Vector operators: Cross(VECTOR, VECTOR), Norm(VECTOR)
+
+ boolean operators:
+ || -> OR
+ && -> AND
+ !  -> NOT
+
+ The @ operator stands for the old value
+ i.e.
+	VECTOR v = <1,2,3>
+	v = <@,@,@>		// v still has the value <1,2,3>
+	v = <@,5,@>		// v has the value <1,5,3>
+	v = <@*5,@+1,1>		// v has the value <5,6,1>
+
+ Index operator ..
+
+ If you have an array of objects, the index operator is useful to
+ reach a complete intervall.
+
+ i.e.
+
+	SPHERE spheres[50]		// this creates 50 spheres with index from 0 to 49
+	spheres[0..9].Ambient(RED)	// the first ten spheres have the color red
+	spheres[i..j].Mass(i+j)		// the intervall borders may be variables
+	spheres.Enable();		// all fifty spheres are visible
+	spheres.Ambient(BLUE);		// all fifty spheres get BLUE
+	
+
+You can define arrays in the usual way
+
+	VECTOR splinecurve[] = {<0,1,2>,cam.Position,<10,10,10>,<20,20,20>}
+
+	Arrays always contain objects. As you see above, also functions can be part of them.
+	You can do following:
+
+	splinecurve[1..2] = sphere.Position;
+
+**************************************** Chapter IV - Classes & Methods *********************************************
+
+
+ AL knows several classes.
+
+ OBJECT, VISOBJECT, WORLD, SCREEN, CAMERA, LIGHT, POINTLIGHT, SPOTLIGHT,
+ FORCEFIELD, FFHOMOGENE, FFCENTRAL, SPLINE
+	
+
+ The base class is called OBJECT
+ All other classes are derived from OBJECT 
+
+
+
+
+
+ OBJECT:
+
+  data
+		VECTOR 	translation;
+		BOOL	enabled;
+
+  methods	VECTOR 	Translation(VECTOR);
+		BOOL	Enable();	
+		BOOL	Disable();
+
+----------------------------------------------------------------------  
+  data
+		VECTOR	rotation;
+		VECTOR	scale;
+
+  methods	VECTOR	Rotation(VECTOR);
+		VECTOR 	Scale(VECTOR);
+----------------------------------------------------------------------
+  PHYSIC	
+
+  data	
+		NUMBER	Mass;
+		VECTOR  Velocity;
+		VECTOR	Acceleration;
+		VECTOR	Spin;
+		VECTOR  SpinAccel;
+		VECTOR	Inertia;
+		VECTOR	Force;
+		VECTOR	Torque;
+  methods
+		VOID	OnCollision(OBJECT);
+----------------------------------------------------------------------
+ WORLD:
+		COLOR	Ambient;
+		COLOR	Background;
+
+  methods	
+		BOOL	Add(OBJECT);  		// Adds an object
+		BOOL	Remove(OBJECT); 	
+		VOID	ForEach(<function>);
+----------------------------------------------------------------------
+  POINTLIGHT
+  data
+		COLOR	Color			// light color
+		BOOL	Shadow			// casting shadows or not ?
+  methods	
+----------------------------------------------------------------------
+ SPOTLIGHT	
+		OBJECT	Reference;
+		VECTOR	PointAt;
+		
+----------------------------------------------------------------------
+ FFHOMOGENE	VECTOR	Direction
+----------------------------------------------------------------------
+ FFCENTRAL
+		NUMBER	Strength;
+
+----------------------------------------------------------------------
+ CAMERA		
+  data	
+		OBJECT	Track;
+		OBJECT	Reference;
+		VECTOR  PointAt;
+		NUMBER  Tilt;
+		NUMBER	HFOV;
+		NUMBER  VFOV;
+		NUMBER	Aperture;
+		NUMBER 	FocalDist;
+		
+  You can let the camera track on a certain object. The camera will
+  always look at that object. In the case you specify a track object,
+  the PointAt coordinate is relative to that object. By giving a Reference
+  object, the camera's position will be always relative to that object.
+----------------------------------------------------------------------
+
+ VISOBJECT is the base class of all visible objects like sphere, plane, meshes, etc.
+
+ VISOBJECT:
+
+  data	
+		COLOR	ambient;
+		COLOR	difftrans;
+		COLOR	diffuse;
+		NUMBER	refexp;
+		COLOR	reflect;
+		NUMBER	refrindex;
+		COLOR	spectrans;
+		COLOR	specular;
+		NUMBER	transattu;
+		NUMBER	transexp
+		NUMBER	transluc;
+		NUMBER	transpar;
+		BRUSH	brush;
+		IMTEXT	imtext;
+  methods
+		...
+-----------------------------------------------------------------------
+SPHERE
+-----------------------------------------------------------------------
+PLANE		VECTOR	Normal
+-----------------------------------------------------------------------
+IMOBJ		
+		BOOL	Load(STRING)
+-----------------------------------------------------------------------
+SPLINE
+	
+  Let's suppose you want to move a sphere on a certain curve through the world.
+  One way to do this might be defining an array of coordinates which keeps every
+  single position of the sphere for each frame. This would be a hard work and would
+  be very unflexible, because a change of the path would force you to change many
+  coordinates. Splines are very useful to define paths. You just have to
+  define several control points, which roughly determine a smooth curve through space.
+  A spline can be a closed curve if you specify .Closed or can consist of 
+  straight lines by specifing .Straight.
+  To get a certain point on a spline curve, you must type .Position(param) 
+  param is a parameter from 0 to 1 meaning from the beginning till the end of the curve.
+  To get the point in the middle of the spline you just type .Position(0.5)  
+  Usually you need splines to move cameras around smoothly.
+
+  data	
+		VECTOR  Curve[];
+		VECTOR	Position(NUMBER);	
+		BOOL	Straight;
+		BOOL	Closed;
+		
+  i.e.
+		SPHERE	sphere;
+		SPLINE  spline;
+		
+		spline.Curve = {<0,i*10,2>,sphere.Translation,<10,10,10>,<20,20,20>};  // four control points
+		for (i = 0; i < 1; i = i + 0.1)
+			sphere.Translation = spline.Position(i);
+		
+  Note! The control points of a spline can be functions, they don't need to be constant. Every time you use .Position,
+  all control points are evaluated.

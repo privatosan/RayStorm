@@ -1,0 +1,44 @@
+/***************
+ * NAME:          im_texture.ray
+ * DESCRIPTION:   This ARexx-programm demonstrates imagine texture mapping
+ * AUTHORS:       Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH imagine:textures'
+
+'SETSCREEN 100 100'
+'SETCAMERA <0,0,-150> <0,0,0> <0,1,0> 45 45'
+'SETWORLD [0,0,0] [100,100,100]'
+'POINTLIGHT <-100,100,-150>'
+
+'NEWSURFACE MAP'
+'IMTEXTURE frogskin.itx <0,0,0> <0,0,0> <32,32,32>'
+'SPECULAR [0,0,0]'
+'DIFFUSE [255,255,0]'
+
+'PLANE MAP <0,0,0> <0,0,1>'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC im_texture.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

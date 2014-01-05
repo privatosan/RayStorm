@@ -1,0 +1,33 @@
+#--- Amiga PowerUP---
+# GCC Makefile
+
+PPCCC = ppc-amigaos-gcc
+PPCCOPTS = -v -O3 -funroll-loops -fomit-frame-pointer
+PPCCFLAGS = -D__PPC__ -D__AMIGA__ $(PPCCOPTS)
+PPCPATH = -I ade:os-include -I ray:lib_vecmath -I ray:lib_noise -I ray:module_src -I ade:m68k-amigaos/include
+PPCOBJ = actor.oPPC box.oPPC brush.oPPC camera.oPPC cone.oPPC context.oPPC csg.oPPC \
+ cylinder.oPPC flares.oPPC global.oPPC htexture.oPPC light.oPPC list.oPPC object.oPPC \
+ objhand.oPPC octree.oPPC param.oPPC plane.oPPC polysolv.oPPC rsi.oPPC sor.oPPC \
+ sphere.oPPC star.oPPC stats.oPPC surface.oPPC texture.oPPC triangle.oPPC voxel.oPPC \
+ world.oPPC
+
+CC = gcc
+COPTS = -ffast-math -m68881 -m68040 -O3 -funroll-loops -fomit-frame-pointer
+CFLAGS   = $(COPTS)
+PATH  = -I ade:os-include
+
+all:  rsi.elf
+
+%.S: %.cpp
+	$(PPCCC) $(PPCCFLAGS) $(PPCPATH) -S -v -o $@ $<
+
+%.oPPC: %.S
+	ppc-amigaos-gas -o$*.oPPC $<
+
+rsi.elf: ${PPCOBJ}
+	ppc-amigaos-ld -r ${PPCOBJ} -o rsi.elf
+	ppc-amigaos-objdump --section-headers --all-headers --reloc $@ >$@.dump
+
+#whetstone: main.c whetstone.c
+#   sc IDIR=ade:include CPU=68040 MATH=68881 OPT OPTGO OPTPEEP OPTSCHED OPTTIME MODIFIED NOICONS LINK main.c whetstone.c PNAME whetstone
+

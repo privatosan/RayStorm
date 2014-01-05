@@ -1,0 +1,51 @@
+/***************
+ * NAME:        sunflare.ray
+ * DESCRIPTION: This ARexx-programm demonstrates the usage of lens flares
+ * AUTHORS:     Andreas Heumann
+ ***************/
+
+SIGNAL ON ERROR
+
+OPTIONS RESULTS
+
+IF ~SHOW('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	ADDRESS COMMAND WaitForPort RAYSTORM.1
+END
+
+ADDRESS RAYSTORM.1
+
+'BRUSHPATH /brushes/backdrops'
+
+'SETSCREEN 160 128'
+'SETCAMERA <-50,0,-500> <-50,0,0> <0,1,0> 26.7 20'
+'SETWORLD [0,0,0] BACKDROP=stars.png'
+'POINTLIGHT <3,68,300> [255,100,50]'
+'STAR SPIKES=8'
+'FLARE 0 30 [80,0,0] FUNCTION=RING'
+'FLARE -50 6 [30,20,10]'
+'FLARE 100 7 [35,22,11]'
+'FLARE 150 2 [50,25,12]'
+'FLARE 200 20 [20,10,5]'
+
+'NEWSURFACE PLANET BRIGHT'
+'DIFFUSE [5,10,15]'
+
+'SPHERE PLANET <-45,0,90> 50'
+
+ANTIALIAS 1
+DISTRIB 1
+
+'STARTRENDER QUICK'
+
+'SAVEPIC sunflare.iff'
+
+CLEANUP
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

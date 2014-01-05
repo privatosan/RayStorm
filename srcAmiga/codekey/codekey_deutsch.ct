@@ -1,0 +1,68 @@
+## version $VER: codekey.catalog 1.0 (29.01.97)
+## codeset 0
+## language deutsch
+;
+MSG_0003
+Ok
+; OK
+;
+MSG_0004
+Fehler beim Öffnen von '%s'.
+; Error opening '%s'.
+;
+MSG_0006
+Fehler beim Schreiben in Datei '%s'.
+; Error writing to '%s'.
+;
+MSG_0010
+Keyfile %s für %s wurde erfolgreich erzeugt
+; Keyfile %s for %s created successfully.
+;
+MSG_0011
+Konnte %s nicht öffnen.\n
+; Failed to open %s.\n
+;
+MSG_0012
+RayStorm-Register
+; RayStorm-Register
+;
+MSG_0016
+Erzeugt Keyfiles für RayStorm
+; Makes key for RayStorm
+;
+MSG_0019
+Name:
+; Name:
+;
+MSG_0021
+Computer:
+; Computer:
+;
+MSG_0022
+Seriennummer:
+; Serialnum:
+;
+MSG_0024
+Datei:
+; File:
+;
+MSG_0025
+Bitte Datei wählen...
+; Please select a file...
+;
+MSG_0026
+Erzeugen
+; Make
+;
+MSG_0027
+Verlassen
+; Exit
+;
+MSG_0028
+Konnte Applikation nicht erzeugen.
+; Failed to create Application.
+;
+MSG_0029
+Keyfile-Typ
+; Keyfile type
+;

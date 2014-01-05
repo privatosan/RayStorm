@@ -1,0 +1,12 @@
+000/tddd: 000/tddd.o 000/mathdefs.o 000/vecmath.o
+	mcppc 000/tddd.o 000/mathdefs.o 000/vecmath.o -o 000/tddd -l amiga
+
+000/tddd.o: tddd.cpp tddd.h
+	mcppc -c tddd.cpp
+
+000/mathdefs.o: rsi:mathdefs.cpp rsi:mathdefs.h rsi:typedefs.h
+	mcppc -c rsi:mathdefs.cpp
+
+000/vecmath.o: rsi:mathdefs.h rsi:typedefs.h rsi:vecmath.cpp rsi:vecmath.h
+	mcppc -c rsi:vecmath.cpp
+

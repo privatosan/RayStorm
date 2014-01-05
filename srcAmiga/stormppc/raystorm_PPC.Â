@@ -1,0 +1,107 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 1 0 0 0 0 0 1 0 5 1 4 1
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+1 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/csgstack.cpp"
+"SoftDisk:User/mcpp3/work/octree/csgstack.cpp"
+"SoftDisk:User/mcpp3/work/octree/csgstack.h"
+Storm Shell Project (Dependencies)
+"csgstack.o" "csgstack.debug"
+""
+"csgstack.o" "csgstack.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/interface.cpp"
+"SoftDisk:User/mcpp3/work/octree/interface.cpp"
+"SoftDisk:User/mcpp3/work/octree/itemlist.h"
+"SoftDisk:User/mcpp3/work/octree/csgstack.h"
+"SoftDisk:User/mcpp3/work/octree/raystorm.h"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"interface.o" "interface.debug"
+""
+"interface.o" "interface.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/itemlist.cpp"
+"SoftDisk:User/mcpp3/work/octree/itemlist.cpp"
+"SoftDisk:User/mcpp3/work/octree/itemlist.h"
+Storm Shell Project (Dependencies)
+"itemlist.o" "itemlist.debug"
+""
+"itemlist.o" "itemlist.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/stub_ppc.c"
+"SoftDisk:User/mcpp3/work/octree/stub_ppc.c"
+Storm Shell Project (Dependencies)
+"stub_ppc.o" "stub_ppc.debug"
+""
+"stub_ppc.o" "stub_ppc.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/csgstack.h"
+"SoftDisk:User/mcpp3/work/octree/csgstack.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/itemlist.h"
+"SoftDisk:User/mcpp3/work/octree/itemlist.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/raystorm.h"
+"SoftDisk:User/mcpp3/work/octree/raystorm.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/interface.h"
+"SoftDisk:User/mcpp3/work/octree/interface.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+Storm Shell Project (End)

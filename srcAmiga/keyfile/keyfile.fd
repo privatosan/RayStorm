@@ -1,0 +1,8 @@
+##base _KeyfileBase
+##bias 30
+##public
+keyGetInfo()()
+keyDecodeKeyfile1()()
+keyDecodeKeyfile2()()
+keyWritePicture()()
+##end

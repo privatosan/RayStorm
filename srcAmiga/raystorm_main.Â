@@ -1,0 +1,333 @@
+Storm Shell Project (0010)
+Settings (Start)
+C/C++ Environment
+"StormC:Include"
+"rsi:"
+"ray:"
+Includepath (End)
+0 "" 100
+1 "030_881_sc"
+C/C++ Preprozessor
+0 "STORMPRAGMAS" ""
+0 "_INLINE_INCLUDES" ""
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 2 0 0 0 0 0 2 1 0 0
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 0
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:Lib" 0 "StormC:Lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+20 "" "" "" 0
+""
+
+1 "CON://200/150/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+0 0
+0 0 0 "" ""
+Settings (End)
+File
+14 "SoftDisk:User/mcpp3/work/octree/docs/RayStorm.guide"
+"SoftDisk:User/mcpp3/work/octree/docs/RayStorm.guide"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+14 "ray:docs/rscn.guide"
+"ray:docs/rscn.guide"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+14 1 20
+File
+6 "ray:docs/ray_020.readme"
+"ray:docs/ray_020.readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+6 "ray:docs/ray_881.readme"
+"ray:docs/ray_881.readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+6 "ray:docs/ray_040.readme"
+"ray:docs/ray_040.readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+6 "ray:docs/ray_060.readme"
+"ray:docs/ray_060.readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+6 "ray:docs/ray_exam.readme"
+"ray:docs/ray_exam.readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+6 "ray:docs/Readme"
+"ray:docs/Readme"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+6 1 10
+File
+9 "rmod:tddd/storm020/tddd.¶"
+"rmod:tddd/storm020/tddd.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tddd/storm881/tddd.¶"
+"rmod:tddd/storm881/tddd.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tddd/storm040/tddd.¶"
+"rmod:tddd/storm040/tddd.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tddd/storm060/tddd.¶"
+"rmod:tddd/storm060/tddd.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:3ds/storm020/3ds.¶"
+"rmod:3ds/storm020/3ds.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:3ds/storm881/3ds.¶"
+"rmod:3ds/storm881/3ds.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:3ds/storm040/3ds.¶"
+"rmod:3ds/storm040/3ds.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:3ds/storm060/3ds.¶"
+"rmod:3ds/storm060/3ds.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:rsob/storm020/rsob.¶"
+"rmod:rsob/storm020/rsob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:rsob/storm881/rsob.¶"
+"rmod:rsob/storm881/rsob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:rsob/storm040/rsob.¶"
+"rmod:rsob/storm040/rsob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:rsob/storm060/rsob.¶"
+"rmod:rsob/storm060/rsob.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rsi:storm020/rsi.¶"
+"rsi:storm020/rsi.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rsi:storm881/rsi.¶"
+"rsi:storm881/rsi.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rsi:storm040/rsi.¶"
+"rsi:storm040/rsi.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rsi:storm060/rsi.¶"
+"rsi:storm060/rsi.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm020/raystorm.¶"
+"ray:storm020/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm881/raystorm.¶"
+"ray:storm881/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm040/raystorm.¶"
+"ray:storm040/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "ray:storm060/raystorm.¶"
+"ray:storm060/raystorm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:ilbm/storm020/ilbm.¶"
+"rmod:ilbm/storm020/ilbm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:ilbm/storm881/ilbm.¶"
+"rmod:ilbm/storm881/ilbm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:ilbm/storm040/ilbm.¶"
+"rmod:ilbm/storm040/ilbm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:ilbm/storm060/ilbm.¶"
+"rmod:ilbm/storm060/ilbm.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tga/storm020/tga.¶"
+"rmod:tga/storm020/tga.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tga/storm881/tga.¶"
+"rmod:tga/storm881/tga.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tga/storm040/tga.¶"
+"rmod:tga/storm040/tga.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:tga/storm060/tga.¶"
+"rmod:tga/storm060/tga.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:png/storm020/png.¶"
+"rmod:png/storm020/png.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:png/storm881/png.¶"
+"rmod:png/storm881/png.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:png/storm040/png.¶"
+"rmod:png/storm040/png.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:png/storm060/png.¶"
+"rmod:png/storm060/png.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "mod:storm020/scenario.¶"
+"mod:storm020/scenario.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "mod:storm881/scenario.¶"
+"mod:storm881/scenario.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "mod:storm040/scenario.¶"
+"mod:storm040/scenario.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "mod:storm060/scenario.¶"
+"mod:storm060/scenario.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:raw/storm020/raw.¶"
+"rmod:raw/storm020/raw.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:raw/storm881/raw.¶"
+"rmod:raw/storm881/raw.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:raw/storm040/raw.¶"
+"rmod:raw/storm040/raw.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+9 "rmod:raw/storm060/raw.¶"
+"rmod:raw/storm060/raw.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+Storm Shell Project (End)

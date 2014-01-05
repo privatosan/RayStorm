@@ -1,0 +1,55 @@
+/***************
+ * NAME:        dolphins.ray
+ * DESCRIPTION: Underwater dolphins scene
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+'OBJECTPATH /objects'
+
+'SETSCREEN 160 128'
+'SETCAMERA <965,-670,180> <68,-23,155> <0,0,1> 50 40'
+'SETWORLD [10,20,55] [5,12,30]'
+'POINTLIGHT <0,0,1000> SHADOW'
+'POINTLIGHT <1000,-500,-100> [50,70,110]'
+
+'NEWSURFACE water'
+'DIFFUSE [255,255,255]'
+'TRANSPAR [255,255,255]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE wood.itx <0,0,0> <0,0,0> <150,150,150> 0 0 0 0 0 0 0 0 0 4 3'
+
+'TRIANGLE water <500,-500,900> <-500,-500,900> <-500,500,900>'
+'TRIANGLE water <500,-500,900> <500,500,900> <-500,500,900>'
+
+'NEWSURFACE back BRIGHT'
+'DIFFUSE [0,0,0]'
+'IMTEXTURE linear.itx <0,0,-500> <90,0,0> <2000,2000,2000> 30 60 130'
+
+'PLANE back <0,250,0>'
+
+'LOADOBJ dolphins.3ds <0,0,0> <0,0,0> <1,1,1>'
+
+'ANTIALIAS 1'
+'STARTRENDER'
+'SAVEPIC dolphins.iff'
+
+'CLEANUP'
+
+exit 0
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+ exit 0

@@ -1,0 +1,44 @@
+/***************
+ * NAME:          wood.ray
+ * DESCRIPTION:   Test of wood texture
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 160 128'
+'SETCAMERA <-5,10,-25> <0,0,0> <0,1,0> 25 20'
+'SETWORLD [0,0,0] [20,20,20]'
+'POINTLIGHT <-20,20,-40> SHADOW'
+
+'NEWSURFACE MAP'
+'DIFFUSE [200,100,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE wood.itx <0,0,0> <0,0,0> <1,1,1> 255 180 50 0 0 0 0 0 0 2 1'
+
+'PLANE MAP <0,0,0> <0,0,1>'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC wood.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

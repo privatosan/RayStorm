@@ -1,0 +1,119 @@
+modeler: attrswindow_class.o browser_class.o brush.o camera.o camerawindow_class.o color_class.o display.o\
+ draw_class.o errors.o globals.o globalwindow_class.o iff_util.o light.o lightwindow_class.o list.o mainwindow_class.o\
+ mesh.o modeler.o mouse.o MUIutility.o numreq_class.o object.o objhand.o plane.o popup_class.o prefs.o\
+ prefswindow_class.o project.o renderwindow_class.o sphere.o statewindow_class.o surface.o texture.o transformwindow_class.o\
+ vecmath.o view.o
+	mcppc attrswindow_class.o browser_class.o brush.o camera.o camerawindow_class.o color_class.o display.o\
+ draw_class.o errors.o globals.o globalwindow_class.o iff_util.o light.o lightwindow_class.o list.o mainwindow_class.o\
+ mesh.o modeler.o mouse.o MUIutility.o numreq_class.o object.o objhand.o plane.o popup_class.o prefs.o\
+ prefswindow_class.o project.o renderwindow_class.o sphere.o statewindow_class.o surface.o texture.o transformwindow_class.o\
+ vecmath.o view.o -o modeler -l amiga -l rsi:rsi.lib
+
+attrswindow_class.o:
+	mcppc -c attrswindow_class.cpp
+
+browser_class.o:
+	mcppc -c browser_class.cpp
+
+brush.o:
+	mcppc -c brush.cpp
+
+camera.o:
+	mcppc -c camera.cpp
+
+camerawindow_class.o:
+	mcppc -c camerawindow_class.cpp
+
+color_class.o:
+	mcppc -c color_class.cpp
+
+display.o:
+	mcppc -c DISPLAY.CPP
+
+draw_class.o:
+	mcppc -c draw_class.cpp
+
+errors.o:
+	mcppc -c errors.cpp
+
+globals.o: color.h GLOBALS.CPP globals.h typedefs.h
+	mcppc -c GLOBALS.CPP
+
+globalwindow_class.o:
+	mcppc -c globalwindow_class.cpp
+
+iff_util.o:
+	mcppc -c IFF_UTIL.CPP
+
+light.o:
+	mcppc -c light.cpp
+
+lightwindow_class.o:
+	mcppc -c lightwindow_class.cpp
+
+list.o:
+	mcppc -c list.cpp
+
+mainwindow_class.o:
+	mcppc -c mainwindow_class.cpp
+
+mesh.o:
+	mcppc -c mesh.cpp
+
+modeler.o:
+	mcppc -c modeler.cpp
+
+mouse.o:
+	mcppc -c mouse.cpp
+
+MUIutility.o:
+	mcppc -c MUIutility.cpp
+
+numreq_class.o:
+	mcppc -c numreq_class.cpp
+
+object.o:
+	mcppc -c OBJECT.CPP
+
+objhand.o:
+	mcppc -c objhand.cpp
+
+plane.o:
+	mcppc -c plane.cpp
+
+popup_class.o:
+	mcppc -c popup_menu.cpp
+
+prefs.o:
+	mcppc -c PREFS.CPP
+
+prefswindow_class.o:
+	mcppc -c prefswindow_class.cpp
+
+project.o:
+	mcppc -c PROJECT.CPP
+
+renderwindow_class.o:
+	mcppc -c renderwindow_class.cpp
+
+sphere.o:
+	mcppc -c sphere.cpp
+
+statewindow_class.o:
+	mcppc -c statewindow_class.cpp
+
+surface.o:
+	mcppc -c SURFACE.CPP
+
+texture.o:
+	mcppc -c TEXTURE.CPP
+
+transformwindow_class.o:
+	mcppc -c transformwindow_class.cpp
+
+vecmath.o:
+	mcppc -c vecmath.cpp
+
+view.o:
+	mcppc -c VIEW.CPP
+

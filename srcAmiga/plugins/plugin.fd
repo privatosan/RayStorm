@@ -1,0 +1,5 @@
+##base _PluginBase
+##bias 30
+##public
+plugin_init()()
+##end

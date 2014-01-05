@@ -1,0 +1,38 @@
+lha a ram:scenario.lha box.cpp box.h brush.cpp brush.h camera.cpp camera.h color.cpp color.h cone.cpp cone.h csg.cpp csg.h
+lha a ram:scenario.lha cylinder.cpp cylinder.h display.cpp display.h errors.cpp errors.h flares.cpp flares.h
+lha a ram:scenario.lha gfx.h globals.cpp globals.h iff_util.cpp iff_util.h image.cpp image.h light.cpp light.h
+lha a ram:scenario.lha list.cpp list.h magic.h mesh.cpp mesh.h mouse.cpp mouse.h object.cpp object.h
+lha a ram:scenario.lha objhand.cpp objhand.h ogl_util.cpp ogl_util.h opengl.cpp opengl.h plane.cpp plane.h prefs.cpp prefs.h
+lha a ram:scenario.lha preview.cpp preview.h project.cpp project.h
+lha a ram:scenario.lha rscn.h sci.cpp sci.h sor.cpp sor.h sphere.cpp sphere.h star.cpp star.h surface.cpp surface.h
+lha a ram:scenario.lha texture.cpp texture.h typedefs.h undo.cpp undo.h utility.h view.cpp view.h
+
+cd ray:lib_vecmath
+lha a ram:vecmath.lha vecmath.h vecmath.cpp
+cd ray:lib_noise
+lha a ram:noise.lha noise.c noise.h
+
+cd rmod:
+lha a ram:pic.lha picload.h
+cd ilbm
+lha a ram:pic.lha ilbm.c ilbm.h
+cd /png
+lha a ram:pic.lha png-hand.c
+cd /tga
+lha a ram:pic.lha tga.c
+cd /jpeg
+lha a ram:pic.lha jpeg.c
+cd /tddd
+lha a ram:obj.lha tddd.cpp tddd.h
+cd /raw
+lha a ram:obj.lha raw.cpp raw.h
+cd /rsob
+lha a ram:obj.lha rsob.cpp
+cd /3ds
+lha a ram:obj.lha 3ds.cpp 3ds.h
+cd /lwob
+lha a ram:obj.lha lwob.cpp lwob.h
+cd /nff
+lha a ram:obj.lha nff.cpp nff.h
+cd mod:
+

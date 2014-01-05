@@ -1,0 +1,148 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:lib_vecmath"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 1 0 5 1 4 1
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/3ds/3DS.CPP"
+"SoftDisk:User/mcpp3/work/octree/module_src/3ds/3DS.CPP"
+"rmod:objlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/3ds/3ds.h"
+Storm Shell Project (Dependencies)
+"3DS.o" "3DS.debug"
+""
+"3DS.o" "3DS.debug"
+File
+1 "rsi:list.cpp"
+"rsi:list.cpp"
+"SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+Storm Shell Project (Dependencies)
+"list.o" "list.debug"
+""
+"list.o" "list.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rmod:objlib.h"
+"rmod:objlib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/3ds/3ds.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/3ds/3ds.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 1 95
+File
+16 "SoftDisk:User/mcpp3/work/octree/module_src/objlib.fd"
+"SoftDisk:User/mcpp3/work/octree/module_src/objlib.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "3dsppc"
+"3ds"
+"3dsppc"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"3dsppc.link"
+Section
+10 0 40
+File
+5 "ppcmem.lib"
+"ppcmem.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "storm603.lib"
+"storm603.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcamiga.lib"
+"ppcamiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ray:lib_ppcmath/ppcmath.lib"
+"ray:lib_ppcmath/ppcmath.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ray:lib_vecmath/stormppc/vecmath.lib"
+"ray:lib_vecmath/stormppc/vecmath.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

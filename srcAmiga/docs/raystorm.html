@@ -1,0 +1,4790 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>"RayStorm</TITLE>
+</HEAD>
+<BODY>
+
+<A NAME="main"></A>
+<P><PRE>
+
+                                                              February 16th 1997
+
+                          R a y S t o r m   <A HREF="#history">v1.8</A>
+
+                     by Andreas Heumann and Mike Hesser
+
+ <B>1. Introduction</B>
+   <A HREF="#introduction"> Introduction         </A>     What is RayStorm?
+   <A HREF="#requirements"> Requirements         </A>     What do I need to run it?
+   <A HREF="#features"> Features             </A>     What can Scenario do?
+   <A HREF="#limitations"> Limitations          </A>     What limitations has the demo version?
+
+ <B>2. Installation</B>
+   <A HREF="#installation"> Installation         </A>     How can I install it?
+
+ <B>3. General information</B>
+   <A HREF="#raygeneral"> Raytracing           </A>     What is raytracing?
+   <A HREF="#octree"> Octree               </A>     What is an octree?
+   <A HREF="#antialiasing"> Antialiasing         </A>     What is antialiasing?
+   <A HREF="#dof"> Depth of field       </A>     What is Depth of Field?
+   <A HREF="#softshadows"> Soft shadows         </A>     What are soft shadows?
+   <A HREF="#infoshadowmap"> Shadow map           </A>     What is a shadow map?
+   <A HREF="#motion_blur"> Motion Blur          </A>     What is Motion Blur?
+   <A HREF="#surface"> Surfaces             </A>     What meaning have the surface parameters?
+   <A HREF="#infocsg"> CSG                  </A>     What is CSG?
+   <A HREF="#infohypertexture"> Hyper textures       </A>     What are hyper textures?
+   <A HREF="#infosor"> Surface of revolution</A>     What is a surface of revolution?
+   <A HREF="#structure"> Directory Structure  </A>     Some words to directory and project structures.
+   <A HREF="#virtualmemory"> Virtual Memory       </A>     How do I use virutal memory?
+   <A HREF="#internals"> Internals            </A>     Some internal details.
+   <A HREF="#tipstricks"> Tips &amp; Tricks        </A>     Useful tips,tricks and hints (FAQ)
+   <A HREF="#textures"> Textures             </A>     How do I use textures?
+   <A HREF="#raw_format"> RAW object format    </A>     Description of RAW object files.
+
+ <B>3. Scenario Usage</B>
+   <A HREF="#scenario_usage"> Usage                </A>     How do I use Scenario?
+   <A HREF="#menus"> Menus                </A>     Description of the menus.
+   <A HREF="#buttons"> Buttons              </A>     Description of the buttons.
+   <A HREF="#object_menus"> Object Menus         </A>     Description of object orientated menus.
+   <A HREF="#keyboard_control"> Keyboard Control     </A>     How do I use Scenario with the keyboard?
+
+ <B>4. Script Usage</B>
+   <A HREF="#arexx"> ARexx interface      </A>     Which commands doe it have?
+   <A HREF="#examples"> Examples             </A>     How do I use the examples?
+   <A HREF="#tutorials"> Tutorials            </A>     Some tutorials
+
+ <B>5. Registration</B>
+   <A HREF="#register"> Register             </A>     Please register to support the shareware concept.
+
+ <B>6. Misc</B>
+   <A HREF="#bugs"> Known Bugs           </A>     Bugs
+   <A HREF="#credits"> Credits              </A>     Thanks go to...
+   <A HREF="#author"> Authors              </A>     Who wrote it?
+   <A HREF="#literature"> Literature           </A>     Which books do we use?
+   <A HREF="#pc-version"> PC-Version           </A>     Where can I get the PC-version?
+   <A HREF="#homepage"> Homepage             </A>     Where to find us on the World Wide Web.
+   <A HREF="#history"> History              </A>     What happened in the past?
+   <A HREF="#future"> Future               </A>     What is planned for the future?
+
+ <B>7. Legal Stuff</B>
+   <A HREF="#copyright"> Legal Stuff          </A>     Legal stuff
+
+</PRE></P><HR>
+<A NAME="introduction"></A>
+<P><PRE>
+
+<B>INTRODUCTION</B>
+
+This document describes the raytracing package RayStorm. This package consists
+of two parts:
+- The scene modeler <B>Scenario</B> which is the graphical user interface
+  (GUI) of the RayStorm package.
+- The script interface <B>RayStorm Script</B>, a program wich allowes one
+  to use the raytracer through a script language.
+- The heart of RayStorm: <B>RayStorm Raytracer</B>, wich generates the
+  picture from a scene description (this part is not visible to the user
+  but nevertheless it's the main part).
+
+Here are some additional informations to the parts:
+
+  <A HREF="#intro_scenario">RayStorm Scenario</A>
+  <A HREF="#intro_script">RayStorm Script</A>
+  <A HREF="#intro_raytracer">RayStorm Raytracer</A>
+</PRE></P><HR>
+<A NAME="intro_scenario"></A>
+<P><PRE>
+
+<B>INTRODUCTION TO SCENARIO</B>
+
+As we developed Scenario we tried to make the user interface to use as
+easy as possible to enable even absolute beginners to work with it. Therefore
+almost all actions can be performed with the mouse. For advanced users we
+implemented keyboard shortcuts for almost all functions.
+
+Scenario can load a project at startup. For this start it with the name of a
+directory as argument or from Workbench by selecting the project drawer and
+double clicking the Scenario icon.
+</PRE></P><HR>
+<A NAME="intro_script"></A>
+<P><PRE>
+
+<B>INTRODUCTION TO RAYSTORM SCRIPT</B>
+
+The script language that contains the description of the scene is easy to
+learn and offers some powerful capabilities. In addition, the script language
+has a full support for key frame animation.
+
+A RayStorm script file (.ray files) is basically divided into the following
+sections:
+- Various settings of the camera, the world and the lights,
+- Definitions of the different textured surfaces,
+- Different actors that set the Motion Blur and animation parameters,
+- Objects that are associated with surfaces and actors
+- Settings for the final rendered graphic.
+
+For a more detailed description click <A HREF="#arexx">here</A>.
+</PRE></P><HR>
+<A NAME="intro_raytracer"></A>
+<P><PRE>
+
+<B>INTRODUCTION TO RAYSTORM RAYTRACER</B>
+
+The raytracer itself is a part to RayStorm which is not directly visible.
+All features of the raytracer are packed into a shared library. Both Scenario
+and RayStorm Script use this library to render their scenes.
+
+The raytracer is based on a fast octree algorithm. It has some powerfull
+features such as <A HREF="#motion_blur">Motion Blur</A>, <A HREF="#softshadows">Soft Shadows</A> and
+<A HREF="#dof">Depth of Field</A>.
+</PRE></P><HR>
+<A NAME="raygeneral"></A>
+<P><PRE>
+
+<B>GENERAL</B>
+
+Raytracing makes it possible to generate fotorealistic pictures of objects.
+
+A raytracer casts a ray form the position of the viewer through a scene
+and calculates possible intersections with the objects in that scene. If an
+intersection is found, the raytracer decides which color the object
+at this position has. If the object is reflective or transparent, the
+raytracer casts new rays from this positon and tests the intersections
+again and so on.
+
+To make the surfaces of the objects more realistic, textures which
+simulate marble, wood other surfaces can be used.
+</PRE></P><HR>
+<A NAME="octree"></A>
+<P><PRE>
+
+<B>OCTREE</B>
+Simple raytracers determine the intersections with objects by testing all
+objects. This can lead to long rendering times if there are a lot of
+objects in the scene.
+
+One solution of this problem is the Octree algorithm.
+This algorithm divides the scene into eight child-cells recursively until
+there is less than oe object in the cell or the maximum depth of the tree is reached.
+
+Division of space with the octree algorithm:
+             _
+             /| z
+            /
+     /-------/-------/|
+ ^ y/       /       / |
+ | / left  / right / b|
+ |/       /       / |a|
+ |-------/-------| f|c|
+ |               | r|k|
+ |      up       | o| /
+ |---------------| n|/
+ |               | t|
+ |     down      | /  x
+ |---------------|/-->
+</PRE></P><HR>
+<A NAME="antialiasing"></A>
+<P><PRE>
+
+<B>ANTIALIASING</B>
+
+RayStorm uses a algorithm called 'Adaptive Supersampling' to do antialiasing.
+For each pixel with a high contrast against its four neighbours, the algorithm
+casts new rays which are close to the ray used for the pixel itself. The new
+color of the pixel is calculated with the supersampled pixels and the gaussian
+filter.
+
+Supersampling is also used to do <A HREF="#dof">depth of field</A> and <A HREF="#softshadows">soft shadows</A>. So if
+you want to use this features you have to set a antialiasing value greater
+than one. (-&gt; <A HREF="#antialias">ANTIALIAS</A>)
+
+Example:
+Settings: squareroot of number of samples per pixel: 3
+
+|--------|--------|--------|
+| super- | super- | super- |
+| sampled| sampled| sampled|
+|        |        |        |
+|--------|--------|--------|
+| super- |        | super- |
+| sampled| pixel  | sampled|
+|        |        |        |
+|--------|--------|--------|
+| super- | super- | super- |
+| sampled| sampled| sampled|
+|        |        |        |
+|--------|--------|--------|
+
+|- Gaussian filter width  -|
+
+The rendering time increases dramatically if you use antialiasing. The
+values below depend on the contrast of the picture.
+
+Samplesetting     rendering time
+                  average case     worst case
+1                 x1                x1
+2                 x2                x4
+3                 x4                x8
+4                 x8               x16
+...               ...              ...
+
+Setting higher than 3 are not leading to significant better results.
+</PRE></P><HR>
+<A NAME="dof"></A>
+<P><PRE>
+
+<B>DEPTH OF FIELD</B>
+
+Objects in computer graphics are normally rendered in an image plane
+using a pinhole camera model. That is to say, no matter how far or how
+near the objects are from the camera, they are always in sharp focus.
+Depth of field means that only objects at a certain distance from the
+camera lens are in sharp focus. Further and nearer objects produce a
+blurred image on the film plane.
+
+[From 'Advanced Animation and Rendering Techniques']
+
+To use depth of field you have to set <A HREF="#antialias">ANTIALIAS</A> to a value bigger
+than one.
+
+<A HREF="#pics/dof.iff/main0">Example for DOF</A>
+</PRE></P><HR>
+<A NAME="softshadows"></A>
+<P><PRE>
+
+<B>SOFT SHADOWS</B>
+
+Real Light sources never have a zero size, therefore the shadows behind
+objects are never hard edged, they are soft. RayStorm generates this
+shadows by jittering the position of the light source. To use soft shadows
+you must set <A HREF="#distrib">DISTRIB</A> to a value bigger than one.
+</PRE></P><HR>
+<A NAME="infoshadowmap"></A>
+<P><PRE>
+
+<B>SHADOW MAP</B>
+A shadow map is a depth map with the light source in the center. If a ray
+hits an object the distance between this hit point is calculated and compared
+with the depth found in the shadow map. If distance from the hitpoint is
+less than the value in the depth map, the object is in shadow.
+
+The problem with this concept is that transparent objects cast dark shadows.
+For example a green glas sphere which is illumated with a lightsource without
+shadow map will cast a green shadow, with shadowmap the shadow will be black.
+
+Because of limitiations of the memory all depth values in all possible
+directions can't be stored. Therefore the strength of the shadow is interpolated,
+and the shadow is not sharp like the normal calculated shadow.
+
+The shadowmap is calculated in spherical coordinates, this means for a size
+of the shadowmap of 128 RayStorm calculates 128x64=8192 samples. For each sample
+on float value (4 bytes) is stored. This means that a shadow map with size 128
+needs 128x64x4=32768 bytes of memory. Note that <B>every</B> light source
+with shadow map enabled needs its own shadowmap.
+</PRE></P><HR>
+<A NAME="motion_blur"></A>
+<P><PRE>
+
+<B>MOTION BLUR</B>
+
+Motion blur is temporal anti-aliasing. In animated sequences, the normal
+rendering process functions like a camera that possesses an infinitely
+short exposure time and this eliminates the blurring of the image due
+to relative motion between an object and the film plane. When a series of
+images, generated without motion blur, is displayed as an animated
+sequence, the illusion of smooth motion is diminished by strobing effects.
+As human beings we expect to see loss of detail in moving images.
+
+Motion blur is accounted for in distributed ray tracing by extending the
+distributed sampling and jittering into the time domain and computing a
+solution that extracts information from the scen over the duration of the
+shutter exposure time. Objects are moved as required in the time period
+and visibility consequently changes over this time intervall. This method
+ensures that highlights and shadows are blurred or not, depending on the
+nature of the motion.
+
+[From '<A HREF="#literature">Advanced Animation and Rendering Techniques</A>']
+</PRE></P><HR>
+<A NAME="surface"></A>
+<P><PRE>
+
+<B>SURFACES</B>
+
+Ambient (set with AMBIENT)
+
+This determines the color of the object in sections which are in shadow.
+
+Diffuse reflection (set with DIFFUSE)
+
+The diffuse reflection falls off as the cosine of the angle between
+the normal and the ray to the light. Diffuse reflection determines the
+main color of the object (color in Imagine).
+
+Specularly reflected highlights (set with SPECULAR)
+
+Specularly reflected highlights fall off as the cosine of the angle
+between the reflected ray and the ray to the light source (specular in
+Imagine)
+
+Specular reflection exponent (set with REFEXP)
+
+Determines the size of the specularly reflected highlights, the higher
+the smaller the highlight (hardness in Imagine)
+
+Diffuse transmission (set with DIFFTRANS)
+
+Same as diffuse reflection, but only used if the lightsource is on
+opposite side of surface. Only applied if tranlucency is not 0.
+
+Specular transmission (set with SPECTRANS)
+
+Same as specular reflection, but only used if the lightsource is on
+opposite side of surface. Only applied if tranlucency is not 0.
+
+Specular transmission exponent (set with TRANSEXP)
+
+Same as specular reflection exponent, but only used if the lightsource
+is on opposite side of surface.
+
+Specular transmittance (set with TRANSLUC)
+
+Specular transmittance.
+
+Transparency (set with TRANSPAR)
+
+Transparent color (filter in Imagine).
+
+Reflectivity (set with REFLECT)
+
+Reflective color (reflect in Imagine).
+
+Fog length (set with FOGLEN) (fog in Imagine).
+
+Index of refraction (set with REFRINDEX)
+
+Determines how the ray through transparent objects is refracted, the higher
+the more (index of refraction in Imagine).
+Is calculated with the formula
+
+            lightspeed in vacuum
+   index = ----------------------
+            lightspeed in object    .
+
+
+</PRE></P><HR>
+<A NAME="infocsg"></A>
+<P><PRE>
+
+<B>CSG</B>
+
+The idea of Constructive Solid Geometry (CSG) is to combine to or more
+primitives with logical operations to produes a new shape. The operations
+needed for CSG are union, intersection, and difference.
+
+With the intersection operator you can combine two objects, and the new shape
+consists of all points which are inside the first <B>and</B> the second
+object. Points inside one of the objects, but not the other are not part of the
+shape.
+
+If you combine two objects with the union operator, the new shape consists
+of all points which are inside either the first or the second object, or
+inside both objects.
+
+With the difference operator you can cut out a piece of an object with another
+object. The first object is the object that is being 'cut' by the second
+object.
+</PRE></P><HR>
+<A NAME="infohypertexture"></A>
+<P><PRE>
+
+<B>HYPER TEXTURES</B>
+Many objects, such as fur or woven materials, have a complex definition which
+is at best awkward, and at worst impossible, to discribe by a surface model.
+For other objects, such as eroded materials or fluids, a highly complex
+boundary is actually an arifact of a process hat is often more readily
+describet volumetrically. Still other objects, such as flame, clouds, or smoke,
+don't actually hav a well defined boundary surface at all.
+
+Hyper textures consist of a base-shape which have a hard region where they are
+completely solid, and a soft region where they are indeterminate. Whenever we
+are in the soft region, we can apply a toolkit of shaping functions, allowing
+the flexibility to create and manipulate volumetric form.
+[From: '<A HREF="#literature">Hypertexture</A>']
+</PRE></P><HR>
+<A NAME="infosor"></A>
+<P><PRE>
+
+<B>SURFACE OF REVOLUTION</B>
+
+For surfaces of revolution (SOR) objects a curve is rotated around a axis. This
+curve describes the dependence of the radius from the position of the axis. The
+curve is described by two-dimensional vectors consisting of the radius and the
+corresponding height. These points are smoothly connected and rotated about the
+y-axis. The first and the last points are only used to determine the slopes of
+the function at the start and end point. To any given point on the rotation axis
+belongs at most one function value. You can't rotate closed curves.
+
+SOR is based on the work of Peter Bruger and Duncan Gillies in their book
+<A HREF="#literature">Interactive Computer Graphics</A>. If you want to know more about the mathematical
+background you can find it there.
+</PRE></P><HR>
+<A NAME="structure"></A>
+<P><PRE>
+
+<B>DIRECTORY AND PROJECT STRUCTURE</B>
+
+scenario             the root directory of scenario
+|-brushes            the brush directory (you can create subdirectories here)
+| |- brush 1
+| |- brush 2
+| |- ...
+| |- brush n
+|-objects            the objects directory (you can create subdirectories here)
+| |- object 1
+| |- object 1
+| |- ...
+| |- object n
+|-textures           the textures directory (you can create subdirectories here)
+| |- texture 1
+| |- texture 2
+| |- ...
+| |- texture n
+|-projects           the projects directory (Scenario creates for every project a subdirectory)
+  |-project 1        the first project
+  | |- project.scn   the file where the scene is stored (has always this name)
+  | |-brushes        the directory for brushes which are local to this project
+  | | |- ...
+  | |-objects        the directory for objects which are local to this object
+  | | |- ...
+  | |- pic.0001      the rendered pictures
+  | |- pic.0002
+  | |- ...
+  | |- pic.n
+  |- project 2       another project
+  |- ...
+  |- project n
+
+The default project directory can be set with the <A HREF="#menu_settings_prefs">preferences</A>.
+</PRE></P><HR>
+<A NAME="virtualmemory"></A>
+<P><PRE>
+
+<B>VIRTUAL MEMORY</B>
+
+RayStorm has been tested succesfully with VMM 3.1 from Martin Apel. If you
+want use RayStorm with virtual memory notice follwing hints:
+
+- set Minimum VM allocation to 100 bytes if you define large scenes with
+  many objects, because RayStorm only allocates small pieces of memory for
+  single objects (less then 200 bytes). If you're loading Imagine objects
+  RayStorm allocates big blocks of memory so you don't have to set Minimum
+  VM allocation to 100.
+- use a partition or a pseudo-partition for VMM, this is faster
+</PRE></P><HR>
+<A NAME="internals"></A>
+<P><PRE>
+
+<B>INTERNALS</B>
+
+The development of RayStorm has started in march 1995.
+
+<B>Compiler</B>
+
+- Amiga
+  Originally, RayStorm has been developed on Amiga using Maxon C++ 3.0
+  Developer. The final Amiga version was compiled with StormC 1.1.
+- PC
+  The PC version was compiled with WATCOM C++ 10.5.
+
+<B>Memory requirements of the raytracer</B>
+
+Triangle:      156 Bytes (flat shaded)
+               192 Bytes (Phong shaded)
+Sphere:         70 Bytes
+Plane:          78 Bytes
+Surface:       122 Bytes + length of name
+Screenbuffer:    4 Bytes per pixel
+
+Memory requirements of the octree depends on the scene.
+
+<B>Source Code</B>
+
+About 90.000 lines of C++-Code in more than 300 modules (about
+2.1 MByte of source).
+</PRE></P><HR>
+<A NAME="raw_format"></A>
+<P><PRE>
+
+<B>RAW OBJECT FORMAT</B>
+
+RAW files are simple ASCII based descriptions of triangle objects. The file
+consits of object sections which start with a name. This name is followed
+by several triangle definitions. A RAW file consists of unlimited object
+sections. Below is an example of a simple RAW file which describes two objects.
+
+Plane
+-1 -1 0  1 -1 0  1 1 0
+-1 -1 0  -1 1 0  1 1 0
+House
+-3 -1 0  -2 -1 0  -2 1 0
+-3 -1 0  -3 1 0  -2 1 0
+-3 1 0  -2.5 2 0  -2 1 0
+</PRE></P><HR>
+<A NAME="requirements"></A>
+<P><PRE>
+
+<B>REQUIREMENTS</B>
+
+(1) You will need at least Kickstart 2.0.
+
+(2) 060-version: 68060 processor (with internal FPU)
+
+(3) 040-version: 68040 processor (with internal FPU)
+
+(4) 881-version: 68020 processor or better and a mathematical coprocessor)
+
+(5) 020-version: 68020 processor (no math coprocessor needed)
+
+(6) 2MB RAM minimum
+
+(7) RayStorm was written using MUI. Therefore you need muimaster.library
+    V3.3 or better to run RayStorm.
+
+recommended: 68040, 8MB RAM, Harddisk, GFX-Board
+
+The faster the better :-).
+
+Tested with:
+A1200 68030/50, 6MB, 200MB HD
+A2000 68040/30, 9MB, 250+250MB HD, Merlin Gfx-board
+A2000 68030/14, 68882/20, 4MB, 730+52MB HD
+A4000 68030/25, 68882/57, 18MB, 730+80MB HD, Cybervision 64 Gfx-board
+</PRE></P><HR>
+<A NAME="features"></A>
+<P><PRE>
+
+<B>FEATURES</B>
+
+<B>Scenario</B>
+
+- create spheres, planes, boxes, cylinders, lightsources and cameras
+- create mesh objects: cubes, spheres, planes, tubes and cones
+- each object can track each other
+- unlimited amount of cameras to view scene from different directions
+- define surfaces for all objects, including brushes and textures
+- load external objects (RayStorm object files, Imagine TDDD files,
+  AutoDesk 3DS files and RAW files)
+- save and load scenes
+- save and load objects
+- group and ungroup objects
+- preview of surfaces in material requester
+- render scenes with RayStorm Raytracer
+- preview of renderd scenes
+- quadview
+- Multilevel undo (only memory limited) and redo
+- Status bar
+
+<B>RayStorm Script</B>
+
+- ARexx port with 46 commands.
+
+<B>RayStorm Raytracer</B>
+
+- Octree algorithm used for rendering.
+- Motion blur for realistic simulations of moving objects.
+- Color, reflectivity, filter, altitude and specular mapping.
+- Flat, cylinder and sphere mapping.
+- Soft brush mapping.
+- Mathematical textures: wood, marble, bumps, checker, linear, radial, stars
+  and fire.
+- Hyper textures: explode.
+- Tranparency and physically correct refractions.
+- 8 levels of antialiasing (adaptive supersampling).
+- Rendering box.
+- Six builtin object types: sphere, plane, box, cylinder, surface of revolution
+  and triangle.
+- CSG (Constructive Solid Geometry) with the operators: union, intersection,
+  difference and invert.
+- Three light types: ambient, point and spot.
+- Depth of field with adjustable focal distance and aperture.
+- Soft shadows.
+- Backdrop picture.
+- Global fog and foggy objects.
+- Material attributes for realistic objects: ambient color, diffuse color,
+  specular color, specular reflection exponent, diffuse transmission color,
+  specular transmission color, specular transmission exponent, specular
+  transmittance, transparent color, reflective color, index of refraction,
+  foglength.
+- Bright objects.
+- Quick rendering.
+- Global reflection map.
+- Image formates: IFF-ILBM, PNG, TGA and Datatypes.
+- Object format: RayStorm object file, Imagine-TDDD, Autodesk 3DS and RAW
+- New image- and object-formats can be easily included because of the
+  modular concept.
+- Shadowcache for faster shadow calculation.
+- Shadowmap with definable size for each lightsource for smooth and fast
+  shadows.
+- Definable limited amount of objects for avoiding the creation of octree.
+</PRE></P><HR>
+<A NAME="limitations"></A>
+<P><PRE>
+
+<B>LIMITATIONS</B>
+
+The demo version is limited to a resolution of 160x128. The registered version
+does not have any limitations.
+Click <A HREF="#register">here</A> for information on how to register RayStorm.
+</PRE></P><HR>
+<A NAME="installation"></A>
+<P><PRE>
+
+<B>INSTALLATION</B>
+
+There is a installation script included in the archive which uses the
+Commodore Installer. Run it to install RayStorm Scenario.
+</PRE></P><HR>
+<A NAME="scenario_usage"></A>
+<P><PRE>
+
+<B>USAGE</B>
+
+After you have started Scenario you see the worksheet.
+
+At the top of the sheet are the buttons to manage projects, to control the
+view mode, the display mode, the edit mode, enable the selection box and to
+control the currently active directions.
+Below this button bar is the work area. At startup you can see a grid in
+the middle and the camera (note: there must always remain at least one camera
+in the scene).
+At the bottom of the window is a status bar which displays the name of the
+selected object (if more than one object is selected, the name of the first
+object is displayed), the name of the active camera and the current cursor
+coordinates if the coordinate display is enabled (see <A HREF="#menu_view_showcoordinates">Show Coordinates</A>).
+
+All objects, cameras and light sources have an axis to handle it. The axis
+consist of a rectangular area - the hot spot or handle - and three lines
+which show the orientation of the axis. The axis can be selected by clicking
+with the left mouse button at the handle. If it is selected the color of
+the axis and the object changes.
+
+Clicking with the left mouse button invokes the modify mode. According to the
+slected mode (move, rotate or scale) the world or the selected object(s) can
+be modified.
+
+Clicking with the right mouse button open object specific menus (see
+<A HREF="#object_menus">Object Menus</A>).
+</PRE></P><HR>
+<A NAME="menus"></A>
+<P><PRE>
+
+<B>MENUS</B>
+
+  Project
+   <A HREF="#menu_project_new"> New               </A>
+   <A HREF="#menu_project_open"> Open...           </A>
+   <A HREF="#menu_project_save"> Save              </A>
+   <A HREF="#menu_project_saveas"> Save As...        </A>
+   <A HREF="#menu_project_rendersettgs"> Render settings...</A>
+   <A HREF="#menu_project_setrenderdow"> Set Render Window </A>
+   <A HREF="#menu_project_render"> Render            </A>
+   <A HREF="#menu_project_recentfile"> Recent file       </A>
+   <A HREF="#menu_project_about"> About...          </A>
+   <A HREF="#menu_project_quit"> Quit              </A>
+
+  Edit
+   <A HREF="#menu_edit_undo"> Undo              </A>
+   <A HREF="#menu_edit_redo"> Redo              </A>
+   <A HREF="#menu_edit_cut"> Cut               </A>
+   <A HREF="#menu_edit_copy"> Copy              </A>
+   <A HREF="#menu_edit_paste"> Paste             </A>
+   <A HREF="#menu_edit_delete"> Delete            </A>
+   <A HREF="#menu_edit_selall"> Select all        </A>
+   <A HREF="#menu_edit_deselall"> Deselect all      </A>
+   <A HREF="#menu_edit_selnext"> Select next       </A>
+   <A HREF="#menu_edit_selprev"> Select previous   </A>
+   <A HREF="#menu_edit_mode"> Mode              </A>
+   <A HREF="#menu_edit_active"> Active            </A>
+
+  View
+   <A HREF="#menu_view_redraw"> Redraw            </A>
+   <A HREF="#menu_view_focus"> Focus             </A>
+   <A HREF="#menu_view_zoomin"> Zoom in           </A>
+   <A HREF="#menu_view_zoomout"> Zoom out          </A>
+   <A HREF="#menu_view_zoomfit"> Zoom fit          </A>
+   <A HREF="#menu_view_view"> View              </A>
+   <A HREF="#menu_view_camera2viewer"> Camera to viewer  </A>
+   <A HREF="#menu_view_grid"> Grid              </A>
+   <A HREF="#menu_view_snaptogrid"> Snap to Grid      </A>
+   <A HREF="#menu_view_gridsize"> Gridsize...       </A>
+   <A HREF="#menu_view_show"> Show              </A>
+   <A HREF="#menu_view_global"> Global settings...</A>
+
+  Object
+   <A HREF="#menu_object_attributes"> Attributes...     </A>
+   <A HREF="#menu_object_settings"> Settings...       </A>
+   <A HREF="#menu_object_grop"> Group             </A>
+   <A HREF="#menu_object_ungroup"> UnGroup           </A>
+   <A HREF="#menu_object_load"> Load...           </A>
+   <A HREF="#menu_object_save"> Save...           </A>
+   <A HREF="#menu_object_create"> Create            </A>
+   <A HREF="#menu_object_mesh"> Mesh              </A>
+   <A HREF="#menu_object_activecamera"> Active Camera...  </A>
+   <A HREF="#menu_object_browse"> Browse...         </A>
+
+  Settings
+   <A HREF="#menu_settings_prefs"> Prefs...          </A>
+   <A HREF="#menu_settings_mui"> MUI...            </A>
+   <A HREF="#menu_settings_load"> Load              </A>
+   <A HREF="#menu_settings_save"> Save              </A>
+</PRE></P><HR>
+<A NAME="menu_project_new"></A>
+<P><PRE>
+
+<B>NEW PROJECT</B>
+
+Deletes all objects and creates the default camera.
+</PRE></P><HR>
+<A NAME="menu_project_open"></A>
+<P><PRE>
+
+<B>OPEN PROJECT</B>
+
+Load a new scene.
+</PRE></P><HR>
+<A NAME="menu_project_save"></A>
+<P><PRE>
+
+<B>SAVE PROJECT</B>
+
+Save the current scene.
+</PRE></P><HR>
+<A NAME="menu_project_saveas"></A>
+<P><PRE>
+
+<B>SAVE PROJECT AS</B>
+
+Save the current scene with the specified name.
+</PRE></P><HR>
+<A NAME="menu_project_rendersettgs"></A>
+<P><PRE>
+
+<B>RENDER SETTINGS</B>
+
+Opens the <A HREF="#pics/setrender.iff/main0">render requester</A>. At top of the requester you can select the render
+resolutions with a listview or enter the values to the numeric fields. The
+values range from 0 to 65535. Here you also can also enable the rendering
+field. RayStorm renders only inside this field. The field is shown in the
+perspective window if camera view is switched on.
+The 'Show' flag enables the direct showing of the picture while the
+render process is running (needs KS 3.0 or better).
+The 'Quick' flag selects the quick rendering mode. In this mode RayStorm don't
+calculates shadows, transparency or reflections.
+The 'Octree depth' slider sets the maximum depth of the octree which RayStorm
+uses. For almost all scenes a vlaue of three is the best, but in complex scenes
+it may be better to use higher values. The higher this value is the longer
+takes the initialazion phase and the more memory is needed.
+The 'Min. Objects' slider sets the amount of objects upto which no octree is
+generated. If ther is a small amount of objects in the scene it's sometimes
+better not to build the octree due to the overhead of the intersection test.
+This value depends on your scene, for about 3 to 5 objects it's better not
+to use the octree. But if you want to render scenes with motion blur it's
+better to set this value to zero because this is faster.
+The 'Filename' string gadget sets the filename of the generated picture and the
+cycle gadget sets the fileformat. You can show the rendered picture with the
+view button.
+The 'Ok' button closes the requester and stores the current settings, whereas
+the 'Cancel' button don't changes the settings.
+The 'Render' button starts the rendering of the current scene.
+</PRE></P><HR>
+<A NAME="menu_project_setrenderdow"></A>
+<P><PRE>
+
+<B>SET RENDER WINDOW</B>
+
+You can set a window in which RayStorm will render the scene. This window is
+shown in the perspective view if camera view is switched on. The render
+window can be set with the mouse. If you select this menu item it gets
+checked. After this you can set the render window by pressing and holding
+the left mouse button while you set the render window. After releasing the
+mouse button the new render window is set and the enabled.
+You can enable and disable the render window in the
+<A HREF="#menu_project_rendersettgs">Render Settings requester</A>.
+</PRE></P><HR>
+<A NAME="menu_project_render"></A>
+<P><PRE>
+
+<B>RENDER PROJECT</B>
+
+Renders the current scene. The <A HREF="#pics/render.iff/main0">render window</A> link is opened.
+At the begining only the <I>Cancel</I> button is enabled. With this button
+you can break the rendering process. The currently renderd part of the
+picture is saved and all memory is freed.
+After RayStorm finished rendering the <I>Ok</I> and <I>Show</I> buttons
+are enabled. The  button closes the render window. The <I>Show</I>
+button calls the view program which you set in the <A HREF="#menu_settings_prefs">settings requester</A>.
+</PRE></P><HR>
+<A NAME="menu_project_recentfile"></A>
+<P><PRE>
+
+<B>RECENT FILE</B>
+
+Here you can select the four recently loaded projects.
+</PRE></P><HR>
+<A NAME="menu_project_about"></A>
+<P><PRE>
+
+<B>About</B>
+
+Shows the about requester with the version number and the current Arexx port
+name.
+</PRE></P><HR>
+<A NAME="menu_project_quit"></A>
+<P><PRE>
+
+<B>QUIT</B>
+
+Quits Scenario.
+</PRE></P><HR>
+<A NAME="menu_edit_undo"></A>
+<P><PRE>
+
+<B>UNDO</B>
+
+Undos the last operation. Follwoing actions can be undone:
+- transformation (position, alignment, size)
+- delete
+- cut
+- create
+- load object
+</PRE></P><HR>
+<A NAME="menu_edit_redo"></A>
+<P><PRE>
+
+<B>REDO</B>
+
+Redos the last undone operation.
+</PRE></P><HR>
+<A NAME="menu_edit_cut"></A>
+<P><PRE>
+
+<B>CUT</B>
+
+Moves the currently selected objects to the paste buffer.
+</PRE></P><HR>
+<A NAME="menu_edit_copy"></A>
+<P><PRE>
+
+<B>COPY</B>
+
+Copys the currently selected objects to the paste buffer.
+</PRE></P><HR>
+<A NAME="menu_edit_paste"></A>
+<P><PRE>
+
+<B>PASTE</B>
+
+Copys the currently selected objects from the paste buffer to the scene.
+</PRE></P><HR>
+<A NAME="menu_edit_delete"></A>
+<P><PRE>
+
+<B>DELETE</B>
+
+Deletes the currently selected objects. The active camera can't be deleted.
+</PRE></P><HR>
+<A NAME="menu_edit_selall"></A>
+<P><PRE>
+
+<B>SELECT ALL</B>
+
+Selects all objects.
+</PRE></P><HR>
+<A NAME="menu_edit_deselall"></A>
+<P><PRE>
+
+<B>DESELECT ALL</B>
+
+Deselects all objects.
+</PRE></P><HR>
+<A NAME="menu_edit_selnext"></A>
+<P><PRE>
+
+<B>SELECT NEXT</B>
+
+Selects the next object.
+</PRE></P><HR>
+<A NAME="menu_edit_selprev"></A>
+<P><PRE>
+
+<B>SELECT PREVIOUS</B>
+
+Selects the previous object.
+</PRE></P><HR>
+<A NAME="menu_edit_mode"></A>
+<P><PRE>
+
+<B>MODE</B>
+
+Sets the edit mode:
+Move object
+Rotate object
+Scale object
+
+Move world
+Rotate world
+Zoom world
+</PRE></P><HR>
+<A NAME="menu_edit_active"></A>
+<P><PRE>
+
+<B>ACTIVE</B>
+
+Sets the active directions:
+X, Y, Z.
+</PRE></P><HR>
+<A NAME="menu_view_redraw"></A>
+<P><PRE>
+
+<B>REDRAW</B>
+
+Redraws the work area.
+</PRE></P><HR>
+<A NAME="menu_view_focus"></A>
+<P><PRE>
+
+<B>FOCUS</B>
+
+Sets the zoom factor so that all selected objects are visible.
+</PRE></P><HR>
+<A NAME="menu_view_zoomin"></A>
+<P><PRE>
+
+<B>ZOOM IN</B>
+
+Zooms out by factor two.
+</PRE></P><HR>
+<A NAME="menu_view_zoomout"></A>
+<P><PRE>
+
+<B>ZOOM OUT</B>
+
+Zooms in by factor two.
+</PRE></P><HR>
+<A NAME="menu_view_zoomfit"></A>
+<P><PRE>
+
+<B>ZOOM FIT</B>
+
+Sets the zoom factor so that the whole scene is visible.
+</PRE></P><HR>
+<A NAME="menu_view_view"></A>
+<P><PRE>
+
+<B>VIEW</B>
+
+Sets the view mode:
+Front, Right, Top, Perspective, Four, Camera.
+</PRE></P><HR>
+<A NAME="menu_view_camera2viewer"></A>
+<P><PRE>
+
+<B>CAMERA TO VIEWER</B>
+
+Moves the camera to the the position of the virtual camera, roatates the
+camera and sets the opening angles (horizontal and vertial field of view).
+</PRE></P><HR>
+<A NAME="menu_view_grid"></A>
+<P><PRE>
+
+<B>GRID</B>
+
+Switches grid on/off.
+</PRE></P><HR>
+<A NAME="menu_view_snaptogrid"></A>
+<P><PRE>
+
+<B>SNAP TO GRID</B>
+
+Switches grid snapping on/off.
+</PRE></P><HR>
+<A NAME="menu_view_gridsize"></A>
+<P><PRE>
+
+<B>GRID SIZE</B>
+
+Sets grid size.
+</PRE></P><HR>
+<A NAME="menu_view_show"></A>
+<P><PRE>
+
+<B>SHOW</B>
+
+   <A HREF="#menu_edit_showcoordinates"> Coordinates      </A>
+   <A HREF="#menu_edit_shownames"> Names            </A>
+   <A HREF="#menu_edit_showbrushes"> Brushes          </A>
+   <A HREF="#menu_edit_showtextures"> Textures         </A>
+</PRE></P><HR>
+<A NAME="menu_view_showcoordinates"></A>
+<P><PRE>
+
+<B>SHOW COORDINATES</B>
+
+Switches coordinate display on/off.
+</PRE></P><HR>
+<A NAME="menu_view_shownames"></A>
+<P><PRE>
+
+<B>SHOW NAMES</B>
+
+Sets the show names mode on/off.
+</PRE></P><HR>
+<A NAME="menu_view_showbrushes"></A>
+<P><PRE>
+
+<B>SHOW BRUSHES</B>
+
+Sets the show brushes mode on/off.
+</PRE></P><HR>
+<A NAME="menu_view_showtextures"></A>
+<P><PRE>
+
+<B>SHOW TEXTURES</B>
+
+Sets the show textures mode on/off.
+</PRE></P><HR>
+<A NAME="menu_view_global"></A>
+<P><PRE>
+
+<B>Global</B>
+
+Opens the <A HREF="#pics/setglobal.iff/main0">global settings requester</A>. Here you can change the global scene
+settings.
+
+The 'Background' colorfield sets the color of the background of the rendered
+picture.
+
+With the 'Backdrop' string gadget you can enter a picture which will replace
+the background.
+
+The 'Reflectionmap' string gadget sets the name of a picture which will be
+reflected by objects instead of the background. The reflectionmap is even
+applied in quick mode.
+
+The 'Ambient' colorfield sets color of the ambient light which is the base
+brightness of all objects. In other words: surfaces which are not illuminated
+by a light source get the ambient color.
+
+The next group of gadgets set the <A HREF="#general_antialiasing">antialiasing</A> parameters. The
+antialiasing value ranges from 2x2 (low antialiasing) to 8x8 (very high
+antialiasing). This slider sets the amount of rays per pixel. 2x2 means that
+there are 4 rays casted per pixel. Filter width sets the maximum distance from
+the main ray to the additional generated rays in pixels. The 'Contrast'
+colorfield sets the minimum contrast. If the contrast of the main pixel against
+its four neighbours is higher than this color, RayStorm performs antialiasing
+at this pixel. For more information about antialiasing click <A HREF="#antialiasing">here</A>.
+
+The global fog parameters are controlled with the gadgets of the next group.
+'Length' sets the thickness of the fog. The 'Color' colorfield determines the
+color of the fog. 'Height' sets the height at which the fog ends. Global fog
+always starts at negative infinity in y direction and and at the specified y
+position.
+
+The 'Motionblur' cycle gadget is not activated in this version of Scenario,
+because motionblur needs animated objects.
+
+The 'Softshadow' cyle gadget sets the level of oversampling (additional casted
+rays) for soft shadows. Soft shadows are caused from light sources with a size
+bigger than 0. For more information about soft shadows click <A HREF="#softshadows">here</A>.
+
+The 'Random jitter' flag switches between normal and random sampling. With
+random sampling the sampling position is calculated randomly.
+</PRE></P><HR>
+<A NAME="menu_object_attributes"></A>
+<P><PRE>
+
+<B>ATTRIBUTES</B>
+
+Opens the attribute requester for the currently selected object, if no object
+is selected no requester is opened.
+Here you can set the parameters which determine the apperance of the surface.
+The requester is divided into three groups:
+- <A HREF="#pics/attr.iff/main0">Surface</A>
+  At this page you can set the base apperance of the surface.
+  - Diffuse
+    The diffuse reflection falls off as the cosine of the angle between
+    the normal and the ray to the light. Diffuse reflection determines
+    the main color of the object.
+  - Ambient
+    This determines the color of the object in sections which are in
+    shadow.
+  - Specular
+    Specularly reflected highlights fall off as the cosine of the angle
+    between the reflected ray and the ray to the light source.
+  - Diffuse Transmission
+    Same as diffuse reflection, but only used if the lightsource is on
+    opposite side of surface. Only applied if tranlucency is not 0.
+  - Transparence
+    Transparent color.
+  - Specular Transmission
+    Same as specular reflection, but only used if the lightsource is on
+    opposite side of surface. Only applied if tranlucency is not 0.
+  - Reflectivity
+    Reflective color.
+  - Translucency
+    Specular transmittance.
+  - Reflection exponent
+    Determines the size of the specularly reflected highlights, the higher
+    the smaller the highlight.
+  - Index of refraction
+    Determines how the ray through transparent objects is refracted, the
+    higher the more.
+  - Transmission exponent
+    Same as specular reflection exponent, but only used if the lightsource
+    is on opposite side of surface.
+  - Fog length
+  - Bright
+    The brightness of the surface is everywhere the same. Light sources don't
+    affect the surface, no shadows are visible on the surface, but the object
+    casts shadows.
+- <A HREF="#pics/attr1.iff/main0">Brush</A>
+  Brushes are pictures which are projected to the surface. They can replace
+  different surface parameters as color, transparency, reflectivity and
+  specularity. Additional with altitude mapping brushes can change the normals
+  of the surface to simulate bumps or other structures which go 'in' or come
+  'out' of the surface.
+  There are three wrap methods available:
+  - flat (Flat)
+    The brush is projected to X-Y plane.
+  - cylindrical around x- or y-axis (WrapX and WrapY)
+    The brush is wrapped around the x or y-axis, like on a cylinder. The left
+    edge of the brush begins at the posititve x-axis and wraps the brush around
+    the cylinder from 'west' to 'east'.
+  - spherical (WrapXY)
+    Wrapping both: around x- and y-axis. It is assumed, that the object is a
+    sphere. The y-axis is the north/south pole of the spherical mapping. The
+    left edge of the brush begins at the positive x-axis and wraps the brush
+    around the sphere from 'west' to 'east'. The brush covers the sphere
+    exactly once.
+  Additional brushes can be repeated and mirrored (only for flat or cylindrical
+  mapping). If 'Soft' is selected, the color between two points of the brush is
+  softly interpolated.
+  RayStorm has integrated loader modules for IFF-ILBM, Targa and PNG pictures.
+  Also Datatypes (including the new 24 bit versions) are supported, so you can
+  load nearly each picture format.
+  The position, alignment and size of the brush can be set if you enable the
+  <A HREF="#menu_view_showbrushes">show brushes</A> menu item.
+- <A HREF="#pics/attr2.iff/main0">Texture</A>
+  Textures are mathematical generated patterns. Textures can change color,
+  reflectivity, transparency and normals of a surface. Textures are controlled
+  with a set of 16 parameters.
+  The position, alignment and size of the texture can be set if you enable the
+  <A HREF="#menu_view_showtextures">show textures</A> menu item.
+
+<B>Preview</B>
+  Renders a preview of the surface on a sphere (only for KS 3.0 and better).
+  The light source is always placed right top before the sphere.
+  All surface attributes can be viewed here except brushes and fog.
+  If reflectivity is set the RayStorm logo is reflected on the surface.
+<B>Save</B>
+  Saves the surface data.
+<B>Load</B>
+  Loads surface data.
+</PRE></P><HR>
+<A NAME="menu_object_settings"></A>
+<P><PRE>
+
+<B>Settings</B>
+
+Opens the <A HREF="#pics/translate.iff/main0">settings requester</A> for the currently selected object.
+On the first page you can set the name, track, position, alignment and size of
+an object.
+With <I>Track</I> you can set the name of an object the object will track to.
+This means that the object will always point with it's z direction to the axis
+of the track object.
+
+With the second page you can change object settings. The contents of
+this page depends on the object type.
+  <A HREF="#camera_settings">Camera   </A>
+  <A HREF="#cone_settings">Cone     </A>
+  <A HREF="#cylinder_settings">Cylinder </A>
+  <A HREF="#mesh_settings">Mesh     </A>
+  <A HREF="#pointlight_settings">Pointight</A>
+  <A HREF="#spotlight_settings">SpotLight</A>
+</PRE></P><HR>
+<A NAME="camera_settings"></A>
+<P><PRE>
+
+<B>CAMERA SETTINGS</B>
+
+With the <A HREF="#pics/setcamera.iff/main0">camera settings requester</A> you can set various paramaters, which
+influence the camera.
+
+<I>Focal distance</I> and <I>Aperture</I> set the parameters for
+<A HREF="#general_dof">Depth of Field</A>. If you select <I>Focus Track</I> and the camera tracks
+to an object the focal distance of the camera is automatically set to the
+distance between camera and track. <I>Fast DOF</I> enables a faster version
+of the algorithm which can't handle transparent and reflective objects in the
+right way.
+
+With the values of <I>Horizontal</I> and <I>Vertical</I> field of view you
+can set the opening angle of the camera lens. If you activate the button
+<I>Take VFOV from resolution</I> Scenario calculates the vertical field of
+view (VFOV) from the resolution and the horizontal field of view (HFOV). An
+Example will demonstrate this. You selected a HFOV of 30 degree and a
+resolution of 800x600 pixels. This means that the VFOV is
+  600 / 800 * 30 = 22.5 degree.
+</PRE></P><HR>
+<A NAME="cone_settings"></A>
+<P><PRE>
+
+<B>CONE SETTINGS</B>
+
+The <A HREF="#pics/setcone.iff/main0">cone settings</A> requester has a checkmark item with which
+you can remove the bottom cap. Note that a cone without caps should not be
+used with <A HREF="#infocsg">CSG</A>.
+</PRE></P><HR>
+<A NAME="cylinder_settings"></A>
+<P><PRE>
+
+<B>CYLINDER SETTINGS</B>
+
+The <A HREF="#pics/setcylinder.iff/mai0">cylinder settings</A> requester has two checkmark items with which
+you can remove the top and bottom caps. Note that a cylinder without caps should
+not be used with <A HREF="#infocsg">CSG</A>.
+</PRE></P><HR>
+<A NAME="mesh_settings"></A>
+<P><PRE>
+
+<B>MESH SETTINGS</B>
+
+The mesh settings requester is different for external and normal object.
+
+For normal objects the requester looks like <A HREF="#pics/setmesh.iff/main0">this</A>.
+
+If <I>No phong shading</I> is activated the mesh object is rendered
+without soft interpolation of the surface brightness. The object looks
+like made of single facetts.
+
+For external objects the requester looks like <A HREF="#pics/setmesh1.iff/main0">this</A>.
+
+<I>Object filename</I> sets the the name of the external object which is
+attached with the mesh object.
+
+If <I>Apply surface to childs</I> is activated the surface of the mesh
+object is applied to the surface of the attached external object.
+</PRE></P><HR>
+<A NAME="pointlight_settings"></A>
+<P><PRE>
+
+<B>LIGHT SETTINGS</B>
+
+With the <A HREF="#pics/setlight1_1.iff/mai0">light settings requester</A> you can set various paramaters which
+influence the light.
+
+<I>Color</I> sets the color of the light source.
+
+<I>Falloff</I> is the distance where the intensity of the light source is
+zero. A value of zero disables it.
+
+If <I>Falloff from track distance</I> is set, Scenario sets the falloff
+distance to the distance to the track. This option is only selectable if the
+light source is tracking to another object.
+
+<I>Cast shadows</I> enables the light source to cast shadows.
+
+<I>Lens flares</I> enables the <A HREF="#light_lensflares">lens flare settings</A>.
+
+<I>Visible light</I> enables the <A HREF="#light_visiblelight0">visible light settings</A>.
+
+In the <I>Shadowmap</I> section you can set values concerning the shadowmap of
+this light source. For more information to shadow maps click <A HREF="#infoshadowmap">here</A>.
+</PRE></P><HR>
+<A NAME="spotlight_settings"></A>
+<P><PRE>
+
+<B>LIGHT SETTINGS</B>
+
+With the <A HREF="#pics/setlight1_2.iff/mai0">light settings requester</A> you can set various paramaters which
+influence the light.
+
+<I>Color</I> sets the color of the light source.
+
+<I>Falloff</I> is the distance where the intensity of the light source is
+zero. A value of zero disables it.
+
+If <I>Falloff from track distance</I> is set, Scenario sets the falloff
+distance to the distance to the track. This option is only selectable if the
+light source is tracking to another object.
+
+<I>Opening angle</I> sets the opening angle of a spotlightsource in degree.
+
+<I>Cast shadows</I> enables the light source to cast shadows.
+
+<I>Lens flares</I> enables the <A HREF="#light_lensflares">lens flare settings</A>.
+
+<I>Visible light</I> enables the <A HREF="#light_visiblelight0">visible light settings</A>.
+
+In the <I>Shadowmap</I> section you can set values concerning the shadowmap of
+this light source. For more information to shadow maps click <A HREF="#infoshadowmap">here</A>.
+</PRE></P><HR>
+<A NAME="light_lensflares"></A>
+<P><PRE>
+
+<B>LENS FLARES</B>
+
+With the <A HREF="#pics/setlight2.iff/main0">lens flare settings</A> you can create and change lens flares.
+
+Lens flares only appear when the light source is visible. They appear on an
+axis which runs from the center of the light source through the center of the
+screen. The position of the flare is relative to the light source it belongs
+to. If the position value is zero, the flare appears at the position of the
+light source. Higher values of position move it towards the center of the
+screen.
+Here are some example values and their meaning:
+
+   0 : flare has the same position as the light source
+ 100 : flare is in the middle of the screen
+ 200 : flare is on opposite side of the light source
+
+You can also set position to negative values, so the flare will appear behind
+the light source.
+
+The radius of the flare is relative to the horizontal render resolution.
+For example: A flare with radius of 20 % renderd with a resolution of 320x200
+will have a radius of 0.2*320 = 64 pixels.
+
+<B>Type</B> is global to all flares and can be one of the following
+identifiers:
+
+Disc
+  A flare which looks like a disc
+Polygon n
+  A flare which looks like a polygon. n is the number of edges.
+
+<B>Tilt</B> is also global to all flares and sets the angle the flares
+are rotated.
+
+<B>Function</B> can be one of the following:
+
+Plain
+  the color of the flare is uniform
+Ring
+  the flare looks like a ring
+Radial
+  varies the color of the flare radial around the flare center
+
+The flares can either be selected by their number with the slider at top
+of the requester, or in the display area of the requester by clicking with
+the mouse on it.
+</PRE></P><HR>
+<A NAME="light_visiblelight"></A>
+<P><PRE>
+
+<B>VISIBLE LIGHT</B>
+
+With the <A HREF="#pics/setlight3.iff/main0">visible light settings</A> you can change the appearance of the
+light source.
+
+In reality, a light source looks like a star with several spikes getting out
+of the center of the light source. Usually there's a halo around it too.
+
+The radius (length of the longest spike) of the star is relative to the
+horizontal render resolution (see <A HREF="#light_lensflares">Lens Flares</A>).
+
+The radius of the halo is relative to the radius of the star itself. A value
+of 100 % means, that the halo has the same radius as the star.
+The radius of the inner halo is relative to the radius of the outer halo. A
+value of 100 % means, that the inner halo has the same radius as the outer
+halo.
+
+The range value determines the difference between the longest and the shortes
+spike of the star. A value of 0 % means that all spikes have the same length,
+whereas 100 % means that the shortest spike has zero length.
+
+The tilt angle rotates the star spikes.
+
+The spike width value is a factor for the width of the spikes. Higher values
+generate wider spikes.
+
+<B>How are the spikes computed ?</B>
+The four spikes in the main directions (0, 90, 180, 270 degrees) always have
+maximum length. Spikes between them (45, 135, ... degrees for example) are
+shorter and again spikes between them are shorter and so on.
+
+If you enable random, the length of the spikes is randomly changed.
+</PRE></P><HR>
+<A NAME="menu_object_group"></A>
+<P><PRE>
+
+<B>GROUP</B>
+
+Groups the selected objects.
+</PRE></P><HR>
+<A NAME="menu_object_ungroup"></A>
+<P><PRE>
+
+<B>UNGROUP</B>
+
+Ungroups the selected objects.
+</PRE></P><HR>
+<A NAME="menu_object_load"></A>
+<P><PRE>
+
+<B>LOAD</B>
+
+Loads an external object. Currently RayStorm, Imagine, 3DS and RAW objects
+are supported. Scenario generates an axis and adds the object as childs of it.
+
+After loading the name of the object file can be changed with the <A HREF="#mesh_settings">mesh settings</A>
+requester.
+</PRE></P><HR>
+<A NAME="menu_object_save"></A>
+<P><PRE>
+
+<B>SAVE</B>
+
+Saves an object and it's childs in RayStorm object file format. You can only
+save objects from the root level of the object tree. This means you cannot
+save child objects. You also cannot save external objects.
+</PRE></P><HR>
+<A NAME="menu_object_create"></A>
+<P><PRE>
+
+<B>CREATE</B>
+
+   <A HREF="#menu_object_sphere"> Sphere     </A>
+   <A HREF="#menu_object_box"> Box        </A>
+   <A HREF="#menu_object_cone"> Cone       </A>
+   <A HREF="#menu_object_cylinder"> Cylinder   </A>
+   <A HREF="#menu_object_plane"> Plane      </A>
+   <A HREF="#menu_object_pointlight"> Pointlight </A>
+   <A HREF="#menu_object_spotlight"> Spotlight  </A>
+   <A HREF="#menu_object_camera"> Camera     </A>
+</PRE></P><HR>
+<A NAME="menu_object_sphere"></A>
+<P><PRE>
+
+<B>SPHERE</B>
+
+Creates a new sphere at position <0,0,0> with radius 1.
+</PRE></P><HR>
+<A NAME="menu_object_box"></A>
+<P><PRE>
+
+<B>BOX</B>
+
+Creates a new box at position <0,0,0> with the left, bottom, front edge
+at <-1,-1,-1> and the right, top, back edge at <1,1,1>.
+</PRE></P><HR>
+<A NAME="menu_object_cone"></A>
+<P><PRE>
+
+<B>CONE</B>
+
+Creates a new cone at position <0,0,0> with the rotation axis pointing
+in y direction. The height is 1 and both x and z radius are also 1.
+</PRE></P><HR>
+<A NAME="menu_object_cylinder"></A>
+<P><PRE>
+
+<B>CYLINDER</B>
+
+Creates a new cylinder at position <0,0,0> with the rotation axis pointing
+in y direction. The height is 1 and both x and z radius are also 1.
+</PRE></P><HR>
+<A NAME="menu_object_plane"></A>
+<P><PRE>
+
+<B>PLANE</B>
+
+Creates a new plane at position <0,0,0> with the normal pointing in positive
+y direction.
+</PRE></P><HR>
+<A NAME="menu_object_pointlight"></A>
+<P><PRE>
+
+<B>POINTLIGHT</B>
+
+Creates a new point light source at position <0,0,0>.
+</PRE></P><HR>
+<A NAME="menu_object_spotlight"></A>
+<P><PRE>
+
+<B>SPOTLIGHT</B>
+
+Creates a new spot light source at position <0,0,0> with a opening angle of
+45 degree pointing in negative y direction.
+</PRE></P><HR>
+<A NAME="menu_object_camera"></A>
+<P><PRE>
+
+<B>CAMREA</B>
+
+Creates a new pinhole camera at position <0,0,0> with a horizontal and
+vertical field of view of 25 degree witch is pointing in positive z
+direction.
+</PRE></P><HR>
+<A NAME="menu_object_mesh"></A>
+<P><PRE>
+
+<B>MESH</B>
+
+   <A HREF="#menu_object_mesh_axis"> Axis             </A>
+   <A HREF="#menu_object_mesh_cube"> Cube             </A>
+   <A HREF="#menu_object_mesh_sphere"> Sphere           </A>
+   <A HREF="#menu_object_mesh_plane"> Plane            </A>
+   <A HREF="#menu_object_mesh_tube"> Tube             </A>
+   <A HREF="#menu_object_mesh_cone"> Cone             </A>
+   <A HREF="#menu_object_mesh_torus"> Torus            </A>
+</PRE></P><HR>
+<A NAME="menu_object_mesh_axis"></A>
+<P><PRE>
+
+<B>AXIS</B>
+
+Creates a new axis at position <0,0,0> with size <1,1,1>. An axis can be used
+to track a camera or a spot lightsource on it.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_cube"></A>
+<P><PRE>
+
+<B>CUBE</B>
+
+Creates a cube at position <0,0,0>. You can set the size of the cube with a
+requester.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_sphere"></A>
+<P><PRE>
+
+<B>SPHERE</B>
+
+Creates a spere at position <0,0,0>. You can set the size, the divisions and
+the slices with a requester.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_plane"></A>
+<P><PRE>
+
+<B>Plane</B>
+
+Creates a plane at position <0,0,0> with normal pointing in positive y-
+direction. You can set the divisions with a requester.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_tube"></A>
+<P><PRE>
+
+<B>TUBE</B>
+
+Creates a tube at position <0,0,0>. You can set the size, the height, the
+divisions, the slices and if it's a closed tube with a requester.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_cube"></A>
+<P><PRE>
+
+<B>CONE</B>
+
+Creates a cone at position <0,0,0>. You can set the size, height, divisions,
+slices, and if the cone is closen with a requester.
+</PRE></P><HR>
+<A NAME="menu_object_mesh_torus"></A>
+<P><PRE>
+
+<B>TORUS</B>
+
+Creates a torus at position <0,0,0>. You can set the inner and outer size, the
+division and slices with a requester.
+</PRE></P><HR>
+<A NAME="menu_object_activecamera"></A>
+<P><PRE>
+
+<B>ACTIVE CAMERA</B>
+
+You can select the active camera.
+</PRE></P><HR>
+<A NAME="menu_object_browse"></A>
+<P><PRE>
+
+<B>BROWSE</B>
+
+Opens the object browser. There are two different selectable behaviours:
+- Normal
+  View by selecting an entry and pressing the view button.
+  Select object with double click.
+- Alternative
+  View by selecting any entry.
+  Select object with double click.
+The behaviour is selectable in the <A HREF="#menu_settings_prefs">preferences requester</A>.
+</PRE></P><HR>
+<A NAME="menu_settings_prefs"></A>
+<P><PRE>
+
+<B>PREFS</B>
+
+Opens the preferences requester.
+
+The <A HREF="#pics/prefs1.iff/main0">'Paths'-page</A> let you set various paths.
+
+<B>Viewer</B>
+   Sets the path and name of the viewer. This viewer is used to display the
+   images generated by RayStorm. The filename of the image is appended to the
+   end of the string. You have specify the whole path, for example not
+   'multiview' but 'sys:utilities/multiview'.
+<B>Project path</B>
+   Sets the default path for projects
+<B>Object path</B>
+   Sets the default path for objects.
+<B>Texture path</B>
+   Sets the default path for textures.
+<B>Brush path</B>
+   Sets the default path for brushes.
+
+The <A HREF="#pics/prefs2.iff/main0">'Flags'-page</A> let you set various flags.
+
+<B>Alternative browser mode</B>
+   See <A HREF="#menu_object_browse">Browse</A>.
+<B>Always show coordinates</B>
+   The 3d coordinates of the mouse pointer are displayed for front, right and
+   top. If a object is transformed, the relative coordinates, rotation angles
+   or scale fctors are displayed
+<B>External toolbar images</B>
+   If this flags is set, Scenario loads it's images from image files in the
+   'buttons'-drawer, else the buildin images are used. The images are loaded
+   with datatypes and must be 16x16 pixel big. Kick 2.x users will always get
+   the buildin images.
+
+On the <A HREF="#pics/prefs3.iff/main0">'Misc'-page</A> you can set the undo memory size:
+
+<B>Undo memory kB</B>
+   Sets the maximum amount of memory used for undo informations. Old undo
+   operations are deleted if the memory limit is reached.
+</PRE></P><HR>
+<A NAME="menu_settings_mui"></A>
+<P><PRE>
+
+<B>MUI</B>
+
+Opens the MUI preferences.
+</PRE></P><HR>
+<A NAME="menu_settings_load"></A>
+<P><PRE>
+
+<B>LOAD</B>
+
+Loads the preferences from a file called 'scenario.prefs'.
+</PRE></P><HR>
+<A NAME="menu_settings_save"></A>
+<P><PRE>
+
+<B>SAVE</B>
+
+Saves the preferences to a file called 'scenario.prefs'.
+</PRE></P><HR>
+<A NAME="buttons"></A>
+<P><PRE>
+
+<B>BUTTONS</B>
+
+The first three buttons handle the project management (new, load
+and save project.
+
+The next six buttons are for selecting the view (front, right, top,
+perspective, quad and camera view).
+
+The following three buttons select the display type. (bounding box,
+wireframe and solid display).
+
+After this are six buttons to select the edit mode (move, rotate, scale object
+and move, rotate, scale world).
+
+The next three buttons enable the X, Y and Z-axis.
+</PRE></P><HR>
+<A NAME="object_menus"></A>
+<P><PRE>
+
+<B>OBJECT MENUS</B>
+
+Sceneario supports object oriented menus. These menus are shown when you click
+the right mouse button inside the work area and hold it. Scenario then pops
+up a menu. The contents of this menu depends on the object which is found at
+this position.
+
+<B>World menu</B>
+
+The world menu is shown if you click on a place where no object is placed.
+The menu contents follwing points:
+
+Move:       switch to move world
+Rotate:     switch to rotate (the virtual camera is rotated around the view
+            point (only perspective mode))
+Zoom:       zoom in or out
+Settings:   opens the general settings requester
+
+<B>Object menu</B>
+
+The object menu pops up if you click on the handle of the object.
+The menu contents follwing points:
+
+Move:       switch to mode move object
+Rotate:     switch to rotate object (the object is rotated around it's local
+            axis)
+Scale:      switch to scale object
+Settings:   opens the <A HREF="#menu_object_settings">settings</A> requester
+Attributes: opens the surface <A HREF="#menu_object_attributes">attributes</A>
+            requester
+
+<B>Camera menu</B>
+
+The camera menu pops up if you click on the handle of a camera
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the <A HREF="#camera_settings">camera settings</A> requester
+Active:     sets this camera as the active camera (the scene is viewed with
+            this camera)
+
+<B>Light menu</B>
+
+Opens the light popup menu.
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the <A HREF="#light_settings">light source settings</A> requester
+
+<B>Mesh menu</B>
+
+Opens the mesh popup menu.
+The menu contents follwing points:
+
+Move, Rotate, Scale, Settings: see object menu
+Settings:   opens the <A HREF="#mesh_settings">Mesh settings</A> requester
+Attributes: see object menu
+To scene:   convert external to scene objects
+</PRE></P><HR>
+<A NAME="keyboard_control"></A>
+<P><PRE>
+
+<B>KEYBOARD CONTROL</B>
+
+ESC          break redraw
+cursor keys  Function depends on the curren edit mode (move, rotate, scale of
+             world or object).
+DEL          delete selected objects
+'+'          zooms in
+'-'          zooms out
+'m'          switches to move object action
+'r'          switches to rotate object action
+'s'          switches to scale object action
+'M'          switches to move world action
+'R'          switches to rotate world action
+'S'          switches to scale world action
+'t'          opens settings requester
+'a'          opens attributes requester
+'1'          switches to front view
+'2'          switches to right view
+'3'          switches to top view
+'4'          switches to perspective view
+'5'          switches to quad view
+'6'          switches to camera view
+'b'          toggles box selection mode
+'x'          enable x axis
+'y'          enable y axis
+'z'          enable z axis
+
+'F1'         render settings
+
+'R-Amiga' - '.'   Center view
+</PRE></P><HR>
+<A NAME="tipstricks"></A>
+<P><PRE>
+
+<B>TIPS &amp; TRICKS</B>
+
+<B>General</B>
+- RayStorm renders faster if you don't use planes, because intersections
+  with planes cannot be calculated with the octree (helpfull in scenes with
+  motion blur or soft shadows).
+
+<B>Scenario</B>
+
+- <B>The 020-Version of Scenario crashes!</B>
+  In Kickstart V40.x, there is a bug in mathieeesingbas.library - it uses FPU
+  code on non-FPU machines for division/multiplication. This bug can be easily
+  fixed with a patch from Aminet: 
+- <B>I have problems with the screen refresh, the scene is only refreshed
+  behind the requester!</B>
+  Open the <A HREF="#menu_settings_mui">MUI-settings</A> requester and select from the window
+  part for "Refresh" the "Smart"-mode.
+- <B>How can I change the texture and brush names without removing and adding
+  them again?</B>
+  Select <A HREF="#menu_view_showtextures">View->Show->Show Textures</A> or <A HREF="#menu_view_showbrushes">View->Show->Show Brushes</A>
+  and select the texture or brush. Now open the <A HREF="#menu_object_settings">settings-requester</A> and change
+  the name of the brush or texture.
+- <B>How can I change the name of an RSOB/TDDD/3DS/RAW-object without deleting
+  and reloding it?</B>
+  Select <A HREF="#menu_object_settings">Settings</A> from the object menu of the parent axis. Here you
+  can change the name of the object.
+- <B>How can I load my old Imagine attribute files to use it for RayStorm
+  objects?</B>
+  Load the attributes file with <A HREF="#menu_object_load">load object</A>. You will get an axis
+  named 'Mesh' with another axis attached to it. The surface of this axis is set
+  to the attributes of the file. Click with the right mouse button to the parent
+  axis and select <A HREF="#object_menus">To scene</A>. The parent axis is no deleted
+  and can now open the attributes requester for the child axis. Select save from
+  the <A HREF="#menu_object_attributes">attributes requester</A> and save the surface as a RayStorm material file.
+- <B>If I apply a checker texture to a plane looks noisy!</B>
+  If the texture is exactly on the plane, the color of the texture jumps
+  between black and white because of rounding errors. Try to move the texture
+  axis a little (e.g. 0.02) away from the plane.
+
+<B>RayStorm Script</B>
+- The commands '<A HREF="#texturepath">TEXTUREPATH</A>', '<A HREF="#objectpath">OBJECTPATH</A>' and '<A HREF="#brushpath">BRUSHPATH</A>' are relative
+  to the directory RayStorm is started from.
+- If RayStorm crashes with scenes with reflections and transparence, try
+  to start RayStorm with a larger stack (e.g. 8192 bytes or more).
+</PRE></P><HR>
+<A NAME="arexx"></A>
+<P><PRE>
+
+<B>AREXX INTERFACE</B>
+
+   <A HREF="#arexx_intro">Introduction</A>
+   <A HREF="#arexx_address">Address     </A>
+   <A HREF="#arexx_params">Parameters  </A>
+   <A HREF="#arexx_commands">Commands    </A>
+   <A HREF="#errors">Errors      </A>
+</PRE></P><HR>
+<A NAME="arexx_intro"></A>
+<P><PRE>
+
+<B>AREXX INTRODUCTION</B>
+
+RayStorm is completly controled through it's ARexx interface. We recommend
+that you have a look at the <A HREF="#tutorials">tuturials</A> and the <A HREF="#examples">example</A>
+script files in the 'ARexx' directory.
+These examples cover most of the features of RayStorm. Further encourage you
+to create your own files and make them available for the public. You can send
+them to us and we might add them as an example files in the next version of
+RayStorm or we include them to our <A HREF="#homepage">Homepage</A>.
+In one of the next versions of RayStorm we'll create a more powerful
+language, which has a similar syntax to C++.
+
+It's the same if you write the the commands in upper case or lower case.
+But it's important to enclose all commans in quotes because ARexx tries
+to interpret the line before it sends it to ARexx. It may happen that the
+line is changed and RayStorm don't do this what you want.
+
+A typical structure of a scene file is:
+
+/* title, comments, ... */
+
+/* setting resolution, world, camera, lightsources */
+'SETSCREEN 160 128'
+'SETWORLD [0,0,0] [40,40,40]'
+'SETCAMERA <0,0,80> <0,0,0> <0,1,0> 25 20'
+'POINTLIGHT <10,-10,100> [255,255,255] SHADOW'
+
+/* define surfaces and actors */
+'NEWSURFACE TEST1'
+'AMBIENT [255,0,0]'
+'DIFFUSE [255,0,0]'
+'SPECULAR [255,255,255]'
+
+'NEWSURFACE TEST2'
+'AMBIENT [0,0,255]'
+
+/* creating objects */
+'SPHERE TEST1 <0,0,0> 10'
+'SPHERE TEST2 <0,0,0> 10'
+
+/* finally start to render the scene */
+'STARTRENDER'
+
+/* save the image */
+'SAVEPIC "test.iff"'
+
+'CLEANUP'
+</PRE></P><HR>
+<A NAME="arexx_address"></A>
+<P><PRE>
+
+<B>ADDRESS</B>
+
+The ARexx-address of RayStorm is 'RAYSTORM'.
+</PRE></P><HR>
+<A NAME="arexx_params"></A>
+<P><PRE>
+
+<B>AREXX PARAMETERS</B>
+
+The parameters of a command can be FLOATs, INTEGERs, VECTORs, COLORs,
+STRINGs, and IDENTIFIERs.
+
+FLOAT     An FLOAT is a floating point number with single precision
+
+NUMBER    A NUMBER is a simple integer number
+
+VECTOR    A VECTOR is embedded in '<' '>' and consists of three FLOATs
+
+COLOR     A COLOR is embedded in '[' ']' and consists of three INTEGERs
+          which range normally from 0 to 255, but you can also set negative
+          values or values above of 255.
+
+STRING    A STRING consists of characters
+
+KEYWORD   An KEYWORD is a switch and consists of uppercase characters
+
+<B>PARAMETER CONVENTIONS</B>
+  /S - Switch.
+  /N - Number.
+  /A - Required.
+
+  All other numeric parameters are floating point numbers.
+</PRE></P><HR>
+<A NAME="arexx_commands"></A>
+<P><PRE>
+
+<B>AREXX COMMANDS</B>
+
+   <A HREF="#general"> General         </A>
+   <A HREF="#objects"> Objects         </A>
+   <A HREF="#attributes"> Attributes      </A>
+   <A HREF="#animation"> Animation       </A>
+
+<B>Alphabetically sorted</B>
+
+<B>-A-</B>
+  <A HREF="#alignment">ALIGNMENT   </A>
+  <A HREF="#ambient">AMBIENT     </A>
+  <A HREF="#antialias">ANTIALIAS   </A>
+<B>-B-</B>
+  <A HREF="#box">BOX         </A>
+  <A HREF="#brush">BRUSH       </A>
+  <A HREF="#brushpath">BRUSHPATH   </A>
+<B>-C-</B>
+  <A HREF="#cleanup">CLEANUP     </A>
+  <A HREF="#csg">CSG         </A>
+  <A HREF="#cylinder">CYLINDER    </A>
+<B>-D-</B>
+  <A HREF="#difftrans">DIFFTRANS   </A>
+  <A HREF="#diffuse">DIFFUSE     </A>
+  <A HREF="#display">DISPLAY     </A>
+  <A HREF="#distrib">DISTRIB     </A>
+<B>-F-</B>
+  <A HREF="#flare">FLARE       </A>
+  <A HREF="#foglen">FOGLEN      </A>
+<B>-G-</B>
+  <A HREF="#geterrorstr">GETERRORSTR </A>
+<B>-H-</B>
+  <A HREF="#hypertexture">HYPERTEXTURE</A>
+<B>-I-</B>
+  <A HREF="#imtexture">IMTEXTURE   </A>
+<B>-L-</B>
+  <A HREF="#loadobj">LOADOBJ     </A>
+<B>-N-</B>
+  <A HREF="#newsurface">NEWSURFACE  </A>
+<B>-O-</B>
+  <A HREF="#objectpath">OBJECTPATH  </A>
+<B>-P-</B>
+  <A HREF="#plane">PLANE       </A>
+  <A HREF="#pointlight">POINTLIGHT  </A>
+  <A HREF="#position">POSITION    </A>
+<B>-Q-</B>
+  <A HREF="#quit">QUIT        </A>
+<B>-R-</B>
+  <A HREF="#refexp">REFEXP      </A>
+  <A HREF="#reflect">REFLECT     </A>
+  <A HREF="#refrindex">REFRINDEX   </A>
+<B>-S-</B>
+  <A HREF="#savepic">SAVEPIC     </A>
+  <A HREF="#setcamera">SETCAMERA   </A>
+  <A HREF="#setscreen">SETSCREEN   </A>
+  <A HREF="#setworld">SETWORLD    </A>
+  <A HREF="#size">SIZE        </A>
+  <A HREF="#sor">SOR         </A>
+  <A HREF="#spectrans">SPECTRANS   </A>
+  <A HREF="#specular">SPECULAR    </A>
+  <A HREF="#sphere">SPHERE      </A>
+  <A HREF="#spotlight">SPOTLIGHT   </A>
+  <A HREF="#star">STAR        </A>
+  <A HREF="#startrender">STARTRENDER </A>
+<B>-T-</B>
+  <A HREF="#texturepath">TEXTUREPATH </A>
+  <A HREF="#transexp">TRANSEXP    </A>
+  <A HREF="#transluc">TRANSLUC    </A>
+  <A HREF="#transpar">TRANSPAR    </A>
+  <A HREF="#triangle">TRIANGLE    </A>
+<B>-W-</B>
+  <A HREF="#wintofront">WINTOFRONT  </A>
+</PRE></P><HR>
+<A NAME="general"></A>
+<P><PRE>
+
+<B>GENERAL AREXX-COMMANDS</B>
+
+<A HREF="#antialias">ANTIALIAS  </A>  sets antialiasing parameters
+<A HREF="#brushpath">BRUSHPATH  </A>  sets brush path
+<A HREF="#cleanup">CLEANUP    </A>  cleanups scene
+<A HREF="#display">DISPLAY    </A>  displays scene
+<A HREF="#distrib">DISTRIB    </A>  sets parameters for distributive sampling
+<A HREF="#flare">FLARE      </A>  add a flare to a lightsource
+<A HREF="#geterrorstr">GETERRORSTR</A>  gets a error string for a given number
+<A HREF="#objectpath">OBJECTPATH </A>  sets object path
+<A HREF="#pointlight">POINTLIGHT </A>  creates point lightsource
+<A HREF="#quit">QUIT       </A>  quits RayStorm
+<A HREF="#savepic">SAVEPIC    </A>  saves rendered picture
+<A HREF="#setcamera">SETCAMERA  </A>  sets camera parameters
+<A HREF="#setscreen">SETSCREEN  </A>  sets screen parameters
+<A HREF="#setworld">SETWORLD   </A>  sets world parameters
+<A HREF="#spotlight">SPOTLIGHT  </A>  creates spot lightsource
+<A HREF="#star">STAR       </A>  add a light star to a lightsource
+<A HREF="#startrender">STARTRENDER</A>  starts rendering
+<A HREF="#texturepath">TEXTUREPATH</A>  sets texture path
+<A HREF="#wintofront">WINTOFRONT </A>  brings window to front
+</PRE></P><HR>
+<A NAME="antialias"></A>
+<P><PRE>
+
+<B>ANTIALIAS</B>
+
+<B>Template:</B>
+ SAMPLES/N/A,WIDTH,CONTRIB
+<B>Arguments:</B>
+ NUMBER SAMPLES
+   Squareroot of number of samples per pixel (max. 8) (default: 1).
+ FLOAT WIDTH
+   Width of gaussian filter. The range is infinite but values between 1 and
+   3 are recommended (default: 1.3).
+ COLOR CONTRIB
+   Max. allowed contrast (default: [51,38,76]).
+<B>Description:</B>
+ Sets antialiasing parameters (see <A HREF="#antialiasing">Antialiasing</A>)
+</PRE></P><HR>
+<A NAME="brushpath"></A>
+<P><PRE>
+
+<B>BRUSHPATH</B>
+
+<B>Template:</B>
+ PATH/A
+<B>Arguments:</B>
+ STRING PATH
+   pathname (no default).
+<B>Description:</B>
+ Defines the path where to search brushes. More than one path may be included
+ as long as they are separated by semi-colons.
+<B>Example:</B>
+ BRUSHPATH 'path1;path2'
+</PRE></P><HR>
+<A NAME="cleanup"></A>
+<P><PRE>
+
+<B>CLEANUP</B>
+
+<B>Template:</B>
+ none
+<B>Arguments:</B>
+ none
+<B>Description:</B>
+ Deletes all defined objects, lightsources, surfaces and actors
+</PRE></P><HR>
+<A NAME="display"></A>
+<P><PRE>
+
+<B>DISPLAY</B>
+
+<B>!!! CAUTION !!!
+THIS COMMAND ISN'T RELEASED IN THIS VERSION YET
+!!! CAUTION !!!</B>
+
+<B>Template:</B>
+ FLOYD/S
+<B>Arguments:</B>
+ KEYWORD FLOYD/S
+   Dither with Floyd-Steinberg algorithm (default: OFF).
+<B>Description:</B>
+ Displays rendered pic on screen.
+</PRE></P><HR>
+<A NAME="distrib"></A>
+<P><PRE>
+
+<B>DISTRIB</B>
+
+<B>Template:</B>
+ SAMPLES/N,SOFTSHADOW/N
+<B>Arguments:</B>
+ NUMBER SAMPLES/N
+   Squareroot of number of samples per pixel for motionblur (default 1).
+ NUMBER SOFTSHADOW/N
+   Squareroot of number of samples per pixel for softshadows (default 1).
+<B>Description:</B>
+ Sets number of samples per pixel for distributive sampling (used for
+ <A HREF="#motionblur">motion blur</A> and <A HREF="#softshadows">soft shadows</A>)
+</PRE></P><HR>
+<A NAME="geterrorstr"></A>
+<P><PRE>
+
+<B>GETERRORSTR</B>
+
+<B>Template:</B>
+ ERRNUM/N/A
+<B>Arguments:</B>
+ NUMBER ERRNUM
+   Error number (no default).
+<B>Description:</B>
+ Returns the error string for the given error number
+</PRE></P><HR>
+<A NAME="objectpath"></A>
+<P><PRE>
+
+<B>OBJECTPATH</B>
+
+<B>Template:</B>
+ PATH/A
+<B>Arguments:</B>
+ PATH
+   Pathname (no default).
+<B>Description:</B>
+ Defines the path where to search objects. More than one path may be included
+ as long as they are separated by semi-colons.
+<B>Example:</B>
+ OBJECTPATH 'path1;path2'
+</PRE></P><HR>
+<A NAME="pointlight"></A>
+<P><PRE>
+
+<B>POINTLIGHT</B>
+
+<B>Template:</B>
+ POS/A,COLOR,SIZE,SHADOW/S,ACTOR,FALLOFF,NOSTAR/S,NOFLARES/S,SHADOWMAP/S,
+ SHADOWMAPSIZE/N
+<B>Arguments:</B>
+ VECTOR POS
+   Position of the pointlight (default: <0,0,0,>)
+ COLOR COLOR
+   Color of the light (default: [255,255,255]). Note: this color also can be
+   greater than 255 or negative.
+ VECTOR SIZE
+   Size of light source (used for <A HREF="#softshadows">soft shadows</A>) (default 0)
+ KEYWORD SHADOW
+   Lightsource casts shadows (default: OFF).
+ STRING ACTOR
+   Name of actor (no default value).
+ FLOAT FALLOFF
+   Distance where the brightness of the light is zero. A value of 0 switches
+   this option off (default: 0).
+ KEYWORD NOSTAR
+   Disable light star (default: OFF).
+ KEYWORD NOFLARES
+   Disable lens flares (default: OFF).
+ KEYWORD SHADOWMAP
+   Enables the shadowmap (default: OFF).
+ NUMBER SHADOWMAPSIZE
+   Defines the size of the shadowmap (default: 128).
+<B>Description:</B>
+ Creates a point lightsource. The lightsource casts shadows, if the keyword
+ SHADOW is given. A <A HREF="#infoshadowmap">shadowmap</A> will be generated if both the SHADOW and
+ SHADOWMAP keywords are given.
+</PRE></P><HR>
+<A NAME="quit"></A>
+<P><PRE>
+
+<B>QUIT</B>
+
+<B>Template:</B>
+ none
+<B>Arguments:</B>
+ none
+<B>Description:</B>
+ Quits Raystrom Script.
+</PRE></P><HR>
+<A NAME="savepic"></A>
+<P><PRE>
+
+<B>SAVEPIC</B>
+
+<B>Template:</B>
+ NAME/A,FORMAT
+<B>Arguments:</B>
+ STRING NAME
+   The name of the picture to save (no default).
+ STRING FORMAT
+   Image format: TGA, PNG, ILBM (default: ILBM).
+<B>Description:</B>
+ Saves the rendered picture as a 24-Bit IFF-ILBM-file, 24 Bit TGA or 24 Bit
+ PNG file. If an error occures the command returns an error string.
+<B>Example:</B>
+ SAVEPIC 'path/name with extension'
+</PRE></P><HR>
+<A NAME="setcamera"></A>
+<P><PRE>
+
+<B>SETCAMERA</B>
+
+<B>Template:</B>
+ POS/A,VIEWPOINT,VIEWUP,FOVX,FOVY,FOCALDIST,APERTURE,POSACTOR,VIEWACTOR
+<B>Arguments:</B>
+ VECTOR POS
+   Position of the camera (default: <0,0,-10>).
+ VECTOR VIEWPOINT
+   Position to which the camera points to (default: <0,0,0>).
+ VECTOR VIEWUP
+   View up vector (default: <0,1,0>).
+ FLOAT FOVX, FOVY
+   Field of view (in degree) (20 degree creates a camera like the default
+   camera of Imagine) (default: 45, 45)
+ FLOAT FOCALDIST
+   Distance from eye to focal plane (default: 1).
+ FLOAT APERTURE
+   Aperture width (0 = pinhole) (-&gt; <A HREF="#dof">depth of field</A>) (default: 0).
+ STRING POSACTOR
+   Name of position actor (no default).
+ STRING VIEWACTOR
+   Name of look_at_actor (no default).
+<B>Description:</B>
+ Sets the parameters of the camera
+</PRE></P><HR>
+<A NAME="setscreen"></A>
+<P><PRE>
+
+<B>SETSCREEN</B>
+
+<B>Template:</B>
+ RESX/N/A,RESY/N/A,COLORS/N
+<B>Arguments:</B>
+ NUMBER RESX, RESY
+   Resolution of the picture (default: 128, 128).
+ NUMBER COLORS
+   Number of colors (not yet implemented)
+<B>Description:</B>
+ Sets the resolution of the rendered picture. Note that in the demo-version
+ the resolution is limited to 160x128 pixels!
+</PRE></P><HR>
+<A NAME="setworld"></A>
+<P><PRE>
+
+<B>SETWORLD</B>
+
+<B>Template:</B>
+ BACK/A,AMBIENT,RANDJIT/S,BACKDROP,FOGLEN,FOGHEIGHT,FOGCOLOR,REFLMAP
+<B>Arguments:</B>
+ COLOR BACK
+   Color of background (default: [0,0,0]). Note: this color also can be
+   greater than 255 or negative.
+ COLOR AMBIENT
+   Ambient color (default: [0,0,0]). Note: this color also can be greater than
+   255 or negative.
+ KEYWORD RANDJIT
+   Use random jitter for <A HREF="#dof">depth of field</A> and <A HREF="#softshadows">soft shadows</A> (default: OFF).
+ STRING BACKDROP
+   Name of the backdrop picture (no default).
+ FLOAT FOGLEN
+   Global fog length (default: 32).
+ FLOAT FOGHEIGHT
+   Highest fog y-level (default: 0).
+ COLOR FOGCOLOR
+   Color of fog (default: [255,255,255]). Note: this color also can be greater
+   than 255 or negative.
+ STRING REFLMAP
+   Name of the reflection map (no default).
+<B>Description:</B>
+ Sets world parameters. The backdrop picture is automatically scaled to
+ the screen resolution.
+</PRE></P><HR>
+<A NAME="spotlight"></A>
+<P><PRE>
+
+<B>SPOTLIGHT</B>
+
+<B>Template:</B>
+ POS/A,COLOR,LOOKPOINT,ANGLE,SIZE,SHADOW/S,ACTOR,LOOKP_ACTOR,FALLOFF,NOSTAR/S,
+ NOFLARES/S,SHADOWMAP/S,SHADOWMAPSIZE/N
+<B>Arguments:</B>
+ VECTOR POS
+   Position of the spotlight (default: <0,0,0,>)
+ COLOR COLOR
+   Color of light (default: [255,255,255]). Note: this color also can be
+   greater than 255 or negative.
+ VECTOR LOOKPOINT
+   Point at which the spotlight shines (default: <0,0,1>).
+ FLOAT ANGLE
+   Opening angel in degree (max. 180) (default: 45).
+ VECTOR SIZE
+   Size of light source (used for <A HREF="#softshadows">soft shadows</A>) (default 0)
+ KEYWORD SHADOW
+   Lightsource casts shadows (default: OFF).
+ STRING ACTOR
+   Name of position actor (no default value).
+ STRING LOOKP_ACTOR
+   Name of look-point actor (no default value).
+ FLOAT FALLOFF
+   Distance where the brightness of the light is zero. A value of 0 switches
+   this option off (default: 0).
+ KEYWORD NOSTAR
+   Disable light star (default: OFF).
+ KEYWORD NOFLARES
+   Disable lens flares (default: OFF).
+ KEYWORD SHADOWMAP
+   Enables the shadowmap (default: OFF).
+ NUMBER SHADOWMAPSIZE
+   Defines the size of the shadowmap (default: 128).
+<B>Description:</B>
+ Creates a spotlight. The rays emitted from a spotlight are constrained
+ by a cone. The LOOKPOINT vector gives the center of the illuminated area.
+ The lightsource casts shadows, if the keyword SHADOW is given. A <A HREF="#infoshadowmap">shadowmap</A>
+ will be generated if both the SHADOW and SHADOWMAP keywords are given.
+</PRE></P><HR>
+<A NAME="flare"></A>
+<P><PRE>
+
+<B>FLARE</B>
+
+<B>Template:</B>
+ POS/A,RADIUS/A,COLOR,TYPE,FUNCTION,EDGES/N,TILT
+<B>Arguments:</B>
+ FLOAT POS
+   Position of the flare on light axis (in percent) (default: 50).
+ FLOAT RADIUS
+   Radius of the flare (in percent) (default: 10).
+ COLOR COLOR
+   Color of the flare (default: [50,50,50]). Note: this color also can be
+   greater than 255 or negative.
+ KEYWORD TYPE [DISC|POLYGON]
+   Type of the flare (default: DISC).
+ KEYWORD FUNCTION [PLAIN|RING|RADIAL]
+   Look of the flare (default: PLAIN).
+ NUMBER EDGES
+   Number of edges of polygonal flare (3 - 8 edges possible) (default: 5).
+ FLOAT TILT
+   Tilt angle of flare (only useful for polygonal flares) (default: 0).
+<B>Description:</B>
+ A new lens flare is added to the last defined light source. Lens flares only
+ appear when the light source is visible. They appear on an axis which runs
+ from the center of the light source through the center of the screen. The
+ position of the flare is relative to the light source it belongs to. If the
+ position value is zero, the flare appears at the position of the light source.
+ Greater values of pos move it towards the center of the screen. Here a some
+ example values and their meaning:
+
+   0 : flare has the same position as the light source
+ 100 : flare is in the middle of the screen
+ 200 : flare is on opposite side of the light source
+
+ You can also set pos to negative values, so the flare will appear behind the
+ light source.
+
+ The radius of the flare is relative to the horizontal render resolution.
+ For example: A flare with radius of 20 % renderd with a resolution of 320x200
+ will have a radius of 0.2*320 = 64 pixels.
+
+ <B>type</B> can be one of the following identifiers:
+
+ DISC
+   A flare which looks like a disc
+ POLYGON
+   A flare which looks like a polygon. The number of edges can be set with
+   edges.
+
+ <B>function</B> can be one of the following identifiers:
+
+ PLAIN
+   the color of the flare is uniform
+ RING
+   the flare looks like a ring
+ RADIAL
+   varies the color of the flare radial around the flare center
+</PRE></P><HR>
+<A NAME="star"></A>
+<P><PRE>
+
+<B>STAR</B>
+
+<B>Template:</B>
+ SPIKES,RADIUS,HALORADIUS,INNERHALORADIUS,RANGE,RANDOM_SEED/N,SPIKEWIDTH,TILT
+<B>Arguments:</B>
+ NUMBER SPIKES
+   Number of spikes (4 - 256) (default: 4).
+ FLOAT RADIUS
+   Radius of star (in percent) (default: 30).
+ FLOAT HALORADIUS
+   Radius of star halo (in percent relative to star radius) (default: 20).
+ FLOAT INNERHALORADIUS
+   Radius of inner star halo (in percent relative to halo radius) (default: 40).
+ FLOAT RANGE
+   Range between shortest and longest spike (in percent) (default: 0).
+ NUMBER RANDOM_SEED
+   Random seed value (0-32767) (default: 0).
+ FLOAT SPIKEWIDTH
+   Width factor of spikes (default: 0.008).
+ FLOAT TILT
+   Tilt angle of spikes (in degree) (default: 0).
+<B>Description:</B>
+ This command makes a light source visible. In reality, a light source looks
+ like a star with several spikes getting out of the center of the light source.
+ Usually there's a halo around it too.
+
+ The radius (length of the longest spike) of the star is relative to the
+ horizontal render resolution (see <A HREF="#flare">FLARE</A>).
+
+ The radius of the halo is relative to the radius of the star itself. A value
+ of 100 % means, that the halo has the same radius as the star.
+ The radius of the inner halo is relative to the radius of the outer halo. A
+ value of 100 % means, that the inner halo has the same radius as the outer
+ halo.
+
+ The range value determines the difference between the longest and the shortes
+ spike of the star. A value of 0 % means that all spikes have the same length,
+ whereas 100 % means that the shortest spike has zero length.
+
+ The spike width value is a factor for the width of the spikes. Higher values
+ generate wider spikes.
+
+ <B>How are the spikes computed ?</B>
+ The four spikes in the main directions (0, 90, 180, 270 degrees) always have
+ maximum length. Spikes between them (45, 135, ... degrees for example) are
+ shorter and again spikes between them are shorter and so on.
+
+ If you specify a value for random_seed, the length of the spikes is randomly
+ changed.
+</PRE></P><HR>
+<A NAME="startrender"></A>
+<P><PRE>
+
+<B>STARTRENDER</B>
+
+<B>Template:</B>
+ QUICK/S,DEPTH/N,FROM,TO,LEFT/N,TOP/N,RIGHT/N,BOTTOM/N,MINOBJECTS/N,HYPERSTEP
+<B>Arguments:</B>
+ KEYWORD QUICK
+   Render quick (no shadows, reflections and transparency) (default: ON).
+ NUMBER DEPTH
+   Depth of generated <A HREF="#octree">octree</A> (default: 3).
+ FLOAT FROM,TO
+   Time code (default 0,0). If you want <A HREF="#motionblur">motion blur</A> you have to
+   set FROM and TO to different values, else only set FROM (default: 0, 0).
+ NUMBER LEFT,TOP,RIGHT,BOTTOM
+   Coordinates for rendering box. Picture is renderd only inside of
+   rectangle (default: whole picture).
+ NUMBER MINOBJECTS
+   Minimum amount of objects for which no octree is generated (default: 3).
+ FLOAT HYPERSTEP
+   Step size for hyper textures (default: 0.1).
+<B>Description:</B>
+ Starts rendering process. If you set QUICK shadows, reflections and
+ transparency are not calculated. In very complex scenes it is useful to
+ increase the octree depth in order to reach a better performance during
+ the rendering process. But this can only be done with enough memory!
+ Here are values for the file "chess.ray" renderd with a resolution of
+ 160x128 on a A4000 with 25Mhz 68030 and 57MHz 68882:
+
+ depth  memory [MByte]  init [mm:ss]  cleanup [mm:ss]  render [mm:ss]  total [mm:ss]
+   2          1.38         00:12           00:02           09:24          09:38
+   3          1.13         00:14           00:04           03:58          04:16
+   4          1.55         00:22           00:08           01:50          02:20
+   5          2.35         00:41           00:26           01:15          02:22
+   6          5.70         01:35           02:38           01:06          05:19
+</PRE></P><HR>
+<A NAME="texturepath"></A>
+<P><PRE>
+
+<B>TEXTUREPATH</B>
+
+<B>Template:</B>
+ PATH/A
+<B>Arguments:</B>
+ PATH
+   Pathname (format: 'path1;path2;...;pathn') (no default).
+<B>Description:</B>
+ Defines the path where to search textures. More than one path may be included
+ as long as they are separated by semi-colons.
+<B>Example:</B>
+ TEXTUREPATH 'path1;path2'
+</PRE></P><HR>
+<A NAME="wintofront"></A>
+<P><PRE>
+
+<B>WINTOFRONT</B>
+
+<B>Template:</B>
+ none
+<B>Arguments:</B>
+ none
+<B>Description:</B>
+ Brings RayStorm window in front.
+</PRE></P><HR>
+<A NAME="objects"></A>
+<P><PRE>
+
+<B>AREXX-COMMANDS FOR CREATING OBJECTS</B>
+
+<A HREF="#box">BOX     </A>  creates a box
+<A HREF="#cone">CONE    </A>  creates a cone object
+<A HREF="#csg">CSG     </A>  creates a CSG object
+<A HREF="#cylinder">CYLINDER</A>  creates a cylinder
+<A HREF="#loadobj">LOADOBJ </A>  loads an Imagine TDDD-file
+<A HREF="#plane">PLANE   </A>  creates a plane (ground in Imagine)
+<A HREF="#sor">SOR     </A>  creates a surface of revolution
+<A HREF="#sphere">SPHERE  </A>  creates a sphere
+<A HREF="#triangle">TRIANGLE</A>  creates a triangle
+</PRE></P><HR>
+<A NAME="box"></A>
+<P><PRE>
+
+<B>BOX</B>
+
+<B>Template:</B>
+ SURF/A,POS/A,LOWBOUNDS,HIGHBOUNDS,ALIGN,ACTOR,INVERTED/S
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Center of box (default: <0,0,0>).
+ VECTOR LOWBOUNDS
+   Left, front, bottom edge relative to position (default: <-1,-1,-1>).
+ VECTOR HIGHBOUNDS
+   Right, back, top edge relative to position (default: <1,1,1>).
+ VECTOR ALIGN
+   Alignment of box in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Box is inverted (inside out). Only useful for <A HREF="#infocsg">CSG</A>. (default: FALSE).
+<B>Description:</B>
+ Creates a box
+</PRE></P><HR>
+<A NAME="cone"></A>
+<P><PRE>
+
+<B>CONE</B>
+
+<B>Template:</B>
+ SURF/A,POS/A,SIZE,ALIGN,ACTOR,INVERTED/S,OPENBOTTOM/S
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Base position of cone (default: <0,0,0>).
+ VECTOR SIZE
+   Size of cone (default: <1.,1.,1.>).
+ VECTOR ALIGN
+   Alignment of cone in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Cone is inverted (inside out). Only useful for <A HREF="#infocsg">CSG</A>. (default: FALSE).
+ KEYWORD OPENBOTTOM
+   Cone has no bottom cap. Note that this can cause problems with <A HREF="#infocsg">CSG</A>.
+   (default: FALSE).
+<B>Description:</B>
+ Creates a cone. The rotation axis of the cone points to y-direction.
+</PRE></P><HR>
+<A NAME="csg"></A>
+<P><PRE>
+
+<B>CSG</B>
+
+<B>Template:</B>
+ OPERATION,INVERTED/S
+<B>Arguments:</B>
+ KEYWORD OPERATION [UNION|INTERSECTION|DIFFERENCE]
+   The operation for this CSG object (default: UNION).
+ KEYWORD INVERTED
+   CSG-object is inverted (inside out) (default: FALSE).
+<B>Description:</B>
+ Creates a new CSG object. The next two objects which are define after this
+ command are take for the CSG object. Valid objects are <A HREF="#sphere">SPHERE</A>, <A HREF="#box">BOX</A>,
+ <A HREF="#cylinder">CYLINDER</A> and a CSG object again.
+ For more information see <A HREF="#infocsg">this</A> chapter.
+<B>Example:</B>
+ CSG DIFFERENCE
+  CSG INTERSECTION
+   SPHERE surf1 <-.5,0,0> 1
+   SPHERE surf2 <-.5,0,0> 1
+  BOX surf3 <0,0,0> <-2,-.5,-.5> <2,.5,.5>
+</PRE></P><HR>
+<A NAME="cylinder"></A>
+<P><PRE>
+
+<B>CYLINDER</B>
+
+<B>Template:</B>
+ SURF/A,POS/A,SIZE,ALIGN,ACTOR,INVERTED/S,OPENTOP/S,OPENBOTTOM/S
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Base position of cylinder (default: <0,0,0>).
+ VECTOR SIZE
+   Size of cylinder (default: <1.,1.,1.>).
+ VECTOR ALIGN
+   Alignment of cylinder in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD INVERTED
+   Cylinder is inverted (inside out). Only useful for <A HREF="#infocsg">CSG</A>. (default: FALSE).
+ KEYWORD OPENTOP
+   Clyinder has no top cap. Note that this can cause problems with <A HREF="#infocsg">CSG</A>.
+   (default: FALSE).
+ KEYWORD OPENBOTTOM
+   Clyinder has no bottom cap. Note that this can cause problems with <A HREF="#infocsg">CSG</A>.
+   (default: FALSE).
+<B>Description:</B>
+ Creates a cylinder. The rotation axis of the cylinder points to y-direction.
+</PRE></P><HR>
+<A NAME="loadobj"></A>
+<P><PRE>
+
+<B>LOADOBJ</B>
+
+<B>Template:</B>
+ NAME/A,POS,ALIGN,SCALE,ACTOR,SURFACE
+<B>Arguments:</B>
+ STRING NAME
+   Filename (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Slignment (in degrees) (default: <0,0,0>).
+ VECTOR SCALE
+   Scale factor (default: <1,1,1>).
+ STRING ACTOR
+   Name of actor (no default).
+ STRING SURFACE
+   Name of surface to replace object surface with (no default).
+<B>Description:</B>
+ Loads an
+  - Imagine TDDD-file
+     loads attributes, triangles (with correct handling of sharp edges),
+     perfect spheres, planes, brushes and textures
+  - Autodesk 3D-Studio file
+     loads attributes, triangles and generates sharp edges
+ If you specify a surface, all surfaces of the object will have that surface
+ (overriding any surfaces defined in the object file).
+
+ <B>Where to get Imagine object files?</B>
+ Look on FTP-servers which support AMINET. For example try out
+  ftp.uni-paderborn.de
+  Path: ftp/aminet/pub/gfx/3dobj/
+ <B>Where to get 3D-Studio object files?</B>
+ Try out these WWW-Pages:
+ For Star wars fans: http://www.loop.com/~hhc/
+ Mesh Mart: http://cedar.cic.net/~rtilmann/mm/index.htm
+ Objects Archive: http://sunserver1.rz.uni-duesseldorf.de/~pannozzo/3ds.html
+</PRE></P><HR>
+<A NAME="plane"></A>
+<P><PRE>
+
+<B>PLANE</B>
+
+<B>Template:</B>
+ SURF/A,POS,NORM,ACTOR
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR NORM
+   Normal of the plane (default: <0,1,0>).
+ STRING ACTOR
+   Name of actor (no default).
+<B>Description:</B>
+ Creates an infinite plane.
+</PRE></P><HR>
+<A NAME="sor"></A>
+<P><PRE>
+
+<B>SOR</B>
+
+<B>Template:</B>
+ SURF/A,POINTS/M/A,POS,SIZE,ALIGN,ACTOR,ACCURATE/S,INVERTED/S,OPENTOP/S,OPENBOTTOM/S
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR2D POINTS
+   The points which describe the curve which is rotated (at least 4) (no default).
+ VECTOR SIZE
+   Size of SOR (default: <1,1,1>).
+ VECTOR ALIGN
+   Alignment of SOR in degree (default: <0,0,0>).
+ STRING ACTOR
+   Name of actor (no default).
+ KEYWORD ACCURATE
+   Use a more accurate but slower algorithm for calculting the SOR. If the SOR isn't
+   renderd properly specify this keyword (default: FALSE).
+ KEYWORD INVERTED
+   SOR is inverted (inside out). Only useful for <A HREF="#infocsg">CSG</A>. (default: FALSE).
+ KEYWORD OPENTOP
+   SOR has no top cap. Note that this can cause problems with <A HREF="#infocsg">CSG</A>.
+   (default: FALSE).
+ KEYWORD OPENBOTTOM
+   SOR has no bottom cap. Note that this can cause problems with <A HREF="#infocsg">CSG</A>.
+   (default: FALSE).
+<B>Description:</B>
+ Creates a <A HREF="#infosor">surface of revolution</A> (SOR).
+</PRE></P><HR>
+<A NAME="sphere"></A>
+<P><PRE>
+
+<B>SPHERE</B>
+
+<B>Template:</B>
+ SURF/A,POS/A,RADIUS/A,ACTOR,FUZZY,INVERTED/S
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR POS
+   Center of sphere (default: <0,0,0>).
+ FLOAT RADIUS
+   Radius of sphere (default: 1).
+ STRING ACTOR
+   Name of actor (no default).
+ FLOAT FUZZY
+   Size of the fuzzy region for <A HREF="#infohypertexture">hyper texture</A> (default: 0).
+ KEYWORD INVERTED
+   Sphere is inverted (inside out). Only useful for <A HREF="#infocsg">CSG</A>. (default: FALSE).
+<B>Description:</B>
+ Creates a sphere.
+</PRE></P><HR>
+<A NAME="triangle"></A>
+<P><PRE>
+
+<B>TRIANGLE</B>
+
+<B>Template:</B>
+ SURF/A,P1/A,P2/A,P3/A,N1,N2,N3,ACTOR
+<B>Arguments:</B>
+ STRING SURF
+   Name of surface (no default).
+ VECTOR P1
+   First corner (no default).
+ VECTOR P2
+   Second corner (no default).
+ VECTOR P3
+   Third corner (no default).
+ VECTOR N1
+   Normal at first corner (no default).
+ VECTOR N2
+   Normal at second corner (no default).
+ VECTOR N3
+   Normal at third corner (no default).
+ STRING ACTOR
+   Name of actor (no default).
+<B>Description:</B>
+ Creates a triangle with corners at position P1, P2 and P3. If you specify
+ the normals, a phong shaded triangle otherwise a flat triangle is created.
+ Computing the normals by hand is a difficult task, and should be done by
+ utility programs.
+</PRE></P><HR>
+<A NAME="attributes"></A>
+<P><PRE>
+
+<B>AREXX-COMMANDS FOR SETTING ATTRIBUTES</B>
+
+Every object must have a surface definition. With the following commands
+you can set the attributes of a surface. First you have to define the
+current surface with 'NEWSURFACE <name>'. Raystorm will set the attributes
+of the new surface to default values. Every following command such as
+AMBIENT or DIFFTRANS refers to the current surface and will override
+the corresponding default values.
+
+The following examples define two surfaces:
+
+NEWSURFACE RED
+AMBIENT [255,0,0]
+DIFFUSE [255,0,0]
+
+NEWSURFACE WATER
+DIFFUSE [0,0,255]
+REFRINDEX 1.333
+
+List of surface commands:
+<A HREF="#newsurface">NEWSURFACE   </A>  creates a new surface
+<A HREF="#ambient">AMBIENT      </A>  sets ambient color
+<A HREF="#brush">BRUSH        </A>  adds a brush
+<A HREF="#difftrans">DIFFTRANS    </A>  sets diffuse transmission color
+<A HREF="#diffuse">DIFFUSE      </A>  sets diffuse color
+<A HREF="#foglen">FOGLEN       </A>  sets the foglength
+<A HREF="#hypertexture">HYPERTEXTURE </A>  adds a hyper texture
+<A HREF="#imtexture">IMTEXTURE    </A>  adds a Imagine texture
+<A HREF="#refexp">REFEXP       </A>  sets the specular reflection exponent
+<A HREF="#reflect">REFLECT      </A>  sets the specular reflectivity
+<A HREF="#refrindex">REFRINDEX    </A>  sets the index of refraction
+<A HREF="#spectrans">SPECTRANS    </A>  sets the specular transmission
+<A HREF="#specular">SPECULAR     </A>  sets the specular color
+<A HREF="#transexp">TRANSEXP     </A>  sets the specular transmission exponent
+<A HREF="#transluc">TRANSLUC     </A>  sets the specular transmittance
+<A HREF="#transpar">TRANSPAR     </A>  sets the diffuce transmittance
+</PRE></P><HR>
+<A NAME="ambient"></A>
+<P><PRE>
+
+<B>AMBIENT</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ STRING COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+<B>Description:</B>
+ Sets the ambient color of surface. Determines the color of the object in
+ sections, which are in shadow.
+</PRE></P><HR>
+<A NAME="brush"></A>
+<P><PRE>
+
+<B>BRUSH</B>
+
+<B>Template:</B>
+ NAME/A,TYPE/A,WRAP/A,POS/A,ALIGN/A,SIZE/A,REPEAT/S,MIRROR/S,SOFT/S,ACTOR
+<B>Arguments:</B>
+ STRING NAME
+   Filename of brush (no default).
+ KEYWORD TYPE [COLOR|REFLECT|FILTER|ALTITUDE|SPECULAR]
+   Type of brush (default: COLOR).
+ KEYWORD WRAP [FLAT|WRAPX|WRAPY|WRAPXY]
+   Brush wrapping method (default: FLAT).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of brush (default: <1,1,1>).
+ KEYWORD REPEAT
+   If set, brush is repeated like a tile (default: OFF).
+ KEYWORD MIRROR
+   If set, brush is mirrord (when REPEAT is specified) (default: OFF).
+ KEYWORD SOFT
+   If set, brush color is interpolated softly (default: OFF).
+ STRING ACTOR
+   Name of actor (no default).
+<B>Description:</B>
+ Adds a brush to surface definition. A brush is a bitmap which is wrapped
+ around an  object. The specified file will be searched for in the current
+ directory. If it wasn't found there and a <A HREF="#bruspath]isgiven,thefiill">BRUSHPATH</A>
+ be searched there.
+ If an error occures the command returns an error string. Supported formats
+ are: IFF-ILBM, PNG, TGA and Datatypes.
+
+ Constants for type:
+ COLOR
+  Replaces the surface color of the object with the image (sets <A HREF="#diffuse">DIFFUSE</A> and
+  <A HREF="#ambient">AMBIENT</A> color).
+ REFLECT
+  Map covers the surface and reflects environment (see <A HREF="#reflect">REFLECT</A>)).
+ FILTER
+  Uses the white color to pass colors and the black area to hold back color
+  with a variance between two colors (like with <A HREF="#transpar">TRANSPAR</A>).
+ ALTITUDE
+  The red values of the brush are used to give the surface an appearence of
+  bumpiness.
+ SPECULAR
+  The rgb values set the specular color of the surface (see <A HREF="#specular">SPECULAR</A>).
+
+ Constants for wrap :
+ FLAT
+  The brush is projected to X-Y plane, the axis is in the middle of the
+  brush area, length is the distance from the middle to the border.
+ WRAPX
+  The brush is wrapped around the x-axis, like on a cylinder. The left edge
+  of the brush begins at the posititve X axis and wraps the brush around
+  the cylinder from 'west' to 'east'.
+ WRAPY
+  Same as WRAPX, but wrapping is around the y-axis.
+ WRAPXY
+  Wrapping both: around X and Y axis. It is assumed, that the object is a
+  sphere. The Y axis is the north/south pole of the spherical mapping. The
+  left edge of the brush begins at the positive X axis and wraps the brush
+  around the sphere from 'west' to 'east'. The brush covers the sphere
+  exactly once.
+<B>Example:</B>
+ BRUSH "earth.iff" COLOR, WRAPXY <0,0,0> <0,0,0> <0.1,0.1,0.1>
+</PRE></P><HR>
+<A NAME="difftrans"></A>
+<P><PRE>
+
+<B>DIFFTRANS</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+<B>Description:</B>
+ Sets the diffuse transmission color of surface. Same as diffuse reflection,
+ but only used if the lightsource is on opposite side of surface. Only
+ applied if tranlucency is not set to zero.
+</PRE></P><HR>
+<A NAME="diffuse"></A>
+<P><PRE>
+
+<B>DIFFUSE</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+<B>Description:</B>
+ Sets the diffuse color of surface. The diffuse reflection falls off as
+ the cosine of the angle between the normal and the ray to the light.
+ Diffuse reflection determines the main color of the object (color in
+ Imagine).
+</PRE></P><HR>
+<A NAME="foglen"></A>
+<P><PRE>
+
+<B>FOGLEN</B>
+
+<B>Template:</B>
+ VALUE/A
+<B>Arguments:</B>
+ FLOAT VALUE/A
+   Foglength (default: 0).
+<B>Description:</B>
+ Sets the foglength of the surface. The fog color is set with <A HREF="#transpar">TRANSPAR</A>.
+</PRE></P><HR>
+<A NAME="hypertexture"></A>
+<P><PRE>
+
+<B>HYPERTEXTURE</B>
+
+<B>Template:</B>
+ TYPE/A,POS,ALIGN,SIZE,P1,P2,P3,ACTOR
+<B>Arguments:</B>
+ KEYWORD TYPE (EXPLOSION)
+   Type of the hyper texture (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of texture axis (default: <1,1,1>).
+ FLOAT P1,P2,P3
+   Texture parameters (default values depend on type of texture).
+ STRING ACTOR
+   Name of actor (no default).
+<B>Description:</B>
+ Adds a hyper texture to the surface. For more information about hyper textures
+ click <A HREF="#infohypertexture">here</A>.
+</PRE></P><HR>
+<A NAME="imtexture"></A>
+<P><PRE>
+
+<B>IMTEXTURE</B>
+
+<B>Template:</B>
+ NAME/A,POS,ALIGN,SIZE,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,ACTOR
+<B>Arguments:</B>
+ STRING NAME
+   Name of Imagine texture file (no default).
+ VECTOR POS
+   Position (default: <0,0,0>).
+ VECTOR ALIGN
+   Alignment (default: <0,0,0>).
+ VECTOR SIZE
+   Size of texture axis (default: <1,1,1>).
+ FLOAT P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16
+   Texture parameters (default values depend on type of texture).
+ STRING ACTOR
+   Name of actor (no default).
+<B>Description:</B>
+ Adds an Imagine texture to the surface.
+<B>Example:</B>
+ IMTEXTURE "checker.itx" <0.1,0.1,0.1> <0,0,0> <2,2,2>
+</PRE></P><HR>
+<A NAME="newsurface"></A>
+<P><PRE>
+
+<B>NEWSURFACE</B>
+
+<B>Template:</B>
+ NAME/A,BRIGHT/S
+<B>Arguments:</B>
+ STRING NAME
+   Name (no default).
+ KEYWORD BRIGHT
+   If set, the brightness of the surface is everywhere the same (default: OFF).
+<B>Description:</B>
+ Defines a new surface.
+</PRE></P><HR>
+<A NAME="refexp"></A>
+<P><PRE>
+
+<B>REFEXP</B>
+
+<B>Template:</B>
+ VALUE/A
+<B>Arguments:</B>
+ FLOAT VALUE
+   Specular reflection exponent (default: 12).
+<B>Description:</B>
+ Sets the specular reflection exponent of surface. Determines the size of
+ the specularly reflected highlights, the higher the smaller the highlight
+ (hardness in Imagine).
+</PRE></P><HR>
+<A NAME="reflect"></A>
+<P><PRE>
+
+<B>REFLECT</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+<B>Description:</B>
+ Sets the specular reflectivity of surface
+</PRE></P><HR>
+<A NAME="refrindex"></A>
+<P><PRE>
+
+<B>REFRINDEX</B>
+
+<B>Template:</B>
+ VALUE/A
+<B>Arguments:</B>
+ FLOAT VALUE
+   Index of refraction (default: 1).
+<B>Description:</B>
+ Sets the index of refraction of surface. Determines how the ray is refracted
+ through transparent objects, the higher the more (index of refraction in
+ Imagine).
+<B>Examples:</B>
+ MATERIAL                      Index
+ -------------------------------------
+ Vacuum ...................... 1.00000 (exactly)
+
+ Air (STP).................... 1.00029
+ Acetone ..................... 1.36
+ Alcohol ..................... 1.329
+ Amorphous Selenium .......... 2.92
+ Calspar1 .................... 1.66
+ Calspar2 .................... 1.486
+ Carbon Disulfide ............ 1.63
+ Chromium Oxide .............. 2.705
+ Copper Oxide ................ 2.705
+ Crown Glass ................. 1.52
+ Crystal ..................... 2.00
+ Diamond ..................... 2.417
+ Emerald ..................... 1.57
+ Ethyl Alcohol ............... 1.36
+ Flourite .................... 1.434
+ Fused Quartz ................ 1.46
+ Heaviest Flint Glass ........ 1.89
+ Heavy Flint Glass ........... 1.65
+ Glass ....................... 1.5
+ Ice ......................... 1.309
+ Iodine Crystal .............. 3.34
+ Lapis Lazuli ................ 1.61
+ Light Flint Glass ........... 1.575
+ Liquid Carbon Dioxide ....... 1.20
+ Polystyrene ................. 1.55
+ Quartz 1 .................... 1.644
+ Quartz 2 .................... 1.553
+ Ruby ........................ 1.77
+ Sapphire .................... 1.77
+ Sodium Chloride (Salt) 1 .... 1.544
+ Sodium Chloride (Salt) 2 .... 1.644
+ Sugar Solution (30%) ........ 1.38
+ Sugar Solution (80%) ........ 1.49
+ Topaz ....................... 1.61
+ Water (20 C) ................ 1.333
+ Zinc Crown Glass ............ 1.517
+</PRE></P><HR>
+<A NAME="spectrans"></A>
+<P><PRE>
+
+<B>SPECTRANS</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+<B>Description:</B>
+ Sets the specular transmission color of surface. Same as specular
+ reflection, but only used if the lightsource is on opposite side of
+ surface. Only applied if tranlucency is not 0.
+</PRE></P><HR>
+<A NAME="specular"></A>
+<P><PRE>
+
+<B>SPECULAR</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [255,255,255]). Note: this color also can be greater than
+   255 or negative.
+<B>Description:</B>
+ Sets the specular color of surface. Specularly reflected highlights fall
+ off as the cosine of the angle between the reflected ray and the ray to the
+ light source (specular in Imagine).
+</PRE></P><HR>
+<A NAME="transexp"></A>
+<P><PRE>
+
+<B>TRANSEXP</B>
+
+<B>Template:</B>
+ VALUE/A
+<B>Arguments:</B>
+ FLOAT VALUE
+   Specular transmission exponent (default: 12).
+<B>Description:</B>
+ Sets the specular transmission exponent of surface. Same as specular
+ reflection exponent, but only used if the lightsource is on opposite
+ side of surface.
+</PRE></P><HR>
+<A NAME="transluc"></A>
+<P><PRE>
+
+<B>TRANSLUC</B>
+
+<B>Template:</B>
+ VALUE/A
+<B>Arguments:</B>
+ FLOAT VALUE
+   Specular transmittance (default: 0).
+<B>Description:</B>
+ Sets the specular transmittance of surface
+</PRE></P><HR>
+<A NAME="transpar"></A>
+<P><PRE>
+
+<B>TRANSPAR</B>
+
+<B>Template:</B>
+ COLOR/A
+<B>Arguments:</B>
+ COLOR COLOR
+   Color (default: [0,0,0]). Note: this color also can be greater than 255 or
+   negative.
+<B>Description:</B>
+ Sets the diffuse transmittance of surface
+</PRE></P><HR>
+<A NAME="animation"></A>
+<P><PRE>
+
+   <B>AREXX-COMMANDS FOR ANIMATION CONTROL</B>
+
+<A HREF="#alignment">ALIGNMENT</A>  sets alignment
+<A HREF="#newactor">NEWACTOR </A>  creates a new actor
+<A HREF="#position">POSITION </A>  sets position
+<A HREF="#size">SIZE     </A>  sets size
+</PRE></P><HR>
+<A NAME="alignment"></A>
+<P><PRE>
+
+<B>ALIGNMENT</B>
+
+<B>Template:</B>
+ FROM/A,TO/A,ALIGN/A,TYPE
+<B>Arguments:</B>
+ FLOAT FROM,TO
+   Time interval (no default).
+ VECTOR ALIGN
+   Alignment at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+<B>Description:</B>
+ Sets the alignment of the object. At time to, the actor will have this
+ alignment.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+</PRE></P><HR>
+<A NAME="newactor"></A>
+<P><PRE>
+
+<B>NEWACTOR</B>
+
+<B>Template:</B>
+ NAME/A,POS,ALIGN,SIZE
+<B>Arguments:</B>
+ STRING NAME
+   Name of actor (no default).
+ VECTOR POS
+   Initial position of actor (default: <0,0,0>).
+ VECTOR ALIGN
+   Initial alignment (in degrees) (default: <0,0,0>).
+ VECTOR SIZE
+   Initial size (default: <1,1,1>).
+<B>Description:</B>
+ Creates a new actor. Usually a NEWACTOR definition is followed by one or more
+ POSITION, ALIGNMENT, SIZE commands which define the properties of the actor
+ at a certain time.
+ For more information on NEWACTOR, please click <A HREF="#actorinfo">here</A>.
+</PRE></P><HR>
+<A NAME="position"></A>
+<P><PRE>
+
+<B>POSITION</B>
+
+<B>Template:</B>
+ FROM/A,TO/A,POS/A,TYPE
+<B>Arguments:</B>
+ FLOAT FROM,TO
+   Time interval (no default).
+ VECTOR POS
+   Position at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+<B>Description:</B>
+ Sets the position of the object. At time to, the actor will be at this
+ position.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+</PRE></P><HR>
+<A NAME="size"></A>
+<P><PRE>
+
+   <B>SIZE</B>
+
+<B>Template:</B>
+ FROM/A,TO/A,SIZE/A,TYPE
+<B>Arguments:</B>
+ FLOAT FROM,TO
+   Time interval (no default).
+ SIZE
+   Size at the end of the interval (no default).
+ KEYWORD TYPE [LINEAR]
+   Interpolation type (currently only linear) (default: LINEAR).
+<B>Description:</B>
+ Sets the size of the object. At time to, the actor will have this size.
+ 'TYPE' can be one of the following identifiers:
+   LINEAR  the object moves on a straight line between the positions
+   SPLINE  the object moves on a spline curve between the positions. (NOT
+           IMPLEMENTED YET)
+</PRE></P><HR>
+<A NAME="actorinfo"></A>
+<P><PRE>
+
+<B>WHAT IS AN ACTOR?</B>
+
+The statement:
+
+NEWACTOR name, position, alignment, size
+
+defines a "virtual object" that can be associated with "real" objects,
+including the Camera and  the Lights objects.  Position, alignment, and
+size values are the initial values of an actor.
+
+The object that is associated with a named actor behaves exactly like the
+actor. When the actor is sized, rotated, or moved; the associted object is
+sized, rotated, or moved accordingly.  It is as though the actor and the
+object that is associated with it are connected by a rod.
+
+While the coordinates of the object that is associated with an actor are
+always defined in an absolute way in reference to the set world; its
+movements - when associated with an actor - takes place with respect to
+the coordinates of the actor.  The coordinates of the actor are defined in
+the NEWACTOR statment and can have default values.
+
+The position, alignment, and size values that follow the NEWACTOR statement
+are the final values of an actor.  By defining time from and to values, a time
+increment is defined by which the actor is resized, rotated, or moved from
+the initial values to the final values.  By associating objects to an actor,
+and rendering a picture at a particular time, or through a period of time,
+animation and/or motion blur effects are achieved.
+</PRE></P><HR>
+<A NAME="errors"></A>
+<P><PRE>
+
+<B>AREXX-ERRORS</B>
+
+These values are returned when something went wrong, you can get the
+error string with the command <A HREF="#geterrorstr">GETERRORSTR</A>.
+
+<B>Application and parser errors</B>
+
+Here are the errors returned from the command parser and the application
+itself.
+
+100   Wrong screen resolution
+      Both components of the screen resolution have to be higher than one.
+101   Not enough memory
+      Allocation of memory failed.
+102   Limitations of demo version reached
+      The demo version is limited to a resolution of 160x128.
+103   Unknown brush mapping type
+      You specified an unknown mapping method for the <A HREF="#brush">BRUSH</A> command.
+104   Unknown brush wrapping method
+      You specified an unknown wrapping method for the <A HREF="#brush">BRUSH</A> command.
+105   Invalid time intervall
+      One component of a time intervall was negative or the beginning time
+      was later than the end.
+106   Unknown interpolation method
+      You specified an unknown interpolation method for the <A HREF="#position">POSITION</A>,
+      <A HREF="#alignment">ALIGNMENT</A> or <A HREF="#size">SIZE</A> command.
+107   No picture renderd
+      There is no picture for <A HREF="#savepic">SAVEPIC</A> to save because you renderd none
+      or called <A HREF="#cleanup">CLEANUP</A> before.
+108   Can't open screen
+      The <A HREF="#display">DISPLAY</A> command was unable to open the screen
+      (!!! THIS COMMAND ISN'T RELEASED IN THIS VERSION YET !!!).
+109   Can't open raystorm.library (Only one copy of RayStorm can run at a time)
+      RayStorm failed to open raystorm.library
+110   Can't open intuition.library
+      RayStorm failed to open intuition.library (at least version 37 is
+      needed)
+111   Can't open window
+      RayStorm failed to open the window.
+112   Can't open muimaster.library
+      RayStorm failed to open muimaster.library (at least version 8 is
+      needed)
+113   Invalid vector definition
+      The specified vector has the wrong format (must be '<x,y,z>').
+114   Invalid color definition
+      The specified color has the wrong format (must be '[r,g,b]').
+115   Invalid region definition
+      The specified region is out of range.
+116   No light defined
+      You tried to add lens flares or a light star and there is no previously
+      defined light source.
+117   Unknown flare type
+      You specified an unknown type for the <A HREF="#flare">FLARE</A> command.
+118   Unknown flare function
+      You specified an unknown function for the <A HREF="#flare">FLARE</A> command.
+119   Only one object for a CSG object has been defined
+      CSG objects always need two objects to operate on. For further informaions see
+      <A HREF="#csg">CGS</A>.
+120   Unknonw CSG operator
+      You specified an unknown operator for the <A HREF="#csg">CSG</A> command.
+121   Unknown hyper texture type
+      You specified an unkonwn type for the <A HREF="#hypertexture">HYPERTEXTURE</A> command.
+122   Invalid 2d-vector definition
+      The specified 2d-vector has the wrong format (must be '<x,y>').
+
+<B>Internal errors</B>
+
+This are errors of the renderer.
+
+  1   Not enough memory
+      Allocation of memory failed.
+  2   Limitations of demo version reached
+      The demo version is limited to a resolution of 160x128.
+  3   Wrong screen resolution
+      Both components of the screen resolution have to be higher than one.
+  4   Error in triangle definition
+      It's impossible to generate a triangle with the specified coordinates
+      (see <A HREF="#triangle">TRIANGLE</A>).
+  5   The view and up directions are identical?
+      You specified a view-up-vector for the <A HREF="#camera">CAMERA</A> command which is identical
+      to the view direction.
+  6   Not enough memory for screen buffer
+      The allocation of the screen buffer failed.
+  7   -- Removed error message. Should never occur --
+  8   Can't open Imagine texture file
+      RayStorm failed to open the specified Imagine texture file, check
+      filename and path.
+  9   Can't open brush file
+      RayStorm failed to open the specified brush file, check
+      filename and path.
+ 10   Error initializing Imagine texture
+      An error occured as RayStorm tried to initialize a Imagine texture.
+ 11   Can't open picture
+      RayStorm failed to open the specified picture file, check filename
+      and path.
+ 12   Error reading picture
+      An error occured while RayStorm read a picture file.
+ 13   Can't open picture type file ('modules/picture/types')
+      RayStorm failed to open the typefile. The typefile is needed to
+      identify the filetypes of the pictures. RayStorm was unable to open
+      the file 'modules/picture/types'.
+ 14   Error reading picture type file
+      An error occured while RayStorm read the picture type file, maybe the
+      file is damaged.
+ 14   Unknown picture format
+      RayStorm was unable to recognize the format of the picture file.
+ 16   An error occcured while invoking picture handler
+      The used picture handler returned a error.
+ 17   Can't open object
+      RayStorm failed to open the specified object file, check filename
+      and path.
+ 18   Error reading object
+      An error occured while RayStorm read a object file.
+ 19   Can't open object type file ('modules/object/types')
+      RayStorm failed to open the typefile. The typefile is needed to
+      identify the filetypes of the objects. RayStorm was unable to open
+      the file 'modules/object/types'.
+ 20   Error reading object type file
+      An error occured while RayStorm read the object type file, maybe the
+      file is damaged.
+ 21   Unknown object format
+      RayStorm was unable to recognize the format of the object file.
+ 22   An error occcured while invoking object handler
+      The used object handler returned a error.
+ 23   Actor not defined
+      The specified actor name does not exist.
+ 24   Surface not defined
+      The specified surface name does not exist.
+ 25   Depth of octree too big (max. 6)
+      The octree depth is limited to a depth of 6.
+ 26   Antialiasing value too big (max. 8)
+      The value of the <A HREF="#antialias">ANTIALIAS</A> command is limited to 8.
+ 27   Invalid time intervall
+      One component of a time intervall was negative or the beginning time
+      was later than the end.
+ 28   No picture renderd
+      There is no picture for <A HREF="#savepic">SAVEPIC</A> to save because you renderd none
+      or called <A HREF="#cleanup">CLEANUP</A> before.
+ 29   Distribution value too big (max. 8)
+      The value of the <A HREF="#distrib">DISTRIB</A> command is limited to 8.
+ 30   Wrong error number
+      The error number for <A HREF="#geterrorstr">GETERRORSTR</A> is out of range.
+ 31   Unknown Parameter
+      A RSI-function was called with an unknown parameter (should nerver occur).
+ 32   -- Development error message. Should never occur. --
+ 33   Need at least 4 points for surface of revolution
+      You have to specify at least 4 points for a <A HREF="#sor">SOR</A>.
+ 34   Incorrect point in surface of revolution
+      The distance in y-direction of following points is 0.
+</PRE></P><HR>
+<A NAME="examples"></A>
+<P><PRE>
+
+<B>EXAMPLES</B>
+
+We have included several demos in the directories 'arexx' and 'examples'
+to show how to use RayStorm.
+
+In the 'arexx' directory are examples scripts which show the usage of
+RayStorm with ARexx. Start them simply by typing 'rx ???.ray' in a shell
+(???.ray is the name of the script).
+
+In the 'examples' directory are C-programs which show the usage of
+RayStorm directly with a program. They can only be run from a shell.
+These programs are producing a couple of pictures no animation, which must
+be glued together with a utility like MainActor.
+</PRE></P><HR>
+<A NAME="tutorials"></A>
+<P><PRE>
+
+<B>TUTORIALS</B>
+
+If you use RayStorm for the first time, then it would be a good idea to do
+the following tutorials:
+
+<A HREF="#tut_simple">Simple scene </A>
+<A HREF="#tut_bounce">Bouncing ball</A>
+<A HREF="#tut_mblur">Motion blur  </A>
+</PRE></P><HR>
+<A NAME="tut_simple"></A>
+<P><PRE>
+
+<B>Tutorial: Simple scene</B>
+
+Now we will create a very famous scene. A sphere over a checkerboard! Ok, it
+may be boring, but it's good for the absolute beginner to get an
+impression of building a scene.
+
+Here we go:
+
+1. In the  drawer 'ARexx' of the RayStorm directory there is a file named
+   'default.ray'. This is a default form for RayStorm ARexx scripts. You can
+   use this form to write your own scripts.
+   We'll use this file as a default for our animation script. Copy this file
+   to the file 'simple.ray'. After this load the file 'simple.ray' to your
+   favorite text editor (e.g GoldEd or CygnusEd).
+
+2. To view the scene, we need a camera. Insert after the line 'address
+   RAYSTORM' the line:
+
+<I>   '<A HREF="#setcamera">SETCAMERA</A> &lt;6,1.5,-1.5&gt; &lt;0,0,0&gt; &lt;0,1,0&gt;'</I>
+
+   This sets the camera to position <6,1.5,-1.5>. The camera points to
+   <0,0,0> and the view-up vector is <0,1,0>. Note that you don't have to
+   specify every single parameter. Every command has default values. Refer
+   to the description of a command to find out the default values.
+
+3. Nothing can be seen without a lightsource.
+   Go to the next line and type:
+
+<I>   '<A HREF="#pointlight">POINTLIGHT</A> &lt;0,50,0&gt; [255,255,255] SHADOW'</I>
+
+   The sphere is illuminated from above with white light.
+
+4. Before placing the objects in the scene, you have to define their
+   surfaces.
+   Insert this line:
+
+<I>   '<A HREF="#newsurface">NEWSURFACE</A> planesurf'</I>
+
+   This creates a surface with name planesurf. The plane has a checkered
+   surface, so insert:
+
+<I>   '<A HREF="#imtexture">IMTEXTURE</A> /textures/checker.itx &lt;0.1,0.1,0.1&gt; &lt;0,0,0&gt; &lt;2,2,2&gt;'</I>
+
+5. That was the plane texture. Let 's go over to sphere texture.
+   Add:
+
+<I>   '<A HREF="#newsurface">NEWSURFACE</A> spheresurf'</I>
+
+   The sphere has a mirrored surface. To simulate a perfect mirror, type
+
+<I>   '<A HREF="#reflect">REFLECT</A> [255,255,255]'</I>
+
+6. Now we can add the objects to the scene:
+
+<I>   '<A HREF="#sphere">SPHERE</A> spheresurf &lt;0,0.5,0&gt; 1'</I>
+
+   This creates a sphere on position <0,0.5,0> and radius 1.
+   Add the plane:
+
+<I>   '<A HREF="#plane">PLANE</A> planesurf'</I>
+
+   The default values for the position and the normal vector fit to our
+   scene, so we can take them over.
+
+7. Let's make an end to the definitions and render the scene!
+   Type:
+
+<I>   '<A HREF="#startrender">STARTRENDER</A>'</I>
+
+8. Finally we may not forget to save the picture, so add:
+
+<I>   '<A HREF="#savepic">SAVEPIC</A> simple.iff'</I>
+
+   which will save the renderd picture in the current directory as a
+   IFF-ILBM file.
+   The last step is to free all the memory with the command 'CLEANUP'. Add:
+
+<I>   <A HREF="#cleanup">CLEANUP</A>'</I>
+
+9. Start the script from a shell-window with the sequence 'rx simple.ray'.
+   RayStorm will now generate your picture. When RayStorm finished the work
+   start your favourite viewer-program, load the file and have a look at
+   it.
+   Looks very monochrome!!
+   To make the world colorful, we make a red checker and set the sky to
+   blue. A blue sky can be done by setting the world's background color.
+10. Before 'SETCAMERA' insert:
+
+<I>   '<A HREF="#setworld">SETWORLD</A> [30,30,255]'</I>
+
+   Add
+
+<I>   '<A HREF="#diffuse">DIFFUSE</A> [155,0,0]'</I>
+
+   to the surface planesurf (this defines one checker color), the other one
+   must be set in the 'IMTEXTURE' command, so change it to
+
+<I>   ' /textures/checker.itx &lt;0.1,0.1,0.1&gt; &lt;0,0,0&gt; &lt;2,2,2&gt; 255 0 0'</I>
+
+   (Note that '255 0 0' describes a color, but is not embedded in < >,
+   because the checker color belongs to the texture parameters which are
+   all floats.)
+
+11. Render the scene once again, and view it.
+
+That's the end of the tutorial! Make some changes to the scene file and
+play around with the parameters to see their effects.
+</PRE></P><HR>
+<A NAME="tut_bounce"></A>
+<P><PRE>
+
+<B>Tutorial: Bouncing ball</B>
+
+The goal of this tutorial is to show you how to generate little animations.
+At the end of this tutorial you'll have a animation where the earth rotates
+and bounces on a rotating plane with a white checker texture on the top and
+a red checker on the bottom. If you have a fast computer you can also
+generate the animation with motion blur.
+
+O.k. here we go:
+
+1. In the  drawer 'ARexx' of the RayStorm directory there is a file named
+   'default.ray'. This is a default form for RayStorm ARexx scripts. You can
+   use this form to write your own scripts.
+   We will use this file as a default for our animation script. Copy this file
+   to the file 'bounce.ray'. After this load the file 'bounce.ray' to your
+   favorite text editor (e.g GoldEd or CygnusEd).
+
+2. First we define some values: the acceleration of the ball and the amount
+   of frames to generate.
+   RayStorm has three commands to set the paths where it searchs the files
+   it needs. We use a brush for the surface of the ball and a texture for
+   the surface of the ground.
+   To do this we have to insert after the command 'ADDRESS RAYSTORM' the
+   lines:
+
+<I>   g = .2
+   frames = 17
+
+   '<A HREF="#brushpath">BRUSHPATH</A> /brushes'
+   '<A HREF="#texturepath">TEXTUREPATH</A> /textures'</I>
+
+   It's the same if you write the commands in upper case or lower case.
+   But it's important to enclose all commans in quotes because ARexx tries
+   to interpret the line before it sends it. It may happen that the line is
+   changed and RayStorm don't do the things you want.
+
+3. Next we set the screen resolution. For the first experiments we choose
+   a low resolution of 160x128 pixels. Insert the line:
+
+<I>   '<A HREF="#setscreen">SETSCREEN</A> 160 128'</I>
+
+4. Now we set the camera parameters. The first three values determine the
+   position of the camera. We want to place it so that we can see the ball
+   all over the time. The next values set the viewpoint of the camera, this
+   is the point the camera aims to. The next values determine the view up
+   vector. And the last two values determine the field of view. To get a
+   pixel aspect of 1:1 we have to set them to 25 and 20 degree.
+
+<I>   '<A HREF="#setcamera">SETCAMERA</A> &lt;0,10,40&gt; &lt;0,5,0&gt; &lt;0,1,0&gt; 25 20'</I>
+
+5. We want to have a bright blue background for our animation. The
+   background and the global ambient color is set with the 'SETWORLD'
+   command. We want to set the ambient color to a dark gray, if this color
+   is to bright the scene will look washed out and the objects appear flat.
+   Insert the line:
+
+</I>   '<A HREF="#setworld">SETWORLD</A> [10,30,200] [10,10,10]'</I>
+
+6. The illumination is an important part of a scene. We want to place a
+   pointlight near the camera. Add the line:
+
+</I>   '<A HREF="#pointlight">POINTLIGHT</A> &lt;5,10,50&gt;'<I>
+
+7. Now we define the actor for the plane. We want to rotate it around the
+   Z-axis. Insert the lines:
+
+<I>   '<A HREF="#newactor">NEWACTOR</A> groundactor'
+   '<A HREF="#alignment">ALIGNMENT</A> 0 ' frames+2 ' &lt;0,0,360&gt;'</I>
+
+7. Now we define the surface for the plane and the plane itself. We make it
+   a little reflective and apply a checker texture. The surface 'groundtop'
+   is for the top of the plane and the surface 'groundbottom' is for the
+   bottom of the surface. The plane itself consits of four triangles. Two
+   fo the top and two for the bottom. Insert the lines:
+
+<I>   '<A HREF="#newsurface">NEWSURFACE</A> groundtop'
+   '<A HREF="#diffuse">DIFFUSE</A> [255,255,255]'
+   '<A HREF="#specular">SPECULAR</A> [0,0,0]'
+   '<A HREF="#reflect">REFLECT</A> [50,50,50]'
+   '<A HREF="#texture">IMTEXTURE</A> checker.itx &lt;0,-1,0&gt; &lt;0,0,0&gt; &lt;10,10,10&gt; ACTOR groundactor'
+
+   '<A HREF="#newsurface">NEWSURFACE</A> groundbottom'
+   '<A HREF="#diffuse">DIFFUSE</A> [255,0,0]'
+   '<A HREF="#specular">SPECULAR</A> [0,0,0]'
+   '<A HREF="#reflect">REFLECT</A> [50,50,50]'
+   '<A HREF="#imtexture">IMTEXTURE</A> checker.itx &lt;0,-1,0&gt; &lt;0,0,0&gt; &lt;1.5,1.5,1.5&gt; ACTOR groundactor'
+
+   '<A HREF="#triangle">TRIANGLE</A> groundtop &lt;-2,0,-2&gt; &lt;2,0,-2&gt; &lt;2,0,2&gt; ACTOR groundactor'
+   '<A HREF="#triangle">TRIANGLE</A> groundtop &lt;-2,0,-2&gt; &lt;-2,0,2&gt; &lt;2,0,2&gt; ACTOR groundactor'
+   '<A HREF="#triangle">TRIANGLE</A> groundbottom &lt;-2,-.01,-2&gt; &lt;2,-.01,-2&gt; &lt;2,-.01,2&gt; ACTOR groundactor'
+   '<A HREF="#triangle">TRIANGLE</A> groundbottom &lt;-2,-.01,-2&gt; &lt;-2,-.01,2&gt; &lt;2,-.01,2&gt; ACTOR groundactor'</I>
+
+8. Next we define the motion of the ball. It starts at a height of 10 and
+   accelerates until it bounces on the plane, changes it's direction and
+   the motions ends as the ball is back at he start point. Additional the
+   ball rotates around the Y-axis. Add the following sequence to your script:
+
+<I>   speed = -g
+   pos = 10
+   '<A HREF="#newactor">NEWACTOR</A> ballactor &lt;0,'pos',0&gt;'
+   do i=0 to frames
+     '<A HREF="#position">POSITION</A> ' i i+1 '&lt;0,'pos',0&gt;'
+     pos = pos+speed
+     if pos<=1 &amp; speed<0 then
+       speed = -speed
+     else
+       speed = speed-g
+   end
+   '<A HREF="#alignment">ALIGNMENT</A> 0 ' frames+2 ' &lt;0,360,0&gt;'</I>
+
+9. Now we define the surface for the ball and the ball itself. The only thing
+   we must do is to map a earth styled brush map to a sphere. To reach this
+   goal the position of the brush must be set to the middle of the sphere
+   and the size must be small enough to be completely inside the sphere.
+   This are the lines to define the ball:
+
+<I>   '<A HREF="#newsurface">NEWSURFACE</A> ball'
+   '<A HREF="#brush">BRUSH</A> earth.iff COLOR WRAPXY &lt;0,10,0&gt; &lt;0,0,0&gt; &lt;.1,.1,.1&gt; ACTOR ballactor'
+
+   '<A HREF="#sphere">SPHERE</A> ball &lt;0,10,0&gt; 1 ACTOR ballactor'</I>
+
+10. If your computer is fast enough you can insert the follwing lines:
+
+<I>   '<A HREF="#antialias">ANTIALIAS</A> 2'
+   '<A HREF="#distrib">DISTRIB</A> 2'</I>
+
+   'ANTIALIAS' improves the quality of the picture; 2 or 3 are normal values,
+   higher values don't improve the quality significant.
+   A value higher than one for 'DISTRIB' switches {"motion blur" link Motion Blur} on.
+
+11. At this the we have finished the definitions and now can render the single
+   frames. If youn want the reflections of the ball on the plane you have
+   to delete the keyword 'QUICK', because RayStorm renders no reflections in
+   quick mode. The frame time is set with 'FROM' and 'TO'. We save the frames
+   as IFF-ILBM pictures with the names 'bounce0001.iff' ... 'bounceXXXX.iff'.
+   The last step is to free all the memory with the command 'CLEANUP'. Add
+   these lines:
+
+<I>   do i=0 to frames
+      '<A HREF="#startrender">STARTRENDER</A> QUICK FROM 'i' TO 'i+1
+      '<A HREF="#savepic">SAVEPIC</A> bounce' || RIGHT(i,4,0) || '.iff'
+   end
+
+   '<A HREF="#cleanup">CLEANUP</A>'</I>
+
+12. Start the script from a shell-window with the sequence 'rx bounce.ray'.
+   RayStorm will now generate your frames. When RayStorm finished the work
+   you must glue the pictures together to get the animation.
+
+That's all. Have fun!
+</PRE></P><HR>
+<A NAME="tut_mblur"></A>
+<P><PRE>
+
+<B>Tutorial: Motion blur</B>
+
+In this tutorial we show you how to make animations and how to use motion
+blur.
+To animate objects we need ACTORs. An ACTOR can be seen as a virtual object
+which can have a certain position/alignment/size at a certain time. ACTORs can
+be used for keyframe animation by giving control points which RayStorm can
+interpolate (only linear for now.  Spline interpolations will be implemented
+later).
+You can assign an ACTOR to one or more real objects. An object with an actor
+assigned to it will follow all actions the actor does. Let's take the sphere
+from the second tutorial and move it to direction of the camera.
+Type following:
+
+<I>'<A HREF="#setcamera">SETCAMERA</A> &lt;6,1.5,-1.5&gt; &lt;0,0,0&gt;&lt;0,1,0&gt;'
+'<A HREF="#pointlight">POINTLIGHT</A> &lt;30,50,30&gt; [255,255,255] SHADOW'</I>
+
+you can add POSITION, ALIGNMENT and SIZE commands after NEWACTOR
+(similar to the surface commands after NEWSURFACE)
+
+<I>'<A HREF="#newactor">NEWACTOR</A> actor'
+'<A HREF="#position">POSITION</A> 0 5 &lt;3,0,0.4&gt;'
+
+'<A HREF="#newsurface">NEWSURFACE</A> planesurf'
+'<A HREF="#diffuse">DIFFUSE</A> [255,30,30]'
+'<A HREF="#imtexture">IMTEXTURE</A> "checker.itx" &lt;0.1,0.1,0.1&gt; &lt;0,0,0&gt; &lt;2,2,2&gt; 155 25 0'
+
+'<A HREF="#newsurface">NEWSURFACE</A> spheresurf'
+'<A HREF="#reflect">REFLECT</A> [255,255,255]'
+
+'<A HREF="#sphere">SPHERE</A> spheresurf &lt;0,1,0&gt; 0.7 actor'
+'<A HREF="#plane">PLANE</A> planesurf'</I>
+
+You can make an animation by a series of STARTRENDER/SAVEPIC combinations. Our
+little movie shall consist of 6 frames, so we will subdivide our time intervall
+(1 unit) and make a photo every 0.2 time units. The STARTRENDER command has the
+option to render a picture within a certain time intervall. That can be
+compared with the shutter time of a real camera. The camera of RayStorm records
+all movements of the objects in the scene within that time intervall which
+results in a blurred scene. At the beginning we do no motion blur, so we set
+the start and the end time to the same value. (Which means no shutter time).
+
+Add this code and execute it:
+
+<I>do i=0 to 5
+ '<A HREF="#startrender">STARTRENDER</A> QUICK FROM 'i' TO 'i
+ '<A HREF="#savepic">SAVEPIC</A> sphere' || RIGHT(i,4,0) || '.iff'
+end
+
+'<A HREF="#cleanup">CLEANUP</A>'</I>
+
+You can make a movie out of it using an animator program such as MainActor.
+Now we introduce one of the advanced features of RayStorm: Motion Blur
+Replace the commands above by the following lines:
+
+<I>/* when doing motion blur you *MUST* add the distrib command +/
+
+'<A HREF="#distrib">DISTRIB</A> 3'
+
+/* shutter time is 1 */
+
+do i=0 to 5
+ '<A HREF="#startrender">STARTRENDER</A> QUICK FROM 'i' TO 'i+1
+ '<A HREF="#savepic">SAVEPIC</A> sphere' || RIGHT(i,4,0) || '.iff'
+end
+
+'<A HREF="#cleanup">CLEANUP</A>'</I>
+
+For each frame, the camera opens the shutter 0.2 time units long and records
+what's happening. As you can see, an animation with motion blur gives a better
+visual effect.
+Again feel free to change the parameters.
+</PRE></P><HR>
+<A NAME="textures"></A>
+<P><PRE>
+
+<B>TEXTURES</B>
+
+Textures are mathematically generated patterns which can be applied to the
+surface of an object.
+There are several textures in the directory 'textures'.
+
+   <A HREF="#bump"> Bump    </A>
+   <A HREF="#checker"> Checker </A>
+   <A HREF="#fire"> Fire    </A>
+   <A HREF="#linear"> Linear  </A>
+   <A HREF="#marble"> Marble  </A>
+   <A HREF="#radial"> Radial  </A>
+   <A HREF="#stars"> Stars   </A>
+   <A HREF="#wood"> Wood    </A>
+</PRE></P><HR>
+<A NAME="bump"></A>
+<P><PRE>
+
+<B>BUMP</B>
+
+This texture applies bumps to the surface.
+Size of texture determines size of the bumps.
+
+<B>Parameters:</B>
+
+1: X bump size
+2: Y bump size
+3: Z bump size
+set the 'depth' of the bumps.
+
+Example:
+sphere with radius 1
+ <I>IMTEXTURE bump.itx &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;.3,.3,.3&gt; 1 1 1</I>
+<A HREF="#pics/bump.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="checker"></A>
+<P><PRE>
+
+<B>CHECKER</B>
+
+This texture applies thw ell known checker pattern to the surface.
+<B>Attention!
+If you apply a checker texture to a plane, the plane may not be at the same
+position on which the checker changes its color. Otherwise you get a noisy
+texture due to rounding errors.</B>
+
+<B>Parameters:</B>
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color of the checkers, other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflect color of the checkers.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color of the checkers.
+
+<B>Example:</B>
+ <I>IMTEXTURE "checker.itx" &lt;0,0.1,0&gt; &lt;0,0,0&gt; &lt;2,2,2&gt; 255 0 0</I>
+<A HREF="#pics/checker.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="fire"></A>
+<P><PRE>
+
+<B>FIRE</B>
+
+This texture generates a pattern which look like fire. It's based on the book
+<A HREF="#literature">Texturing and Modeling</A>.
+
+<B>Parameters:</B>
+
+ 1: Chaos Scale       higher values make sharper flames
+ 2: Chaos Offset      higher values make more flames with bottom color (white)
+                      lower values more top colored flames (red)
+ 3: Octaves           determines the frequency of the flames
+ 4: Flameheight
+ 5: Flameamplitude
+ 6: Bottom Red
+ 7: Bottom Green
+ 8: Bottom Blue       is the bottom fire color (white)
+ 9: Middle Red
+10: Middle Green
+11: Middle Blue       is the middle color (yellow)
+12: Top Red
+13: Top Green
+14: Top Blue          is the top color (red)
+15: Transparent Top   if not 0 the texture gets more transparent from bottom
+                      to top
+Example:
+plane with
+ <I>IMTEXTURE fire.itx &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;1,1,1&gt;</I>
+<A HREF="#pics/fire.iff/main0">Picture</A>
+<A HREF="#pics/fire1.iff/main0">High Chaos Scale</A>
+</PRE></P><HR>
+<A NAME="linear"></A>
+<P><PRE>
+
+<B>LINEAR</B>
+
+This texture varies the color of the object in the y-direction of the
+texture.
+
+<B>Parameters:</B>
+
+1: Color Red
+2: Color Green
+3: Color Blue
+color to interpolate to.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+reflection to interpolate to.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+filter to interpolate to.
+
+<B>Example:</B>
+ <I>IMTEXTURE "linear.itx" &lt;0,0.1,0&gt; &lt;0,0,0&gt; &lt;2,2,2&gt; 0 0 255</I>
+<A HREF="#pics/linear.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="wood"></A>
+<P><PRE>
+
+<B>WOOD</B>
+
+This texture applies a wood like texture to the surface.
+Size of texture determines size of wood.
+
+<B>Parameters:</B>
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color. Other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflection color.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color.
+
+10: Octave
+The higher the octave the noisier are the wood rings.
+
+11: Frequency
+The higher the frequency the smaller the wood rings.
+
+<B>Example:</B>
+cube with size 2
+ <I>IMTEXTURE wood.itx &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;1,1,1&gt; 255 255 50 0 0 0 0 0 0 2 4</I>
+<A HREF="#pics/wood.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="marble"></A>
+<P><PRE>
+
+<B>MARBLE</B>
+
+This texture applies a marble like texture to the surface.
+Size of texture determines size of bumps.
+
+<B>Parameters:</B>
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color. Other color is taken from object.
+
+4: Reflect Red
+5: Reflect Green
+6: Reflect Blue
+Reflection color.
+
+7: Filter Red
+8: Filter Green
+9: Filter Blue
+Filter color.
+
+10: Octave
+The higher the octave the noisier is the texture.
+
+<B>Example:</B>
+cube with size 2
+ <I>IMTEXTURE marble.itx &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;.5,.5,.5&gt; 150 50 50 0 0 0 0 0 0 7</I>
+<A HREF="#pics/marble.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="radial"></A>
+<P><PRE>
+
+<B>RADIAL</B>
+
+This texture varies the color of the object radial around the texture axis.
+
+<B>Parameters:</B>
+
+1: Start radius
+Interploation start radius.
+
+2: End radius
+Interploation end radius.
+
+3: Color Red
+4: Color Green
+5: Color Blue
+Color to interpolate to.
+
+6: Reflect Red
+7: Reflect Green
+8: Reflect Blue
+Reflection to interpolate to.
+
+9: Filter Red
+10: Filter Green
+11: Filter Blue
+Filter to interpolate to.
+
+<B>Example:</B>
+ <I>IMTEXTURE "radial.itx" &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;1,1,1&gt; 1 2 255 0 0</I>
+<A HREF="#pics/radial.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="stars"></A>
+<P><PRE>
+
+<B>STARS</B>
+
+This texture applies randomly stars to the surface. Cannot be used in
+animations!
+
+<B>Parameters:</B>
+
+1: Color Red
+2: Color Green
+3: Color Blue
+Color of the stars.
+
+4: Density
+Star density. The higher the more stars (0. - 1.).
+
+<B>Example:</B>
+ <I>IMTEXTURE "stars.itx" &lt;0,0,0&gt; &lt;0,0,0&gt; &lt;1,1,1&gt; 255 255 255 0.1</I>
+<A HREF="#pics/stars.iff/main0">Picture</A>
+</PRE></P><HR>
+<A NAME="bugs"></A>
+<P><PRE>
+
+<B>KNOWN BUGS</B>
+
+</PRE></P><HR>
+<A NAME="copyright"></A>
+<P><PRE>
+
+<B>DISCLAIMER</B>
+
+THERE IS NO WARRANTY FOR THIS PROGRAM TO THE EXTENT PERMITTED BY APPLICABLE
+LAW.  EXCEPT WHERE OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDER AND/OR
+OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.
+SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY
+SERVICING, REPAIR OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL
+ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY REDISTRIBUTE THE PROGRAM
+AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL,
+SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR
+INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR
+DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES
+OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGES.
+
+<B>COPYRIGHT</B>
+
+The RayStorm package is Copyright 1995-97 by Andreas Heumann and Mike Hesser.
+All Rights Reserved. It is released under the concept of `Shareware'.
+
+The archive of RayStorm may only be distributed in unmodified form.  No files
+may be added, changed or removed. You may not charge for this archive, other
+than the cost of the media and duplication fees. Distribution is allowed in
+all forms, such as BB systems, floppy or compact disks, and ftp sites.
+</PRE></P><HR>
+<A NAME="credits"></A>
+<P><PRE>
+
+<B>CREDITS</B>
+
+We want to thank the following persons:
+
+- Jan Hlavaty for hours of work he had done, and many useful tips to make
+  RayStorm better and more bugfree (Jan: I _HATE_ bugs. Splat 'em!!! :-) )
+
+- Bernhard Moench - chairman of Plasma Pictures (a great Amiga club)
+
+  Address:
+
+  Plasma Pictures
+  Reality and Imagination!
+
+  Bernhard Moench
+  Regensburger Strasse 28c
+
+  10777 Berlin
+  GERMANY
+
+- Stephan Dorenkamp - for testing
+
+- Maan Hamze - for testing, hundrets of suggestions and bugreports...
+  ... and many many E-Mails
+
+- Klaus Melchior for his listtree class
+
+- Stefan Stunz for MUI
+
+- Thanks to all registrated users for the support of the shareware concept.
+</PRE></P><HR>
+<A NAME="register"></A>
+<P><PRE>
+
+<B>REGISTER</B>
+
+If you like RayStorm use the registration programm to register.
+Fill out the registration form and press the 'Print' button.
+If the printer is installed correctly, the registration is printed out.
+You can get information about the current agreements by pressing the 'Info'
+button.
+
+Note: please send us no postal money orders or cheques or something like that.
+We have to pay very high fees (about 15$) here in germany to exchange them
+to cash. To send cash is the easiest way for us.
+</PRE></P><HR>
+<A NAME="author"></A>
+<P><PRE>
+
+<B>AUTHORS</B>
+
+For bug reports, comments, suggestions ... you can contact us at the
+following addresses (E-mail prefered).
+
+   Amiga-version:
+
+   Andreas Heumann
+
+   E-mail:  calvin@sol.wohnheim.uni-ulm.de (or heumann@hugo.rz.fh-ulm.de)
+   S-mail:  Heilmeyersteige 105
+            89075 Ulm
+            Germany
+
+   PC-version:
+
+   Mike Hesser
+
+   E-mail:  calvin@sol.wohnheim.uni-ulm.de
+   S-mail:  Heilmeyersteige 105
+            89075 Ulm
+            Germany
+</PRE></P><HR>
+<A NAME="pc-version"></A>
+<P><PRE>
+
+<B>PC-VERSION</B>
+
+The PC version is available on the Internet from our <A HREF="#homepage">homepage</A>.
+</PRE></P><HR>
+<A NAME="history"></A>
+<P><PRE>
+
+<B>HISTORY</B>
+
+<A HREF="#history_scenario9999">RayStorm Scenario </A>
+<A HREF="#history_script9999">RayStorm Script   </A>
+<A HREF="#history_raytracer9999">RayStorm Raytracer</A>
+</PRE></P><HR>
+<A NAME="history_scenario"></A>
+<P><PRE>
+
+<B>HISTORY</B>
+
+version 1.0b (27-August-96)
+- initial release.
+
+version 1.1 (04-October-96)
+- save and load materials in attribute requester
+- create cube, sphere, plane, tube, cone and torus mesh objects
+- fixed bug with color requesters (colors changed every call)
+- string gadgets now advance to next/prev gadget when return is pressed
+- improved zooming with the mouse
+- added enable button for render area
+- fixed problems with KS-versions less than 3.0 (<39)
+- key 't' opens settings requester
+- added new preview resolutions (NTSC 80x50,PAL 80x64,VGA 80x60)
+- if more than one object is selected the object for attributes can be
+  selected by the browser
+- implemented two browser modes
+- added center view with 'R-Amiga - .'
+- joined settings and transform requester
+- several bugfixes
+- improved object scaling with mouse
+- can now scale external objects
+
+version 1.2 (29-November-96)
+- forgot to scale child objects of external objects
+- added ok button to render requester
+- added <A HREF="#menu_view_camera2viewer">camera to viewer</A>
+- added hierarchical object browser
+- ask for rendering of scenes with no light sources
+- bugfix: it was impossible to track and to set the opening angle of a
+  spotlight
+- convert external to scene objects
+- added RayStorm object file format (RSOB)
+- fixed problem with vertical stripes with 020-version
+- fixed problem with screen update
+- coordinate display even if no object is translated
+- focal distance of camera can automatically be set to camera-track distance
+- added preview to attributes requester
+- improved color selection for rendering preview window
+- added show and save button to registration program
+- added some materials
+- added lens effects (flares, light star)
+
+version 1.8 (16-February-97)
+- minimum amount of objects for octree is now setable in the <A HREF="#menu_project_rendersettgs">Render Settings</A>
+  requester
+- added spikewidth to visible light star
+- added new/load/save buttons
+- all objects can track each other
+- added undo and redo
+- added box object
+- added status bar
+- added tilt angle to light star
+- the render window can now be set with the mouse
+- objects can now be selected with a selection box
+- raw object loader works now correctly
+- lens flares in the requester are now selectable with the mouse
+
+version 1.9 (--)
+- added 'Time estimated' to render status window
+- <A HREF="#menu_project_recentfile">recent files</A> in project menu
+- Scenario is now asking for a new filename when it wants to load or render
+  a project and can't find an object, brush or texture
+- improved redraw speed
+- added shadowmap to all lights
+- toolbar images can now also be external images (see <A HREF="#menu_settings_prefs">here</A> for details)
+- added cylinder object
+- Scenario can now be called with a the name of a project which then is
+  Loaded (only the directory needs to be specified).
+</PRE></P><HR>
+<A NAME="history_script"></A>
+<P><PRE>
+
+<B>HISTORY</B>
+
+version 1.02 (16-August-95)
+- added BRIGHT-flags for surface
+- deleted TRANSATTU
+
+version 1.081 (08-October-95)
+- added listview for history
+
+version 1.13 (01-November-95)
+- now more than one path with PATH-commands possible
+
+version 1.16 (09-January-96)
+- added 'SOFTSHADOW' to '<A HREF="#distrib">DISTRIB</A>'
+- added 'FALLOFF' for '<A HREF="#pointlight">POINTLIGHT</A>' and '<A HREF="#spotlight">SPOTLIGHT</A>'
+
+version 1.2 (29-February-96)
+- bugfix '<A HREF="#antialias">ANTIALIAS</A>' command: parameter CONTRIB produced error 30
+
+version 1.22 (25-April-96)
+- added '<A HREF="#surface">SURFACE</A>' to '<A HREF="#loadobj">LOADOBJ</A>' to replace objects surface with own surface
+
+version 1.26 (04-October-96)
+- fixed a bug which caused the program to crash on exit
+
+version 1.3 (29-November-96)
+- added '<A HREF="#flare">FLARE</A>' and '<A HREF="#star">STAR</A>'
+
+version 1.8 (16-February-97)
+- added 'MINOBJECTS' to '<A HREF="#startrender">STARTRENDER</A>'
+- added 'SPIKEWIDTH' to '"{"STAR" link STAR}'
+- added 'NOSTAR' and 'NOFLARES' to '<A HREF="#pointlight">POINTLIGHT</A>' and '<A HREF="#spotlight">SPOTLIGHT</A>'.
+- added '<A HREF="#box">BOX</A>' command
+- added '<A HREF="#csg">CSG</A>' command
+- bugfix: 'RANDJIT'-flag of '<A HREF="#setworld">SETWORLD</A>' has been ignored.
+- added 'TILT' to '<A HREF="#star">STAR</A>'
+
+version 1.9 (--97)
+- added 'SHADOWMAP' and 'SHADOWMAPSIZE' to '<A HREF="#pointlight">POINTLIGHT</A>' and '<A HREF="#spotlight">SPOTLIGHT</A>'
+- added 'FUZZY' to '<A HREF="#sphere">SPHERE</A>'
+- added '<A HREF="#hypertexture">HYPERTEXTURE</A>'
+- added 'INVERTED' to '<A HREF="#box">BOX</A>', '<A HREF="#csg">CSG</A>' and '<A HREF="#sphere">SPHERE</A>'
+- added '<A HREF="#cylinder">CYLINDER</A>' command
+- added '<A HREF="#sor">SOR</A>' command
+- problems with example files which needed bigger stacks. Now RayStorm is
+  started from the ARexx scripts with a shell script.
+</PRE></P><HR>
+<A NAME="history_raytracer"></A>
+<P><PRE>
+
+<B>HISTORY</B>
+
+version 1.0 (09-July-95)
+- initial release.
+
+version 1.01 (15-August-95)
+- added soft shadows
+- added random jitter
+- added brush repeat and mirror
+
+version 1.02 (16-August-95)
+- bugfix: altitude mapping -> black object: fixed
+- bugfix: loading of TDDD-objects with brushes crashed: fixed
+- added backdrop picture
+- added BRIGHT-flags for surface
+- added fog
+
+version 1.03 (17-August-95)
+- bugfix: sphere intersection test: fixed
+
+version 1.04 (21-August-95)
+- added global fog
+
+version 1.05 (28-August-95)
+- added animation commands
+
+version 1.06 (01-September-95)
+- added motion blur
+
+version 1.07 (10-September-95)
+- added specular brush mapping
+
+version 1.08 (11-September-95)
+- added rendering box
+
+version 1.081 (08-October-95)
+- added global reflection map
+- changed error messages
+
+version 1.082 (11-October-95)
+- improved memory management for Imagine objects
+
+version 1.083 (12-October-95)
+- changed spotlight direction to lookpoint and added actor for lookpoint
+- new form for vectors '<x,y,z>'
+- new form for colors '[r,g,b]'
+
+version 1.1 (18-October-95)
+- next offical release
+
+version 1.11 (19-October-95)
+- bugfix: Imagine fog objects are now loaded properly
+- added parameter check for field rendering
+
+version 1.12 (21-October-95)
+- speedup of motion blur
+
+version 1.13 (01-November-95)
+- bugfix: spotlight look point changed camera view point
+- added soft interpolation of colors for brushmapping
+- bugfix: objects behind light sources casted shadows
+
+version 1.14 (03-November-95)
+- changed default gaussian filter width from 1.8 to 1.3
+- bugfix: problem with global fog
+- plane can now be animated
+- changed axis position in flat brush mapping
+- added 'Time spend' and 'Time left'
+
+version 1.15 (28-November-95)
+- added PNG- and ILBM-modules
+- added radial texture
+
+version 1.16 (09-January-96)
+- bugfix in PNG-module: had problems with palette pictures
+- bugfix motion blur: had a problem with voxel calculations
+- bugfix motion blur: had no motion blur in scenes with planes
+- added TGA-module
+- added 'SOFTSHADOW' to 'DISTRIB'
+- optimized octree (up to 10% faster)
+- added 'FALLOFF' for 'POINTLIGHT' and 'SPOTLIGHT'
+- bugfix can now load plane
+- bugfix can now load multiple planes or perfect spheres
+
+version 1.17 (18-February-96)
+- object loading is now done in modules
+- added 3DS module
+- bugfix in TDDD-module: hardness is now used to set REFEXP
+- brushes and textures are no applied to surfaces which lie
+  between the light source and the illuminated surface
+- bugfix antialiasing: there where some bright pixel trash in the picture
+  if antialiasing with fog was used
+- rewrote bump, wood and marble textures
+- global reflections map is now applied in 'QUICK' mode too
+
+version 1.2 (29-February-96)
+- bugfix: last line of picture has been always black
+- bugfix: had problems with Imagine 4.0 TDDD objects
+
+version 1.21 (25-March-96)
+- TDDD objects are now rotated and scaled relative to axis of first object
+- bugfix: since 1.2 shadows in motion blur scenes were calculated false
+- bugfix: in some cases there were vertical and horizontal stripes in
+  rendered pictures
+- bugfix: triangles which were exactly in one plane (XY,XZ,YZ) disapeared
+
+version 1.22 (25-April-96)
+- bugfix: had problems with sharp edges of TDDD objects
+- bugfix: altitude brush mapping produced ugly results
+- bugfix: fixed some motion blur bugs
+- added 'SURFACE' to 'LOADOBJ' to replace objects surface with own surface
+- added datatype support for all commands which load brushes
+
+version 1.25 (08-September-96)
+- the RayStorm kernel is now a shared library
+- added support of new TDDD TXT4 chunk for textures from Imagine 4.0
+- changed the world axis orientation (x left, y up, z in)
+
+version 1.26 (04-October-96)
+- fixed error in marble texture
+- bugfix: had problems with sharp edges of TDDD objects (once again)
+
+version 1.3 (29-November-96)
+- recompiled raystorm.library with StormC -> upto 30% faster (68030/881)
+- backdrop pictures are now automatically scaled
+- added lens effects (flare, light star)
+
+version 1.8 (16-February-97)
+- added shadow cache (improves rendering speed for scenes with many shadows)
+- fire texture
+- minimum amount of objects for octree
+- added spikewidth to visible light star
+- added box object
+- added CSG
+- added tilt angle to light star
+- brushes support now 24 bit datatypes too
+- lens flares are now softly interpolated to the border of the flare
+
+version 1.9 (--97)
+- RSOB-loader failed to load mesh objects without triangles
+- added 'Time estimated' to render status window
+- position actor didn't work since 1.8
+- under some circumstances the light star and the lens flares were not on the
+  right place
+- added shadowmap to the lights
+- added <A HREF="#infohypertexture">hyper textures</A>
+- added cylinder object
+- added <A HREF="#infosor">surface of revolution</A>
+</PRE></P><HR>
+<A NAME="homepage"></A>
+<P><PRE>
+
+<B>HOMEPAGE</B>
+
+Come and visit our RayStorm-Homepage! There you can always get the latest
+version of RayStorm and can see some example pictures.
+
+The address:
+http://www.uni-ulm.de/~s_mhesse/raystorm.html
+</PRE></P><HR>
+<A NAME="future"></A>
+<P><PRE>
+
+<B>FUTURE ADDITIONS</B>
+
+<B>RayStorm Scenario</B>
+
+- modify triangle objects
+- animation control
+- Arexx port
+- solid display
+- use Imagine staging files
+
+<B>RayStorm Raytracer</B>
+
+- JPEG-saver
+- animation language (ALAN)
+- more textures
+- don't allocate whole picture buffer at once
+- diffuse reflectivity
+- diffuse transparency
+- log file
+- apply post-2D-FX
+- spline interpolation for actors
+- load Lightwave format
+- metaballs
+- some extra programs (e.g. terrain and plant generation)
+</PRE></P><HR>
+<A NAME="literature"></A>
+<P><PRE>
+
+<B>Computer Graphics</B>
+
+J.D. Foley, A. van Dam
+Addison-Wesley Publishing Company
+
+<B>Advanced Animation and Rendering Techniques
+Theory and Practice</B>
+
+Alan Watt, Mark Watt
+Addison-Wesley Publishing Company
+
+<B>Texturing and Modeling
+A Procedural Approach</B>
+
+Ebert, Musgrave, Peachy, Perlin, Worley
+1994 Academic Press
+ISBN 0-12-228760-6
+
+<B>Hypertexture</B>
+
+Ken Perlin, Courant Institute of the Mathematical Science, New York University
+Eric M. Hoffert, AT&amp;T Pixel Machines
+SIGGRAPH '89, page 253-262
+
+<B>Interactive Computer Graphics
+Functional, Procedural and Device-Level Methods</B>
+
+Peter Burger, Duncan Gillies
+Addison-Wesley Publishing Company
+ISBN 0-201-17439-1
+
+<B>Fast Algorithms for 3D-Graphics</B>
+
+Georg Glaeser
+Springer-Verlag
+ISBN 0-387-94288-2
+</PRE></P><HR>
+<A NAME="indexnode"></A>
+<P><PRE>
+
+<B>-A-</B>
+  <A HREF="#menu_project_about">About                </A>
+  <A HREF="#menu_edit_active">Active               </A>
+  <A HREF="#author">Addresses            </A>
+  <A HREF="#alignment">ALIGNMENT            </A>
+  <A HREF="#brush">Altitude brush       </A>
+  <A HREF="#ambient">AMBIENT              </A>
+  <A HREF="#antialias">ANTIALIAS            </A>
+  <A HREF="#antialiasing">Antialiasing         </A>
+  <A HREF="#arexx">ARexx                </A>
+  <A HREF="#menu_object_attributes">Attributes           </A>
+  <A HREF="#author">Author               </A>
+<B>-B-</B>
+  <A HREF="#setworld">Backdrop             </A>
+  <A HREF="#menu_object_box">Box                  </A>
+  <A HREF="#box">BOX                  </A>
+  <A HREF="#menu_object_browse">Browse               </A>
+  <A HREF="#menu_object_attributes">Brushes              </A>
+  <A HREF="#menu_object_showbrushes"> - show              </A>
+  <A HREF="#brush">BRUSH                </A>
+  <A HREF="#brushpath">BRUSHPATH            </A>
+  <A HREF="#bugs">Bugs                 </A>
+  <A HREF="#bump">Bump                 </A>
+  <A HREF="#buttons">Buttons              </A>
+<B>-C-</B>
+  <A HREF="#menu_object_camera">Camera               </A>
+  <A HREF="#menu_object_activecamera"> - Active            </A>
+  <A HREF="#camera_settings"> - Settings          </A>
+  <A HREF="#menu_view_camera2viewer"> - to viewer         </A>
+  <A HREF="#checker">Checker              </A>
+  <A HREF="#cleanup">CLEANUP              </A>
+  <A HREF="#cleanup">CLEANUP              </A>
+  <A HREF="#brush">Color brush          </A>
+  <A HREF="#arexx_commands">Commands             </A>
+  <A HREF="#menu_object_cone">Cone                 </A>
+  <A HREF="#cone_settings"> - settings          </A>
+  <A HREF="#cone">CONE                 </A>
+  <A HREF="#menu_view_coordinates">Coordinates          </A>
+  <A HREF="#menu_edit_copy">Copy                 </A>
+  <A HREF="#copyright">Copyright            </A>
+  <A HREF="#credits">Credits              </A>
+  <A HREF="#csg">CSG                  </A>
+  <A HREF="#infocsg"> - introduction      </A>
+  <A HREF="#menu_edit_cut">Cut                  </A>
+  <A HREF="#menu_object_cylinder">Cylinder             </A>
+  <A HREF="#brush"> - mapping           </A>
+  <A HREF="#cylinder_settings"> - settings          </A>
+  <A HREF="#cylinder">CYLINDER             </A>
+<B>-D-</B>
+  <A HREF="#menu_edit_delete">Delete               </A>
+  <A HREF="#dof">Depth of field       </A>
+  <A HREF="#menu_project_deselall">Deselect All         </A>
+  <A HREF="#difftrans">DIFFTRANS            </A>
+  <A HREF="#diffuse">DIFFUSE              </A>
+  <A HREF="#display">DISPLAY              </A>
+  <A HREF="#distrib">DISTRIB              </A>
+<B>-E-</B>
+  <A HREF="#authors">E-Mail               </A>
+  <A HREF="#errors">Errors               </A>
+  <A HREF="#examples">Examples             </A>
+<B>-F-</B>
+  <A HREF="#tipstricks">FAQ                  </A>
+  <A HREF="#features">Features             </A>
+  <A HREF="#brush">Filter brush         </A>
+  <A HREF="#fire">Fire                 </A>
+  <A HREF="#flare">FLARE                </A>
+  <A HREF="#brush">Flat mapping         </A>
+  <A HREF="#menu_view_focus">Focus                </A>
+  <A HREF="#global_fog">Fog                  </A>
+  <A HREF="#foglen">FOGLEN               </A>
+  <A HREF="#future">Future               </A>
+<B>-G-</B>
+  <A HREF="#raygeneral">General              </A>
+  <A HREF="#geterrorstr">GETERRORSTR          </A>
+  <A HREF="#menu_view_global">Global               </A>
+  <A HREF="#menu_view_grid">Grid                 </A>
+  <A HREF="#menu_view_gridsize"> - Size              </A>
+  <A HREF="#menu_view_snaptogrid"> - Snap to           </A>
+<B>-H-</B>
+  <A HREF="#history">History              </A>
+  <A HREF="#homepage">Homepage             </A>
+  <A HREF="#hypertexture">HYPERTEXTURE         </A>
+  <A HREF="#infohypertexture"> - introduction      </A>
+<B>-I-</B>
+  <A HREF="#imtexture">IMTEXTURE            </A>
+  <A HREF="#refrindex">Index of refraction  </A>
+  <A HREF="#installation">Installation         </A>
+  <A HREF="#internals">Internals            </A>
+  <A HREF="#introduction">Introduction         </A>
+  <A HREF="#intro_raytracer"> - Raytracer         </A>
+  <A HREF="#intro_scenario"> - Scenario          </A>
+  <A HREF="#intro_script"> - Script            </A>
+<B>-L-</B>
+  <A HREF="#copyright">Legal Stuff          </A>
+  <A HREF="#light_lensflares">Lens flares          </A>
+  <A HREF="#limitations">Limitations          </A>
+  <A HREF="#literature">Literature           </A>
+  <A HREF="#linear">Linear               </A>
+  <A HREF="#menu_object_load">Load                 </A>
+  <A HREF="#loadobj">LOADOBJ              </A>
+  <A HREF="#pointlight_settings">PointLight Set.      </A>
+  <A HREF="#spotlight_settings">SpotLight Set.       </A>
+<B>-M-</B>
+  <A HREF="#marble">Marble               </A>
+  <A HREF="#menus">Menus                </A>
+  <A HREF="#menu_object_mesh">Mesh                 </A>
+  <A HREF="#menu_object_mesh_axis"> - Axis              </A>
+  <A HREF="#menu_object_mesh_cube"> - Cube              </A>
+  <A HREF="#menu_object_mesh_sphere"> - Sphere            </A>
+  <A HREF="#menu_object_mesh_plane"> - Plane             </A>
+  <A HREF="#menu_object_mesh_tube"> - Tube              </A>
+  <A HREF="#menu_object_mesh_cone"> - Cone              </A>
+  <A HREF="#menu_object_mesh_torus"> - Torus             </A>
+  <A HREF="#mesh_settings">Mesh settings        </A>
+  <A HREF="#menu_project_rendersettgs">Min. Objects         </A>
+  <A HREF="#menu_edit_mode">Mode                 </A>
+  <A HREF="#motionblur">Motion Blur          </A>
+  <A HREF="#menu_settings_mui">MUI Prefs            </A>
+<B>-N-</B>
+  <A HREF="#menu_project_new">New                  </A>
+  <A HREF="#newactor">NEWACTOR             </A>
+  <A HREF="#newsurface">NEWSURFACE           </A>
+<B>-O-</B>
+  <A HREF="#objectpath">OBJECTPATH           </A>
+  <A HREF="#menu_project_open">Open                 </A>
+<B>-P-</B>
+  <A HREF="#arexx_params">Parameters           </A>
+  <A HREF="#menu_edit_paste">Paste                </A>
+  <A HREF="#pc-version">PC-Version           </A>
+  <A HREF="#menu_object_plane">Plane                </A>
+  <A HREF="#plane">PLANE                </A>
+  <A HREF="#menu_object_pointlight">Pointlight           </A>
+  <A HREF="#pointlight_settings"> - Settings          </A>
+  <A HREF="#pointlight">POINTLIGHT           </A>
+  <A HREF="#position">POSITION             </A>
+  <A HREF="#menu_settings_prefs">Prefs                </A>
+  <A HREF="#menu_settings_prefsload">Prefs Load           </A>
+  <A HREF="#menu_settings_prefssave">Prefs Save           </A>
+<B>-Q-</B>
+  <A HREF="#menu_project_quit">Quit                 </A>
+  <A HREF="#quit">QUIT                 </A>
+<B>-R-</B>
+  <A HREF="#radial">Radial               </A>
+  <A HREF="#raw_format">RAW                  </A>
+  <A HREF="#menu_project_recentfile">Recent File          </A>
+  <A HREF="#menu_edit_redo">Redo                 </A>
+  <A HREF="#menu_view_redraw">Redraw               </A>
+  <A HREF="#refexp">REFEXP               </A>
+  <A HREF="#reflect">REFLECT              </A>
+  <A HREF="#brush">Reflect brush        </A>
+  <A HREF="#setworld">Reflection map       </A>
+  <A HREF="#refrindex">REFRINDEX            </A>
+  <A HREF="#register">Register             </A>
+  <A HREF="#menu_project_render">Render               </A>
+  <A HREF="#menu_project_rendersettgs"> - settings          </A>
+  <A HREF="#menu_project_setrenderdow"> - window, set       </A>
+  <A HREF="#menu_project_rendersettgs"> - window, enable    </A>
+  <A HREF="#requirements">Requirements         </A>
+<B>-S-</B>
+  <A HREF="#menu_project_save">Save                 </A>
+  <A HREF="#menu_project_saveas">Save As              </A>
+  <A HREF="#savepic">SAVEPIC              </A>
+  <A HREF="#menu_project_selall">Select All           </A>
+  <A HREF="#menu_project_selnext">Select Next          </A>
+  <A HREF="#menu_project_selprev">Select Previous      </A>
+  <A HREF="#menu_object_settings">Settings             </A>
+  <A HREF="#setcamera">SETCAMERA            </A>
+  <A HREF="#setscreen">SETSCREEN            </A>
+  <A HREF="#setworld">SETWORLD             </A>
+  <A HREF="#size">SIZE                 </A>
+  <A HREF="#infoshadowmap">Shadow map           </A>
+  <A HREF="#menu_view_show">Show                 </A>
+  <A HREF="#menu_view_showcoordinates"> - Coordinates       </A>
+  <A HREF="#menu_view_shownames"> - Names             </A>
+  <A HREF="#menu_view_showbrushes"> - Brushes           </A>
+  <A HREF="#menu_view_showtextures"> - Textures          </A>
+  <A HREF="#softshadows">Soft shadows         </A>
+  <A HREF="#sor">SOR                  </A>
+  <A HREF="#infosor"> - introduction      </A>
+  <A HREF="#spectrans">SPECTRANS            </A>
+  <A HREF="#specular">SPECULAR             </A>
+  <A HREF="#brush">Specular brush       </A>
+  <A HREF="#menu_object_sphere">Sphere               </A>
+  <A HREF="#sphere">SPHERE               </A>
+  <A HREF="#brush">Sphere mapping       </A>
+  <A HREF="#light_visiblelight">Spikewidth           </A>
+  <A HREF="#menu_object_spotlight">Spotlight            </A>
+  <A HREF="#spotlight_settings"> - Settings          </A>
+  <A HREF="#spotlight">SPOTLIGHT            </A>
+  <A HREF="#star">STAR                 </A>
+  <A HREF="#stars">Stars                </A>
+  <A HREF="#startrender">STARTRENDER          </A>
+  <A HREF="#surface">Surface              </A>
+  <A HREF="#infosor">Surface of revolution</A>
+<B>-T-</B>
+  <A HREF="#texturepath">TEXTUREPATH          </A>
+  <A HREF="#menu_object_attributes">Textures             </A>
+  <A HREF="#textures"> - description       </A>
+  <A HREF="#menu_object_showtextures"> - show              </A>
+  <A HREF="#tipstricks">Tips &amp; Tricks        </A>
+  <A HREF="#transexp">TRANSEXP             </A>
+  <A HREF="#menu_object_settings">Transform            </A>
+  <A HREF="#transluc">TRANSLUC             </A>
+  <A HREF="#transpar">TRANSPAR             </A>
+  <A HREF="#triangle">TRIANGLE             </A>
+  <A HREF="#tutorials">Tutorials            </A>
+<B>-U-</B>
+  <A HREF="#menu_edit_undo">Undo                 </A>
+  <A HREF="#usage">Usage                </A>
+<B>-V-</B>
+  <A HREF="#menu_view_view">View                 </A>
+  <A HREF="#virtualmemory">Virtual Memory       </A>
+  <A HREF="#light_visiblelight">Visible Light        </A>
+<B>-W-</B>
+  <A HREF="#wintofront">WINTOFRONT           </A>
+  <A HREF="#wood">Wood                 </A>
+  <A HREF="#homepage">WWW                  </A>
+<B>-Z-</B>
+  <A HREF="#menu_view_zoomfit">Zoom fit             </A>
+  <A HREF="#menu_view_zoomin">Zoom in              </A>
+  <A HREF="#menu_view_zoomout">Zoom out             </A>
+</PRE></P><HR>
+</BODY></HTML>

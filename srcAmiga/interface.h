@@ -1,0 +1,67 @@
+#ifndef INTERFACE_H
+#define INTERFACE_H
+
+enum errnos
+{
+	ERROR_RESOLUTION = 100,ERROR_MEM,
+	ERROR_DEMOLIMIT,ERROR_BRUSHTYPE,ERROR_BRUSHMETHOD,
+	ERROR_TIME,ERROR_INTERPOL,ERROR_NOPIC,
+	ERROR_SCREEN,ERROR_RAYSTORMLIB,
+	ERROR_INTUITIONLIB,ERROR_WINDOW,ERROR_MUIMASTERLIB,
+	ERROR_VECTOR,ERROR_COLOR,ERROR_FIELD,
+	ERROR_NOLIGHT,ERROR_FLARETYPE,ERROR_FLAREFUNC,
+	ERROR_CSG,ERROR_CSGOPERATOR,ERROR_HYPERTYPE,
+	ERROR_VECTOR2D,ERROR_INITIALIZE
+};
+
+ULONG triangle(ULONG*);
+ULONG newsurface(ULONG*);
+ULONG sphere(ULONG*);
+ULONG plane(ULONG*);
+ULONG box(ULONG*);
+ULONG cylinder(ULONG*);
+ULONG sor(ULONG*);
+ULONG cone(ULONG*);
+ULONG csg(ULONG*);
+ULONG pointlight(ULONG*);
+ULONG spotlight(ULONG*);
+ULONG directionallight(ULONG*);
+ULONG flare(ULONG*);
+ULONG star(ULONG*);
+ULONG loadobj(ULONG*);
+ULONG ambient(ULONG*);
+ULONG diffuse(ULONG*);
+ULONG foglen(ULONG*);
+ULONG specular(ULONG*);
+ULONG difftrans(ULONG*);
+ULONG spectrans(ULONG*);
+ULONG refexp(ULONG*);
+ULONG transexp(ULONG*);
+ULONG refrindex(ULONG*);
+ULONG reflect(ULONG*);
+ULONG transpar(ULONG*);
+ULONG transluc(ULONG*);
+ULONG imtexture(ULONG*);
+ULONG hypertexture(ULONG*);
+ULONG brush(ULONG*);
+ULONG setcamera(ULONG*);
+ULONG setscreen(ULONG*);
+ULONG setworld(ULONG*);
+ULONG savepic(ULONG*);
+ULONG cleanup(ULONG*);
+ULONG startrender(ULONG*);
+ULONG antialias(ULONG*);
+ULONG brushpath(ULONG*);
+ULONG texturepath(ULONG*);
+ULONG objectpath(ULONG*);
+ULONG alignment(ULONG*);
+ULONG newactor(ULONG*);
+ULONG position(ULONG*);
+ULONG size(ULONG*);
+ULONG distrib(ULONG*);
+ULONG geterrorstr(ULONG*);
+
+char *InitInterface();
+void CleanupInterface();
+
+#endif // INTERFACE_H

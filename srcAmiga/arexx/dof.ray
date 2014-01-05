@@ -1,0 +1,59 @@
+/***************
+ * NAME:        dof.ray
+ * DESCRIPTION: Test for depth of field
+ * AUTHOR:      Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,0,80> <0,0,0> <0,1,0> 56.25 45 80 2'
+'SETWORLD [0,0,0] [40,40,40]'
+'POINTLIGHT <-10,-10,100>'
+
+'NEWSURFACE TEST'
+'AMBIENT [255,0,0]'
+'DIFFUSE [255,0,0]'
+'IMTEXTURE checker.itx <0,0,0> <0,0,0> <5,5,5>'
+
+'NEWSURFACE TEST1'
+'AMBIENT [0,0,255]'
+'DIFFUSE [0,0,255]'
+'IMTEXTURE checker.itx <0,0,0> <0,0,0> <5,5,5>'
+
+'NEWSURFACE TEST2'
+'AMBIENT [0,255,0]'
+'DIFFUSE [0,255,0]'
+'IMTEXTURE checker.itx <0,0,0> <0,0,0> <5,5,5>'
+
+'SPHERE TEST <-15,15,0>  10'
+'SPHERE TEST1 <-15,-15,40> 10'
+'SPHERE TEST1 <-15,-15,-40> 10'
+'SPHERE TEST2 <15,0,50> 10'
+
+'ANTIALIAS 2'
+
+'STARTRENDER QUICK MINOBJECTS=4'
+
+'SAVEPIC dof.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

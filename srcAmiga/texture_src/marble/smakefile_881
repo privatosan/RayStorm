@@ -1,0 +1,11 @@
+all: 881/marble.itx
+
+881/marble.o: rtxt:imtextur.h ray:lib_vecmath/vecmath.h rsi:typedefs.h marble.c
+	sc IncludeDirectory=rsi: IncludeDirectory=rtxt: IncludeDirectory=ray:lib_vecmath opt optsched opttime define LOWLEVEL define __AMIGA__ data=far code=far cpu=68020 math=68881 nostartup nostackcheck marble.c objname 881/marble.o
+
+881/noise.o: rtxt:noise.c
+	sc IncludeDirectory=rsi: IncludeDirectory=rtxt: IncludeDirectory=ray:lib_vecmath opt optsched opttime define LOWLEVEL define __NOISE__ define __AMIGA__ data=far code=far cpu=68020 math=68881 nostartup nostackcheck rtxt:noise.c objname 881/noise.o
+
+881/marble.itx: 881/marble.o 881/noise.o
+	sc data=far code=far cpu=68020 math=68881 nostartup nostackcheck link 881/marble.o 881/noise.o to 881/marble.itx
+

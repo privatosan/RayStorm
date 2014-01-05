@@ -1,0 +1,15 @@
+020/rsob: 020/rsob.o 020/vecmath.o 020/iff_util.o 020/list.o
+	mcppc 020/rsob.o 020/vecmath.o 020/iff_util.o 020/list.o -o 020/rsob -gs -l amiga
+
+020/rsob.o: rsob.cpp
+	mcppc -c rsob.cpp
+
+020/vecmath.o: mod:errors.h mod:list.h mod:typedefs.h mod:vecmath.cpp mod:vecmath.h
+	mcppc -c mod:vecmath.cpp
+
+020/iff_util.o: mod:iff_util.cpp mod:iff_util.h
+	mcppc -c mod:iff_util.cpp
+
+020/list.o: mod:list.cpp mod:list.h mod:typedefs.h
+	mcppc -c mod:list.cpp
+

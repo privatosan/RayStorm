@@ -1,0 +1,14 @@
+StormLibrarian Document (0003)
+ppcmath.lib
+1 0 0
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_far_vbcc/acos.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_far_vbcc/atan_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_far_vbcc/exp_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_far_vbcc/sqrt_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_far_vbcc/trig_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_near_vbcc/acos.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_near_vbcc/atan_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_near_vbcc/exp_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_near_vbcc/sqrt_asm.o
+SoftDisk:User/mcpp3/work/octree/lib_ppcmath/objects_near_vbcc/trig_asm.o
+EOD

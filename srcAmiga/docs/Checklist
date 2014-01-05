@@ -1,0 +1,14 @@
+Checkliste fuer neue Version
+----------------------------
+
+- Versionsnummern auf 2.0 anpassen
+- 020er rsi mit Maxon compilieren
+- 020er scenario mit Maxon compilieren
+- png mit Maxon compilieren und StormC linken
+- camera.cpp von Scenario mit Optimierungsstufe 5 compilieren
+- brush.cpp von RSI mit Optimierungsstufe 5 compilieren
+- light.cpp von RSI mit Optimierungsstufe 5 compilieren
+- 020er tddd mit Optimierungsstufe 4 compilieren
+- 020er 3ds mit Optimierungsstufe 4 compilieren
+- 881er tddd mit Optimierungsstufe 4 compilieren
+

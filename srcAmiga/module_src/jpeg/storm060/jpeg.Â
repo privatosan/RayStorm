@@ -1,0 +1,782 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rmod:"
+"rsi:"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+0 1 1 0 0 0 0 0 0 1 0 4 1 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcapimin.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcapimin.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcapimin.o" "jcapimin.debug"
+""
+"jcapimin.o" "jcapimin.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcapistd.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcapistd.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcapistd.o" "jcapistd.debug"
+""
+"jcapistd.o" "jcapistd.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jccoefct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jccoefct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jccoefct.o" "jccoefct.debug"
+""
+"jccoefct.o" "jccoefct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jccolor.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jccolor.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jccolor.o" "jccolor.debug"
+""
+"jccolor.o" "jccolor.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcdctmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcdctmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jcdctmgr.o" "jcdctmgr.debug"
+""
+"jcdctmgr.o" "jcdctmgr.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.h"
+Storm Shell Project (Dependencies)
+"jchuff.o" "jchuff.debug"
+""
+"jchuff.o" "jchuff.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcinit.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcinit.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcinit.o" "jcinit.debug"
+""
+"jcinit.o" "jcinit.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmainct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmainct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcmainct.o" "jcmainct.debug"
+""
+"jcmainct.o" "jcmainct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmarker.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmarker.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcmarker.o" "jcmarker.debug"
+""
+"jcmarker.o" "jcmarker.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmaster.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcmaster.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcmaster.o" "jcmaster.debug"
+""
+"jcmaster.o" "jcmaster.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcomapi.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcomapi.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcomapi.o" "jcomapi.debug"
+""
+"jcomapi.o" "jcomapi.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcparam.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcparam.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcparam.o" "jcparam.debug"
+""
+"jcparam.o" "jcparam.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcphuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcphuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.h"
+Storm Shell Project (Dependencies)
+"jcphuff.o" "jcphuff.debug"
+""
+"jcphuff.o" "jcphuff.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcprepct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcprepct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcprepct.o" "jcprepct.debug"
+""
+"jcprepct.o" "jcprepct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcsample.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jcsample.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jcsample.o" "jcsample.debug"
+""
+"jcsample.o" "jcsample.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jctrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jctrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jctrans.o" "jctrans.debug"
+""
+"jctrans.o" "jctrans.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdapimin.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdapimin.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdapimin.o" "jdapimin.debug"
+""
+"jdapimin.o" "jdapimin.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdapistd.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdapistd.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdapistd.o" "jdapistd.debug"
+""
+"jdapistd.o" "jdapistd.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdatadst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdatadst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdatadst.o" "jdatadst.debug"
+""
+"jdatadst.o" "jdatadst.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdatasrc.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdatasrc.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdatasrc.o" "jdatasrc.debug"
+""
+"jdatasrc.o" "jdatasrc.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdcoefct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdcoefct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdcoefct.o" "jdcoefct.debug"
+""
+"jdcoefct.o" "jdcoefct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdcolor.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdcolor.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdcolor.o" "jdcolor.debug"
+""
+"jdcolor.o" "jdcolor.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jddctmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jddctmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jddctmgr.o" "jddctmgr.debug"
+""
+"jddctmgr.o" "jddctmgr.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.h"
+Storm Shell Project (Dependencies)
+"jdhuff.o" "jdhuff.debug"
+""
+"jdhuff.o" "jdhuff.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdinput.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdinput.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdinput.o" "jdinput.debug"
+""
+"jdinput.o" "jdinput.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmainct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmainct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdmainct.o" "jdmainct.debug"
+""
+"jdmainct.o" "jdmainct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmarker.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmarker.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdmarker.o" "jdmarker.debug"
+""
+"jdmarker.o" "jdmarker.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmaster.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmaster.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdmaster.o" "jdmaster.debug"
+""
+"jdmaster.o" "jdmaster.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmerge.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdmerge.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdmerge.o" "jdmerge.debug"
+""
+"jdmerge.o" "jdmerge.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdphuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdphuff.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.h"
+Storm Shell Project (Dependencies)
+"jdphuff.o" "jdphuff.debug"
+""
+"jdphuff.o" "jdphuff.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdpostct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdpostct.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdpostct.o" "jdpostct.debug"
+""
+"jdpostct.o" "jdpostct.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdsample.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdsample.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdsample.o" "jdsample.debug"
+""
+"jdsample.o" "jdsample.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdtrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdtrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jdtrans.o" "jdtrans.debug"
+""
+"jdtrans.o" "jdtrans.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jversion.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jerror.o" "jerror.debug"
+""
+"jerror.o" "jerror.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctflt.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctflt.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jfdctflt.o" "jfdctflt.debug"
+""
+"jfdctflt.o" "jfdctflt.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctfst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctfst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jfdctfst.o" "jfdctfst.debug"
+""
+"jfdctfst.o" "jfdctfst.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctint.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jfdctint.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jfdctint.o" "jfdctint.debug"
+""
+"jfdctint.o" "jfdctint.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctflt.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctflt.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jidctflt.o" "jidctflt.debug"
+""
+"jidctflt.o" "jidctflt.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctfst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctfst.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jidctfst.o" "jidctfst.debug"
+""
+"jidctfst.o" "jidctfst.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctint.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctint.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jidctint.o" "jidctint.debug"
+""
+"jidctint.o" "jidctint.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctred.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jidctred.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"jidctred.o" "jidctred.debug"
+""
+"jidctred.o" "jidctred.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemmgr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemsys.h"
+Storm Shell Project (Dependencies)
+"jmemmgr.o" "jmemmgr.debug"
+""
+"jmemmgr.o" "jmemmgr.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemnobs.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemnobs.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemsys.h"
+Storm Shell Project (Dependencies)
+"jmemnobs.o" "jmemnobs.debug"
+""
+"jmemnobs.o" "jmemnobs.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeg.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeg.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+Storm Shell Project (Dependencies)
+"jpeg.o" "jpeg.debug"
+""
+"jpeg.o" "jpeg.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jquant1.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jquant1.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jquant1.o" "jquant1.debug"
+""
+"jquant1.o" "jquant1.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jquant2.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jquant2.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jquant2.o" "jquant2.debug"
+""
+"jquant2.o" "jquant2.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jutils.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jutils.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"jutils.o" "jutils.debug"
+""
+"jutils.o" "jutils.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.cpp"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.cpp"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+Storm Shell Project (Dependencies)
+"piclib.o" "piclib.debug"
+""
+"piclib.o" "piclib.debug"
+Section
+1 0 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jinclude.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jconfig.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpeglib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmorecfg.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jpegint.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jerror.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdct.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jchuff.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jdhuff.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jversion.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jversion.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemsys.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/jpeg/jmemsys.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/picload.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+16 "SoftDisk:User/mcpp3/work/octree/module_src/piclib.fd"
+"SoftDisk:User/mcpp3/work/octree/module_src/piclib.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "jpeg"
+"jpeg"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"jpeg.link"
+Section
+10 0 40
+File
+5 "storm020.lib"
+"storm020.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

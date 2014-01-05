@@ -1,0 +1,12 @@
+020/raw: 020/raw.o 020/mathdefs.o 020/vecmath.o
+	mcppc 020/raw.o 020/mathdefs.o 020/vecmath.o -o 020/raw -l amiga
+
+020/raw.o: raw.cpp raw.h
+	mcppc -c raw.cpp
+
+020/mathdefs.o: rsi:mathdefs.cpp rsi:mathdefs.h rsi:typedefs.h
+	mcppc -c rsi:mathdefs.cpp
+
+020/vecmath.o: rsi:mathdefs.h rsi:typedefs.h rsi:vecmath.cpp rsi:vecmath.h
+	mcppc -c rsi:vecmath.cpp
+

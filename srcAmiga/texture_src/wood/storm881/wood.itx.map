@@ -1,0 +1,77 @@
+No Global M68K Construktors
+Global M68K Destruktors
+	_EXIT_4_free
+No Global PPC Construktors
+No Global PPC Destruktors
+
+M68K Code
+
+
+  Hunk #0 ( Far Public ) 4156 Bytes (0x103c)
+  texture_init(long) = 0 (0x0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  Cleanup() = 134 (0x86) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  fwork(float *,_patch *,VECTOR *,float *) = 162 (0xa2) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  _InitNoise = 960 (0x3c0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/040/noise.lib
+  _CleanupNoise = 1200 (0x4b0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/040/noise.lib
+  _Noise__r = 1248 (0x4e0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/040/noise.lib
+  _Turbulence__r = 2884 (0xb44) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_noise/040/noise.lib
+  _malloc = 3140 (0xc44) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _free = 3560 (0xde8) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _EXIT_4_free = 3756 (0xeac) unused, maybe local
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _rand = 3878 (0xf26) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _srand = 3924 (0xf54) referenced 1 times
+    File SoftDisk:User/StormC/Lib/storm020.lib
+  _fabs__r = 3936 (0xf60) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math881.lib
+  _floor__r = 3944 (0xf68) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math881.lib
+  _sin__r = 3968 (0xf80) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math881.lib
+  _pow__r = 3976 (0xf88) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/math881.lib
+  _InitModules = 4032 (0xfc0) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/stormcstartup020.lib
+  _CleanupModules = 4100 (0x1004) referenced 1 times
+    File SoftDisk:User/StormC/StormSYS/lib/stormcstartup020.lib
+
+PowerPC Code
+
+
+Data
+
+
+  Hunk #1 ( Far Public ) 776 Bytes (0x308)
+  _infotext = 0 (0x0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  _infoflags = 68 (0x44) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  _ttable = 208 (0xd0) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  ___init_table68k = 760 (0x2f8) referenced 2 times
+    File <Internal Assembled>
+  ___exit_table68k = 768 (0x300) referenced 1 times
+    File <Internal Assembled>
+
+BSS
+
+
+  Hunk #2 ( Far Public ) 24 Bytes (0x18)
+  _SysBase = 0 (0x0) referenced 3 times
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  _RTable = 4 (0x4) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+  _hashTable = 8 (0x8) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/texture_src/wood/storm881/wood.o
+
+END

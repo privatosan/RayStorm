@@ -1,0 +1,51 @@
+Mikes TODO
+
+- gfx.SetColor()
+- OpenGL: Funktionen in opengl.cpp anpassen
+- Neue Menüpunkte unter View->Show
+  jetzt:
+	Coordinates  v
+	Names        v
+	-----------
+	All objects
+	Cameras      v
+	Brushes
+	Textures
+	Lights       v
+	Meshes       v
+	Spheres      v
+	Boxes        v
+	Cylinders    v
+	Cones        v
+	SOR          v
+	Planes       v
+	CSG          v
+
+  Die Menüs mit v sind am Anfang mit Häckchen, Brushes und Textures ohne Häckchen, um kompatibel mit früher
+  zu sein. Für jeden Menüpunkt einfach in sci DoMethod() aufrufen.
+- bei CheckMenuItem() in utility folgende Menus reinmachen
+	MENU_SHOWBRUSHES
+	MENU_SHOWTEXTURES
+	MENU_SHOWCAMERA
+	MENU_SHOWLIGHT
+	MENU_SHOWMESH
+	MENU_SHOWSPHERE
+	MENU_SHOWBOX
+	MENU_SHOWCYLINDER
+	MENU_SHOWCONE
+	MENU_SHOWSOR
+	MENU_SHOWPLANE
+	MENU_SHOWCSG
+- Objekte können jetzt im Weltkoordinatensystem oder im Objektkoordinatensystem verschoben, gedreht und
+  skaliert werden. Deswegen neue Checkbox im Transformrequester: Local; neues Toolbaricon.
+- Vorsicht bei flares->Draw() und star->Draw() im transformrequester, Parameter haben sich geändert, schau
+  bei mir in requview_class.cpp nach.
+
+---------------- release
+
+- neu: FILEREQU_ITEXTURE, FILEREQU_RTEXTURE in utility für Imagine Texturen (*.itx) und RayStorm Texturen (*.rtx)
+- neu: directional light
+- neu: soft spot light
+- neu: werte von mesh create dialogen werden in class GLOBALS gespeichert
+- OPENGL::CreateContext() erzeugt context wenn keiner da ist und macht einen resize wenn sich die Göße gändert hat.
+

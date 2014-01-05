@@ -1,0 +1,11 @@
+"SoftDisk:User/StormC/StormSYS/startup.o"
+0,0,0,128
+1,0,128,48
+-
+3,1,0,12
+"SoftDisk:User/mcpp3/work/octree/codekey/codekey.o"
+0,0,176,3892
+1,1,12,80
+2,2,0,36
+!0,3330 ; _wbmain
+!0,1704 ; main__iPPc

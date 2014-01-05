@@ -1,0 +1,48 @@
+/***************
+ * NAME:          fog.ray
+ * DESCRIPTION:   Test of fog
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start 8192'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,50,-75> <0,-10,0> <0,1,0> 25 20'
+'SETWORLD [0,0,0] [20,20,20] FOGLEN=15 FOGHEIGHT=0'
+'POINTLIGHT <-20,20,-40>'
+
+'NEWSURFACE RED'
+'DIFFUSE [255,0,0]'
+
+'NEWSURFACE PLANE'
+'DIFFUSE [0,0,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE checker.itx <0,0.1,0> <0,0,0> <5,5,5> 255 255 0'
+
+'PLANE PLANE <0,-10,0> <0,1,0>'
+'SPHERE RED <0,0,0> 10'
+
+'STARTRENDER'
+
+'SAVEPIC fog.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

@@ -1,0 +1,87 @@
+;**************************************************************************
+; Install_Examples - RayStorm examples installation script for Installer
+;
+; Copyright © 1995 Andreas Heumann
+;
+; $Id: Install_RayStorm,v 2.3 1999/09/05
+;
+;     Installer and Installer project icon
+;     (c) Copyright 1991-93 Commodore-Amiga, Inc.  All Rights Reserved.
+;     Reproduced and distributed under license from Commodore.
+;
+;     INSTALLER SOFTWARE IS PROVIDED "AS-IS" AND SUBJECT TO CHANGE;
+;     NO WARRANTIES ARE MADE.  ALL USE IS AT YOUR OWN RISK.  NO LIABILITY
+;     OR RESPONSIBILITY IS ASSUMED.
+;
+;**************************************************************************
+(welcome "Welcome to the " @app-name " installation.\n")
+
+; The source directory name
+(set #source-dir
+ (if (= 1 (exists @icon))
+  (pathonly (expandpath @icon))
+  (expandpath @icon)
+ )
+)
+
+;**************************************************************************
+; Select destination directory for the installation. We suggest the user
+; to install to the place from where the installer was started. This is
+; since normally this software will be unarchived to its proper location
+; and the files don't have to be copied any more.
+;**************************************************************************
+(procedure P_select-destination-directory
+ (transcript "Selecting destination directory for the installation.")
+ (while
+  (
+   (set @default-dest
+    (askdir
+     (prompt "Select directory where RayStorm is installed.\n")
+     (help "Here you can specify the location where to install "
+           "the RayStorm examples.\n"
+           "Installation can be made on-place. "
+           "This is recommended if you have already unarchived "
+           "the RayStorm archive to its final location. "
+           "In this case most of the files are left where they are. "
+           "Only necessary files are copied to different "
+           "positions.\n"
+     )
+     (newpath)
+     (default #source-dir)
+    )
+   )
+   (if (= 2 (exists @default-dest))
+    0
+    (makedir @default-dest
+     (infos)
+    )
+   )
+  )
+ )
+)
+
+;**************************************************************************
+; Installatation sequence
+;**************************************************************************
+(message "Please remember during this installation:\n\n"
+    "    Read the instructions provided behind the \"Help\" "
+    "buttons, if you are not absolutely sure what you are doing.\n"
+)
+
+(complete 00)
+(transcript "On making " @app-name ".")
+(P_select-destination-directory)
+
+(complete 10)
+(working "Uncompressing example files")
+(run (cat "lha x examples.lha \"" @default-dest "/\" #?"))
+
+(complete 90)
+(message "Installation of " @app-name " done.\n")
+
+(complete 100)
+
+;;; All done!
+
+; EOF
+

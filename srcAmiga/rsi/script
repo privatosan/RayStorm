@@ -1,0 +1,3 @@
+stormc:stormsys/stormc -m stormmakefile_040 -d STORMPRAGMAS -d _INLINE_INCLUDES -d __AMIGA__=1 -d LOWLEVEL=1 -i StormC:Include -i rsi: -O -g40 -g81
+
+

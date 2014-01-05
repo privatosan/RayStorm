@@ -1,0 +1,22 @@
+Short:     V2.3 of RayStorm (68020+881 binaries)
+Uploader:  andreash@diamondmm.com (Andreas Heumann)
+Author:    andreash@diamondmm.com (Andreas Heumann)
+Type:      gfx/3d
+                                                               May 9th 1999
+
+                              RayStorm v2.3
+
+                                   by
+                             Andreas Heumann
+                                  and
+                               Mike Hesser
+
+This is the new release of the RayStorm package. It includes a fast and
+easy to use modeler, a powerful scriptlanguage and a fast raytracing
+kernel.
+
+This demo version can't save pictures.
+The full version is unlimited (see manual for informations how to register).
+
+In this archive are only the binaries of RayStorm, there is a extra file
+called 'raystorm_exam.lha' with many example files and objects.

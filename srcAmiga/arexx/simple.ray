@@ -1,0 +1,42 @@
+/***************
+ * NAME:        simple.ray
+ * DESCRIPTION: Tutorial: Simple Scene
+ * AUTHOR:      Mike Hesser
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'SETCAMERA <-6,1.5,-1.5> <0,0,0> <0,1,0>'
+'SETWORLD [30,30,255]'
+'POINTLIGHT <-30,50,30> [255,255,255] SHADOW'
+
+'NEWSURFACE planesurf'
+'DIFFUSE [155,0,0]'
+'IMTEXTURE /textures/checker.itx <.1,.1,.1> <0,0,0> <2,2,2> 50 0 0'
+
+'NEWSURFACE spheresurf'
+'REFLECT [255,255,255]'
+
+'SPHERE spheresurf <0,1,0> 1'
+'PLANE planesurf'
+
+'STARTRENDER'
+
+'SAVEPIC simple.iff'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

@@ -1,0 +1,12 @@
+020/raystorm: 020/csgstack.o 020/itemlist.o 020/raystorm.o
+	mcppc 020/csgstack.o 020/itemlist.o 020/raystorm.o -o 020/raystorm -l amiga
+
+020/csgstack.o: csgstack.cpp csgstack.h
+	mcppc -c csgstack.cpp
+
+020/itemlist.o: itemlist.cpp itemlist.h
+	mcppc -c itemlist.cpp
+
+020/raystorm.o: csgstack.h itemlist.h raystorm.cpp
+	mcppc -c raystorm.cpp
+

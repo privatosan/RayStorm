@@ -1,0 +1,94 @@
+/***************
+ * NAME:        Textures.ray
+ * DESCRIPTION: Demonstration of the textures
+ * AUTHOR:      Andreas Heumann & Mike Hesser
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+'OBJECTPATH /objects'
+
+'SETSCREEN 160 128'
+'SETCAMERA <-10,20,20> <-3,0,3> <0,1,0> 25 20'
+'SETWORLD [20,20,50]'
+'POINTLIGHT <-20,20,20>'
+
+/* texture definitions */
+
+'NEWSURFACE BUMP'
+'DIFFUSE [30,30,255]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE bump.itx <0,0,0> <0,0,0> <.3,.3,.3> 1 1 1'
+
+'NEWSURFACE CHECKER'
+'SPECULAR [0,0,0]'
+'IMTEXTURE checker.itx <-0.1,0.1,0.1> <0,0,0> <.5,.5,.5>'
+
+'NEWSURFACE LINEAR'
+'DIFFUSE [255,255,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE linear.itx <0,-.8,0> <0,0,0> <1,2,1> 255 0 0'
+
+'NEWSURFACE MARBLE'
+'SPECULAR [0,0,0]'
+'IMTEXTURE marble.itx <0,0,0> <0,0,0> <1,1,1> 150 50 50 0 0 0 0 0 0 7'
+
+'NEWSURFACE RADIAL'
+'DIFFUSE [255,25,255]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE radial.itx <-3,0,3> <0,0,0> <1,1,1> 1 2 0 0 255'
+
+'NEWSURFACE STARS'
+'DIFFUSE [0,0,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE stars.itx <0,0,0> <0,0,0> <1,1,1> 255 255 255 0.01'
+
+'NEWSURFACE WOOD'
+'DIFFUSE [200,100,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE wood.itx <0,0,0> <0,0,0> <0.7,0.7,0.7> 255 180 50 0 0 0 0 0 0 1 1'
+
+'NEWSURFACE FIRE'
+'DIFFUSE [0,0,0]'
+'SPECULAR [0,0,0]'
+'IMTEXTURE fire.itx <0,0,0> <-90,0,0> <1,1,1> 1 0 5 1 .5 255 255 255 255 255 0 50'
+
+/* objects */
+
+'LOADOBJ cube.iob <0,0,0> SURFACE=MARBLE'
+
+'SPHERE BUMP <-3,1,0.5> 1.3'
+
+'LOADOBJ cube.iob <-6,0,0> SURFACE=CHECKER'
+
+'LOADOBJ cube.iob <0,0,3> SURFACE=LINEAR'
+
+'LOADOBJ cube.iob <-3,0,3> SURFACE=RADIAL'
+
+'LOADOBJ cube.iob <-6,0,3> SURFACE=STARS'
+
+'LOADOBJ cube.iob <0,0,6> SURFACE=WOOD'
+
+'LOADOBJ cube.iob <-3,0,6> SURFACE=FIRE'
+
+'STARTRENDER QUICK'
+'SAVEPIC textures.iff'
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

@@ -1,0 +1,23 @@
+/***************
+ * NAME:        ??
+ * DESCRIPTION: ??
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'run >NIL: <NIL: /RayStorm'
+	address COMMAND WaitForPort RAYSTORM.1
+END  
+
+address RAYSTORM.1
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

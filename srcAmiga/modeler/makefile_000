@@ -1,0 +1,149 @@
+000/Scenario: 000/attrswindow_class.o 000/brush.o 000/browser_class.o 000/camera.o 000/color_class.o 000/display.o\
+ 000/dispwindow_class.o 000/draw_class.o 000/errors.o 000/globals.o 000/globalwindow_class.o 000/iff_util.o\
+ 000/light.o 000/list.o 000/mainwindow_class.o 000/mesh.o 000/meshaddwindow_class.o 000/modeler.o 000/mouse.o\
+ 000/MUIutility.o 000/numreq_class.o 000/object.o 000/objhand.o 000/plane.o 000/popup_class.o 000/prefs.o\
+ 000/prefswindow_class.o 000/project.o 000/renderwindow_class.o 000/settings_class.o 000/sphere.o\
+ 000/statewindow_class.o 000/surface.o 000/texture.o 000/vecmath.o 000/view.o
+	mcppc 000/attrswindow_class.o 000/brush.o 000/browser_class.o 000/camera.o 000/color_class.o 000/display.o\
+ 000/dispwindow_class.o 000/draw_class.o 000/errors.o 000/globals.o 000/globalwindow_class.o 000/iff_util.o\
+ 000/light.o 000/list.o 000/mainwindow_class.o 000/mesh.o 000/meshaddwindow_class.o 000/modeler.o 000/mouse.o\
+ 000/MUIutility.o 000/numreq_class.o 000/object.o 000/objhand.o 000/plane.o 000/popup_class.o 000/prefs.o\
+ 000/prefswindow_class.o 000/project.o 000/renderwindow_class.o 000/settings_class.o 000/sphere.o\
+ 000/statewindow_class.o 000/surface.o 000/texture.o 000/vecmath.o 000/view.o -o 000/Scenario -l amiga
+
+000/attrswindow_class.o: attrswindow_class.cpp attrswindow_class.h brush.h color.h display.h iff_util.h list.h MUIdefs.h\
+ MUIutility.h object.h popup_menu.h prefs.h surface.h texture.h typedefs.h vecmath.h view.h
+	mcppc -c attrswindow_class.cpp
+
+000/brush.o: brush.cpp brush.h color.h display.h iff_util.h list.h object.h popup_menu.h rscn.h surface.h\
+ typedefs.h vecmath.h view.h
+	mcppc -c brush.cpp
+
+000/browser_class.o: browser_class.cpp browser_class.h color.h display.h iff_util.h list.h mouse.h MUIdefs.h MUIutility.h\
+ object.h popup_menu.h prefs.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c browser_class.cpp
+
+000/camera.o: camera.cpp camera.h color.h display.h globals.h iff_util.h list.h object.h popup_menu.h rscn.h\
+ surface.h typedefs.h vecmath.h view.h
+	mcppc -c camera.cpp
+
+000/color_class.o: color.h color_class.cpp color_class.h MUIdefs.h MUIutility.h typedefs.h
+	mcppc -c color_class.cpp
+
+000/display.o: camera.h color.h display.cpp display.h errors.h gfx2d.h globals.h iff_util.h list.h mainwindow_class.h\
+ object.h popup_menu.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c display.cpp
+
+000/dispwindow_class.o: color.h dispwindow_class.cpp dispwindow_class.h globals.h MUIdefs.h MUIutility.h typedefs.h
+	mcppc -c dispwindow_class.cpp
+
+000/draw_class.o: camera.h color.h display.h draw_class.cpp draw_class.h gfx2d.h iff_util.h light.h list.h mainwindow_class.h\
+ mesh.h mouse.h MUIdefs.h MUIutility.h object.h popup_menu.h project.h settings_class.h surface.h typedefs.h\
+ vecmath.h view.h
+	mcppc -c draw_class.cpp
+
+000/errors.o: errors.cpp
+	mcppc -c errors.cpp
+
+000/globals.o: color.h globals.cpp globals.h typedefs.h
+	mcppc -c globals.cpp
+
+000/globalwindow_class.o: color.h globals.h globalwindow_class.cpp globalwindow_class.h list.h MUIdefs.h MUIutility.h\
+ prefs.h typedefs.h
+	mcppc -c globalwindow_class.cpp
+
+000/iff_util.o: iff_util.cpp iff_util.h
+	mcppc -c iff_util.cpp
+
+000/light.o: color.h display.h iff_util.h light.cpp light.h list.h object.h popup_menu.h rscn.h surface.h\
+ typedefs.h vecmath.h view.h
+	mcppc -c light.cpp
+
+000/list.o: list.cpp list.h typedefs.h
+	mcppc -c list.cpp
+
+000/mainwindow_class.o: browser_class.h camera.h color.h display.h globals.h iff_util.h light.h list.h mainwindow_class.cpp\
+ mainwindow_class.h mesh.h meshaddwindow_class.h MUIdefs.h MUIutility.h object.h plane.h popup_menu.h\
+ prefs.h project.h sphere.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c mainwindow_class.cpp
+
+000/mesh.o: color.h display.h errors.h iff_util.h list.h mesh.cpp mesh.h MUIdefs.h MUIutility.h object.h\
+ popup_menu.h rscn.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c mesh.cpp
+
+000/meshaddwindow_class.o: color.h display.h iff_util.h list.h mesh.h meshaddwindow_class.cpp meshaddwindow_class.h MUIdefs.h\
+ MUIutility.h object.h popup_menu.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c meshaddwindow_class.cpp
+
+000/modeler.o: attrswindow_class.h browser_class.h camera.h color.h color_class.h display.h dispwindow_class.h\
+ draw_class.h errors.h globalwindow_class.h iff_util.h light.h list.h mainwindow_class.h mesh.h meshaddwindow_class.h\
+ modeler.cpp MUIdefs.h numreq_class.h object.h popup_menu.h prefs.h prefswindow_class.h project.h renderwindow_class.h\
+ settings_class.h sphere.h statewindow_class.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c modeler.cpp
+
+000/mouse.o: camera.h color.h display.h draw_class.h iff_util.h list.h mouse.cpp mouse.h MUIdefs.h object.h\
+ popup_menu.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c mouse.cpp
+
+000/MUIutility.o: color.h list.h MUIdefs.h MUIutility.cpp MUIutility.h prefs.h typedefs.h
+	mcppc -c MUIutility.cpp
+
+000/numreq_class.o: color.h MUIdefs.h MUIutility.h numreq_class.cpp numreq_class.h typedefs.h
+	mcppc -c numreq_class.cpp
+
+000/object.o: camera.h color.h display.h draw_class.h errors.h gfx2d.h iff_util.h list.h mesh.h MUIdefs.h\
+ object.cpp object.h objhand.h popup_menu.h rscn.h sphere.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c object.cpp
+
+000/objhand.o: brush.h color.h display.h errors.h iff_util.h list.h mesh.h object.h objhand.cpp plane.h popup_menu.h\
+ sphere.h surface.h texture.h typedefs.h vecmath.h view.h
+	mcppc -c objhand.cpp
+
+000/plane.o: color.h display.h iff_util.h list.h object.h plane.cpp plane.h popup_menu.h rscn.h surface.h\
+ typedefs.h vecmath.h view.h
+	mcppc -c plane.cpp
+
+000/popup_class.o: popup_menu.cpp popup_menu.h typedefs.h
+	mcppc -c popup_menu.cpp
+
+000/prefs.o: color.h list.h MUIdefs.h MUIutility.h prefs.cpp prefs.h typedefs.h
+	mcppc -c prefs.cpp
+
+000/prefswindow_class.o: color.h list.h MUIdefs.h MUIutility.h prefs.h prefswindow_class.cpp prefswindow_class.h typedefs.h
+	mcppc -c prefswindow_class.cpp
+
+000/project.o: camera.h color.h display.h globals.h iff_util.h light.h list.h mesh.h object.h plane.h popup_menu.h\
+ project.cpp project.h rscn.h sphere.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c project.cpp
+
+000/renderwindow_class.o: color.h display.h globals.h iff_util.h list.h MUIdefs.h MUIutility.h object.h popup_menu.h\
+ renderwindow_class.cpp renderwindow_class.h statewindow_class.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c renderwindow_class.cpp
+
+000/settings_class.o: browser_class.h camera.h color.h display.h iff_util.h light.h list.h mesh.h MUIdefs.h MUIutility.h\
+ object.h popup_menu.h settings_class.cpp settings_class.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c settings_class.cpp
+
+000/sphere.o: color.h display.h iff_util.h list.h object.h popup_menu.h rscn.h sphere.cpp sphere.h surface.h\
+ typedefs.h vecmath.h view.h
+	mcppc -c sphere.cpp
+
+000/statewindow_class.o: camera.h color.h display.h dispwindow_class.h globals.h iff_util.h list.h MUIdefs.h MUIutility.h\
+ object.h popup_menu.h statewindow_class.cpp statewindow_class.h surface.h typedefs.h vecmath.h view.h
+	mcppc -c statewindow_class.cpp
+
+000/surface.o: brush.h color.h display.h iff_util.h list.h object.h popup_menu.h rscn.h surface.cpp surface.h\
+ texture.h typedefs.h vecmath.h view.h
+	mcppc -c surface.cpp
+
+000/texture.o: color.h display.h iff_util.h list.h object.h popup_menu.h rscn.h surface.h texture.cpp texture.h\
+ typedefs.h vecmath.h view.h
+	mcppc -c texture.cpp
+
+000/vecmath.o: errors.h list.h typedefs.h vecmath.cpp vecmath.h
+	mcppc -c vecmath.cpp
+
+000/view.o: camera.h color.h display.h errors.h globals.h iff_util.h list.h object.h popup_menu.h surface.h\
+ typedefs.h vecmath.h view.cpp view.h
+	mcppc -c view.cpp
+

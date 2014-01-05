@@ -1,0 +1,18 @@
+RayStorm FAQ
+------------
+
+- The PowerPC version of RayStorm refuses to run.
+  Rhe PowerPC version needs WarpOS V8+. Make sure that it is installed.
+
+- Is RayStorm supporting OpenGL?
+  Yes, RayStorm supports OpenGL through Storm-MESA.
+
+- Do I have to pay additional fees for future versions?
+  No, all future updates are free, as long as RayStorm is shareware.
+
+- Can I genarate animations with RayStorm?
+  Yes, but currently only with the script raytracer. But a animation
+  interface will be integrated in RayStorm soon.
+
+- Is there a RayStorm homepage?
+  Yes, the URL is: 'http://www.uni-ulm.de/~s_mhesse/raystorm.htm'.

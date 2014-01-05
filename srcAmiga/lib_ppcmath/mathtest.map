@@ -1,0 +1,346 @@
+No Global M68K Construktors
+No Global M68K Destruktors
+Global PPC Construktors
+	_INIT_0_InitFiles
+	_INIT_1_DOS_c__DOSBase
+	_INIT_2_Intuition_c__IntuitionBase
+	_INIT_5_RememberTicks
+	_INIT_5_InitStdIOFiles
+Global PPC Destruktors
+	_EXIT_5_InitFiles
+	_EXIT_5_InitStdIOFiles
+	_EXIT_4_MemoryCleanup
+	_EXIT_2_Intuition_c__0opP07Library__LibBaseC__CT
+	_EXIT_1_DOS_c__0opP07Library__LibBaseC__CT
+	_EXIT_0_Main
+
+M68K Code
+
+
+  Hunk #0 ( Far Public ) 612 Bytes (0x264)
+  __startup68K = 0 (0x0) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/startups/startup603.o
+  _InitModules = 488 (0x1e8) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _CleanupModules = 556 (0x22c) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+
+  Hunk #1 ( Merged Public ) 31796 Bytes (0x7c34)
+	Has no symbols but has 1 sections
+
+PowerPC Code
+
+
+  Hunk #1 ( Merged Public ) 31796 Bytes (0x7c34)
+  _main = 0 (0x0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/mathtest.o
+  _acos__r = 1480 (0x5c8) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _atan__r = 2296 (0x8f8) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _atan2__r = 2820 (0xb04) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _exp__r = 4664 (0x1238) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _pow__r = 5560 (0x15b8) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _log__r = 7108 (0x1bc4) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _log10__r = 7528 (0x1d68) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _estinvsqrt = 7984 (0x1f30) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _estinv = 7992 (0x1f38) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _sqrt = 8000 (0x1f40) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _sqrt__r = 8000 (0x1f40) referenced 2 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _estinv__r = 7992 (0x1f38) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _estinvsqrt__r = 7984 (0x1f30) unused, maybe local
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _sin__r = 8528 (0x2150) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _cos__r = 8952 (0x22f8) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  _setjmp = 8984 (0x2318) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _longjmp = 9252 (0x2424) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _fflush = 9632 (0x25a0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _setvbuf = 9784 (0x2638) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaread = 10136 (0x2798) referenced 6 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigareadunget = 10720 (0x29e0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigawrite = 10856 (0x2a68) referenced 4 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaseek = 11440 (0x2cb0) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigagetc = 11848 (0x2e48) referenced 4 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaputc = 11920 (0x2e90) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaflush = 12000 (0x2ee0) referenced 8 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaclose = 12240 (0x2fd0) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _EXIT_5_InitFiles = 12392 (0x3068) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _memcpy = 12496 (0x30d0) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _AllocBucket = 12640 (0x3160) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _malloc = 13232 (0x33b0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _free = 13640 (0x3548) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _EXIT_4_MemoryCleanup = 13728 (0x35a0) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _formatted_out = 14456 (0x3878) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _printf = 17072 (0x42b0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _INIT_5_InitStdIOFiles = 17136 (0x42f0) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _EXIT_5_InitStdIOFiles = 17384 (0x43e8) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _strlen = 17440 (0x4420) referenced 4 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _INIT_5_RememberTicks = 17480 (0x4448) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _clock = 17520 (0x4470) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _signed_out = 17760 (0x4560) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _signed_out_l = 18784 (0x4960) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _unsigned_out = 18928 (0x49f0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _unsigned_out_l = 19880 (0x4da8) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _char_out = 20640 (0x50a0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _string_out = 20920 (0x51b8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _Close = 21272 (0x5318) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _Read = 21464 (0x53d8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _Write = 21672 (0x54a8) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _Input = 21880 (0x5578) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _Output = 22064 (0x5630) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _Seek = 22248 (0x56e8) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _DeleteFile = 22456 (0x57b8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _IoErr = 22648 (0x5878) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _DateStamp = 22832 (0x5930) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _IsInteractive = 23024 (0x59f0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _NameFromFH = 23216 (0x5ab0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _GetProgramName = 23424 (0x5b80) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _FilePart = 23624 (0x5c48) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _AddPart = 23816 (0x5d08) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _VPrintf = 24024 (0x5dd8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _AllocMem = 24224 (0x5ea0) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _FreeMem = 24424 (0x5f68) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _FindTask = 24616 (0x6028) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _CloseLibrary = 24808 (0x60e8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _OpenLibrary = 24992 (0x61a0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _EasyRequest = 25192 (0x6268) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _RemHead = 25416 (0x6348) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/ppcamiga.lib
+  _floor__r = 25464 (0x6378) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  _ceil__r = 25632 (0x6420) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  _frexp__r = 25800 (0x64c8) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  _double_out = 26456 (0x6758) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  main(int,char *) = 28080 (0x6db0) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _EXIT_0_Main = 28744 (0x7048) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  main(int,char **) = 28808 (0x7088) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  wbmain(WBStartup *) = 28848 (0x70b0) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _EXIT_1_DOS_c__0opP07Library__LibBaseC__CT = 28888 (0x70d8) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _INIT_1_DOS_c__DOSBase = 28928 (0x7100) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _PPC_InitModules = 29024 (0x7160) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _PPC_CleanupModules = 29168 (0x71f0) referenced 3 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _EXIT_2_Intuition_c__0opP07Library__LibBaseC__CT = 29288 (0x7268) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _INIT_2_Intuition_c__IntuitionBase = 29328 (0x7290) unused, maybe local
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  LibBaseC::LibBaseC(char *,unsigned long,short) = 29424 (0x72f0) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  LibBaseC::~LibBaseC() = 29856 (0x74a0) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  main() = 29928 (0x74e8) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _wbmain = 29960 (0x7508) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  __startupPPC = 29968 (0x7510) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  __wbstartupPPC = 30048 (0x7560) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _exit = 30120 (0x75a8) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  ll_mod_s = 30168 (0x75d8) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcsupport603.lib
+  ll_mod_u = 30608 (0x7790) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcsupport603.lib
+  ll_div_s = 30944 (0x78e0) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcsupport603.lib
+  ll_div_u = 31416 (0x7ab8) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcsupport603.lib
+  _GetTOCReg = 31768 (0x7c18) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcsupport603.lib
+
+  Hunk #2 ( Far Public ) 296 Bytes (0x128)
+  _amigaeof = 0 (0x0) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigagetcunget = 32 (0x20) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _amigaungetc = 64 (0x40) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _INIT_0_InitFiles = 104 (0x68) unused, maybe local
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+
+Data
+
+
+  Hunk #3 ( Far Public ) 20436 Bytes (0x4fd4)
+  _errno = 19372 (0x4bac) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _std__out = 19760 (0x4d30) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _std__in = 19848 (0x4d88) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  _std__err = 19936 (0x4de0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  ___init_table68k = 20360 (0x4f88) referenced 2 times
+    File <Internal Assembled>
+  ___exit_table68k = 20368 (0x4f90) referenced 1 times
+    File <Internal Assembled>
+  ___init_tablePPC = 20376 (0x4f98) referenced 1 times
+    File <Internal Assembled>
+  ___exit_tablePPC = 20408 (0x4fb8) referenced 1 times
+    File <Internal Assembled>
+
+  Hunk #4 ( Merged Public ) 468 Bytes (0x1d4)
+  @x3FF3C083x0 = 48 (0x30) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/mathtest.o
+  @x40000000x0 = 56 (0x38) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FDFFFFFxFFFFFFFF = 64 (0x40) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3C91A626x9D774E2C = 72 (0x48) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FF00000x0 = 80 (0x50) referenced 6 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @xC0033A27x1C8A2D43 = 88 (0x58) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x40002AE5x9C598AC0 = 96 (0x60) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @xBFE6066Cx1B8D0152 = 104 (0x68) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FB3B8C5xB12E927C = 112 (0x70) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FC55555x5555554D = 120 (0x78) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @xBFD4D612x3EB6F77 = 128 (0x80) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FC9C155xE884448 = 136 (0x88) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @xBFA48228xB5688F34 = 144 (0x90) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3F49EFE0x7501B280 = 152 (0x98) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3F023DE1xDFDF703 = 160 (0xa0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x3FF921FBx54442D10 = 168 (0xa8) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x400921FBx54442D0F = 176 (0xb0) referenced 1 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @x0x0 = 184 (0xb8) referenced 8 times
+    File SoftDisk:User/mcpp3/work/octree/lib_ppcmath/ppcmath.lib
+  @__amigagetcunget = 216 (0xd8) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__amigagetc = 220 (0xdc) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__amigareadunget = 224 (0xe0) referenced 1 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__amigaread = 228 (0xe4) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__std__err = 268 (0x10c) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__std__in = 272 (0x110) referenced 2 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @__std__out = 276 (0x114) referenced 3 times
+    File SoftDisk:User/stormc_beta/lib/storm603.lib
+  @x3FE00000x0 = 288 (0x120) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  @x3FB99999x99999999 = 304 (0x130) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  @x40240000x0 = 312 (0x138) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/math603.lib
+  _DOSBase = 344 (0x158) referenced 17 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  @__DOSBase = 364 (0x16c) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _IntuitionBase = 376 (0x178) referenced 3 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  @__IntuitionBase = 404 (0x194) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _not_open__LibBaseC = 428 (0x1ac) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  ___magic_ppc_arglen = 432 (0x1b0) referenced 2 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  ___magic_ppc_argstr = 440 (0x1b8) referenced 3 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _SysBase = 448 (0x1c0) referenced 6 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  _PowerPCBase = 452 (0x1c4) referenced 44 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  @___abortbuf = 456 (0x1c8) referenced 3 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+  @____init_tablePPC = 460 (0x1cc) referenced 2 times
+    File TOC
+  @____exit_tablePPC = 464 (0x1d0) referenced 1 times
+    File TOC
+
+BSS
+
+
+  Hunk #5 ( Far Public ) 952 Bytes (0x3b8)
+  __abortbuf = 568 (0x238) referenced 1 times
+    File SoftDisk:User/stormc_beta/StormSYS/lib/stormcstartup603.lib
+
+END

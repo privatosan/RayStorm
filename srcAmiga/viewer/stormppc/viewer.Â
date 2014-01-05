@@ -1,0 +1,126 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+Includepath (End)
+0 "" 80
+1 "objects"
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 1 0 0 0 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 1 1
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "mod:" "mod:" 0
+"viewer"
+mod:projects/chess/pic.0001
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/viewer/viewer.cpp"
+"SoftDisk:User/mcpp3/work/octree/viewer/viewer.cpp"
+"SoftDisk:User/mcpp3/work/octree/viewer/loader.h"
+Storm Shell Project (Dependencies)
+"objects/viewer.o" "objects/viewer.debug"
+""
+"objects/viewer.o" "objects/viewer.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/viewer/m68k_stubs.cpp"
+"SoftDisk:User/mcpp3/work/octree/viewer/m68k_stubs.cpp"
+Storm Shell Project (Dependencies)
+"objects/m68k_stubs.o" "objects/m68k_stubs.debug"
+""
+"objects/m68k_stubs.o" "objects/m68k_stubs.debug"
+Section
+1 1 100
+File
+2 "loader.h"
+"loader.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/viewer/loader.h"
+"SoftDisk:User/mcpp3/work/octree/viewer/loader.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+10 "viewer"
+"viewer"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"viewer.link"
+Section
+10 0 40
+File
+9 "viewer_PPC.¶"
+"viewer_PPC.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+File
+3 "SoftDisk:User/mcpp3/work/octree/viewer/stormppc/objects_ppc/loader.o"
+"SoftDisk:User/mcpp3/work/octree/viewer/stormppc/objects_ppc/loader.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "SoftDisk:User/mcpp3/work/octree/viewer/stormppc/objects_ppc/ppc_stubs.o"
+"SoftDisk:User/mcpp3/work/octree/viewer/stormppc/objects_ppc/ppc_stubs.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+3 0 -40
+File
+5 "stormMixedbin.lib"
+"stormMixedbin.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcamiga.lib"
+"ppcamiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

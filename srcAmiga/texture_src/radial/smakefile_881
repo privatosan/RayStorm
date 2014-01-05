@@ -1,0 +1,8 @@
+all: 881/radial.itx
+
+881/radial.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h radial.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ code=far data=far nostackcheck nostartup cpu=68020 math=68881 radial.c objname 881/radial.o
+
+881/radial.itx: 881/radial.o
+        sc code=far data=far nostackcheck nostartup cpu=68020 math=68881 link 881/radial.o to 881/radial.itx
+

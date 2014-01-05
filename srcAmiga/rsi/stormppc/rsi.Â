@@ -1,0 +1,437 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"ray:keyfile"
+"ray:module_src"
+"ray:lib_vecmath"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+1 "__AMIGA__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 1 0 3 1 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/rsi/lib.cpp"
+"SoftDisk:User/mcpp3/work/octree/rsi/lib.cpp"
+"SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/color.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/texture.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/object.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/voxel.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/intersec.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/world.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/surface.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/brush.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/actor.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/camera.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/octree.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/rsi.h"
+"rtxt:rtexture.h"
+"rtxt:dialog.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/keyfile_lib.h"
+Storm Shell Project (Dependencies)
+"lib.o" "lib.debug"
+""
+"lib.o" "lib.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/typedefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/stats.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/color.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/color.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/texture.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/texture.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/object.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/object.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/voxel.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/voxel.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/list.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/intersec.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/intersec.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/world.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/world.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/surface.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/surface.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/brush.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/brush.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/actor.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/actor.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/camera.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/camera.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/octree.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/octree.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/rsi.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/rsi.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rtxt:rtexture.h"
+"rtxt:rtexture.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rtxt:dialog.h"
+"rtxt:dialog.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/rsi/keyfile_lib.h"
+"SoftDisk:User/mcpp3/work/octree/rsi/keyfile_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+16 "SoftDisk:User/mcpp3/work/octree/rsi/lib.fd"
+"SoftDisk:User/mcpp3/work/octree/rsi/lib.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "raystormppc.library"
+"rsi_new.library"
+"raystorm.library"
+"raystormppc.library"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"raystormppc.library.link"
+Section
+10 0 40
+File
+9 "rsi_PPC.¶"
+"rsi_PPC.¶"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+9 1 -10
+File
+3 "actor.o"
+"actor.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "box.o"
+"box.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "brush.o"
+"brush.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "camera.o"
+"camera.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "cone.o"
+"cone.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "context.o"
+"context.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "csg.o"
+"csg.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "cylinder.o"
+"cylinder.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "fileutil.o"
+"fileutil.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "flares.o"
+"flares.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "global.o"
+"global.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "htexture.o"
+"htexture.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "light.o"
+"light.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "list.o"
+"list.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "object.o"
+"object.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "objhand.o"
+"objhand.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "octree.o"
+"octree.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "param.o"
+"param.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "plane.o"
+"plane.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "polysolv.o"
+"polysolv.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "rsi.o"
+"rsi.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "sor.o"
+"sor.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "sphere.o"
+"sphere.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "star.o"
+"star.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "surface.o"
+"surface.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "texture.o"
+"texture.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "triangle.o"
+"triangle.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "voxel.o"
+"voxel.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "world.o"
+"world.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+3 "lib_ppc.o"
+"lib_ppc.o"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+3 0 -40
+File
+5 "ray:lib_ppcmath/ppcmath.lib"
+"ray:lib_ppcmath/ppcmath.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcmem.lib"
+"ppcmem.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "stormMixedbin.lib"
+"stormMixedbin.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ppcamiga.lib"
+"ppcamiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "amiga.lib"
+"amiga.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ray:lib_vecmath/stormppc/vecmath.lib"
+"ray:lib_vecmath/stormppc/vecmath.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ray:lib_noise/stormppc/noise.lib"
+"ray:lib_noise/stormppc/noise.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

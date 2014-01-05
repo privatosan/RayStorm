@@ -1,0 +1,40 @@
+/***************
+ * NAME:          chess.ray
+ * DESCRIPTION:   Chess scene
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'TEXTUREPATH /textures'
+'OBJECTPATH /objects'
+
+'SETSCREEN 160 128'
+'SETCAMERA <0,-250,-150> <0,0,0> <0,1,0>  25 20'
+'SETWORLD [0,0,0] [20,20,20]'
+'POINTLIGHT <-80,-180,-160> SHADOW'
+
+'LOADOBJ chess.rob'
+
+'STARTRENDER QUICK'
+
+'SAVEPIC chess.iff'
+
+CLEANUP
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

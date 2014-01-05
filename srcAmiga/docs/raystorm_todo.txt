@@ -1,0 +1,509 @@
+Scenario TODO-Liste
+-------------------
+
+Prioritaet A (Absturz, grober Fehler)
+-------------------------------------
+- die water-texture funktioniert noch nicht richtig -> projekt water. (12.02.97)
+- normalenberechnung funktioniert nicht richtig -> projekt normal. (12.02.97)
+
+Scenario:
+- Undo Group/Ungroup. (19.12.96)
+- Undo Active Camera. (07.01.97)
+- Undo Verändern von virtueller Kamera. (07.02.97)
+- Undo im EDIT_POINTS-mode. (24.02.97)
+- Beim Einschalten von 'show textures' und dem ersten Clicken auf das Objekt wird nur das Objekt ohne Textur
+  angewählt. (19.01.97)
+- Wenn getrackte Kamera verschoben wird springt sie irgendwann. (20.01.97)
+- Redo von Laden von externen Objekten stimmt nicht. (30.01.97)
+- Keine meshsettings fuer pentax.scn. (19.02.97)
+- Wird auf World-Edit waehrend punkte editieren umgeschalten ist punkte editieren aus. (25.02.97)
+- Muell bei Punkte editieren und World aendern. (25.02.97)
+- Editieren von Punkten: nach Umschalten sind selektierte Linien um 1 nach oben verschoben. (25.02.97)
+- Tracken von Unterobjekten stimmt nicht (06.03.97)
+- Speicherleak von 118 Bytes in rsi. (07.03.97)
+- Objektlader gehen mit skalierung und so nicht. (11.03.97)
+- rsiErrUnknownHyperTexture reinmachen. (14.03.97)
+- Schatten von CSG geht nicht. (19.03.97)
+- Größe von Backdrop und reflection map geht nicht (07.06.97)
+- Wenn Box selektiert ohne was drin (shift) -> alte selektierten neuzeichnen (19.06.97)
+- Beim Speichern von Objekten Material nur aus Manager nehmen, wenn es von niemand sonst benutzt wird.
+  Ansonsten Kopie von Material machen. (06.07.97)
+- ungroup per Drag&Drop -> falsche Position (09.07.97)
+- Deselektieren von MESH-Objekt -> selpoints löschen (an ALLEN Stellen). (24.07.97)
+- Sharp edges definieren. (28.09.97)
+- In the object browser, if you place some objects as a child to another
+  object by dragging, and drag them down again to restore the original
+  hierarchy, the little box with the + or - in it remains. Is maybe a MUI
+  problem?
+- When using the right-click pop-up menu over a material in the material
+  manager, it is perhaps better to rename 'Properties...' into 'Edit...'
+  In the objects menu it is called 'Attributes...' - try to be consistent.
+- Buttons omits the explanation of the 6 mesh-handling buttons.
+- When assigning a material to a parent object, assign the same material to
+  all child objects that do not have a material set yet.
+- If more than one brush is defined for an object, then the scene is saved and reloaded, the brush
+  positions are changed.
+- Antialiasing mit background seems only to use black as background color?
+- Wrong redraw with Brush (BBox is not cleared).
+- Local scale is not working.
+- Local alignment is not working properly while rotating.
+
+RayStorm:
+- Aktor fuer Spot und Pointlight aus RSOB-file. (20.01.97)
+- Shadowcaching funktioniert bei Motionblur nicht richtig (Update bei Test?). (23.01.97)
+- DisableObject() auf CSG-Objekte anpassen (Reflektionen). (04.07.96)
+
+Prioritaet B (mittelschwerer Fehler, laesst sich aber verschmerzen)
+-------------------------------------------------------------------
+
+Scenario:
+- Rotation um Z-Achse bei getrackten Objekten. (02.11.96)
+- Beim Bewegen von getrackten Objekten das trackende Objekt neuzeichnen. (02.11.96)
+- Anklicken von selektiertem Objekt mit rechter Taste wird Objekt trotzdem neugezeichnet. (02.11.96)
+- Wenn getracktes Objekt in Cameraview verschoben wird, wir Hintergrund nicht richtig neugezeichnet. (15.01.07)
+- Bei CSG laden von RSOB werden keine Objekte erzeugt wenn ein CSG-Objekt mehr als zwei Kinder hat. (28.09.97)
+- Fehlermeldung wenn groupen von CSG mit nicht CSG. (06.04.97)
+- Normalenberechnung von Box dreckelt. (11.03.97)
+- Nach 'To Scene' keine Farben von 3DS-Objekten. (09.03.97)
+- Sharp Edges von 3DS setzen. (09.03.97)
+
+RayStorm:
+- Specular auch in BRIGHT einbeziehen. (16.11.96)
+- Lens flares auch mit motion blur. (27.11.96)
+- Neim Rendern nicht den gesamten Bildschirmspeicher allokieren. (18.02.97)
+
+Prioritaet C (unwichtiger Fehler, unschoen)
+-------------------------------------------
+Scenario:
+- Funktion fuer position, orientation, size aus Matrix lesen. (02.11.96)
+- Arbeitet nicht mit VMM zusammen. (02.11.96)
+- Group-Verbindung zu Parent-Objekten nicht selektiert zeichnen. (04.11.96)
+- flags bei torsi durch gemeinsame Funktion und #define RSI_???. (17.07.97)
+- Anleitung in mehrere Files aufteilen. (19.03.97)
+
+Optimierungen
+-------------
+Scenario:
+- Beim Bildanzeigen waehrend des Renderns Punkte nicht einzeln setzen, sondern WritePixelLine8() verwenden. (02.11.96)
+- GetAbsObjAxis() in object.cpp verbessern (erst Baum rueckwarts (up, prev) durchgehen, dann Stack aufbauen;
+  Probleme mit Brushes und Textures!). (20.01.97)
+- InvOrient() durch Transponierte realisiern. (19.03.97)
+- Perpektivezeichnen mit boundingbox clippingtest. (26.02.97)
+- hypertexture aus sphere raus. (20.07.97)
+- noise aus hypertexture raus. (22.07.97)
+- externe Bilder aus einer einzigen Datei laden. (25.06.97)
+
+RayStorm:
+- Ueberfluessige Kanten bei 3DS entfernen. (02.11.96)
+- Besseres Zwischenspeichern des Startvoxel (STACK). (02.11.96)
+- Wenn bei den Intersectiontests auf EPSILON statt auf 0 fuer die minimale Distanz geprueft wird
+  koennte man die EPSILON-Sachen in DoLighting() weglassen. (10.01.97)
+
+Wuensche
+--------
+Scenario:
+- Bei Flat-Brushmapping Brushsize auf Bildaspekt anpassen. (02.11.96)
+- Stagger Points fuer Mesh erzeugen. (02.11.96)
+- Axis-Laenge muss unabhaengig von der Objektgroesse gleich lang sein. (02.11.96)
+- Texte als Kommentar zu Szenen und Objekten. (02.11.96)
+- Enable/Disable Objekte (mit Layern?). (02.11.96)
+- Online-Hilfe. (02.11.96)
+- Preview mit Brushes (Groesse nach Objekt-Boundingbox). (07.11.96)
+- Lichter beim TDDD laden. (11.11.96)
+- Beim Laden von Szenen/Ojekten unbekannte FORM's ignorieren. (19.11.96)
+- Objektnamen der Unterobjekte nach 'Transfering data' ausgeben (oder Prozentanzeige). (19.02.97)
+- Farbwerte von Lichtquellen soll auch mehr als 255 sein duerfen (bzw. negativ). (19.02.97)
+- Achsen unabhaengig vom Objekt verschieben. (19.02.97)
+- Objekte als Lichtquellen. (19.02.97)
+- Find by name. (19.02.97)
+- Anwaehlen von Objekt und Rendern mit Anzeige im Scenariofenster. (19.02.97)
+- Hintergrundbild im Scenariofenster. (19.02.97)
+- Cast Shadow fuer einzelne Objekte ein und ausschalten. (27.02.97)
+- Stärke von Bumpmapping einstellbar machen. (21.05.97)
+- Apply-Button in Tranform und Material-Requestern. (07.09.97)
+- Quick-View (gespeicherte Vieweinstellungen). (07.09.97)
+- Brushes und Texturen im Browser. (20.08.97)
+- Lokalisieren. (08.01.97)
+- Resolution presets with aspect ratio (03.11.97)
+- Translate/rotate/scale textures/brushes in material dialog (3.11.97)
+- Bild auf anderen Bildschirm ausgeben. (15.12.97)
+
+RayStorm:
+- Anzahl der Tiles bei Flat- und Zylindermapping. (02.11.96)
+- DOF ueber eigenen Wert, nicht ueber Antialiasing. (02.11.96)
+- Sichtbare Lichtpfade (siehe POVRay). (05.12.96)
+
+DONE-Liste
+----------
+- Beim Groupen von Objekten mit Unterobjekten verschwinden diese. (02.11.96)-(02.11.96) ah
+- Laden von Objekten: Objekt "Sphere" existiert schon -> geladenes Objekt "Sphere.2" statt "Sphere.1". (02.11.96)-(02.11.96) ah
+- Beim Speichern von Objekten mit angeschaltetem "Show Brush" werden Brushes geloescht. (02.11.96)-(02.11.96) ah
+- Beim Hinzufuegen von Brushes oder Einschalten von "Show Brushes" sind Brushes nicht selektiert (oder neugezeichnet). (02.11.96)-(02.11.96) ah
+- Funktionstasten belegen. (02.11.96)-(02.11.96) ah
+- Bei 'Next' wird das erste Object nicht deselektiert. (02.11.96)-(02.11.96) ah
+- Bei neuem Tracken Perspektive updaten. (02.11.96)-(02.11.96) ah
+
+- Preview im Attributes-requester. (02.11.96)-(03.11.96) ah
+
+- Beim Laden von Objekten alle anderen deselektieren. (04.11.96)-(04.11.96) ah
+- Nach dem Laden von Materialdateien sollten alle Brushes and Texturen selektiert sein. (04.11.96)-(04.11.96) ah
+- Perspektive wird bei Kamera verschieben (quadview, camera view an) nicht neugezeichnet (04.11.96)-(04.11.96) ah
+- Objekte lassen sich nicht auf null drehen (ausser man dreht zuerst Z dann Y dann X einzeln). (02.11.96)-(04.11.96) ah
+
+- StormC: newatof teilt durch 10 (07.11.96)-(07.11.96) ah
+- StormC: remove textures geht nicht (07.11.96)-(07.11.96) ah
+- 'Amiga-.' funktioniert nicht mehr (07.11.96)-(07.11.96) ah
+
+- Archive nach Installieren nicht loeschen. (11.11.96)-(11.11.96) ah
+- Anim-drawer an die richtige Position bringen. (11.11.96)-(11.11.96) ah
+- Save und View im Registrierungs-programm. (11.11.96)-(11.11.96) ah
+- Preiserhoehung auf 40DM. (11.11.96)-(11.11.96) ah
+- 'RayStorm' in 'RayStorm Script' umbenennen. (11.11.96)-(11.11.96) ah
+- objhand.cpp dokumentieren (Funktionskoepfe). (05.11.96)-(12.11.96) ah
+
+- Speichern und Preview im Attributes requester ohne original Surface zu aendern. (11.11.96)-(12.11.96) ah
+- Anleitungen ueberarbeiten und zusammenfassen. (12.11.96)-(12.11.95) ah
+- Scenariobilder in Anleitung. (12.11.96)-(12.11.95) ah
+
+- Dreck bei reflektierenden Mesh-Objekten. (13.11.96)-(13.11.96) ah
+- Registrierte user aus Anleitung raus. (13.11.96)-(13.11.96) ah
+
+- Textureparameternamen werden falsch gesetzt. (16.11.96)-(16.11.96) ah
+- Beim Laden von Box wird nur das erste Teilobjekt geladen. (13.11.96)-(16.11.96) ah
+- Bewegen von Kamera langsamer als bei anderen Objekten. (13.11.96)-(16.11.96) ah
+- Phong-Flag beim Laden von TDDD wird nicht beachtet. (13.11.96)-(16.11.96) ah
+
+- Requester Prefs (Flag Koordinaten zeigen) führt bei O.K. unmittelbar zum Absturz. (17.11.96)-(18.11.96) ah
+- Amiga Punkt Zentrierung in einem der Quadwindows kann Ergebnis von anderen Windows ungewuenscht
+  und falsch veraendern. Tritt aber nicht immer auf, ist aber jederzeit nachvollziehbar.
+  (Tritt nach oeftern Amiga Punkt Befehlen in verschiedene Fenster auf). (17.11.96)-(18.11.96) ah
+- Preview Bild reflektieren lassen. (13.11.96)-(18.11.96) ah
+- Preview mit Texturen (Groesse nach Objekt-Boundingbox). (07.11.96)-(18.11.96) ah
+
+- Laden/speichern von Flares und Stars. (04.11.96)-(19.11.96) ah
+- Nicht benutzte Variablen in rsi.cpp entfernen. (04.11.96)-(19.11.96) ah
+
+- Duplizieren von Flares und Stars (im settingsrequ verwenden). (05.11.96)-(20.11.96) ah
+- Boundingbox von Camera und Spotlight beim Laden richtig setzen. (02.11.96)-(20.11.96) ah
+- Flag fuer Translate Track bei Spotlight implementieren (RSOB laden). (02.11.96)-(20.11.96) ah
+
+- Lens flares im Renderer halb so gross machen. (25.11.96)-(26.11.96) ah
+- 'FLARE' und 'STAR' uebernehmen. (25.11.96)-(26.11.96) ah
+- Spotlight lens verschwinden implementieren. (25.11.96)-(26.11.96) ah
+
+- Spikes von star verbessert. (27.11.96) ah
+- Innere Halo eingebaut. (27.11.96) ah
+
+- Verschwinden von Lights hinter Objekten. (25.11.96)-(28.11.96) ah
+- Bei Anti 2 tritt im Display-Render Fenster in der untersten Zeile bei 160x128
+  (nur da) ein Pixelmuell auf. (25.11.96)-(28.11.96) ah
+- Prozentanzeige und Previewupdate bei 'applying lens effects'. (18.11.96)-(28.11.96) ah
+
+- Laden von Flares und Stars bei RSOB. (27.11.96)-(29.11.96) ah
+- neuer lightrequester in Anleitung. (25.11.96)-(29.11.96) ah
+- Anleitung FLARE und STAR updaten. (25.11.96)-(29.11.96) ah
+
+- Version 1.7 freigegeben. (30.11.96) ah
+
+- Wird ein gegrouptes Objekt gepastet wird es an den relativen Koordinaten plaziert. (30.11.96)-(01.12.96) ah
+- Beim Aendern der Aufloesung sollte auch der VFOV der Camera bei automatischem Setzen neu
+  gesetzt werden. (30.11.96)-(01.12.96) ah
+- Kein 'Apply Lensflares' wenn keine flares definiert sind. (01.12.96)-(01.12.96) ah
+
+- mathdefs und vecmath zusammenfassen. (02.11.96)-(03.12.96) ah
+- Shadowcaching. (03.12.96)-(03.12.96) ah
+
+- Fire textur. (12.12.96)-(13.12.96) ah
+
+- Octree nicht aufbauen wenn weniger als n Objekte. (14.12.96)-(14.12.96) ah
+- Spikebreite einstellbar machen. (12.12.96)-(14.12.96) ah
+- Texturdrehung bei Preview beruecksichtigen. (14.12.96)-(14.12.96) ah
+- Beim Laden von Objekt ist es zwar selektiert aber bei Amiga-T ist kein Objekt definiert. (14.12.96)-(14.12.96) ah
+- Star und Flares funktioniern im Skript nicht. (14.12.96)-(14.12.96) ah
+- Laden/Speichern als Buttons. (14.12.96)-(14.12.96) ah
+- flare dreckelt im quadview. (05.12.96)-(14.12.96) ah
+- Statistik (Anzahl Kugel-, Dreieck-, Planetests, Lichttests, Reflektionen, ...). (02.11.96)-(14.12.96) ah
+
+- Beim Loeschen eines getrackten Objects die Verweise loeschen (neues flag). (15.12.96)-(15.12.96) ah
+- Alle Objekte koennen andere tracken. (11.11.96)-(15.12.96) ah
+
+- Undo. (04.11.96)-(16.12.96) ah
+
+- Undospeicher vorgeben (bei Ueberschreitung alte freigeben). (19.12.96)-(19.12.96) ah
+- Bei translate undo update aufrufen. (16.12.96)-(19.12.96) ah
+
+- Boundingbox von Plane stimmt nicht (07.01.97)-(07.01.96) ah
+- Undo Begrenzung geht noch nicht?! (19.12.96)-(07.01.96) ah
+- Beim Verschieben von gegroupten Objekten werden Unterobjekte zu weit verschoben. (07.01.97)-(07.01.97) ah
+- Undo Create von Sphere.... (16.12.96)-(07.01.97) ah
+
+- Undo Camera2Viewer. (07.01.97)-(08.01.97) ah
+
+- Box-Objekt implementieren. (10.01.97)-(11.01.97) ah
+- Rotationsmatrix fuer Actor um orient bei Box und Textur einfacher zu setzen. (11.01.97)-(11.01.97) ah
+- Ein Actor von 0 bis 1 bringt kein Resultat. (11.01.97)-(11.07.96) ah
+- CalcVoxel() aus GenVoxel() rausnehmen. (10.01.97)-(11.01.97) ah
+
+- Waehrend Kamerabewegen funktioniert Tracking nicht. (11.1.97)-(12.1.97) ah
+
+- Wenn TDDD gescaled wird ist das gerenderte Objekt nicht an der gleichen Stelle wie das im Scenario. (15.01.97)-(15.01.97) ah
+- RANDJIT in Script hat nicht funktioniert. (15.01.97) ah
+
+- Actorachse konnte nicht gesetzt werden. (16.01.97) ah
+
+- Registert by -> for ? (19.01.97)-(20.01.97) ah
+- Aufhaengen bei Laden (oder New) von 2. Projekt. (19.01.97)-(20.01.97) ah
+- Beschreibung von Box und CSG Statistik. (19.01.97)-(20.01.97) ah
+- Name von externem Objekt wird verloren gegangen. (15.01.97)-(20.01.97) ah
+- Track funktioniert nicht auf gegrouptes Objekt. (19.01.97)-(20.01.97) ah
+- Scalen von Objekten wird beim Laden nicht durchgeführt. (20.01.97)-(20.01.97) ah
+- RSOB wird falsch gespeichert, siehe ring.rob. (16.01.97)-(20.01.97) ah
+
+- Box im object saver und loader. (13.01.97)-(25.01.97) ah
+- Schwarzer Balken bei stefan.scn. (21.01.97)-(25.01.97) ah
+
+- Statusleiste mit: aktueller Kamera, selektiertem Objekt und Koordinaten. (07.01.97)-(30.01.97) ah
+- CSG-Skript-Fehler dokumentieren (RayStorm Script). (12.01.97)-(30.01.97) ah
+- Box grieselt bei shadow (boxshadow.ray). (26.01.97)-(30.01.97) ah
+- Redo. (29.01.97)-(30.01.97) ah
+
+- Speichern von Star-tilt. (30.01.97)-(31.01.97)
+
+- Objekte mit Selection Box selektieren. (06.02.97)
+
+- Renderbereich mit Maus bestimmen. (02.11.96)-(07.02.97)
+- Bei New auch die Ansichten zuruecksetzen, auch Gridsize. (02.11.96)-(07.02.97)
+- Antialiasing bei Lensflares. (25.11.96)-(07.02.97)
+- Phong bei Meshes ein- und ausschalten. (02.11.96)-(07.02.97)
+
+- 24bit Datatypes werden jetzt unterstützt. (08.02.97)
+
+- Flare typ und tilt global für alle Flares. (08.02.97)-(09.02.97)
+
+- Bild- und Objektmodules als libraries. (05.12.96)-(11.02.97)
+
+- Weich abgerundete Flares (17.02.97)
+- Flare koennen jetzt mit der Maus selektiert werden. (17.02.97)
+
+- Version 1.8 freigegeben. (19.02.97)
+
+- project pentax bring "Corrupt rsob-file". (18.02.97)-(19.02.97)
+
+- Textbox fuer selektierten Namen groesser machen (18.02.97)-(20.02.97)
+- Fehlerrequester beim Laden von nicht existierendem Brush ist mini. (18.02.97)-(20.02.97)
+- chunli.iob gibt beim Rendern "Not enough memory" obwohl genug frei ist. (17.02.97)-(20.02.97)
+
+- Einige Enforcerhits (Lesen von 0x0) entfernt. (24.02.97)
+- Falloff bei Lichtquellen auf Track. (18.02.97)-(24.02.97)
+
+- recent used files im Files menu. (19.02.97)-(26.02.97)
+
+- Wenn beim laden einer Szene ein Objekt nicht gefunden wird -> anderen Pfad waehlen. (27.02.97)
+- Wenn beim Rendern was nicht gefunden wird -> anderen Pfad waehlen. (27.02.97)
+
+- Normalenberechnung beschleunigt. (04.03.97)
+
+- Shadowmap (06.03.97)
+
+- Undo bei Verschieben von Lautsprecher von Box macht murx. (06.03.97)-(07.03.87)
+
+- Normalenberechnung von Dreiecken in rsi reinziehen. (06.03.97)-(08.03.97)
+
+- Anzeige wird nur noch blockweise neugezeichnet. (09.03.97)
+- In object.cpp Funktion zum hierarchischen selektieren von Objekten. (24.02.97)-(09.03.97)
+- Undo Scale mesh funktioniert nicht. (09.03.97)
+- Read und Cleanup aus objekt-link rausnehmen. (11.02.97)-(09.03.97)
+- Nach dem Laden einer Szene funktionieren Next und Prev nicht. (19.11.96)-(09.03.97)
+- Einfache Normalenberechnung bei Objekten ohne Sharp Edges. (02.11.96)-(09.03.97)
+
+- Koordinatenanzeige stimmt nicht (Rand mitrechnen). (08.03.97)-(10.03.97)
+- Koordinaten stimmen nicht mehr, wenn mit den Cursortasten verschoben wird. (18.02.97)-(10.03.97)
+- Externe Objekte werden nach dem Laden der Szene angewaehlt gezeichnet obwohl sie es nicht sind (cim-team). (21.02.97)-(10.03.97)
+- Ghosten von Undo, Redo. (31.01.97)-(10.03.97)
+
+- Nach Paste ist kein Objekt angewaehlt. (10.03.97)-(11.03.97)
+- OldBricks-Textur um Y-Achse drehen geht nicht (06.03.97)-(11.03.97)
+- Updatetracking nach Undo. (11.03.97)-(11.03.97)
+
+- nach Laden stimmt perspektive nicht. (14.03.97)-(16.03.97)
+
+- Endzeit der Anzeige stimmt nicht. (21.03.97)
+
+- Attrtest zeigt falsche Textur. (23.03.97)
+
+- Cylinder in Scenario. (19.03.97)-(25.03.97)
+
+- Scenario: open top, bottom von cylinder geht nicht. (25.03.97)-(26.03.97)
+
+- Absturz bei Loeschen von Light in Seaquest. (10.03.97)-(01.04.97)
+- Undo/Redo wird nicht enabled (delete) (01.04.97)-(01.04.97)
+- Absturz, wenn man Objekt laedt und dann Amiga-D drueckt. (27.03.97)-(01.04.97)
+- Scenario: sphere r durch size.x ersetzen. (26.03.97)-(01.04.97)
+
+- Hypertextures ohne newlambda und farlambda. (17.03.97)-(03.04.97)
+- Screen von Utility neu setzten wenn er wechselt. (19.03.97)-(03.04.97)
+
+- PopupMenu durch MUI-Menu ersetzt. (22.04.97)
+- SOR in Scenario. (22.03.97)-(22.04.97)
+
+- Deckel von Szene SOR stimmt nicht. (23.04.97)-(25.04.97)
+- Zylinder werden als Kind nicht gescaled (Höhe). (15.04.97)-(27.04.97)
+- Flags von Mesh weg. (09.04.97)-(27.04.97)
+
+- Surfacepreview von wird jetzt Subtask erledigt. (05.05.97)
+- Materialmanager. (05.05.97)
+
+- Backdrop- und Reflection-Map mit Enable ausschalten. (24.04.97)-(13.05.97)
+
+- Version von objekten für neue surfaces. (13.05.97)-(15.05.97)
+
+- Material beim Laden von Objekten. (13.05.97)-(21.05.97)
+
+- Auswählen von Objekt für Attributes bei mehreren selektierten funktioniert nicht. (15.05.97)-(13.06.97)
+
+- Test für Light -> common (19.06.97)-(22.06.97)
+- Beim Preview-Rendern per Subtask ist der Zeilenspeicher noch nicht geschützt. (16.05.97)-(22.06.97)
+- Rechte und linke Maustaste gleichzeitig -> kein Menü anzeigen (19.06.97)-(22.06.97)
+- Brush und Texture object handling in rsi fehlt. (11.06.97)-(22.06.97)
+- Öffnen von raystorm.library nur in der richtigen Version. (24.05.97)-(22.07.97)
+- Tracken funktioniert falsch (verschoben). (19.06.97)-(22.07.97)
+- externe Objekte dürfen im Baum nicht anwählbar sein. (21.06.97)-(22.07.97)
+- Bei Ändern der aktiven Kamera Status und View updaten. (19.06.97)-(22.07.97)
+
+- Active Kamera (im Menu) geht nicht richtig. (04.03.97)-(25.06.97)
+
+- Fehlermeldung wenn CSG ohne Kinder. (06.04.97)-(26.06.97)
+
+- "Durchlaufen" der Objekte am Ende. (04.07.96)-(05.07.96)
+- Brushes bei Objekt an surface nach material-requester anpassen. (03.06.97)-(05.07.96)
+
+- Fileversionen auf 200 setzen (Achtung: Tests auf 102 oder 101 finden!) (08.06.97)-(06.07.97)
+- Beim Laden von Szene Material manager erst am Ende aufbauen. (15.05.97)-(06.07.97)
+
+- Objekte duerfen nicht auf Null gescaled werden, bei negativen Werten immer noch positive Achse. (20.01.97)-(23.07.97)
+- inverted object in RSOB. (07.07.97)-(23.07.97)
+- track in RSOB. (07.07.97)-(23.07.97)
+
+- selpoints bei neuen Punkten erweitern. (15.07.97)-(24.07.97)
+
+- vecmath.cpp in link-lib für alle gleich umwandeln. (21.06.97)-(03.08.97)
+
+- Im Window-Titel ganzen Projektpfad anzeigen. (31.08.97)-(31.08.97)
+- 'Remove unused Materials' im Objektmenü vom Material-Manager. (07.06.97)-(31.08.97)
+- Gleiche Materialien zusammenfassen. (21.06.97)-(31.08.97)
+
+- SOR in RSOB. (16.05.97)-(25.09.97)
+- MUI-Oberfläche mit anderen Fonts und Hintergründen testen. (07.09.97)-(25.09.97)
+
+- CSG in RSOB. (06.07.97)-(28.09.97)
+- Drag&Drop von Texturen funktioniert nicht. (11.03.97)-(28.09.97)
+- Reihenfolge von Texturen in Preview stimmt nicht mit renderer ueberein. (11.03.97)-(28.09.97)
+
+- Abstürze bei Object2Scene. (10.10.97)
+- 'Get VFOV from resolution' hat nicht mehr funktioniert. (10.10.97)
+
+- 'Set render window' ging nicht mehr. (11.10.97)
+- 'Remove identical' hat textures und brushes nicht richtig behandelt. (11.10.97)
+
+- Objektachsen wurden bei RSOB falsch plaziert. (12.10.97)
+- Abstürze bei 'Remove identical' (12.10.97)
+- Aufloesungen ueber Preferences einstellbar. (02.11.96)
+
+---------- Beta released ----------
+
+- 'New Material' hat nicht mehr funktioniert (14.10.97)
+- Bug in MUI browsertree class wenn parent node geschlossen und node offen (14.10.97)
+- Wrong colors in material and object manager in native Amiga modes (15.10.97)
+
+---------- Beta released ----------
+
+- Wrong version numbers in 040 and 060 raystorm.library. (20.10.97)
+
+- Camera was drawn wrong (23.10.97)
+- Enforcer hits when using material manager popup menu (23.10.97)
+- Freezed when loading RayStorm objects (23.10.97)
+- TDDD object loader now needs less memory (23.10.97)
+- All colors in material requester were wrong (1 added) (23.10.97)
+- It was impossible to set materials when rendering (all objects white) (23.10.97)
+
+- Some triangles of meshes were not rendered ("holes" in meshes), StormC 2.00.23
+  had problems with my hand coded triangle intersection code, removed it (25.10.97)
+- Doppelklick auf Material -> Open Requester. (25.06.97)-(25.10.97)
+
+- changed keyfile. (26.10.97)
+- enable backdrop and enable reflection map were not save correctly (26.10.97)
+
+---------- Beta released ----------
+
+- flat mapped brushes from Imagine object files were always set tu WrapX (27.10.97)
+- Brushes of Imagine 5.0 object files were not loaded correctly (27.10.97)
+- Wrong alignment for brushes loaded from Imagine object files (27.10.97)
+
+- Object tree was not updaten when creating a mesh object. (28.10.97)
+
+- Crashed when assigning a material to a camera, CSG or light. (29.10.97)
+- Backdrop picture and reflection map was enabled, although no picture
+  was specified. (29.10.97)
+
+- Crashed when selecting Object->Attributes for a camera, CSG or light. (30.10.97)
+- Brushes und Texturen von TDDD falsch plaziert. (31.08.97)-(30.10.97)
+
+- Added jpeg quality to preferences (03.11.97)
+
+- Fixed Enforcer hit in lens flare and visible light settings (04.11.97)
+
+- Textur- und Brushname im Attributes-requester aendern. (02.11.96)-(09.11.97)
+
+---------- 2.0 release ------------
+
+- Size of external toolbar images is now set to size of first button (new.iff) (09.12.97)
+- new redraw (09.12.97)
+- load and save in light settings requester (09.12.97)
+- shadowmap (09.12.97)
+- LWOB loader (09.12.97)
+- Muster im Filerequester bei Objektladen speichern. (21.06.97)-(09.12.97)
+- Ghosten von Cut, Copy, Paste. (20.01.97)-(09.12.97)
+
+- Tasksave objectloader and renderer. (10.01.97)
+
+- Kugel und zylindermapping von brushes mit kugel und zylinder anzeigen. (10.01.97)-(11.01.97)
+
+---------- Beta released ----------
+
+- PPC 3DS loader crash fixed
+- all textures with noise caused enforcerhits and crashes
+- New items in View->Show menu
+
+---------- Beta released ----------
+
+- added test for PPC version of raystorm.library for PPC Scenario
+- objects can now be moved, rotated and scaled in local and world coordinate systems
+- Neues Motionblur (immer ein Bildschirmdurchgang, dann mischen).
+
+---------- 2.1 release ------------
+
+- dolphins project crashed - fixed
+- eight project had an wrong brush name - fixed
+- If I try running the 040 version after I quit the PPC one, I get a
+  requester saying "You are trying to use the M68k version...". I removed
+  the assign from the PPC version and assigned it to the 040 one + I used
+  avail flush. It works if I manually remove the library from memory using
+  ARTM though. Maybe you can rename the PPC library to RaystormPPC.library
+  or whatever, as theoretically we should be able to use both processors
+  for rendering at the same time.
+- Tracking of camera (and propably any other object) doesn't work.
+- added RayStorm image viewer
+- Beim Ende von Perspektive Welt aendern in Quadview nur Perspektive neuzeichnen. (02.11.96)
+- Undo for texture and brush size doesn't work.
+- TDDD loader doesn't loads the object hierarchy correct (wrong positions and alignments) (A-Wing).
+
+---------- 2.2 release ------------
+
+- 68k version opened powerpc.library!
+
+---------- 2.21 release ------------
+
+- CSG scene crashed
+
+
+Last Change: 17.10.98 ah

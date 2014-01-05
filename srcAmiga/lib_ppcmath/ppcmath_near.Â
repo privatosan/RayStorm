@@ -1,0 +1,81 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+Includepath (End)
+0 "" 80
+1 "objects_near"
+C/C++ Preprozessor
+1 "NDEBUG" ""
+Defines (End)
+1 1 1
+C/C++ Options
+0 1 1 0 0 0 0 1 0 1 0 5 1 3 1
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Assembler
+1 "stormc:ASM-Include/powerpc/ppcmacros.i"
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 1 1 0 0
+Linker
+1 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 1 1
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "acos.c"
+"acos.c"
+Storm Shell Project (Dependencies)
+"objects_near/acos.o" "objects_near/acos.debug"
+""
+"objects_near/acos.o" "objects_near/acos.debug"
+Section
+1 1 100
+File
+19 "sqrt_asm.pasm"
+"sqrt_asm.pasm"
+Storm Shell Project (Dependencies)
+"objects_near/sqrt_asm.o" ""
+""
+"objects_near/sqrt_asm.o"
+File
+19 "atan_asm.pasm"
+"atan_asm.pasm"
+Storm Shell Project (Dependencies)
+"objects_near/atan_asm.o" ""
+""
+"objects_near/atan_asm.o"
+File
+19 "exp_asm.pasm"
+"exp_asm.pasm"
+Storm Shell Project (Dependencies)
+"objects_near/exp_asm.o" ""
+""
+"objects_near/exp_asm.o"
+File
+19 "trig_asm.pasm"
+"trig_asm.pasm"
+Storm Shell Project (Dependencies)
+"objects_near/trig_asm.o" ""
+""
+"objects_near/trig_asm.o"
+Section
+19 1 92
+Storm Shell Project (End)

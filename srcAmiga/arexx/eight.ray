@@ -1,0 +1,68 @@
+/***************
+ * NAME:          eight.ray
+ * DESCRIPTION:   Billard scene
+ * AUTHOR:        Andreas Heumann
+ ***************/
+
+signal on error
+
+options results
+
+IF ~show('P','RAYSTORM.1') THEN DO
+	address COMMAND 'RayStorm_Start 8192'
+	address COMMAND WaitForPort RAYSTORM.1
+END
+
+address RAYSTORM.1
+
+'OBJECTPATH /objects'
+'BRUSHPATH /brushes'
+
+'SETSCREEN 160 128'
+'SETCAMERA <-100,100,-120> <0,5,5> <0,1,0> 25 20'
+'SETWORLD [0,0,0] [50,50,50]'
+'POINTLIGHT <20,200,-100> SHADOW'
+'POINTLIGHT <20,200,100> SHADOW'
+
+'NEWSURFACE TABLETOP'
+'DIFFUSE [0,80,0]'
+
+'PLANE TABLETOP <0,0,0> <0,1,0>'
+
+'NEWSURFACE EIGHT'
+'DIFFUSE [0,0,0]'
+'AMBIENT [38,38,38]'
+'REFLECT [38,38,38]'
+'BRUSH eight_brush.png COLOR FLAT <0,5,0> <0,0,0> <4,4,5.1>'
+
+'SPHERE EIGHT <0,5,0> 5'
+
+'NEWSURFACE WHITE'
+'DIFFUSE [255,255,255]'
+'AMBIENT [51,51,51]'
+'REFLECT [38,38,38]'
+
+'SPHERE WHITE <0,5,10> 5'
+
+'LOADOBJ eight_queue.iob <-20,0,0>'
+
+'NEWSURFACE WINDOW BRIGHT'
+
+'TRIANGLE WINDOW <-600,100,-400> <-600,100,-100> <-600,300,-200>'
+'TRIANGLE WINDOW <-600,300,-400> <-600,100,-100> <-600,300,-50>'
+'TRIANGLE WINDOW <-600,100,400>  <-600,100,100>  <-600,300,200>'
+'TRIANGLE WINDOW <-600,300,400>  <-600,100,100>  <-600,300,50>'
+
+'STARTRENDER'
+
+'SAVEPIC eight.iff'
+
+'CLEANUP'
+
+exit 0
+
+error:
+say "Error" rc "in line" sigl ":"
+GETERRORSTR rc
+say result
+exit 0

@@ -1,0 +1,84 @@
+000/raystorm.library: 000/raystorm.library.o 000/actor.o 000/camera.o 000/brush.o 000/fileutil.o 000/light.o 000/list.o\
+ 000/mathdefs.o 000/object.o 000/objhand.o 000/octree.o 000/param.o 000/plane.o 000/rsi.o 000/sphere.o\
+ 000/surface.o 000/texture.o 000/triangle.o 000/vecmath.o 000/voxel.o 000/world.o
+	mcppc 000/raystorm.library.o 000/actor.o 000/camera.o 000/brush.o 000/fileutil.o 000/light.o 000/list.o\
+ 000/mathdefs.o 000/object.o 000/objhand.o 000/octree.o 000/param.o 000/plane.o 000/rsi.o 000/sphere.o\
+ 000/surface.o 000/texture.o 000/triangle.o 000/vecmath.o 000/voxel.o 000/world.o -o raystorm.library -l amiga
+
+000/raystorm.library.o: raystorm.library.asm
+	acom:oma raystorm.library.asm -m -o 000/raystorm.library.o
+
+000/actor.o: actor.cpp actor.h color.h intersec.h list.h mathdefs.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c actor.cpp
+
+000/camera.o: actor.h camera.cpp camera.h color.h intersec.h list.h mathdefs.h typedefs.h vecmath.h voxel.h\
+ world.h
+	mcppc -c -pp -go camera.cpp
+
+000/brush.o: actor.h brush.cpp brush.h color.h error.h fileutil.h intersec.h list.h mathdefs.h surface.h\
+ typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp brush.cpp
+
+000/fileutil.o: fileutil.c fileutil.h typedefs.h
+	mcppc -c fileutil.c
+
+000/light.o: actor.h brush.h camera.h color.h intersec.h light.cpp light.h list.h mathdefs.h object.h octree.h\
+ surface.h texture.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp light.cpp
+
+000/list.o: list.cpp list.h typedefs.h
+	mcppc -c -pp list.cpp
+
+000/mathdefs.o: mathdefs.cpp mathdefs.h typedefs.h
+	mcppc -c -pp mathdefs.cpp
+
+000/object.o: actor.h brush.h camera.h color.h intersec.h light.h list.h mathdefs.h object.cpp object.h octree.h\
+ surface.h texture.h triangle.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp object.cpp
+
+000/objhand.o: actor.h brush.h camera.h color.h error.h fileutil.h intersec.h list.h mathdefs.h object.h objhand.cpp\
+ objhand.h objlink.h octree.h plane.h sphere.h surface.h texture.h triangle.h typedefs.h vecmath.h voxel.h\
+ world.h
+	mcppc -c objhand.cpp
+
+000/octree.o: actor.h brush.h camera.h color.h error.h intersec.h list.h mathdefs.h object.h octree.cpp octree.h\
+ surface.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp octree.cpp
+
+000/param.o: param.cpp param.h typedefs.h
+	mcppc -c param.cpp
+
+000/plane.o: actor.h brush.h camera.h color.h intersec.h list.h mathdefs.h object.h octree.h plane.cpp plane.h\
+ surface.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp plane.cpp
+
+000/rsi.o: actor.h brush.h camera.h color.h error.h fileutil.h intersec.h light.h list.h mathdefs.h object.h\
+ objhand.h objlink.h octree.h param.h plane.h rsi.cpp sphere.h surface.h texture.h triangle.h typedefs.h\
+ vecmath.h voxel.h world.h
+	mcppc -c -go rsi.cpp
+
+000/sphere.o: actor.h brush.h camera.h color.h intersec.h list.h mathdefs.h object.h octree.h sphere.cpp\
+ sphere.h surface.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp sphere.cpp
+
+000/surface.o: actor.h brush.h camera.h color.h intersec.h list.h mathdefs.h object.h octree.h surface.cpp\
+ surface.h texture.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp surface.cpp
+
+000/texture.o: actor.h brush.h camera.h color.h error.h fileutil.h intersec.h list.h mathdefs.h object.h octree.h\
+ surface.h texture.cpp texture.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp texture.cpp
+
+000/triangle.o: actor.h brush.h camera.h color.h error.h intersec.h list.h mathdefs.h object.h octree.h surface.h\
+ texture.h triangle.cpp triangle.h typedefs.h vecmath.h voxel.h world.h
+	mcppc -c -pp triangle.cpp
+
+000/vecmath.o: mathdefs.h typedefs.h vecmath.cpp vecmath.h
+	mcppc -c -pp vecmath.cpp
+
+000/voxel.o: mathdefs.h typedefs.h voxel.cpp voxel.h
+	mcppc -c -pp voxel.cpp
+
+000/world.o: color.h intersec.h mathdefs.h typedefs.h world.cpp world.h
+	mcppc -c -pp world.cpp
+

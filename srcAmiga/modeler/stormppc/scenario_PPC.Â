@@ -1,0 +1,645 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:lib_vecmath"
+"rtxt:"
+"StormC:include/gl"
+Includepath (End)
+0 "" 80
+1 "objectsppc"
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+1 "__AMIGA__" ""
+1 "__MATRIX_STACK__" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 1 0 0 0 0 0 1 0 5 1 4 1
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+1 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/errors.h"
+Storm Shell Project (Dependencies)
+"objectsppc/ppc_rsi_stubs.o" "objectsppc/ppc_rsi_stubs.debug"
+""
+"objectsppc/ppc_rsi_stubs.o" "objectsppc/ppc_rsi_stubs.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_stubs.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_stubs.cpp"
+"rtxt:rtexture.h"
+"rtxt:dialog.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"rtxt:texture_module.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/preview.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIdefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+Storm Shell Project (Dependencies)
+"objectsppc/ppc_stubs.o" "objectsppc/ppc_stubs.debug"
+""
+"objectsppc/ppc_stubs.o" "objectsppc/ppc_stubs.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_objhand.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_objhand.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIDefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/mesh.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/brush.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/light.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/camera.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/star.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/flares.h"
+"rmod:objhand_lib.h"
+Storm Shell Project (Dependencies)
+"objectsppc/ppc_objhand.o" "objectsppc/ppc_objhand.debug"
+""
+"objectsppc/ppc_objhand.o" "objectsppc/ppc_objhand.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.cpp"
+Storm Shell Project (Dependencies)
+"objectsppc/ppc_opengl.o" "objectsppc/ppc_opengl.debug"
+""
+"objectsppc/ppc_opengl.o" "objectsppc/ppc_opengl.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/ogl_util.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/ogl_util.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ogl_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/mesh.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIDefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/magic.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/globals.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/camera.h"
+Storm Shell Project (Dependencies)
+"objectsppc/ogl_util.o" "objectsppc/ogl_util.debug"
+""
+"objectsppc/ogl_util.o" "objectsppc/ogl_util.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/objhand.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/objhand.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/mesh.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIDefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sphere.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/box.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/cylinder.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/cone.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/errors.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/brush.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/plane.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/csg.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sor.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/camera.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/light.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/flares.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/star.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/objhand.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sci.h"
+Storm Shell Project (Dependencies)
+"objectsppc/objhand.o" "objectsppc/objhand.debug"
+""
+"objectsppc/objhand.o" "objectsppc/objhand.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/preview.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/preview.cpp"
+"rtxt:texture_module.h"
+"rtxt:rtexture.h"
+"rtxt:dialog.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/preview.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIdefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/globals.h"
+Storm Shell Project (Dependencies)
+"objectsppc/preview.o" "objectsppc/preview.debug"
+""
+"objectsppc/preview.o" "objectsppc/preview.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/modeler/list.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.cpp"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+Storm Shell Project (Dependencies)
+"objectsppc/list.o" "objectsppc/list.debug"
+""
+"objectsppc/list.o" "objectsppc/list.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/typedefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/object.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_rsi_stubs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/iff_util.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/list.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/display.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/view.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/gfx.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/color.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/MUIDefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIDefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/surface.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/popup_menu.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/undo.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/mesh.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/mesh.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/texture.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/brush.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/brush.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/light.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/light.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/camera.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/camera.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/star.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/star.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/flares.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/flares.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rmod:objhand_lib.h"
+"rmod:objhand_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/errors.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/errors.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/animtree_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/animtree_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/MUIutility.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/MUIutility.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/subtask.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/subtask.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/preview.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/preview.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rtxt:dialog.h"
+"rtxt:dialog.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/sci.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sci.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/attrswindow_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/attrswindow_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/render_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/render_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/msghandler_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/msghandler_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/utility.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/utility.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/raytexture_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/raytexture_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rtxt:texture_module.h"
+"rtxt:texture_module.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/browser_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/browser_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/browsertree_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/browsertree_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/globals.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/globals.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rtxt:rtexture.h"
+"rtxt:rtexture.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/meshaddwindow_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/meshaddwindow_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/numreq_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/numreq_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/box.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/box.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/rscn.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/rscn.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/project.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/project.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/prefs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/prefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/cone.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/cone.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/magic.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/magic.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/csg.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/csg.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/cylinder.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/cylinder.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/draw_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/draw_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/mainwindow_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/mainwindow_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/settings_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/settings_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/mouse.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/mouse.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/globalwindow_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/globalwindow_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/m68k_stubs.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/m68k_stubs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/image.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/image.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/picload.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/picload.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rmod:pichand_lib.h"
+"rmod:pichand_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "ray:keyfile/keyfile_lib.h"
+"ray:keyfile/keyfile_lib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/materialitem_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/materialitem_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/material_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/material_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/sphere.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sphere.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/plane.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/plane.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/objhand.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/objhand.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/sor.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/sor.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/opengl.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/ogl_util.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ogl_util.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/prefswindow_class.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/prefswindow_class.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+"SoftDisk:User/mcpp3/work/octree/modeler/ppc_opengl.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "mesa:/source/src/context.h"
+"mesa:/source/src/context.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "mesa:/source/src/types.h"
+"mesa:/source/src/types.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+Storm Shell Project (End)

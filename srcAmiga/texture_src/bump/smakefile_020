@@ -1,0 +1,11 @@
+all: 020/bump.itx
+
+020/bump.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h bump.c
+	sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ data=far code=far cpu=68020 math=s nostartup nostackcheck bump.c objname 020/bump.o
+
+020/noise.o: rtxt:noise.c
+	sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __DNOISE__ define __AMIGA__ data=far code=far cpu=68020 math=s nostartup nostackcheck rtxt:noise.c objname 020/noise.o
+
+020/bump.itx: 020/bump.o 020/noise.o
+	sc data=far code=far cpu=68020 math=s nostartup nostackcheck link 020/bump.o 020/noise.o to 020/bump.itx
+

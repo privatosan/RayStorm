@@ -1,0 +1,40 @@
+                                                         September 06th 1998
+
+                         RayStorm Image Viewer v1.0
+
+                                   by
+                             Andreas Heumann
+                                  and
+                               Mike Hesser
+
+INTRODUCTION
+
+The RayStorm Image Viewer uses the image loader modules of RayStorm to load
+images and display it on high or true color CbyerGfx screens. It automatically
+determines the type of the image and invokes the image loader modules. All
+image types supported by RayStorm are also supported with this program.
+Currently this are
+   IFF-ILBM 24bit
+   PNG
+   JPEG
+   TGA
+There is also a PPC version.
+
+IMPORTANT: The program must be located in the RayStorm program folder to find
+the loader modules.
+
+REQUIREMENTS
+
+(1) Cybergfx
+
+(2) PPC-version: PowerPC processor with at least 68040 (with internal FPU), WarpOS.
+
+(3) RayStorm
+
+USAGE
+
+viewer FILE/A,16BIT/S
+
+FILE     the name of the image file to load
+16BIT    display images on 16 bit (high color) screens instead of 24 bit (true color)
+

@@ -1,0 +1,139 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rsi:"
+"ray:lib_vecmath"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "__AMIGA__" ""
+1 "LOWLEVEL" ""
+Defines (End)
+1 1 1
+C/C++ Options
+1 1 1 0 0 0 0 0 0 0 0 4 1 0 0
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 1 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+2 0 "PROGDIR:startup.o" 0 0 2 3 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/raw/RAW.CPP"
+"SoftDisk:User/mcpp3/work/octree/module_src/raw/RAW.CPP"
+"SoftDisk:User/mcpp3/work/octree/module_src/raw/raw.h"
+"rmod:objlib.h"
+Storm Shell Project (Dependencies)
+"RAW.o" "RAW.debug"
+""
+"RAW.o" "RAW.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/objlib.cpp"
+"SoftDisk:User/mcpp3/work/octree/module_src/objlib.cpp"
+"rmod:objlib.h"
+Storm Shell Project (Dependencies)
+"objlib.o" "objlib.debug"
+""
+"objlib.o" "objlib.debug"
+File
+1 "rsi:list.cpp"
+"rsi:list.cpp"
+"rsi:typedefs.h"
+"rsi:stats.h"
+"rsi:list.h"
+Storm Shell Project (Dependencies)
+"list.o" "list.debug"
+""
+"list.o" "list.debug"
+Section
+1 0 100
+File
+2 "rsi:typedefs.h"
+"rsi:typedefs.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rsi:stats.h"
+"rsi:stats.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/raw/raw.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/raw/raw.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rmod:objlib.h"
+"rmod:objlib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "rsi:list.h"
+"rsi:list.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 0 95
+File
+16 "SoftDisk:User/mcpp3/work/octree/module_src/objlib.fd"
+"SoftDisk:User/mcpp3/work/octree/module_src/objlib.fd"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+16 0 75
+File
+10 "raw"
+"tddd"
+"3ds"
+"raw"
+Storm Shell Project (Dependencies)
+"" ""
+""
+"raw.link"
+Section
+10 0 40
+File
+5 "storm020.lib"
+"storm020.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+5 "ray:lib_vecmath/storm060/vecmath.lib"
+"ray:lib_vecmath/storm060/vecmath.lib"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+5 0 -50
+Storm Shell Project (End)

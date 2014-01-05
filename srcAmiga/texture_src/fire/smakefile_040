@@ -1,0 +1,11 @@
+all: 040/fire.itx
+
+040/fire.o: rtxt:imtextur.h rsi:vecmath.h rsi:typedefs.h fire.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __AMIGA__ data=far code=far cpu=68040 math=68881 nostartup nostackcheck fire.c objname 040/fire.o
+
+040/noise.o: rtxt:noise.c
+        sc IncludeDirectory=rsi: IncludeDirectory=rtxt: opt optsched opttime define __FBM__ define __DNOISE__ define __AMIGA__ data=far code=far cpu=68040 math=68881 nostartup nostackcheck rtxt:noise.c objname 040/noise.o
+
+040/fire.itx: 040/fire.o 040/noise.o
+        sc data=far code=far cpu=68040 math=68881 nostartup nostackcheck link 040/fire.o 040/noise.o to 040/fire.itx
+

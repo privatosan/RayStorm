@@ -1,0 +1,159 @@
+
+ programmer's reference of AL
+ Mike Hesser 15.08.1995
+
+ to do:  
+	EBNF - notation
+----------------------------------------------------------------------
+
+ I. Basic order of events
+---------------------------------------------------------------------------------
+   Editor
+   .al file 
+   AL 
+    Preprocessor
+    Interpreter controls RayStorm
+
+
+ II. Data structures
+---------------------------------------------------------------------------------			
+ structure of an item
+
+	struct
+	{
+		char	*name;		// point to item name
+		UINT	type;		// type of item (vector, number, sphere, process, function, ...)
+		void	*data;		// generic pointer to data
+	} ITEM;
+
+ An item is stored in an dynamic array, which grows on demand. Local and 
+ global objects are stored there together. The items are sorted on names alphabetically,
+ so binary search is possible.
+
+   The CONTAINER class contains following methods
+
+	BOOL Add(char *name, UINT type, void *data);
+	
+	Adds a new item to the item list. The item is inserted alphabetically.
+	If the item array is to small, the array grows about a certain amount of items.
+	Add returns true if the item could be inserted, otherwise false.
+
+
+	BOOL Remove(char *name);
+	
+	Removes an item of the item list. The array does not shrink.
+	Remove returns FALSE if the item was not found.
+	Note! The object on which "data" points must be deleted before you remove it!
+
+
+	ITEM *Search(char *name);
+	
+	Searches for the item with name "name". If the item couldn't be found, Search returns
+	NULL otherwise a pointer to the item.
+	
+ III. The Preprocessor
+--------------------------------------------------------------------------------
+   loads a program into memory and does following tasks
+	- expand #includes (just merge them to the main prog)
+	- remove comments and spaces
+	- translate keywords to tokens
+	- convert ascii numbers to floats
+	- eventually converts characters to upper/lowercase
+	- remove line feeds, etc (characters below #32) -> program is one string
+	- build a table of line numbers
+
+ The preprocessor translates the given .al file into tokens. The output of the preproc
+ can be read easier and faster by the parser.
+ Variable
+
+ table of tokens:
+
+    00 : 
+    01 : float number (single format, 4 bytes)
+    02 : variable identifier (followed by id (UINT))
+
+    10 : for
+    11 : while
+    12 : if
+    13 : process
+    13 : class
+
+
+
+ IV. The Interpreter
+--------------------------------------------------------------------------------
+
+   executes program
+	- has a main program pointer
+	- keeps a table of all variables, objects, functions, processes
+	- switching between processes
+	- controlling of RayStorm
+  
+ 
+ V. Modules of AL
+--------------------------------------------------------------------------------
+	al.cpp/.h	-> main program
+	parser.cpp/.h	-> parse the program
+	prepro.cpp/.h	-> preprocessing the program	
+	item.cpp/.h	-> item class definition
+	math.cpp/.h	-> math functions
+
+
+ VI. Language specification
+--------------------------------------------------------------------------------
+   AL has following language definitions
+
+   <digit>	::= 0|1|2|3|4|5|6|7|8|9
+   <character>	::= a|A|b|B|...|z|Z|_|$|
+   <name>	::= <character>{<character>|<digit>}
+   <float>	::= [+|-]<digit>{<digit>.{<digit>}[E[+|-]<digit>{<digit>}]
+   <string>	::= "{<character>}"	
+   <expression> ::= <term>{+|-<term>} 
+   <term>	::= <factor>{*|/<factor>}
+   <factor>	::= <variable>|<function>|(<expression>)
+   <variable>	::= <name>
+   <function>	::= <name>({[<expression>]{,<expression>})
+   <condition>  ::= <expression>|	
+   <assignment> ::= <variable>=<expression>
+   <command>	::= <assignment>[<name>];
+   <body>	::= <command>|'{'{<command>}'}'	
+   <while>	::= while(<condition>)<body>
+   <if>		::= if(<condition>)<body>[else<body>]
+   <for>	::= for([<command>];[<condition>];[<command>])<body>
+   <process>	::= process<name><body>
+
+converting "for" statement to "while" statement:
+
+   for(<expr1>;<test>;<expr2>) 
+	<body>
+
+   expr1;
+   while(<test>)
+   	<body>
+	<expr2>
+ 
+  VII. Errors & Warnings
+--------------------------------------------------------------------------
+
+  Errors:
+
+  00	all ok
+  01	Syntax error
+  02	Index out of range
+  03	Unknown method
+  04	Improper argument
+  05	Out of memory
+  06	File does not exist
+  07	Error reading file
+  08	Error writing file
+  09	Unknown format
+  10	<statement> missing
+  11	Division by zero
+  12	
+
+  Warnings:
+ 
+  00	all ok
+  01	No light defined
+  02	No camera defined
+  03	

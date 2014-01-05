@@ -1,0 +1,25 @@
+StormLibrarian Document (0001)
+rsi:rsi_sc.lib
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/actor.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/brush.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/camera.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/FILEUTIL.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/global.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/lib.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/light.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/list.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/mathdefs.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/object.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/objhand.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/octree.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/param.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/plane.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/rsi.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/sphere.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/surface.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/TEXTURE.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/triangle.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/vecmath.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/voxel.o
+SoftDisk:User/mcpp3/work/octree/rsi/030_881_sc/world.o
+EOD

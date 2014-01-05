@@ -1,0 +1,434 @@
+Storm Shell Project (0013)
+Settings (Start)
+C/C++ Environment
+"StormC:include"
+"rmod:"
+"rsi:"
+"/zlib"
+Includepath (End)
+0 "" 80
+1 ""
+C/C++ Preprozessor
+1 "NDEBUG" ""
+1 "__MIXEDBINARY__" ""
+1 "__AMIGA__" ""
+1 "PNG_INTERNAL" ""
+Defines (End)
+1 1 1
+C/C++ Options
+0 1 1 0 0 0 0 0 0 1 0 5 1 4 1
+C/C++ Optimizer
+6
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Assembler
+0 ""
+0 "CON://640/200/Storm Assembler/AUTO/WAIT/SCREEN StormScreen"
+0 0
+0 1 60 0 1 0 0 20 0
+Sets (End)
+0 1 0 0 0 2 1 0 0
+1 1 1 1 0 0 0 0 0
+1 0
+0 0 0 0 0
+Linker
+1 0 "PROGDIR:startup.o" 0 0 2 2 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+0 0 0 "" ""
+Settings (End)
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/png-hand.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png-hand.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"png-hand.o" "png-hand.debug"
+""
+"png-hand.o" "png-hand.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/adler32.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/adler32.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"adler32.o" "adler32.debug"
+""
+"adler32.o" "adler32.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/compress.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/compress.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"compress.o" "compress.debug"
+""
+"compress.o" "compress.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/crc32.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/crc32.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"crc32.o" "crc32.debug"
+""
+"crc32.o" "crc32.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"deflate.o" "deflate.debug"
+""
+"deflate.o" "deflate.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/gzio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/gzio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"gzio.o" "gzio.debug"
+""
+"gzio.o" "gzio.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+Storm Shell Project (Dependencies)
+"infblock.o" "infblock.debug"
+""
+"infblock.o" "infblock.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.h"
+Storm Shell Project (Dependencies)
+"infcodes.o" "infcodes.debug"
+""
+"infcodes.o" "infcodes.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.h"
+Storm Shell Project (Dependencies)
+"inffast.o" "inffast.debug"
+""
+"inffast.o" "inffast.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inflate.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inflate.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+Storm Shell Project (Dependencies)
+"inflate.o" "inflate.debug"
+""
+"inflate.o" "inflate.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffixed.h"
+Storm Shell Project (Dependencies)
+"inftrees.o" "inftrees.debug"
+""
+"inftrees.o" "inftrees.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+Storm Shell Project (Dependencies)
+"infutil.o" "infutil.debug"
+""
+"infutil.o" "infutil.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/trees.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/trees.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/trees.h"
+Storm Shell Project (Dependencies)
+"trees.o" "trees.debug"
+""
+"trees.o" "trees.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/uncompr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/uncompr.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"uncompr.o" "uncompr.debug"
+""
+"uncompr.o" "uncompr.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"zutil.o" "zutil.debug"
+""
+"zutil.o" "zutil.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"png.o" "png.debug"
+""
+"png.o" "png.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngerror.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngerror.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngerror.o" "pngerror.debug"
+""
+"pngerror.o" "pngerror.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngget.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngget.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngget.o" "pngget.debug"
+""
+"pngget.o" "pngget.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngmem.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngmem.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngmem.o" "pngmem.debug"
+""
+"pngmem.o" "pngmem.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngpread.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngpread.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngpread.o" "pngpread.debug"
+""
+"pngpread.o" "pngpread.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngread.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngread.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngread.o" "pngread.debug"
+""
+"pngread.o" "pngread.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngrio.o" "pngrio.debug"
+""
+"pngrio.o" "pngrio.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrtran.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrtran.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngrtran.o" "pngrtran.debug"
+""
+"pngrtran.o" "pngrtran.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngrutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngrutil.o" "pngrutil.debug"
+""
+"pngrutil.o" "pngrutil.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngset.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngset.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngset.o" "pngset.debug"
+""
+"pngset.o" "pngset.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngtrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngtrans.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngtrans.o" "pngtrans.debug"
+""
+"pngtrans.o" "pngtrans.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwio.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngwio.o" "pngwio.debug"
+""
+"pngwio.o" "pngwio.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwrite.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwrite.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngwrite.o" "pngwrite.debug"
+""
+"pngwrite.o" "pngwrite.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwtran.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwtran.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngwtran.o" "pngwtran.debug"
+""
+"pngwtran.o" "pngwtran.debug"
+File
+1 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngwutil.c"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"pngwutil.o" "pngwutil.debug"
+""
+"pngwutil.o" "pngwutil.debug"
+Section
+1 1 100
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zlib.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zconf.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/png.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/pngconf.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/deflate.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/zutil.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infblock.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inftrees.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infcodes.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/infutil.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffast.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffixed.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/inffixed.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+File
+2 "SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/trees.h"
+"SoftDisk:User/mcpp3/work/octree/module_src/PNG/zlib/trees.h"
+Storm Shell Project (Dependencies)
+"" ""
+""
+Section
+2 1 95
+Storm Shell Project (End)
